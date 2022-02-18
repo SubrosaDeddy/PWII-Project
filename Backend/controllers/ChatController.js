@@ -6,8 +6,8 @@ exports.chat_getall = async(req, res)=>{
     res.send(data);
 }
 
-exports.chat_create = async(req, res) =>{
-    const{body} = req;
+exports.chat_create = async (req, res) =>{
+    const {body} = req;
 
     // Validación de la info 
     // ...
@@ -16,12 +16,12 @@ exports.chat_create = async(req, res) =>{
 
     let newChat = new Chat(body);
 
-    await new newChat.save()
-    .then((newObject) => console.log("Success!"), newObject)
+    await newChat.save()
+    .then((newObject) => console.log("Success!", newObject))
     .catch((err)=>{
         console.error("oops!!", err);
-        res.send(err.errors);
+        // res.send(err.errors);
     });
 
-    res.send;
-}
+    res.send(newChat);
+};

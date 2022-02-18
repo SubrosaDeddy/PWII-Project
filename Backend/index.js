@@ -9,3 +9,10 @@ app.listen(port, () =>{
     console.log("Escuchando al puerto: ", + port);
 })
 
+// Conexion Base de Datos
+require('./models/connection')
+
+
+// Require Chats
+const chat_router = require('./routes/ChatRoutes');
+app.use('/api', chat_router);

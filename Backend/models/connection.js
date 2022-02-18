@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 mongoose
-.connect("", {useNewUrlParser:true})
+.connect("mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false", {useNewUrlParser:true})
 .then(() => console.log("Conectado a la base de datos MongoDB"))
 .catch(()=> {
     console.error("Error, no se pudo conectar a la base de datos");
