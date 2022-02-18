@@ -1,0 +1,19 @@
+{
+  "name": "pwii-project",
+  "version": "1.0.0",
+  "description": "https://github.com/SubrosaDeddy/PWII-Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SubrosaDeddy/PWII-Project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SubrosaDeddy/PWII-Project/issues"
+  },
+  "homepage": "https://github.com/SubrosaDeddy/PWII-Project#readme"
+}
