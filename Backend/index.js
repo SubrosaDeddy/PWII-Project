@@ -13,23 +13,28 @@ app.listen(port, () =>{
 require('./models/connection')
 
 
-// Require User
+// User
 const user_routes = require('./routes/UserRoutes');
 app.use('/api', user_routes);
 
-// Require Worker
+// Worker
 const worker_routes = require('./routes/WorkerRoutes');
 app.use('/api', worker_routes);
 
-// Require Ocupation
+// Ocupation
 const ocupation_routes = require('./routes/OcupationRoutes');
 app.use('/api', ocupation_routes);
 
-// Require Multimedia
+// Multimedia
 const multimedia_routes = require('./routes/MultimediaRoutes');
 app.use('/api', multimedia_routes);
 
-// Require Chats
+// Publications/Jobs
+const jobs_routes = require("./routes/JobRoutes");
+app.use('/api', jobs_routes);
+
+
+// Chats
 const chat_router = require('./routes/ChatRoutes');
 app.use('/api', chat_router);
 

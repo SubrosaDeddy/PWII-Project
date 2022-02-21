@@ -20,11 +20,18 @@ const JobSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref: "worker"
     },
-    photos: 
+    _photos: 
     [
         {
-            type:String,
-            required:true
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "multimedia"
+        }
+    ],
+    _category:
+    [
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref: "ocupation"
         }
     ]
 });

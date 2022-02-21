@@ -25,6 +25,8 @@ const WorkerSchema = new mongoose.Schema({
         type:Number,
         default:null
     }
+    // Disponibilidad
+    
 });
 
 const Worker = mongoose.model("worker", WorkerSchema);

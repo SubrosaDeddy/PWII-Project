@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 
 const multimedia_controller = require("../controllers/MultimediaController");
-const { route } = require("./UserRoutes");
 
 router.get("/multimedia", multimedia_controller.multimedia_getall);
 router.post("/multimedia", multimedia_controller.multimedia_create);
