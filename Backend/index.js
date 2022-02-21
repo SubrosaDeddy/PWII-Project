@@ -17,10 +17,14 @@ require('./models/connection')
 const user_routes = require('./routes/UserRoutes');
 app.use('/api', user_routes);
 
+// Require Worker
+const worker_routes = require('./routes/WorkerRoutes');
+app.use('/api', worker_routes);
+
+
 // Require Ocupation
 const ocupation_routes = require('./routes/OcupationRoutes');
 app.use('/api', ocupation_routes);
-
 
 // Require Chats
 const chat_router = require('./routes/ChatRoutes');
