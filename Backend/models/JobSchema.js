@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 // Publicaciones de trabajo
 const JobSchema = new mongoose.Schema({
     title:
@@ -15,7 +16,11 @@ const JobSchema = new mongoose.Schema({
         minlength:10,
         maxlength:500
     },
-    photos:
+    _workerinfo:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "worker"
+    },
+    photos: 
     [
         {
             type:String,

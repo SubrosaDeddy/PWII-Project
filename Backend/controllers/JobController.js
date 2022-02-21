@@ -1,5 +1,7 @@
 const Job = require("../models/JobSchema");
 
+// Publicaciones de trabajo
+
 exports.job_getall = async(req, res) =>{
     const data = await Job.find();
 

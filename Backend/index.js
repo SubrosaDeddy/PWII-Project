@@ -21,10 +21,13 @@ app.use('/api', user_routes);
 const worker_routes = require('./routes/WorkerRoutes');
 app.use('/api', worker_routes);
 
-
 // Require Ocupation
 const ocupation_routes = require('./routes/OcupationRoutes');
 app.use('/api', ocupation_routes);
+
+// Require Multimedia
+const multimedia_routes = require('./routes/MultimediaRoutes');
+app.use('/api', multimedia_routes);
 
 // Require Chats
 const chat_router = require('./routes/ChatRoutes');
