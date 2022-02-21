@@ -16,12 +16,19 @@ exports.chat_create = async (req, res) =>{
 
     let newChat = new Chat(body);
 
-    await newChat.save()
-    .then((newObject) => console.log("Success!", newObject))
-    .catch((err)=>{
-        console.error("oops!!", err);
-        // res.send(err.errors);
-    });
+    
+    try{
+        await newChat.save()
+        .then((newObject) => console.log("Success!", newObject))
+        .catch((err)=>{
+            console.error("oops!!", err);
+            // res.send(err.errors);
+        });
+    
+        res.send(newChat);
+    }
+    catch(e){
+        res.send(e);
+    }
 
-    res.send(newChat);
 };

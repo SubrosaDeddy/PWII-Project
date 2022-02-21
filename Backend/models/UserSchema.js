@@ -43,35 +43,35 @@ const UserSchema = new mongoose.Schema({
                 type:String,
                 minlength:15,
                 maxlength:200,
-                required:true
+                // required:true
             },
             number:
             {
                 type:String,
                 minlength:2,
                 maxlength:6,
-                required:true
+                // required:true
             },
             neighborhood:
             {
                 type:String,
                 minlength:3,
                 maxlength:50,
-                required:true
+                // required:true
             },
             city:
             {
                 type:String,
                 minlength:2,
                 maxlength:50,
-                required:true
+                // required:true
             },
             country:
             {
                 type:String,
                 minlength:2,
                 maxlength:50,
-                required:true  
+                // required:true  
             }
         }
     ]

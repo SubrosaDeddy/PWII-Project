@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+// Publicaciones de trabajo
 const JobSchema = new mongoose.Schema({
     title:
     {

@@ -13,6 +13,12 @@ app.listen(port, () =>{
 require('./models/connection')
 
 
+// Require User
+const user_routes = require('./routes/UserRoutes');
+app.use('/api', user_routes);
+
+
 // Require Chats
 const chat_router = require('./routes/ChatRoutes');
 app.use('/api', chat_router);
+
