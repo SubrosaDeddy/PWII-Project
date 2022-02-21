@@ -12,7 +12,7 @@ const OcupationSchema = new mongoose.Schema({
     {
         type:String,
         required:true,
-        minlength:30,
+        minlength:20,
         maxlength:500
     }
 });

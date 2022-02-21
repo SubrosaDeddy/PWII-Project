@@ -5,5 +5,9 @@ const ocupation_controller = require("../controllers/OcupationController");
 
 router.get("/ocupation", ocupation_controller.ocupation_getall);
 router.post("/ocupation", ocupation_controller.ocupation_create);
+router.get("/ocupation/:id", ocupation_controller.ocupation_getById);
+router.put("/ocupation/:id", ocupation_controller.ocupation_update);
+router.delete("/ocupation/:id", ocupation_controller.ocupation_delete);
+
 
 module.exports = router;

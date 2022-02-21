@@ -17,6 +17,10 @@ require('./models/connection')
 const user_routes = require('./routes/UserRoutes');
 app.use('/api', user_routes);
 
+// Require Ocupation
+const ocupation_routes = require('./routes/OcupationRoutes');
+app.use('/api', ocupation_routes);
+
 
 // Require Chats
 const chat_router = require('./routes/ChatRoutes');
