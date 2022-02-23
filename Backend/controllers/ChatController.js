@@ -32,3 +32,26 @@ exports.chat_create = async (req, res) =>{
     }
 
 };
+
+exports.chat_delete = async(req, res) =>{
+    const {id} = req.params;
+
+    await Chat.deleteOne({_id: id});
+
+    res.send({message: "Mensaje eliminado"});
+}
+
+exports.chat_getallChats = async(req, res)=>{
+    const {id} = req.params;
+    const data = await Chat.find({_usersend: id});
+
+    res.send(data);
+}
+
+// exports.chat_getallMessage = async(req, res)=>{
+//     const {user_1} = req.params;
+//     const {user_2} = req.params;
+//     const data = await Chat.find({_usersend: user_1, _userreceive: user_2});
+
+//     res.send(data.content);
+// }
