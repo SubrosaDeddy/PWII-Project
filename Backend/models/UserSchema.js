@@ -4,9 +4,9 @@ const UserSchema = new mongoose.Schema({
     username:
     {
         type: String, 
-        required:true,
-        minlength:5,
-        maxlength: 50,
+        required:[true, 'Username es requisito'],
+        minlength:[5, 'El nombre es muy corto'],
+        maxlength: [50, 'El nombre es muy largo'],
         unique:true
     },
     profilepicture:
@@ -16,24 +16,24 @@ const UserSchema = new mongoose.Schema({
     fullname:
     {
         type: String,
-        required:true,
-        minlength:10,
-        maxlength:100,
+        required:[true, 'Fullname es requisito'],
+        minlength:[10, 'Fullname es muy corto'],
+        maxlength:[100, 'Fullname es muy largo'],
     },
     email:
     {
         type:String,
-        required:true,
-        minlength:15,
-        maxlength:100,
+        required:[true, 'Email es requisito'],
+        minlength:[10, 'Email es muy corto'],
+        maxlength:[100, 'Email es muy largo'],
         unique:true
     },
     password:
     {
         type:String,
-        required:true,
-        minlength:10,
-        maxlength:100,
+        required:[true, 'Contraseña es requisito'],
+        minlength:[10, 'La contraseña es muy corta'],
+        maxlength:[100, 'La contraseña es muy larga'],
     },
     address:
     [
@@ -41,37 +41,32 @@ const UserSchema = new mongoose.Schema({
             street:
             {
                 type:String,
-                minlength:15,
-                maxlength:200,
-                // required:true
+                minlength:[5, 'Nombre de la calle es muy corto'],
+                maxlength:[200, 'Nombre de la calle es muy largo']
             },
             number:
             {
                 type:String,
-                minlength:2,
-                maxlength:6,
-                // required:true
+                minlength:[2, 'Numero es muy corto'],
+                maxlength:[6, 'Numero es muy largo']
             },
             neighborhood:
             {
                 type:String,
-                minlength:3,
-                maxlength:50,
-                // required:true
+                minlength:[3, 'Nombre de la colonia es muy corto'],
+                maxlength:[50, 'Nombre de la colonia es muy largo']
             },
             city:
             {
                 type:String,
-                minlength:2,
-                maxlength:50,
-                // required:true
+                minlength:[2, 'Nombre de la ciudad es muy corto'],
+                maxlength:[50, 'Nombre de la ciudad es muy largo']
             },
             country:
             {
                 type:String,
-                minlength:2,
-                maxlength:50,
-                // required:true  
+                minlength:[2, 'Nombre del país es muy corto'],
+                maxlength:[50, 'Nombre del país es muy largo']
             }
         }
     ]

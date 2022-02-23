@@ -1,3 +1,4 @@
+const { response } = require("express");
 const User = require("../models/UserSchema");
 
 exports.user_getall = async(req, res) =>{
@@ -8,34 +9,25 @@ exports.user_getall = async(req, res) =>{
 
 exports.user_create = async(req,res) =>{
     const {body} = req;
-
-    var validation = false;
-    var mess = "";
     let newUser = new User(body);
 
-    // Validacion de la info
-    if(body.username = null || body.email == null || body.fullname == null || body.password == null){
-        // res.send({message: "Los datos no puede ser null"})
-        mess = "Los datos no pueden ser null";
-        validation = true;
+    try
+    {
+        let response = {};
+        await newUser.save()
+        .then((newObject) => {
+            console.log("Success!", newObject)
+            response = newObject; 
+        })
+        .catch((err) => {
+            response = err;
+            // console.log(err.errors)
+            console.error("oops!!", err)
+        });
+        res.send(response);
     }
-
-    try{
-        // Validación de la info
-        if(validation){ 
-            res.send({message: mess});
-        } else{
-            await newUser.save()
-            .then((newObject) => console.log("Success!", newObject))
-            .catch((err) => {
-                console.error("oops!!", err);
-                res.send(err.errors);
-            });
-    
-            res.send(newUser);
-        }
-
-    }catch(e){
+    catch(e)
+    {
         res.send(e);
     }  
 };

@@ -17,7 +17,7 @@ const WorkerSchema = new mongoose.Schema({
     businessname:
     {
         type:String,
-        maxlength:30
+        maxlength:[30, 'Nombre del negocio es muy largo']
     },
 
     rating:

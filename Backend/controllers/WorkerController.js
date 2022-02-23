@@ -8,31 +8,25 @@ exports.worker_getall = async(req, res) =>{
 
 exports.worker_create = async(req, res) =>{
     const {body} = req;
-
-    var validation = false;
-    var mess = "";
     let newWorker = new Worker(body);
 
-    // Validación de info
-    if(body._userinfo == null || body._ocupations == null || body.rating == null){
-        mess = "Los datos no pueden ser null";
-        validation = true;
-    }
-
-    try {
-        if(validation){
-            res.send({message: mess});
-        }else{
-            await newWorker.save()
-            .then((newObject) => console.log("Success!", newObject))
-            .catch((err) => {
-                console.error("oops!!", err);
-                res.send(err.errors);
-            });
-        
-            res.send(newWorker);
-        }
-    } catch (e) {
+    try 
+    {
+        let response = {};
+        await newWorker.save()
+        .then((newObject) => {
+            console.log("Success!", newObject)
+            response = newObject
+        })
+        .catch((err) => {
+            response = err;
+            console.error("oops!!", err);
+            // res.send(err.errors);
+        });
+        res.send(response);
+    } 
+    catch (e) 
+    {
         res.send(e);
     }
 };

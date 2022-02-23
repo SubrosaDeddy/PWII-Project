@@ -8,32 +8,26 @@ exports.ocupation_getall = async(req, res) =>{
 
 exports.ocupation_create = async(req,res) =>{
     const {body} = req;
-
-    var validation = false;
-    var mess= "";
     let newOcupation = new Ocupation(body);
 
-    // Validación de la información
-    if(body.title == null || body.description == null){
-        mess = "Los datos no pueden ser null";
-        validation = true;
-    }
+    try
+    {
+        let response = {};
+        await newOcupation.save()
+        .then((newObject) => {
+            console.log("Success!", newObject)
+            response = newObject;
+        })
+        .catch((err) => {
+            response = err;
+            console.error("oops!!", err);
+            // res.send(err.errors);
+        });
 
-    try {
-        if(validation){
-            res.send({message: mess})
-        }
-        else{
-            await newOcupation.save()
-            .then((newObject) => console.log("Success!", newObject))
-            .catch((err) => {
-                console.error("oops!!", err);
-                res.send(err.errors);
-            });
-    
-            res.send(newOcupation);
-        }
-    } catch (e) {
+        res.send(response);
+    }
+    catch (e)
+    {
         res.send(e);
     }
 

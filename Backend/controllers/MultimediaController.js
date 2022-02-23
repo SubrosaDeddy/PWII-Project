@@ -7,32 +7,26 @@ exports.multimedia_getall = async(req, res) =>{
 }
 
 exports.multimedia_create = async(req, res) =>{
-    const { body} = req;
-    var validate = false;
-    var mess ="";
-
+    const {body} = req;
     let newMultimedia = new Multimedia(body)
 
-    // Validacion de la info
-    if(body.title == null || body.url == null){
-        mess = "Los datos no pueden ser null"
-        validate = true;
-    }
-
-    try {
-        if(validate){
-            res.send({message : mess})
-        }else{
-            await newMultimedia.save()
-            .then((newObject) => console.log("Success!", newObject))
-            .catch((err) => {
-                console.error("oops!!", err);
-                res.send(err.errors);
-            });
-
-            res.send(newUser);
-        }
-    } catch (e) {
+    try 
+    {
+        let response = {};
+        await newMultimedia.save()
+        .then((newObject) => {
+            console.log("Success!", newObject)
+            response = newObject;
+        })
+        .catch((err) => {
+            response = err;
+            console.error("oops!!", err);
+            // res.send(err.errors);
+        });
+        res.send(response);
+    } 
+    catch (e) 
+    {
         res.send(e);
     }
 }

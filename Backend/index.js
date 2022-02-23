@@ -12,7 +12,6 @@ app.listen(port, () =>{
 // Conexion Base de Datos
 require('./models/connection')
 
-
 // User
 const user_routes = require('./routes/UserRoutes');
 app.use('/api', user_routes);

@@ -12,31 +12,27 @@ exports.job_getall = async(req, res) =>{
 exports.job_create = async(req,res) =>{
     const{body} = req;
 
-    // Validación de la info
-    var validation = false;
-    var mess = "";
     let newJob = new Job(body);
 
-    if(body.title = null || body.description == null ){
-        // res.send({message: "Los datos no puede ser null"})
-        mess = "Los datos no pueden ser null";
-        validation = true;
+
+    try
+    {
+        let response = {};
+        await newJob.save()
+        .then((newObject) => {
+            console.log("Success!", newObject)
+            response = newObject;
+        })
+        .catch((err) => {
+            response = err;
+            // res.send(err.errors);
+            console.error("oops!!", err);
+        });
+
+        res.send(response);
     }
-
-    try{
-        if(validation){
-            res.send({message: mess});
-        }else{
-            await newJob.save()
-            .then((newObject) => console.log("Success!", newObject))
-            .catch((err) => {
-                console.error("oops!!", err);
-                res.send(err.errors);
-            });
-
-            res.send(newJob);
-        }
-    }catch(e){
+    catch(e)
+    {
         res.send(e);
     }
 };
