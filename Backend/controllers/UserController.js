@@ -34,7 +34,7 @@ exports.user_create = async(req,res) =>{
 
 exports.user_getById = async(req, res) =>{
     const {id} = req.params;
-    // const data = await User.findOne({_username : name})
+    // const data = await User.findOne({_address : id})
     const data = await User.findById(id);
 
     if(data){

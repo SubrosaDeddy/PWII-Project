@@ -35,41 +35,11 @@ const UserSchema = new mongoose.Schema({
         minlength:[10, 'La contraseña es muy corta'],
         maxlength:[100, 'La contraseña es muy larga'],
     },
-    address:
-    [
-        {
-            street:
-            {
-                type:String,
-                minlength:[5, 'Nombre de la calle es muy corto'],
-                maxlength:[200, 'Nombre de la calle es muy largo']
-            },
-            number:
-            {
-                type:String,
-                minlength:[2, 'Numero es muy corto'],
-                maxlength:[6, 'Numero es muy largo']
-            },
-            neighborhood:
-            {
-                type:String,
-                minlength:[3, 'Nombre de la colonia es muy corto'],
-                maxlength:[50, 'Nombre de la colonia es muy largo']
-            },
-            city:
-            {
-                type:String,
-                minlength:[2, 'Nombre de la ciudad es muy corto'],
-                maxlength:[50, 'Nombre de la ciudad es muy largo']
-            },
-            country:
-            {
-                type:String,
-                minlength:[2, 'Nombre del país es muy corto'],
-                maxlength:[50, 'Nombre del país es muy largo']
-            }
-        }
-    ]
+    _address:
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "locality"
+    }
 });
 
 const User = mongoose.model("user", UserSchema);
