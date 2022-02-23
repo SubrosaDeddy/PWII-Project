@@ -1,4 +1,4 @@
-const Device = require("../models/DeviceSchema");
+const Device = require("../models/ReportSchema");
 
 exports.device_getall = async(req, res) =>{
     const data = await Device.find();

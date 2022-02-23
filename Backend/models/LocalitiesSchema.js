@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 
 const LocalitySchema = new mongoose.Schema({
+    country:{
+        type:String, 
+        required:true,
+        minlength:2,
+        maxlength:30
+    },
     city:
     {
         type:String,

@@ -32,6 +32,10 @@ app.use('/api', multimedia_routes);
 const publications_routes = require("./routes/PublicationRoutes");
 app.use('/api', publications_routes);
 
+// Locality 
+const locality_routers = require("./routes/LocalitiesRoutes");
+app.use('/api', locality_routers);
+
 
 // Chats
 const chat_router = require('./routes/ChatRoutes');
