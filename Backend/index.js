@@ -28,9 +28,9 @@ app.use('/api', ocupation_routes);
 const multimedia_routes = require('./routes/MultimediaRoutes');
 app.use('/api', multimedia_routes);
 
-// Publications/Jobs
-const jobs_routes = require("./routes/JobRoutes");
-app.use('/api', jobs_routes);
+// Publications
+const publications_routes = require("./routes/PublicationRoutes");
+app.use('/api', publications_routes);
 
 
 // Chats

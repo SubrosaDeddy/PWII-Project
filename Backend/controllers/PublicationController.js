@@ -1,24 +1,23 @@
-const Job = require("../models/JobSchema");
-const User = require("../models/UserSchema");
+const Publication = require("../models/PublicationSchema");
 
 // Publicaciones de trabajo
 
-exports.job_getall = async(req, res) =>{
-    const data = await Job.find();
+exports.publication_getall = async(req, res) =>{
+    const data = await Publication.find();
 
     res.send(data);
 }
 
-exports.job_create = async(req,res) =>{
+exports.publication_create = async(req,res) =>{
     const{body} = req;
 
-    let newJob = new Job(body);
+    let newPublication = new Publication(body);
 
 
     try
     {
         let response = {};
-        await newJob.save()
+        await newPublication.save()
         .then((newObject) => {
             console.log("Success!", newObject)
             response = newObject;
@@ -37,9 +36,9 @@ exports.job_create = async(req,res) =>{
     }
 };
 
-exports.job_getById = async(req, res) =>{
+exports.publication_getById = async(req, res) =>{
     const {id} = req.params;
-    const data = await Job.findById(id);
+    const data = await Publication.findById(id);
 
     if(data){
         res.send(data);
@@ -48,15 +47,15 @@ exports.job_getById = async(req, res) =>{
     }
 }
 
-exports.job_update = async (req, res) =>{
+exports.publication_update = async (req, res) =>{
     const {id} = req.params;
     const { body }= req;
 
-    const jobdb = await Job.findById(id);
+    const publicationdb = await Publication.findById(id);
 
     try {
-        if(jobdb){
-            const data = await Job.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
+        if(publicationdb){
+            const data = await Publication.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
@@ -66,10 +65,10 @@ exports.job_update = async (req, res) =>{
     }
 }
 
-exports.job_delete = async (req, res) =>{
+exports.publication_delete = async (req, res) =>{
     const {id} = req.params;
 
-    await Job.deleteOne({_id: id});
+    await Publication.deleteOne({_id: id});
 
     res.send({message: "Publicacion eliminada"})
 }

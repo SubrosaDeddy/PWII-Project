@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 // Publicaciones de trabajo
-const JobSchema = new mongoose.Schema({
+const PublicationSchema = new mongoose.Schema({
     title:
     {
         type:String,
@@ -36,5 +36,5 @@ const JobSchema = new mongoose.Schema({
     ]
 });
 
-const Job = mongoose.model("job", JobSchema);
-module.exports = Job;
+const Publication = mongoose.model("publication", PublicationSchema);
+module.exports = Publication;
