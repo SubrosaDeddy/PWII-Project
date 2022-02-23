@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const CategoriesSchema = new mongoose.Schema({
     name:{
         type:String,
-        required: true,
-        minlength: 4,
-        maxlength: 50
+        required: [true, 'Nombre es requisito'],
+        minlength: [4, 'Nombre es muy corto'],
+        maxlength: [50, 'Nombre es muy largo']
     },
     description:{
         type:String,
-        required: true,
-        minlength: 10,
-        maxlength: 80
+        required: [true, 'Descripción es requisito'],
+        minlength: [10, 'Descripción es muy corta'],
+        maxlength: [80, 'Descripción es muy larga']
     }
 });
 const Categories = mongoose.model("categories_rp", CategoriesSchema);

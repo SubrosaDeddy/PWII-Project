@@ -9,7 +9,7 @@ const CommentSchema = new mongoose.Schema({
     comment:
     {
         type:String,
-        required: true
+        required: [true, 'Comentario es requisito']
     },
     _publication:{
         type:mongoose.Schema.Types.ObjectId,
@@ -17,7 +17,7 @@ const CommentSchema = new mongoose.Schema({
     },
     like:{
         type:Boolean,
-        required: true
+        required: [true, 'Like es requisito']
     }
 });
 

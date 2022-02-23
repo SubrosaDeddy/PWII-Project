@@ -15,14 +15,14 @@ const ReportSchema = new mongoose.Schema({
             title:
             {
                 type:String,
-                required:true,
-                minlength:5,
-                maxlength:100
+                required:[true, 'Título es requisito'],
+                minlength:[5, 'Título es muy corto'],
+                maxlength:[100, 'Título es muy largo']
             },
             description:
             {
                 type:String,
-                maxlength:500
+                maxlength:[500, 'Descripción es muy largo']
             },
             part:
             {
@@ -38,7 +38,7 @@ const ReportSchema = new mongoose.Schema({
             date:
             {
                 type:Date,
-                required:true
+                required:[true, 'Fecha es requisito']
             }
         }
     ]

@@ -8,24 +8,26 @@ exports.comment_getall = async(req, res) =>{
 
 exports.comment_create = async(req, res) => {
     const{body} = req;
-
-    // Validación de la info
-    // ...
-    // ...
-    // ...
-
     let newComment = new Comment(body);
 
-    try {
+    try 
+    {
+        let response = {};
         await newComment.save()
-        .then((newObject) => console.log("Success!", newObject))
+        .then((newObject) => {
+            response = newObject;
+            console.log("Success!", newObject)
+        })
         .catch((err) => {
+            response = err;
             console.error("oops!!", err);
-            res.send(err.errors);
+            // res.send(err.errors);
         });
 
-        res.send(newComment);
-    } catch (e) {
+        res.send(response);
+    } 
+    catch (e) 
+    {
         res.send(e);
     }
     

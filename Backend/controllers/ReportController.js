@@ -1,3 +1,4 @@
+const { response } = require("express");
 const Report = require("../models/ReportSchema");
 
 exports.report_getall = async(req, res) =>{
@@ -8,23 +9,23 @@ exports.report_getall = async(req, res) =>{
 
 exports.report_create = async(req,res) =>{
     const{body} = req;
-
-    // Validación de la info
-    // ...
-    // ...
-    // ...
-
     let newReport = new Report(body);
 
-    try {
+    try 
+    {
+        let response = {};
         await newReport.save()
-        .then((newObject) => console.log("Success!", newObject))
+        .then((newObject) => {
+            response = newObject;
+            console.log("Success!", newObject)
+        })
         .catch((err) => {
+            response = err;
             console.error("oops!!", err);
-            res.send(err.errors);
+            // res.send(err.errors);
         });
     
-        res.send(newReport); 
+        res.send(response); 
     } catch (e) {
         res.send(e);
     }  

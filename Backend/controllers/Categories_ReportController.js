@@ -11,16 +11,24 @@ exports.categories_create = async(req, res) =>{
     const {body} = req;
     let newCategory = new Categories(body);
 
-    try {
+    try 
+    {
+        let response = {};
         await newCategory.save()
-        .then((newObject) => console.log("Success!", newObject))
+        .then((newObject) => {
+            response = newObject;
+            console.log("Success!", newObject)
+        })
         .catch((err) => {
+            response = err;
             console.error("oops!!", err);
-            res.send(err.errors);
+            // res.send(err.errors);
         });
 
-        res.send(newCategory);
-    } catch (e) {
+        res.send(response);
+    } 
+    catch (e) 
+    {
         res.send(e);
     }
 }
