@@ -13,14 +13,19 @@ exports.locality_create = async(req, res) =>{
 
     let newLocality = new Locality(body);
 
-    await newLocality.save()
-    .then((newObject) => console.log("Success!", newObject))
-    .catch((err) => {
-        console.error("oops!!", err);
-        res.send(err.errors);
-    });
-
-    res.send(newLocality);
+    try {
+        await newLocality.save()
+        .then((newObject) => console.log("Success!", newObject))
+        .catch((err) => {
+            console.error("oops!!", err);
+            res.send(err.errors);
+        });
+    
+        res.send(newLocality);
+    } catch (e) {
+        res.send(e);
+    }
+   
 }
 
 exports.locality_getById = async(req, res) =>{

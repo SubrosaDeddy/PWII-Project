@@ -36,6 +36,9 @@ app.use('/api', publications_routes);
 const locality_routers = require("./routes/LocalitiesRoutes");
 app.use('/api', locality_routers);
 
+// Cateogires
+const category_routers = require("./routes/Categories_ReportRoutes");
+app.use('/api', category_routers);
 
 // Chats
 const chat_router = require('./routes/ChatRoutes');
