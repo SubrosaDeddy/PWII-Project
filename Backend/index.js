@@ -44,6 +44,11 @@ app.use('/api', category_routers);
 const report_routers = require("./routes/ReportRoutes");
 app.use('/api', report_routers);
 
+
+// Comments
+const comment_router = require("./routes/CommentRoutes");
+app.use('/api', comment_router);
+
 // Chats
 const chat_router = require('./routes/ChatRoutes');
 app.use('/api', chat_router);

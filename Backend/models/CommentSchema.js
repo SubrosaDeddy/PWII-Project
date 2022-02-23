@@ -1,14 +1,25 @@
 const mongoose = require("mongoose");
 
 const CommentSchema = new mongoose.Schema({
-    user:
+    _user:
     {
-        type:String,
-        required:String
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "user"
     },
     comment:
     {
         type:String,
-        required:String
+        required: true
+    },
+    _publication:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "publication"
+    },
+    like:{
+        type:Boolean,
+        required: true
     }
 });
+
+const Comments = mongoose.model("comments", CommentSchema);
+module.exports = Comments;
