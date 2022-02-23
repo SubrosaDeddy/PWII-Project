@@ -5,12 +5,12 @@ const ChatSchema = new mongoose.Schema({
     _usersend: {
         type:mongoose.Schema.Types.ObjectId,
         ref: "user", 
-        required: true
+        required: [true, 'Emisor es requisito']
     }, 
     _userreceive: {
         type:mongoose.Schema.Types.ObjectId,
         ref: "user", 
-        required: true
+        required: [true, 'Receptor es requisito']
     },
     content: {
         type:String
