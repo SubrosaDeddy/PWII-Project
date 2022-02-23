@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
 
-const DeviceSchema = new mongoose.Schema({
+const ReportSchema = new mongoose.Schema({
     model_type:
     {
         type:String
+    },
+    _category:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"categories_rp"
     },
     issue_record:
     [
@@ -24,10 +28,13 @@ const DeviceSchema = new mongoose.Schema({
             {
                 type:String
             },
-            pictures:
-            {
-                type:String
-            },
+            _pictures:
+            [
+                {
+                type:mongoose.Schema.Types.ObjectId,
+                ref: "multimedia"
+                }
+            ],
             date:
             {
                 type:Date,
@@ -37,5 +44,5 @@ const DeviceSchema = new mongoose.Schema({
     ]
 });
 
-const Device = mongoose.model("device", DeviceSchema);
-module.exports = Device;
+const Report = mongoose.model("report", ReportSchema);
+module.exports = Report;
