@@ -1,4 +1,5 @@
 const Ocupation = require("../models/OcupationSchema");
+const logger = require("../util/logger");
 
 exports.ocupation_getall = async(req, res) =>{
     const data = await Ocupation.find();
@@ -15,19 +16,22 @@ exports.ocupation_create = async(req,res) =>{
         let response = {};
         await newOcupation.save()
         .then((newObject) => {
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
             response = newObject;
+            logger.info(`Ocupación creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
 
         res.send(response);
     }
     catch (e)
     {
+        logger.error(e);
         res.send(e);
     }
 
@@ -54,6 +58,7 @@ exports.ocupation_update = async (req, res) =>{
         if(ocupationdb){
             const data = await Ocupation.findOneAndUpdate({_id: id}, body, {returnOriginal: false})
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Ocupación actualizada exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"});
         }

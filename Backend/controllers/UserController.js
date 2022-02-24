@@ -1,5 +1,6 @@
 const { response } = require("express");
 const User = require("../models/UserSchema");
+const logger = require("../util/logger");
 
 exports.user_getall = async(req, res) =>{
     const data = await User.find();
@@ -16,18 +17,21 @@ exports.user_create = async(req,res) =>{
         let response = {};
         await newUser.save()
         .then((newObject) => {
-            console.log("Success!", newObject)
-            response = newObject; 
+            // console.log("Success!", newObject)
+            response = newObject;
+            logger.info(`Usuario creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
             // console.log(err.errors)
-            console.error("oops!!", err)
+            // console.error("oops!!", err)
+            logger.error(err);
         });
         res.send(response);
     }
     catch(e)
     {
+        logger.error(e);
         res.send(e);
     }  
 };
@@ -54,7 +58,8 @@ exports.user_update = async (req, res) =>{
         if(userdb){
             const data = await User.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
-
+            logger.info(`Usuario actualizado exitosamente: ${data}`);
+            
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

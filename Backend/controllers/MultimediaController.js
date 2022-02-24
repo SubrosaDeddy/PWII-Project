@@ -1,4 +1,5 @@
 const Multimedia = require("../models/MultimediaSchema");
+const logger = require("../util/logger");
 
 exports.multimedia_getall = async(req, res) =>{
     const data = await Multimedia.find();
@@ -15,18 +16,21 @@ exports.multimedia_create = async(req, res) =>{
         let response = {};
         await newMultimedia.save()
         .then((newObject) => {
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
             response = newObject;
+            logger.info(`Multimedia creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
         res.send(response);
     } 
     catch (e) 
     {
+        logger.error(e);
         res.send(e);
     }
 }
@@ -52,7 +56,7 @@ exports.multimedia_update = async(req, res) =>{
         if(userdb){
             const data = await Multimedia.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
-
+            logger.info(`Multimedia actualizada exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

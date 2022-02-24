@@ -1,4 +1,5 @@
 const Comment = require("../models/CommentSchema");
+const logger = require("../util/logger");
 
 exports.comment_getall = async(req, res) =>{
     const data = await Comment.find();
@@ -16,18 +17,21 @@ exports.comment_create = async(req, res) => {
         await newComment.save()
         .then((newObject) => {
             response = newObject;
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
+            logger.info(`Comentario creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
 
         res.send(response);
     } 
     catch (e) 
     {
+        logger.error(e);
         res.send(e);
     }
     
@@ -50,6 +54,7 @@ exports.comment_update = async(req, res) =>{
         if(commentdb){
             const data = await Comment.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Comentario actualizado exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

@@ -1,5 +1,6 @@
 const { response } = require("express");
 const Categories = require("../models/Categories_ReportSchema");
+const logger = require("../util/logger");
 
 exports.categories_getall = async(req, res) =>{
     const data = await Categories.find();
@@ -17,18 +18,21 @@ exports.categories_create = async(req, res) =>{
         await newCategory.save()
         .then((newObject) => {
             response = newObject;
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
+            logger.info(`Categorías - Controlador De Reporte creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
 
         res.send(response);
     } 
     catch (e) 
     {
+        logger.error(e);
         res.send(e);
     }
 }
@@ -54,6 +58,7 @@ exports.categories_update = async(req, res) =>{
         if(categoriesdb){
             const data = await Categories.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Categoría actualizada exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

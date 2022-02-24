@@ -1,4 +1,5 @@
 const Chat = require("../models/ChatSchema");
+const logger = require("../util/logger");
 
 exports.chat_getall = async(req, res)=>{
     const data = await Chat.find();
@@ -16,18 +17,21 @@ exports.chat_create = async (req, res) =>{
         await newChat.save()
         .then((newObject) => {
             response = newObject;
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
+            logger.info(`Chat creado exitosamente: ${newObject}`);
         })
         .catch((err)=>{
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
     
         res.send(response);
     }
     catch(e)
     {
+        logger.error(e);
         res.send(e);
     }
 

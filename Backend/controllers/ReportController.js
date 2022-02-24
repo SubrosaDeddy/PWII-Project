@@ -1,5 +1,6 @@
 const { response } = require("express");
 const Report = require("../models/ReportSchema");
+const logger = require("../util/logger");
 
 exports.report_getall = async(req, res) =>{
     const data = await Report.find();
@@ -17,16 +18,19 @@ exports.report_create = async(req,res) =>{
         await newReport.save()
         .then((newObject) => {
             response = newObject;
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
+            logger.info(`Reporte creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
     
         res.send(response); 
     } catch (e) {
+        logger.error(e);
         res.send(e);
     }  
 }
@@ -52,6 +56,7 @@ exports.report_update = async(req, res) =>{
         if(reportdb){
             const data = await Report.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Reporte actualizado exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

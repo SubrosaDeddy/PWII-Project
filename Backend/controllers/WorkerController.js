@@ -1,4 +1,5 @@
 const Worker = require("../models/WorkerSchema")
+const logger = require("../util/logger");
 
 exports.worker_getall = async(req, res) =>{
     const data = await Worker.find();
@@ -15,18 +16,21 @@ exports.worker_create = async(req, res) =>{
         let response = {};
         await newWorker.save()
         .then((newObject) => {
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
             response = newObject
+            logger.info(`Trabajador creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
         res.send(response);
     } 
     catch (e) 
     {
+        logger.error(e);
         res.send(e);
     }
 };
@@ -52,6 +56,7 @@ exports.worker_update = async(req, res) =>{
         if(workerdb){
             const data = await Worker.findOneAndUpdate({_id : id}, body, {returnOriginal:false});
             res.send({message: "Registro actualizado exitosamente"});
+            logger.info(`Trabajador actualizado exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"});
         }

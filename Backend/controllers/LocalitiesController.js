@@ -1,4 +1,5 @@
 const Locality = require("../models/LocalitiesSchema");
+const logger = require("../util/logger");
 
 exports.locality_getall = async(req, res) =>{
     const data = await Locality.find();
@@ -16,18 +17,21 @@ exports.locality_create = async(req, res) =>{
         await newLocality.save()
         .then((newObject) => {
             response = newObject;
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
+            logger.info(`Localidad creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
             // res.send(err.errors);
+            logger.error(err);
         });
     
         res.send(response);
     } 
     catch (e) 
     {
+        logger.error(e);
         res.send(e);
     }
    
@@ -56,6 +60,7 @@ exports.locality_update = async(req, res) =>{
         if(localitydb){
             const data = await Locality.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Localidad actualizada exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }

@@ -1,4 +1,5 @@
 const Publication = require("../models/PublicationSchema");
+const logger = require("../util/logger");
 
 // Publicaciones de trabajo
 
@@ -19,19 +20,22 @@ exports.publication_create = async(req,res) =>{
         let response = {};
         await newPublication.save()
         .then((newObject) => {
-            console.log("Success!", newObject)
+            // console.log("Success!", newObject)
             response = newObject;
+            logger.info(`Publicación creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
             // res.send(err.errors);
-            console.error("oops!!", err);
+            // console.error("oops!!", err);
+            logger.error(err);
         });
 
         res.send(response);
     }
     catch(e)
     {
+        logger.error(e);
         res.send(e);
     }
 };
@@ -57,6 +61,7 @@ exports.publication_update = async (req, res) =>{
         if(publicationdb){
             const data = await Publication.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
+            logger.info(`Publicación actualizada exitosamente: ${data}`);
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }
