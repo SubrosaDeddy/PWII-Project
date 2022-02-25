@@ -1,4 +1,4 @@
-const { response } = require("express");
+// const { response } = require("express");
 const User = require("../models/UserSchema");
 const logger = require("../util/logger");
 
@@ -75,3 +75,19 @@ exports.user_delete = async (req, res) =>{
 
     res.send({message: "Usuario eliminado"})
 }
+
+exports.user_localities = async(req, res) =>{
+    const {id} = req.params;
+    const data = await User.find({_address : id}).populate("_address");
+
+    if(data){
+        res.send(data);
+    }else{
+        res.send({message: "Error, no se encontro el registro"});
+    }
+}
+
+
+
+
+

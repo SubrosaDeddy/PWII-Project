@@ -33,7 +33,10 @@ const PublicationSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref: "ocupation"
         }
-    ]
+    ],
+    counting: {
+        type: Number 
+    }
 });
 
 const Publication = mongoose.model("publication", PublicationSchema);

@@ -1,4 +1,5 @@
 const Worker = require("../models/WorkerSchema")
+const User = require("../models/UserSchema");
 const logger = require("../util/logger");
 
 exports.worker_getall = async(req, res) =>{
@@ -65,11 +66,36 @@ exports.worker_update = async(req, res) =>{
     }
 }
 
-
 exports.worker_delete = async(req, res) =>{
     const {id} = req.params;
 
     await Worker.deleteOne({_id: id});
 
     res.send({message: "Usuario eliminado"});
+}
+
+exports.worker_localities = async(req, res) =>{
+    const {id} = req.params;
+    const data = await Worker.find().populate("_userinfo");
+    let arr = []
+
+    if(data){
+        for(let i= 0; i < data.length; i++){
+            if(data[i]._userinfo._address == id){
+                arr.push(data[i]);
+            }
+        }
+        res.send({arr, conteo: arr.length});
+    }
+}
+
+exports.worker_ocupation = async(req, res)=>{
+    const {id} = req.params;
+    const data = await Worker.find({_ocupations: id}).populate("_ocupations");
+
+    if(data){
+        res.send(data);
+    }else{
+        res.send({message: "Error, no se encontro el registro"});
+    }
 }

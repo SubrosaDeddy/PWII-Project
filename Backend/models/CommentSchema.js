@@ -7,16 +7,18 @@ const CommentSchema = new mongoose.Schema({
         ref: "user"
     },
     comment:
-    {
-        type:String,
-        required: [true, 'Comentario es requisito']
-    },
+    [
+        {
+            type:String,
+            required: [true, 'Comentario es requisito']
+        }
+    ],
     _publication:{
         type:mongoose.Schema.Types.ObjectId,
         ref: "publication"
     },
     like:{
-        type:Boolean,
+        type:Number,
         required: [true, 'Like es requisito']
     }
 });
