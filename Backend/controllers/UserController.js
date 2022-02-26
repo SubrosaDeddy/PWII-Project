@@ -86,8 +86,3 @@ exports.user_localities = async(req, res) =>{
         res.send({message: "Error, no se encontro el registro"});
     }
 }
-
-
-
-
-

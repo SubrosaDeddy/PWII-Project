@@ -1,4 +1,5 @@
 const Publication = require("../models/PublicationSchema");
+const Comments = require("../models/CommentSchema");
 const logger = require("../util/logger");
 
 // Publicaciones de trabajo
@@ -78,3 +79,30 @@ exports.publication_delete = async (req, res) =>{
     res.send({message: "Publicacion eliminada"})
 }
 
+exports.report_publications_worker = async (req, res) =>{
+    const {id} = req.params;
+    const data = await Publication.find({_workerinfo: id});
+    let arr_pb =[];
+    let arr_lk =[];
+    let c_likes = 0;
+    let c_dislikes = 0;
+
+
+    if(data){
+        if(data == ""){
+            res.send({message: "Error, no se encontro el registro"});
+        }else{
+            for(let i= 0; i < data.length; i++){
+                arr_pb.push(await Comments.find({_publication: data[i]._id}))
+            }
+
+            // res.send({arr_lk, Comentarios: arr_pb.length, likes: c_likes , dislikes: c_dislikes});
+            // res.send(data);
+            res.send(arr_pb)
+        }
+        
+    }else{
+        res.send({message: "Error, no se encontro el registro"});
+    }
+
+}

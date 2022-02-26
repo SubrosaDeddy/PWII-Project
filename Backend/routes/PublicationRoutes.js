@@ -9,4 +9,7 @@ router.get("/publication/:id", publication_controller.publication_getById);
 router.put("/publication/:id", publication_controller.publication_update);
 router.delete("/publication/:id", publication_controller.publication_delete);
 
+// Reporte de likes comentarios etc
+router.get("/publication//worker/:id", publication_controller.report_publications_worker);
+
 module.exports = router;
