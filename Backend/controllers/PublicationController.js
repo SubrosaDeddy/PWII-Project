@@ -1,6 +1,7 @@
 const Publication = require("../models/PublicationSchema");
 const Comments = require("../models/CommentSchema");
 const logger = require("../util/logger");
+const { push } = require("../util/logger");
 
 // Publicaciones de trabajo
 
@@ -82,27 +83,42 @@ exports.publication_delete = async (req, res) =>{
 exports.report_publications_worker = async (req, res) =>{
     const {id} = req.params;
     const data = await Publication.find({_workerinfo: id});
+    let temp = []
     let arr_pb =[];
-    let arr_lk =[];
     let c_likes = 0;
     let c_dislikes = 0;
 
 
-    if(data){
-        if(data == ""){
-            res.send({message: "Error, no se encontro el registro"});
-        }else{
-            for(let i= 0; i < data.length; i++){
-                arr_pb.push(await Comments.find({_publication: data[i]._id}))
+    try {
+        if(data){
+            if(data == ""){
+                res.send({message: "Error, no se encontro el registro"});
+            }else{
+                for(let i= 0; i < data.length; i++){
+                    temp = await Comments.find({_publication: data[i]._id})
+                    arr_pb.push(temp)
+                }
+                for(let i= 0; i<arr_pb.length; i++){
+                    for(let j = 0; j <arr_pb[i].length; j++){
+                        if(arr_pb[i][j].like == 1){
+                            c_likes++;
+                        }
+                        if(arr_pb[i][j].like == 0){
+                            c_dislikes++;
+                        }
+                    }
+                }
+                res.send({arr_pb, Comentarios: arr_pb.length, likes: c_likes , dislikes: c_dislikes});
+                // res.send(data);
+                // res.send(arr_pb)
             }
-
-            // res.send({arr_lk, Comentarios: arr_pb.length, likes: c_likes , dislikes: c_dislikes});
-            // res.send(data);
-            res.send(arr_pb)
-        }
-        
-    }else{
-        res.send({message: "Error, no se encontro el registro"});
+            
+        }else{
+            res.send({message: "Error, no se encontro el registro"});
+        } 
+    } catch (e) {
+        logger.error(e);
+        res.send(e);
     }
 
 }
