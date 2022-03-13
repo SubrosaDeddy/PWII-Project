@@ -16,14 +16,11 @@ exports.ocupation_create = async(req,res) =>{
         let response = {};
         await newOcupation.save()
         .then((newObject) => {
-            // console.log("Success!", newObject)
             response = newObject;
             logger.info(`Ocupación creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
 

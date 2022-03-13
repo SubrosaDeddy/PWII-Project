@@ -16,14 +16,11 @@ exports.multimedia_create = async(req, res) =>{
         let response = {};
         await newMultimedia.save()
         .then((newObject) => {
-            // console.log("Success!", newObject)
             response = newObject;
             logger.info(`Multimedia creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
         res.send(response);

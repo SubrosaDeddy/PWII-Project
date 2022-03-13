@@ -17,13 +17,10 @@ exports.locality_create = async(req, res) =>{
         await newLocality.save()
         .then((newObject) => {
             response = newObject;
-            // console.log("Success!", newObject)
             logger.info(`Localidad creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
     

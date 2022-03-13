@@ -17,13 +17,10 @@ exports.comment_create = async(req, res) => {
         await newComment.save()
         .then((newObject) => {
             response = newObject;
-            // console.log("Success!", newObject)
             logger.info(`Comentario creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
 

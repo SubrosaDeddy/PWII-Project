@@ -3,7 +3,6 @@ const Comments = require("../models/CommentSchema");
 const logger = require("../util/logger");
 const { push } = require("../util/logger");
 
-// Publicaciones de trabajo
 
 exports.publication_getall = async(req, res) =>{
     const data = await Publication.find();
@@ -22,14 +21,11 @@ exports.publication_create = async(req,res) =>{
         let response = {};
         await newPublication.save()
         .then((newObject) => {
-            // console.log("Success!", newObject)
             response = newObject;
             logger.info(`Publicación creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // res.send(err.errors);
-            // console.error("oops!!", err);
             logger.error(err);
         });
 
@@ -109,8 +105,6 @@ exports.report_publications_worker = async (req, res) =>{
                     }
                 }
                 res.send({arr_pb, Comentarios: arr_pb.length, likes: c_likes , dislikes: c_dislikes});
-                // res.send(data);
-                // res.send(arr_pb)
             }
             
         }else{

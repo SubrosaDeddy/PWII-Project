@@ -1,4 +1,3 @@
-// const { response } = require("express");
 const User = require("../models/UserSchema");
 const logger = require("../util/logger");
 
@@ -17,14 +16,11 @@ exports.user_create = async(req,res) =>{
         let response = {};
         await newUser.save()
         .then((newObject) => {
-            // console.log("Success!", newObject)
             response = newObject;
             logger.info(`Usuario creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.log(err.errors)
-            // console.error("oops!!", err)
             logger.error(err);
         });
         res.send(response);
@@ -38,7 +34,7 @@ exports.user_create = async(req,res) =>{
 
 exports.user_getById = async(req, res) =>{
     const {id} = req.params;
-    // const data = await User.findOne({_address : id})
+
     const data = await User.findById(id);
 
     if(data){

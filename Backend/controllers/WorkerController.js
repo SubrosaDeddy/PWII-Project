@@ -17,14 +17,11 @@ exports.worker_create = async(req, res) =>{
         let response = {};
         await newWorker.save()
         .then((newObject) => {
-            // console.log("Success!", newObject)
             response = newObject
             logger.info(`Trabajador creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
         res.send(response);

@@ -17,13 +17,10 @@ exports.chat_create = async (req, res) =>{
         await newChat.save()
         .then((newObject) => {
             response = newObject;
-            // console.log("Success!", newObject)
             logger.info(`Chat creado exitosamente: ${newObject}`);
         })
         .catch((err)=>{
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
     
@@ -52,10 +49,4 @@ exports.chat_getallChats = async(req, res)=>{
     res.send(data);
 }
 
-// exports.chat_getallMessage = async(req, res)=>{
-//     const {user_1} = req.params;
-//     const {user_2} = req.params;
-//     const data = await Chat.find({_usersend: user_1, _userreceive: user_2});
 
-//     res.send(data.content);
-// }

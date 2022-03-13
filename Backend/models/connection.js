@@ -10,7 +10,6 @@ mongoose
     console.log("Conectado a la base de datos MongoDB")
 })
 .catch(()=> {
-    // console.error("Error, no se pudo conectar a la base de datos");
     logger.error(`No se pudo establecer conexión con la base de datos`);
     process.exit();
 });

@@ -18,13 +18,10 @@ exports.categories_create = async(req, res) =>{
         await newCategory.save()
         .then((newObject) => {
             response = newObject;
-            // console.log("Success!", newObject)
             logger.info(`Categorías - Controlador De Reporte creado exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
-            // console.error("oops!!", err);
-            // res.send(err.errors);
             logger.error(err);
         });
 
