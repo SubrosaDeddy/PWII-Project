@@ -12,7 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-
+import CheckIcon from '@mui/icons-material/Check';
 // Bar
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { styled, alpha } from "@mui/material/styles";
@@ -160,16 +160,37 @@ export default function Home() {
         <Typography>Miles de trabajadores disponibles para que encuentres el que se ajuste mejor a tus necesidades</Typography>
 
         <Container sx={{display:"flex", flexDirection:"row", alignItems:"space-between", justifyContent:"space-between", padding:5}}>
-          <CardMedia component="img" src="https://www.coolantarctica.com/Antarctica%20fact%20file/wildlife/Arctic_animals/Delphinapterus_leucas_Steve-snodgrass-CC2-Att-Gen.jpg" sx={{height:300, width:"auto"}}/>
-          <Container sx={{display:"flex", flexDirection:"column"}}>
-            <Typography sx={{fontSize:20}}>Te ayudamos a encontrar el trabajador que resuelva tu problema</Typography>       
-            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
-            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
-            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
-            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
-            <Button color="primary" elementType="Button" size="medium" variant="outlined" sx={{backgroundColor:color_one.palette.primary.azul, borderRadius:5}}>Crea una cuenta</Button>
-          </Container>   
+          <CardMedia component="img" src="https://i.kym-cdn.com/entries/icons/original/000/036/211/cover6.jpg" sx={{height:300, width:"auto"}}/>
+          <Box sx={{display:"flex", flexDirection:"column", alignItems:"space-between", justifyContent:"space-between", Width:"90%"}}>
+            <Typography sx={{fontSize:20, fontWeight:"bold"}}>Te ayudamos a encontrar un trabajador que resuelva tu problema</Typography>  
+            <Typography sx={{fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.palette.primary.azul}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+            <Typography sx={{fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.palette.primary.azul}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+            <Typography sx={{fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.palette.primary.azul}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+            <Typography sx={{fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.palette.primary.azul}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+            <Typography sx={{fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.palette.primary.azul}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+            <Button color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.palette.primary.azul, borderRadius:5, width:200, mx:"auto", color:color_one.palette.primary.white}}>Crea una cuenta</Button>
+          </Box>  
         </Container>
+        <Box sx={{display:"flex", flexDirection:"column", alignItems:"space-between", justifyContent:"space-between", width:"90%", padding:5}}>
+            <Typography sx={{fontWeight:"bold", fontSize:25, margin:"auto"}}>
+                  Publica tu trabajo en el portal de freelancing de mayor popularidad en México
+            </Typography>
+          <Box sx={{display:"flex", flexDirection:"row", alignItems:"space-between", justifyContent:"space-between", width:"90%", padding:5}}>
+            <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", width:"30%", padding:1}}>
+                  <CheckIcon sx={{color:color_one.palette.primary.azul, fontSize:75}}/>
+                  <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+            </Box>
+            <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", width:"30%", padding:1}}>
+                  <CheckIcon sx={{color:color_one.palette.primary.azul, fontSize:75}}/>
+                  <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+            </Box>
+            <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", width:"30%", padding:1}}>
+                  <CheckIcon sx={{color:color_one.palette.primary.azul, fontSize:75}}/>
+                  <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+            </Box>
+          </Box>     
+          <Button color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.palette.primary.azul, borderRadius:5, width:300, mx:"auto", color:color_one.palette.primary.white}}>Publica gratis tu trabajo</Button>
+        </Box> 
       </Box>
     </ThemeProvider>
   );
