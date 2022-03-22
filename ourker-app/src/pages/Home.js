@@ -28,6 +28,8 @@ export default function Home() {
     palette: {
       primary: {
         main: "#eceff1",
+        azul: "#2777D4",
+        white:"#FEFEFE"
       },
     },
   });
@@ -75,10 +77,10 @@ export default function Home() {
   }));
 
     //   Autocomplete
-  const options = ['Option 1', 'Option 2'];
-  const [value, setValue] = React.useState(options[0]);
-  const [inputValue, setInputValue] = React.useState('');
-  
+    const options = ["Option 1", "Option 2"];
+    const [value, setValue] = React.useState();
+    const [inputValue, setInputValue] = React.useState("");
+
   return (
     // <Container>
     <ThemeProvider theme={color_one}>
@@ -110,42 +112,65 @@ export default function Home() {
         </Toolbar>
       </Box>
 
-      <Box fullWidth sx={{ m: 1 }}>
-        <Grid container spacing={1}>
-          <Grid item xs={4}>
+      <Box sx={{ m: 1, backgroundColor:color_one.palette.primary.azul, height:300, m:0, Width:1, alignItems:"center", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center"}}>
+        <Typography variant="h4" component="h4" sx={{color:color_one.palette.primary.white, mt:5}}>
+          Te ayudamos a encontrar a la persona indicada para tu trabajo.
+        </Typography>
+        <Box sx={{width:1000, height:75, borderRadius:5, backgroundColor: color_one.palette.primary.white, margin:"auto", display:"flex", alignItems:"center"}}>
             <Autocomplete
                 value={value}
                 onChange={(event, newValue) => {
-                    setValue(newValue);
-                  }}
-                  inputValue={inputValue}
-                  onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                  }}
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
                 id="combo-box-demo"
                 options={options}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params}
-                label="Trabajo"/>} 
-                />
-          </Grid>
-
-          <Grid item xs={8}>
-            <Card fullWidth sx={{ m: 1 }}>
-              <CardMedia
-                component="img"
-                alt="background"
-                // height="lg"
-                image="https://img.freepik.com/vector-gratis/grupo-trabajadores-oficina-dibujos-animados-lindo-ilustracion-plana_74855-18345.jpg?w=1060"
-              />
-            </Card>
-          </Grid>
-        </Grid>
+                sx={{mx:"auto", width:400, backgroundColor:color_one.palette.primary.white}}
+                renderInput={(params) => (
+                <TextField {...params} label="Trabajo" variant="filled"/>
+            )}/>
+                {/* <TextField id="filled-basic" label="Trabajos" variant="filled" sx={{mx:"auto", width:400, backgroundColor:color_one.palette.primary.white}} /> */}
+            <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                  setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                  setInputValue(newInputValue);
+                }}
+                id="combo-box-demo"
+                options={options}
+                sx={{mx:"auto", width:400, backgroundColor:color_one.palette.primary.white}}
+                renderInput={(params) => (
+                <TextField {...params} label="Localidades" variant="filled" sx={{mx:"auto", width:400, backgroundColor:color_one.palette.primary.white}} />
+            )}/>
+            {/* <TextField id="filled-basic" label="Localidades" variant="filled" sx={{mx:"auto", width:400, backgroundColor:color_one.palette.primary.white}} /> */}
+            <SearchIconWrapper sx={{position:"relative", m:1}}>
+              <SearchIcon sx={{display:"inline"}}/>
+            </SearchIconWrapper>
+        </Box>
       </Box>
 
-      {/* </AppBar> */}
-    </ThemeProvider>
+      <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:5}}>
+        <Typography variant="h4" component="h4">Si tienes trabajo por hacer ¡Ourker está contigo!</Typography>
+        <Typography>Miles de trabajadores disponibles para que encuentres el que se ajuste mejor a tus necesidades</Typography>
 
-    // </Container>
+        <Container sx={{display:"flex", flexDirection:"row", alignItems:"space-between", justifyContent:"space-between", padding:5}}>
+          <CardMedia component="img" src="https://www.coolantarctica.com/Antarctica%20fact%20file/wildlife/Arctic_animals/Delphinapterus_leucas_Steve-snodgrass-CC2-Att-Gen.jpg" sx={{height:300, width:"auto"}}/>
+          <Container sx={{display:"flex", flexDirection:"column"}}>
+            <Typography sx={{fontSize:20}}>Te ayudamos a encontrar el trabajador que resuelva tu problema</Typography>       
+            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
+            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
+            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
+            <Typography sx={{fontSize:18}}>Si no lo resuelve lo matamos</Typography>    
+            <Button color="primary" elementType="Button" size="medium" variant="outlined" sx={{backgroundColor:color_one.palette.primary.azul, borderRadius:5}}>Crea una cuenta</Button>
+          </Container>   
+        </Container>
+      </Box>
+    </ThemeProvider>
   );
 }
