@@ -14,6 +14,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
+import { color_one } from '../utils/Themes';
 
 const useStyles = makeStyles({
     
@@ -28,8 +29,7 @@ const useStyles = makeStyles({
     },
     borderRight500: {
         borderRight: '1px solid #e0e0e0',
-        
-      backgroundColor: "#2777D4"
+        backgroundColor: color_one.primary.main
     },
     messageArea: {
       height: '60vh',
@@ -54,11 +54,6 @@ export default function UserChat() {
   return (
 
     <div>
-    <Grid container>
-        <Grid item xs={12} >
-            <Typography variant="h5" className="header-message">Aqui va el navbar</Typography>
-        </Grid>
-    </Grid>
     <Grid container component={Paper} className={classes.chatSection}>
         <Grid item xs={3} className={classes.borderRight500}>
             <List>

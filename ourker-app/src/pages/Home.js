@@ -19,6 +19,11 @@ import InputBase from "@mui/material/InputBase";
 import CardMedia from "@mui/material/CardMedia";
 
 import {color_one} from "../utils/Themes";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles({
+    
+});
 
 export default function Home() {
   // AppBar
