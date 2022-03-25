@@ -7,13 +7,14 @@ import LogIn from './pages/LogIn';
 import SignIn from './pages/SignIn';
 import UserChat from './pages/UserChat';
 import NavBar from './pages/Navbar'
+import ChatWorker from './pages/ChatWorker';
+
 function App() {
   return (
     <Fragment>
       <NavBar/>
-      <Home/>
-      {/* <Helmet> <title>Ourker</title> </Helmet>
-      <UserChat/> */}
+      <Helmet> <title>Ourker</title> </Helmet>
+      <ChatWorker/> 
     </Fragment>
   );
 }

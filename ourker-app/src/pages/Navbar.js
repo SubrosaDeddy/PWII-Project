@@ -1,6 +1,7 @@
 import React, {useState}from 'react'
-
+import { Image } from 'mui-image';
 import Box from "@mui/material/Box";
+
 import {
   Button,
   Stack,
@@ -14,6 +15,7 @@ import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 
 import { color_one } from '../utils/Themes';
+import { Grid } from '@material-ui/core';
 
 export default function NavBar() {
     // AppBar
@@ -62,12 +64,14 @@ export default function NavBar() {
     return (
         <ThemeProvider theme={color_one}>
             <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
+                
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Ourker
-                    </Typography>
 
+                <Image src="/ourker_logo.png"   sx={{ maxWidth: "250px",
+    marginLeft: -200 }}/>
+                    
                     <Stack spacing={1} direction="row">
+
                         <Search>
                         <SearchIconWrapper>
                             <SearchIcon />

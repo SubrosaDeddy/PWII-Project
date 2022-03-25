@@ -40,6 +40,7 @@ function Copyright(props) {
   });
 
 
+
 export default function SignIn() {
 
 
@@ -57,10 +58,10 @@ export default function SignIn() {
   return (
   
     <ThemeProvider theme={theme}>
-    <Grid container component="main"  sx={{ height: '100vh' }}>
+    <Grid container component="main"  sx={{ height: '100vh'}}>
       <CssBaseline />
     
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square >
         <Box
           sx={{
             my: 8,
@@ -70,7 +71,7 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Image src="/ourker_logo.png"/>
+          <Image src="/ourker_logo.png" sx={{ maxWidth: "500px" }}/>
 
           <Typography component="h1" variant="h5"  margin={5}>
             Crea una cuenta
@@ -78,7 +79,7 @@ export default function SignIn() {
 
           <Avatar
             src="/broken-image.jpg" 
-            sx={{ width: 150, height: 150 }}
+            sx={{ width: 100, height: 100 }}
          />
 
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
@@ -89,7 +90,7 @@ export default function SignIn() {
           
 
           <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2 }}>
-            CARGAR IMAGEN
+            Cargar imagen
             <input type="file" accept="image/*" hidden/>
          </Button>
          
@@ -154,15 +155,14 @@ export default function SignIn() {
 
       <Grid
         item
+
         xs={false}
         sm={4}
         md={7}
         sx={{
-            bgcolor: '#2777D4',
+          backgroundImage: 'url(/fondo_gradiente.jpg)'
         }}
       />
-
-
     </Grid>
   </ThemeProvider>
   

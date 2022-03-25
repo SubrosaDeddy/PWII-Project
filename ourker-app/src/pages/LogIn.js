@@ -64,7 +64,7 @@ export default function LogIn() {
         sm={4}
         md={7}
         sx={{
-            bgcolor: '#2777D4',
+          backgroundImage: 'url(/fondo1.jpg)'
         }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -77,7 +77,7 @@ export default function LogIn() {
             alignItems: 'center',
           }}
         >
-            <Image src="/ourker_logo.png" sx={{ m: -2 }}/>
+            <Image src="/ourker_logo.png"  sx={{ maxWidth: "500px" }}/>
           <Typography component="h1" variant="h5" textAlign="center" sx={{ m: 5}}>
             Inicia sesión
           </Typography>

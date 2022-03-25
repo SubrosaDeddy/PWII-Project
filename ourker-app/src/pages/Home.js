@@ -100,7 +100,7 @@ export default function Home() {
 
             <Grid sx={{alignItems:"center", justifyContent:"space-between", flexWrap:"wrap", width:"fit-content", display:"flex", pt:5, pb:1, px:"auto", textAlign:"center"}}>
                 <Grid item xs={12} sm={12} md={12} lg={6} xl={6} sx={{alignItems:"center", alignContent:"center", textAlign:"center", p:"auto", mb:1, display:"flex", justifyContent:"center"}}>
-                    <CardMedia component="img" src="https://i.kym-cdn.com/entries/icons/original/000/036/211/cover6.jpg" sx={{height:300, width:"auto", borderRadius:3, m:"auto", display:"block"}}/>
+                    <CardMedia component="img" src="/work_figures.jpg" sx={{height:300, width:"auto", borderRadius:3, m:"auto", display:"block"}}/>
                 </Grid>
                 <Grid item xs={11} sm={11} md={10} lg={6} xl={6} sx={{alignItem:"center", px:"auto", mx:"auto"}}>
                     <Box sx={{display:"flex", flexDirection:"column", alignItems:"left", justifyContent:"space-between", width:1, mt:0}}>

@@ -45,14 +45,6 @@ export default function ChatWorker() {
   return (
 
     <ThemeProvider theme={theme}>
-
-    <Grid container>
-        <Grid item xs={12} >
-            <Typography variant="h5" className="header-message" sx={{ m: 5 }}>Buzón de mensajes</Typography>
-        </Grid>
-    </Grid>
-
-   
     <Grid>
     
     <Divider />
@@ -137,7 +129,7 @@ export default function ChatWorker() {
       </ListItem>
       
     </List>
-    <Grid item xs={9}>
+    <Grid item sx={{ marginLeft: 80, marginTop: -45}} xs={9}>
             <List>
                 <ListItem key="1">
                     <Grid container sx={{ borderRadius: 1,  bgcolor: '#2777D4'}}>
@@ -170,12 +162,16 @@ export default function ChatWorker() {
                     </Grid>
                 </ListItem>
 
-                    <TextField id="outlined-basic-email" label="Escribe un mensaje" fullWidth />
                 
-                
+                <Box>
+
+                  
+                <TextField id="outlined-basic-email" label="Escribe un mensaje" fullWidth />                
                 <Button variant="outlined" startIcon={<SendIcon />}>
                    Mandar
                 </Button>
+
+                </Box>
 
             </List>
             <Divider />
