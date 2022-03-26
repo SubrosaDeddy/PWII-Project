@@ -68,7 +68,7 @@ export default function NavBar() {
                 <Toolbar>
 
                 <Image src="/ourker_logo.png"   sx={{ maxWidth: "250px",
-    marginLeft: -200 }}/>
+                    marginLeft: -200 }}/>
                     
                     <Stack spacing={1} direction="row">
 

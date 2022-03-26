@@ -34,7 +34,7 @@ function Copyright(props) {
       allVariants: {
         fontfamily: 'Lexend Deca',
         textTransform: 'none',
-        fontSize: 25,
+        fontSize: 14,
         fontWeight: 700
       },
     },
@@ -56,7 +56,7 @@ export default function LogIn() {
   return (
 
     <ThemeProvider theme={theme}>
-    <Grid container component="main" sx={{ height: '100vh' }}>
+    <Grid container component="main" sx={{ height: '100px'}}>
       <CssBaseline />
       <Grid
         item
@@ -77,7 +77,7 @@ export default function LogIn() {
             alignItems: 'center',
           }}
         >
-            <Image src="/ourker_logo.png"  sx={{ maxWidth: "500px" }}/>
+            <Image src="/ourker_logo.png"  sx={{ maxWidth: "300px" }}/>
           <Typography component="h1" variant="h5" textAlign="center" sx={{ m: 5}}>
             Inicia sesión
           </Typography>

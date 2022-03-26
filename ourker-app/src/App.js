@@ -8,13 +8,14 @@ import SignIn from './pages/SignIn';
 import UserChat from './pages/UserChat';
 import NavBar from './pages/Navbar'
 import ChatWorker from './pages/ChatWorker';
+import CreateReport from './pages/CreateReport';
 
 function App() {
   return (
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <ChatWorker/> 
+      <CreateReport/> 
     </Fragment>
   );
 }

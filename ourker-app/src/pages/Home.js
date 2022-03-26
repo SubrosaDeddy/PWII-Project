@@ -65,7 +65,7 @@ export default function Home() {
                         options={options}
                         sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
                         renderInput={(params) => (
-                        <TextField {...params} label="Trabajo" variant="filled"/>
+                        <TextField {...params} label="Trabajo"/>
                     )}/>
                 </Grid>
                 <Grid item xs={11} sm={11} md={6} lg={5} xl={5} sx={{p:"auto", m:"auto", px:1, textAlign:"center"}}>
@@ -82,7 +82,7 @@ export default function Home() {
                         options={options}
                         sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
                         renderInput={(params) => (
-                        <TextField {...params} label="Localidades" variant="filled"/>
+                        <TextField {...params} label="Localidades"/>
                     )}/>
                 </Grid>
                 <Grid item xs={12} lg={1} sx={{p:0, m:"auto", textAlign:"center"}}>

@@ -33,7 +33,7 @@ function Copyright(props) {
       allVariants: {
         fontfamily: 'Lexend Deca',
         textTransform: 'none',
-        fontSize: 25,
+        fontSize: 14,
         fontWeight: 700
       },
     },
@@ -71,12 +71,12 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          <Image src="/ourker_logo.png" sx={{ maxWidth: "500px" }}/>
+          <Image src="/ourker_logo.png" sx={{ maxWidth: "300px" }}/>
 
-          <Typography component="h1" variant="h5"  margin={5}>
+          {/* <Typography component="h1" variant="h2"  margin={5}>
             Crea una cuenta
-          </Typography>
-
+          </Typography> */}
+          <Box height={'15px'}/>
           <Avatar
             src="/broken-image.jpg" 
             sx={{ width: 100, height: 100 }}
@@ -84,9 +84,9 @@ export default function SignIn() {
 
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
 
-          <Typography component="h1" textAlign="center" margin={5}>
+          {/* <Typography component="h1" textAlign="center" margin={5}>
             Foto del perfil
-          </Typography>
+          </Typography> */}
           
 
           <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2 }}>
