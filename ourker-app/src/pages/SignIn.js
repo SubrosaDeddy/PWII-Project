@@ -15,9 +15,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
 
 
+// Color
+import {color_one} from "../utils/Themes";
+
 function Copyright(props) {
     return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      <Typography variant="body2" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit">
           Ourker
@@ -64,19 +67,19 @@ export default function SignIn() {
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square >
         <Box
           sx={{
-            my: 8,
+            my: 7,
             mx: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}
         >
-          <Image src="/ourker_logo.png" sx={{ maxWidth: "300px" }}/>
+          {/* <Image src="/ourker_logo.png" sx={{ maxWidth: "300px" }}/> */}
 
           {/* <Typography component="h1" variant="h2"  margin={5}>
             Crea una cuenta
           </Typography> */}
-          <Box height={'15px'}/>
+
           <Avatar
             src="/broken-image.jpg" 
             sx={{ width: 100, height: 100 }}
@@ -89,7 +92,7 @@ export default function SignIn() {
           </Typography> */}
           
 
-          <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2 }}>
+          <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
             Cargar imagen
             <input type="file" accept="image/*" hidden/>
          </Button>
@@ -143,7 +146,7 @@ export default function SignIn() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}
             >
               Registrar
 
@@ -155,7 +158,6 @@ export default function SignIn() {
 
       <Grid
         item
-
         xs={false}
         sm={4}
         md={7}

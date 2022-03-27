@@ -15,7 +15,7 @@ function App() {
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <Home/> 
+      <SignIn/> 
     </Fragment>
   );
 }
