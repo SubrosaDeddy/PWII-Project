@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 import {Fragment} from 'react';
 import { Helmet } from 'react-helmet';
 import Home from './pages/Home';
@@ -16,6 +16,7 @@ function App() {
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
       <SignIn/> 
+      {/* <Home/> */}
     </Fragment>
   );
 }

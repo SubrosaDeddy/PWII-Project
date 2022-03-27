@@ -1,7 +1,7 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+// import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -13,7 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
-
+import { Container } from '@mui/material';
 
 // Color
 import {color_one} from "../utils/Themes";
@@ -31,7 +31,7 @@ function Copyright(props) {
     );
   }
   
-  const theme = createTheme({
+const theme = createTheme({
     typography: {
       allVariants: {
         fontfamily: 'Lexend Deca',
@@ -40,133 +40,87 @@ function Copyright(props) {
         fontWeight: 700
       },
     },
-  });
-
-
+});
 
 export default function SignIn() {
-
-
     const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-          email: data.get('email'),
-          password: data.get('password'),
-        });
-      };
+          event.preventDefault();
+          const data = new FormData(event.currentTarget);
+          console.log({
+            email: data.get('email'),
+            password: data.get('password'),
+          });
+    };
 
+    return (
+      <ThemeProvider theme={theme}>
+        <Grid container sx={{height:1, overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
+          {/* <CssBaseline /> */}
+        
+          <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={6} square sx={{height:1}}>
+            <Box sx={{py: 7, px: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', height:"100%"}}>
+                    <Avatar src="/broken-image.jpg" sx={{ width: 100, height: 100 }}/>
 
+                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                      
+                      <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
+                        Cargar imagen
+                        <input type="file" accept="image/*" hidden/>
+                      </Button>
+                    
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="name"
+                        label="Nombre"
+                        name="name"
+                        autoComplete="name"
+                        autoFocus
+                      />
 
-  return (
-  
-    <ThemeProvider theme={theme}>
-    <Grid container component="main"  sx={{ height: '100vh'}}>
-      <CssBaseline />
-    
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square >
-        <Box
-          sx={{
-            my: 7,
-            mx: 4,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-          {/* <Image src="/ourker_logo.png" sx={{ maxWidth: "300px" }}/> */}
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="userName"
+                        label="Nombre de usuario"
+                        name="userName"
+                        autoComplete="userName"
+                        autoFocus
+                      />
 
-          {/* <Typography component="h1" variant="h2"  margin={5}>
-            Crea una cuenta
-          </Typography> */}
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        id="email"
+                        label="Correo electrónico"
+                        name="email"
+                        autoComplete="email"
+                        autoFocus
+                      />
+                      <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        name="password"
+                        label="Contraseña"
+                        type="password"
+                        id="password"
+                        autoComplete="current-password"
+                      />
 
-          <Avatar
-            src="/broken-image.jpg" 
-            sx={{ width: 100, height: 100 }}
-         />
+                      <FormControlLabel control={<Checkbox defaultChecked/>} label="Trabajador" />
 
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-
-          {/* <Typography component="h1" textAlign="center" margin={5}>
-            Foto del perfil
-          </Typography> */}
-          
-
-          <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
-            Cargar imagen
-            <input type="file" accept="image/*" hidden/>
-         </Button>
-         
-             <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="name"
-              label="Nombre"
-              name="name"
-              autoComplete="name"
-              autoFocus
-            />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="userName"
-              label="Nombre de usuario"
-              name="userName"
-              autoComplete="userName"
-              autoFocus
-            />
-
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Correo electrónico"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Contraseña"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Trabajador" />
-
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}
-            >
-              Registrar
-
-            </Button>
-            <Copyright sx={{ mt: 5 }} />
-          </Box>
-        </Box>
-      </Grid>
-
-      <Grid
-        item
-        xs={false}
-        sm={4}
-        md={7}
-        sx={{
-          backgroundImage: 'url(/fondo_gradiente.jpg)'
-        }}
-      />
-    </Grid>
-  </ThemeProvider>
-  
+                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}>
+                        Registrar
+                      </Button>
+                      <Copyright sx={{ mt: 5 }} />
+                    </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     );
 }
