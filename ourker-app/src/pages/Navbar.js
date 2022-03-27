@@ -66,22 +66,10 @@ export default function NavBar() {
             <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
                 
                 <Toolbar>
-
                 <Image src="/ourker_logo.png"   sx={{ maxWidth: "250px",
-                    marginLeft: -200 }}/>
+                mr: 'auto' }}/>
                     
                     <Stack spacing={1} direction="row">
-
-                        <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ "aria-label": "search" }}
-                        />
-                        </Search>
-
                         <Button color="inherit" variant="outlined">
                         Registrate
                         </Button>
