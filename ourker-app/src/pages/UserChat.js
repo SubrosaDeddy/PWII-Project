@@ -15,6 +15,7 @@ import Fab from '@material-ui/core/Fab';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { color_one } from '../utils/Themes';
+import { Container } from '@mui/material';
 
 const useStyles = makeStyles({
     
@@ -29,7 +30,6 @@ const useStyles = makeStyles({
     },
     borderRight500: {
         borderRight: '1px solid #e0e0e0',
-        backgroundColor: color_one.primary.main
     },
     messageArea: {
       height: '60vh',
@@ -43,8 +43,15 @@ const useStyles = makeStyles({
           fontWeight: 700
         },
       },
-
-
+      flexGrow: {
+        flex: '1',
+      },
+      button: {
+        '&:hover': {
+          backgroundColor: color_one.primary.main,
+          color: color_one.primary.secondary,
+      },
+    }
   });
 
 export default function UserChat() {
@@ -56,24 +63,25 @@ export default function UserChat() {
     <div>
     <Grid container component={Paper} className={classes.chatSection}>
         <Grid item xs={3} className={classes.borderRight500}>
+            
+            <Divider />
+                <Grid item xs={12} style={{padding: '20px'}}>
+                    <TextField id="outlined-basic-email"  label="Buscar" variant="outlined" fullWidth />
+                </Grid>
+            <Divider />
+            
             <List>
-                <ListItem button key="Javier">
+                <ListItem button key="Javier" className={classes.button}>
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150 }}
+                     sx={{ width: 150, height: 150}}
                      />
                     </ListItemIcon>
-                    <ListItemText primary="Javier"></ListItemText>
+                    <ListItemText primary="Javier" ></ListItemText>
                 </ListItem>
-            </List>
-            <Divider />
-            <Grid item xs={12} style={{padding: '20px'}}>
-                <TextField id="outlined-basic-email"  label="Buscar" variant="outlined" fullWidth />
-            </Grid>
-            <Divider />
-            <List>
-                <ListItem button key="Brandon">
+
+                <ListItem button key="Brandon" className={classes.button}>
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -81,9 +89,8 @@ export default function UserChat() {
                      />
                     </ListItemIcon>
                     <ListItemText primary="Brandon">Brandon</ListItemText>
-                    <ListItemText secondary="Disponible" align="right"></ListItemText>
                 </ListItem>
-                <ListItem button key="Mario">
+                <ListItem button key="Mario" className={classes.button}>
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -92,7 +99,7 @@ export default function UserChat() {
                     </ListItemIcon>
                     <ListItemText primary="Mario">Mario</ListItemText>
                 </ListItem>
-                <ListItem button key="Alejandra">
+                <ListItem button key="Alejandra" className={classes.button}>
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -105,24 +112,33 @@ export default function UserChat() {
         </Grid>
         <Grid item xs={9}>
             <List className={classes.messageArea}>
+                 <ListItem button key="Javier" style={{ background: color_one.primary.main, color: 'white'}}>
+                    <ListItemIcon>
+                    <Avatar
+                     src="/broken-image.jpg" 
+                     sx={{ width: 150, height: 150}}
+                     />
+                    </ListItemIcon>
+                    <ListItemText primary="Javier" ></ListItemText>
+                </ListItem>
                 <ListItem key="1">
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" primary="Hola, quiero pedirle información sobre el trabajo de carpintero"></ListItemText>
+                        <Grid container>
+
+                            {/*Checar*/}
+                            <Box sx={{background: color_one.primary.secondary, borderRadius: 16, padding: '1rem', marginRight: 0, marginLeft:'auto', display:'inline'}}>
+                                <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
+                                <Typography >09:31</Typography>
+                            </Box>
                         </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" secondary="09:30"></ListItemText>
-                        </Grid>
-                    </Grid>
                 </ListItem>
                 <ListItem key="2">
                     <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="left" primary="Si, claro en seguida le mando la información"></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="left" secondary="09:31"></ListItemText>
-                        </Grid>
+
+                        {/*Checar*/}
+                        <Box sx={{background: color_one.primary.gray, borderRadius: 16, padding: '1rem', marginRight: 'auto', marginLeft:0, display:'inline'}}>
+                            <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
+                            <Typography >09:31</Typography>
+                        </Box>
                     </Grid>
                 </ListItem>
                 <ListItem key="3">
@@ -139,11 +155,11 @@ export default function UserChat() {
             <Divider />
             <Grid container style={{padding: '20px'}}>
                 <Grid item xs={11}>
-                    <TextField id="outlined-basic-email" label="Escribe un mensaje" fullWidth />
+                    <TextField id="outlined-basic" label="Escribe un mensaje" fullWidth />
                 </Grid>
                 
                 <Button variant="outlined" startIcon={<SendIcon />}>
-                   Mandar
+                   Enviar
                 </Button>
 
             </Grid>

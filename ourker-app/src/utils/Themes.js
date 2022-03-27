@@ -5,7 +5,8 @@ const color_one = createTheme({
     {
       main: "#2777D4",
       secondary:"#FEFEFE",
-      details:"#000000"
+      details:"#A7C3D6",
+      gray:"#C0CDD6"
     },
 });
 
