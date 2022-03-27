@@ -1,16 +1,5 @@
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
-// const color_one = createTheme({
-//     palette: {
-//       primary: {
-//         main: "#2777D4",
-//         azul: "#2777D4",
-//         white:"#FEFEFE",
-//         secondary:"#FEFEFE"
-//       },
-//     },
-// });
-
 const color_one = createTheme({
     primary: 
     {

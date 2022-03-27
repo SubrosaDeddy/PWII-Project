@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import LogIn from './pages/LogIn';
 import SignIn from './pages/SignIn';
 import UserChat from './pages/UserChat';
-import NavBar from './pages/Navbar'
+import NavBar from './components/Navbar'
 import ChatWorker from './pages/ChatWorker';
 import CreateReport from './pages/CreateReport';
 
