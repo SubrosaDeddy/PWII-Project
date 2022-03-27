@@ -15,12 +15,7 @@ function App() {
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-<<<<<<< Updated upstream
-      <SignIn/> 
-      {/* <Home/> */}
-=======
       <LogIn/> 
->>>>>>> Stashed changes
     </Fragment>
   );
 }
