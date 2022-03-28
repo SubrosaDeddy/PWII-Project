@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
     chatSection: {
       width: '100%',
-      height: '90vh',
+      height: '80vh',
     },
     headBG: {
     },
@@ -46,17 +46,17 @@ const useStyles = makeStyles({
       flexGrow: {
         flex: '1',
       },
-      button: {
-        '&:hover': {
-          backgroundColor: color_one.primary.main,
-          color: color_one.primary.secondary,
-      },
-    }
+    //   button: {
+    //     '&:hover': {
+    //       backgroundColor: color_one.primary.main,
+    //       color: color_one.primary.secondary,
+    //   },
+    // }
   });
 
 export default function UserChat() {
 
-    const classes = useStyles();
+    const classes = '';
 
   return (
 
@@ -71,7 +71,7 @@ export default function UserChat() {
             <Divider />
             
             <List>
-                <ListItem button key="Javier" className={classes.button}>
+                <ListItem button key="Javier">
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -81,7 +81,7 @@ export default function UserChat() {
                     <ListItemText primary="Javier" ></ListItemText>
                 </ListItem>
 
-                <ListItem button key="Brandon" className={classes.button}>
+                <ListItem button key="Brandon">
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -90,7 +90,7 @@ export default function UserChat() {
                     </ListItemIcon>
                     <ListItemText primary="Brandon">Brandon</ListItemText>
                 </ListItem>
-                <ListItem button key="Mario" className={classes.button}>
+                <ListItem button key="Mario">
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
@@ -99,7 +99,7 @@ export default function UserChat() {
                     </ListItemIcon>
                     <ListItemText primary="Mario">Mario</ListItemText>
                 </ListItem>
-                <ListItem button key="Alejandra" className={classes.button}>
+                <ListItem button key="Alejandra">
                     <ListItemIcon>
                     <Avatar
                      src="/broken-image.jpg" 
