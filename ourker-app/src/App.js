@@ -9,13 +9,14 @@ import UserChat from './pages/UserChat';
 import NavBar from './components/Navbar'
 import ChatWorker from './pages/ChatWorker';
 import CreateReport from './pages/CreateReport';
+import Search from './pages/Search';
 
 function App() {
   return (
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <LogIn/> 
+      <Search/> 
     </Fragment>
   );
 }
