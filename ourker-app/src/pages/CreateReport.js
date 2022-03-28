@@ -1,6 +1,9 @@
 import { Typography } from '@material-ui/core'
-import { Autocomplete, Box, Card, Grid, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material'
-import React from 'react'
+import { Autocomplete, Box, Button, Card, Container, Grid, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material'
+import React, { Fragment } from 'react'
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import {color_one} from "../utils/Themes";
 
 export default function CreateReport() {
     const options = ["Option 1", "Option 2"];
@@ -8,6 +11,9 @@ export default function CreateReport() {
     const [inputValue, setInputValue] = React.useState("");
   
     return (
+
+        <Fragment>
+            {/* <Box sx={{position:'absolute', backgroundImage:'url(/fondo_gradiente.jpg)', height: '100vh', width:'100vw'}}/> */}
         <Grid
         spacing={1}
         >
@@ -24,7 +30,7 @@ export default function CreateReport() {
 
                 <Grid container spaicing= {1} xl={10} m={'auto'} sx={{ display:"flex", alignItems:"center"}}>
                     
-                <Box component="form" noValidate onSubmit={""}>
+                <Box component="form" noValidate onSubmit={""} sx={{backgroundColor: color_one.primary.secondary}}>
                         
                         <Box height={'15px'}/>
                         <Autocomplete
@@ -55,11 +61,18 @@ export default function CreateReport() {
                     {/* <TextField margin="normal" id="Modelo" label="Titulo" variant="outlined" required />  */}
                     
                 </Box>
-      
+                
+                <Box sx={{ borderRadius: '5rem', backgroundColor: color_one.primary.main, display:'inline', width:'2rem', textAlign:'center'}}>
+                    <Button sx={{width:'2rem'}}>
+                        <AddIcon sx={{width:'2rem'}}/>
+                    </Button>
+                </Box>
+                
 
                     
                 </Grid>
             </Paper>
         </Grid>
+    </Fragment>
   )
 }
