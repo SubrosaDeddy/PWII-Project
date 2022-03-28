@@ -1,4 +1,4 @@
-/* .App {
+.App {
   text-align: center;
 }
 
@@ -35,16 +35,16 @@
   to {
     transform: rotate(360deg);
   }
-} */
+}
 
 /* 1 rem = 10px */
 html
 {
-  font-size: 62.5%;
+  /* font-size: 100%; */
   font-family: 'Lexend Deca';
 }
 
 body
 {
-  font-size: 16px;
+  /* font-size: 16px; */
 } 

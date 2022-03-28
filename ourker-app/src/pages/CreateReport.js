@@ -5,6 +5,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import {color_one} from "../utils/Themes";
 
+
 export default function CreateReport() {
     const options = ["Option 1", "Option 2"];
     const [value, setValue] = React.useState();
@@ -61,13 +62,10 @@ export default function CreateReport() {
                     {/* <TextField margin="normal" id="Modelo" label="Titulo" variant="outlined" required />  */}
                     
                 </Box>
-                
-                <Box sx={{ borderRadius: '5rem', backgroundColor: color_one.primary.main, display:'inline', width:'2rem', textAlign:'center'}}>
-                    <Button sx={{width:'2rem'}}>
-                        <AddIcon sx={{width:'2rem'}}/>
-                    </Button>
-                </Box>
-                
+
+                <Fab color="primary" aria-label="add">
+                    <AddIcon />
+                </Fab>                 
 
                     
                 </Grid>
