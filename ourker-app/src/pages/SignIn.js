@@ -57,7 +57,7 @@ export default function SignIn() {
         <Grid container sx={{height:1, overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
           {/* <CssBaseline /> */}
         
-          <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={6} square sx={{height:1}}>
+          <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={0} square sx={{height:1}}>
             <Box sx={{py: 7, px: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', height:"100%"}}>
                     <Avatar src="/broken-image.jpg" sx={{ width: 100, height: 100 }}/>
 

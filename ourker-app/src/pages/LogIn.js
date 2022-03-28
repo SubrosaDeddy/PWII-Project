@@ -59,7 +59,7 @@ export default function LogIn() {
     <Grid container component="main" sx={{ height: '100%', backgroundImage: 'url(/fondo1.jpg)'}}>
       {/* <CssBaseline /> */}
       <Grid item xs={false} md={4} lg={7}/>
-      <Grid item xs={12} md={8} lg={5} component={Paper} elevation={6} square>
+      <Grid item xs={12} md={8} lg={5} component={Paper} elevation={0} square>
         <Box sx={{my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Typography component="h1" variant="h5" textAlign="center" sx={{ m: 5}}>
             Inicia sesión
