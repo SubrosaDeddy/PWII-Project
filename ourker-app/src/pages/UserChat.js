@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
     chatSection: {
       width: '100%',
-      height: '80vh',
+      height: '90vh',
     },
     headBG: {
     },
@@ -125,8 +125,8 @@ export default function UserChat() {
                         <Grid container>
 
                             {/*Checar*/}
-                            <Box sx={{background: color_one.primary.secondary, borderRadius: 16, padding: '1rem', marginRight: 0, marginLeft:'auto', display:'inline'}}>
-                                <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
+                            <Box component={Paper} elevaton ={1} sx={{background: color_one.primary.sendMessage, borderRadius: 16, padding: '1rem', marginRight: 0, marginLeft:'auto', display:'inline'}}>
+                                <Typography >Buenos días, quisiera pedir informes</Typography>
                                 <Typography >09:31</Typography>
                             </Box>
                         </Grid>
@@ -135,20 +135,18 @@ export default function UserChat() {
                     <Grid container>
 
                         {/*Checar*/}
-                        <Box sx={{background: color_one.primary.gray, borderRadius: 16, padding: '1rem', marginRight: 'auto', marginLeft:0, display:'inline'}}>
-                            <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
+                        <Box component={Paper} elevaton ={1} sx={{ background: color_one.primary.reciveMessage, borderRadius: 16, padding: '1rem', marginRight: 'auto', marginLeft:0, display:'inline'}}>
+                            <Typography >Buenos días, claro </Typography>
                             <Typography >09:31</Typography>
                         </Box>
                     </Grid>
                 </ListItem>
                 <ListItem key="3">
                     <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" primary="Gracias, espero su mensaje!"></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" secondary="10:30"></ListItemText>
-                        </Grid>
+                            <Box component={Paper} elevaton ={1} sx={{background: color_one.primary.sendMessage, borderRadius: 16, padding: '1rem', marginRight: 0, marginLeft:'auto', display:'inline'}}>
+                                <Typography >Gracias</Typography>
+                                <Typography >09:41</Typography>
+                            </Box>
                     </Grid>
                 </ListItem>
             </List>

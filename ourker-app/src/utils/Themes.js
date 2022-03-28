@@ -6,7 +6,8 @@ const color_one = createTheme({
       main: "#2777D4",
       secondary:"#FEFEFE",
       details:"#A7C3D6",
-      gray:"#C0CDD6"
+      sendMessage:"#94C6FF", 
+      reciveMessage: "#E6F5FF"
     },
 });
 
