@@ -1,7 +1,6 @@
 import React from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-// import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -14,11 +13,15 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
 import { Container } from '@mui/material';
+import { makeStyles } from '@material-ui/core/styles';
 
 // Color
 import {color_one} from "../utils/Themes";
 
 function Copyright(props) {
+    
+    const useStyles = makeStyles({});
+
     return (
       <Typography variant="body2" align="center" {...props}>
         {'Copyright © '}
@@ -55,7 +58,6 @@ export default function SignIn() {
     return (
       <ThemeProvider theme={theme}>
         <Grid container sx={{height:1, overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
-          {/* <CssBaseline /> */}
         
           <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={0} square sx={{height:1}}>
             <Box sx={{py: 7, px: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', height:"100%"}}>

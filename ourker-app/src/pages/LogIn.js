@@ -2,7 +2,6 @@ import React from 'react'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -15,9 +14,11 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
 import BottomNavigation from '@mui/material/BottomNavigation';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Copyright(props) {
-    return (
+  
+  return (
       <Typography variant="body2" color="text.secondary" align="center" {...props}>
         {'Copyright © '}
         <Link color="inherit">
@@ -50,21 +51,18 @@ export default function LogIn() {
           email: data.get('email'),
           password: data.get('password'),
         });
-      };
+    };
       
-
   return (
 
     <ThemeProvider theme={theme}>
-    <Grid container component="main" sx={{ height: '100%', backgroundImage: 'url(/fondo1.jpg)'}}>
-      {/* <CssBaseline /> */}
-      <Grid item xs={false} md={4} lg={7}/>
+    <Grid container component="main" sx={{backgroundImage: 'url(/fondo1.jpg)', height:1}}>
       <Grid item xs={12} md={8} lg={5} component={Paper} elevation={0} square>
-        <Box sx={{my: 8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Box sx={{my:8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Typography component="h1" variant="h5" textAlign="center" sx={{ m: 5}}>
             Inicia sesión
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1}}>
             <TextField margin="normal" required fullWidth id="email" label="Correo electrónico" name="email" autoComplete="email" autoFocus/>
             <TextField margin="normal" required fullWidth name="password" label="Contraseña" type="password" id="password" autoComplete="current-password"/>
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor: "#2777D4"}}>
