@@ -10,13 +10,14 @@ import NavBar from './components/Navbar'
 import ChatWorker from './pages/ChatWorker';
 import CreateReport from './pages/CreateReport';
 import Report from './pages/Report';
+import ViewPost from './pages/ViewPost';
 
 function App() {
   return (
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <Report/>
+      <ViewPost/>
     </Fragment>
   );
 }
