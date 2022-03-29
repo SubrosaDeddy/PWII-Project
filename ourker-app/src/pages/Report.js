@@ -1,7 +1,6 @@
 import React from 'react'
 import { Button, CardMedia, Grid, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
-import Carousel from 'react-material-ui-carousel'
 
 export default function Report() {
 
