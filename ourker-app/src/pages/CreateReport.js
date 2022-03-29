@@ -4,19 +4,53 @@ import React, { Fragment } from 'react'
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import {color_one} from "../utils/Themes";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Image from 'mui-image'
+import SendIcon from '@mui/icons-material/Send';
+import Stack from '@mui/material/Stack';
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia"
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+
+const theme = createTheme({
+    typography: {
+      allVariants: {
+        fontfamily: 'Lexend Deca',
+        textTransform: 'none',
+        fontSize: 14,
+        fontWeight: "bold",
+      },
+    },
+
+    body: {
+        border: '2px solid blue',
+        backgroundImage: 'url("/fondo1.jpg")',
+      },
+   
+  });
+
+
+  function sayHello() {
+    return ( <Image src="/fondo1.jpg" width={500} shift="center"/>);
+  }
 
 
 export default function CreateReport() {
-    const options = ["Option 1", "Option 2"];
+    const options = ["Mecánico", "Carpintero"];
     const [value, setValue] = React.useState();
     const [inputValue, setInputValue] = React.useState("");
   
     return (
 
-        <Fragment>
-            {/* <Box sx={{position:'absolute', backgroundImage:'url(/fondo_gradiente.jpg)', height: '100vh', width:'100vw'}}/> */}
+        <Fragment >
+           <Paper  sx={{
+          backgroundImage: 'url(/fondo4.jpg)'
+        }}>
+
         <Grid
-        spacing={1}
+        spacing={1} style={{  
+            backgroundImage: 'url(/fondo4.jpg)'}}
         >
             <Box height={'15px'}/>
             <Paper elevation={3} sx={{
@@ -57,20 +91,92 @@ export default function CreateReport() {
                     <TextField margin="normal" id="Titulo" label="Titulo" variant="outlined" required  fullWidth/> 
                     <TextField margin="normal" id="outlined-basic" label="Descripción" variant="outlined" required multiline fullWidth maxRows={5} rows={5}/> 
 
+
+                    <Stack direction="row" spacing={2}>
                     <TextField margin="normal" id="Modelo" label="Parte" variant="outlined" required  /> 
 
-                    {/* <TextField margin="normal" id="Modelo" label="Titulo" variant="outlined" required />  */}
+                    <Button variant="contained" startIcon={<SendIcon />}>
+                    Publicar reporte
+                    </Button>
+                    </Stack>
+
                     
+
                 </Box>
-
-                <Fab color="primary" aria-label="add">
-                    <AddIcon />
-                </Fab>                 
-
                     
                 </Grid>
+                
             </Paper>
+
         </Grid>
+        
+        <Grid
+            container
+            spacing={0}
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            style={{ minHeight: '15vh' }}
+        >
+
+        <Grid item xs={3}>
+
+        <label htmlFor="upload-photo">
+            <input
+            style={{ display: 'none' }}
+            id="upload-photo"
+            name="upload-photo"
+            type="file"
+            accept="image/*"
+           />
+
+            <br />
+
+            <Fab color="primary" size="big" component="span" aria-label="add">
+             <AddPhotoAlternateIcon />
+             </Fab>
+        </label>
+
+        </Grid>   
+   
+        </Grid> 
+           
+        </Paper>
+        
+
+
+        <Grid
+  container
+  spacing={0}
+  direction="column"
+  alignItems="center"
+  justifyContent="center"
+  style={{ minHeight: '50vh' }}
+>
+
+  <Grid item xs={3}>
+
+  <Card>
+ 
+ <CardMedia>
+ <img src="/busqueda_workers.jpg"  width={500} alt="recipe thumbnail"/>
+ <img src="/busqueda_filtros.jpg"  width={500} alt="recipe thumbnail"/>
+ <img src="/work_figures.jpg"  width={500} alt="recipe thumbnail"/>
+ 
+</CardMedia>
+
+ </Card>
+
+  </Grid>   
+   
+</Grid> 
+
+
+
     </Fragment>
+
+
+
+
   )
 }

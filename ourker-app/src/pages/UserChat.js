@@ -16,6 +16,8 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import { color_one } from '../utils/Themes';
 import { Container } from '@mui/material';
+import { useState, useEffect } from 'react';
+
 
 const useStyles = makeStyles({
     
@@ -57,116 +59,38 @@ const useStyles = makeStyles({
 export default function UserChat() {
 
     const classes = useStyles();
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
+  
+    useEffect(() => {
+      if (selectedImage) {
+        setImageUrl(URL.createObjectURL(selectedImage));
+      }
+    }, [selectedImage]);
 
   return (
 
     <div>
-    <Grid container component={Paper} className={classes.chatSection}>
-        <Grid item xs={3} className={classes.borderRight500}>
-            
-            <Divider />
-                <Grid item xs={12} style={{padding: '20px'}}>
-                    <TextField id="outlined-basic-email"  label="Buscar" variant="outlined" fullWidth />
-                </Grid>
-            <Divider />
-            
-            <List>
-                <ListItem button key="Javier" className={classes.button}>
-                    <ListItemIcon>
-                    <Avatar
-                     src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150}}
-                     />
-                    </ListItemIcon>
-                    <ListItemText primary="Javier" ></ListItemText>
-                </ListItem>
-
-                <ListItem button key="Brandon" className={classes.button}>
-                    <ListItemIcon>
-                    <Avatar
-                     src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150 }}
-                     />
-                    </ListItemIcon>
-                    <ListItemText primary="Brandon">Brandon</ListItemText>
-                </ListItem>
-                <ListItem button key="Mario" className={classes.button}>
-                    <ListItemIcon>
-                    <Avatar
-                     src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150 }}
-                     />
-                    </ListItemIcon>
-                    <ListItemText primary="Mario">Mario</ListItemText>
-                </ListItem>
-                <ListItem button key="Alejandra" className={classes.button}>
-                    <ListItemIcon>
-                    <Avatar
-                     src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150 }}
-                     />
-                    </ListItemIcon>
-                    <ListItemText primary="Alejandra">Alejandra</ListItemText>
-                </ListItem>
-            </List>
-        </Grid>
-        <Grid item xs={9}>
-            <List className={classes.messageArea}>
-                 <ListItem button key="Javier" style={{ background: color_one.primary.main, color: 'white'}}>
-                    <ListItemIcon>
-                    <Avatar
-                     src="/broken-image.jpg" 
-                     sx={{ width: 150, height: 150}}
-                     />
-                    </ListItemIcon>
-                    <ListItemText primary="Javier" ></ListItemText>
-                </ListItem>
-                <ListItem key="1">
-                        <Grid container>
-
-                            {/*Checar*/}
-                            <Box sx={{background: color_one.primary.secondary, borderRadius: 16, padding: '1rem', marginRight: 0, marginLeft:'auto', display:'inline'}}>
-                                <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
-                                <Typography >09:31</Typography>
-                            </Box>
-                        </Grid>
-                </ListItem>
-                <ListItem key="2">
-                    <Grid container>
-
-                        {/*Checar*/}
-                        <Box sx={{background: color_one.primary.gray, borderRadius: 16, padding: '1rem', marginRight: 'auto', marginLeft:0, display:'inline'}}>
-                            <Typography >asdsdasdasdsdsdadadadasdasdasdsdadasd</Typography>
-                            <Typography >09:31</Typography>
-                        </Box>
-                    </Grid>
-                </ListItem>
-                <ListItem key="3">
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" primary="Gracias, espero su mensaje!"></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" secondary="10:30"></ListItemText>
-                        </Grid>
-                    </Grid>
-                </ListItem>
-            </List>
-            <Divider />
-            <Grid container style={{padding: '20px'}}>
-                <Grid item xs={11}>
-                    <TextField id="outlined-basic" label="Escribe un mensaje" fullWidth />
-                </Grid>
-                
-                <Button variant="outlined" startIcon={<SendIcon />}>
-                   Enviar
-                </Button>
-
-            </Grid>
-        </Grid>
-    </Grid>
-  </div>
-
-
-  );
-}
+   <input
+        accept="image/*"
+        type="file"
+        id="select-image"
+        style={{ display: 'none' }}
+        onChange={e => setSelectedImage(e.target.files[0])}
+      />
+      <label htmlFor="select-image">
+        <Button variant="contained" color="primary" component="span">
+          Upload Image
+        </Button>
+      </label>
+      {imageUrl && selectedImage && (
+        <Box mt={2} textAlign="center">
+          <div>Image Preview:</div>
+          <img src={imageUrl} alt={selectedImage.name} height="100px" />
+        </Box>
+      )}
+       
+     </div>
+    
+        );
+  }

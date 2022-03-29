@@ -9,13 +9,28 @@ import UserChat from './pages/UserChat';
 import NavBar from './components/Navbar'
 import ChatWorker from './pages/ChatWorker';
 import CreateReport from './pages/CreateReport';
+import CreatePost from './pages/CreatePost';
+import { Routes, Route, Link } from "react-router-dom";
+
 
 function App() {
   return (
+
     <Fragment>
+    
+
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <CreateReport/> 
+      <Routes>
+      <Route exact path="/" element={<Home/>} />
+      <Route exact path="SignIn" element={<SignIn/>} />
+      <Route exact path="LogIn" element={<LogIn/>} />
+      <Route exact path="CreateReport" element={<CreateReport/>} />
+      <Route exact path="CreatePost" element={<CreatePost/>} />
+      <Route exact path="Prueba" element={<UserChat/>} />
+      </Routes>
+     
+
     </Fragment>
   );
 }

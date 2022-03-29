@@ -13,6 +13,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
+import { useState, useEffect } from 'react';
 
 
 // Color
@@ -57,6 +58,16 @@ export default function SignIn() {
       };
 
 
+      const [selectedImage, setSelectedImage] = useState(null);
+      const [imageUrl, setImageUrl] = useState(null);
+    
+      useEffect(() => {
+        if (selectedImage) {
+          setImageUrl(URL.createObjectURL(selectedImage));
+        }
+      }, [selectedImage]);
+
+
 
   return (
   
@@ -74,28 +85,35 @@ export default function SignIn() {
             alignItems: 'center',
           }}
         >
-          {/* <Image src="/ourker_logo.png" sx={{ maxWidth: "300px" }}/> */}
 
-          {/* <Typography component="h1" variant="h2"  margin={5}>
-            Crea una cuenta
-          </Typography> */}
-
+        <input
+        accept="image/*"
+        type="file"
+        id="select-image"
+        style={{ display: 'none' }}
+        onChange={e => setSelectedImage(e.target.files[0])}
+      />
+      <label htmlFor="select-image">
+        <Button variant="contained" color="primary" component="span">
+          Cargar imagen
+        </Button>
+      </label>
+      {imageUrl && selectedImage && (
+        <Box mt={2} textAlign="center">
+        
           <Avatar
-            src="/broken-image.jpg" 
-            sx={{ width: 100, height: 100 }}
+            src={imageUrl}
+            sx={{ width: 150, height: 150}}
+            mt={2} textAlign="center"
          />
 
+        <div>Preview de imagen</div>
+
+        </Box>
+      )}
+
+
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-
-          {/* <Typography component="h1" textAlign="center" margin={5}>
-            Foto del perfil
-          </Typography> */}
-          
-
-          <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
-            Cargar imagen
-            <input type="file" accept="image/*" hidden/>
-         </Button>
          
              <TextField
               margin="normal"

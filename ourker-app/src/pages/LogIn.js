@@ -64,7 +64,8 @@ export default function LogIn() {
         sm={4}
         md={7}
         sx={{
-          backgroundImage: 'url(/fondo1.jpg)'
+          backgroundImage: 'url(/fondo1.jpg)',
+          height: '93vh'
         }}
       />
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
@@ -110,12 +111,13 @@ export default function LogIn() {
               style={{
                 backgroundColor: "#2777D4"
             }}
+            href="/" 
             >
               Entrar
             </Button>
 
               <Box textAlign='center'>
-              <Button variant="contained" href="#contained-buttons" sx={{ m: 2 }}   style={{
+              <Button variant="contained" href="SignIn" sx={{ m: 2 }}   style={{
                 backgroundColor: "#2777D4"}}>
                Registrar
               </Button>

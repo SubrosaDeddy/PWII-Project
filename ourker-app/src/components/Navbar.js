@@ -1,7 +1,9 @@
 import React, {useState}from 'react'
 import { Image } from 'mui-image';
 import Box from "@mui/material/Box";
-
+import SignIn from '../pages/SignIn';
+import LogIn from '../pages/LogIn';
+import { Routes, Route, Link } from "react-router-dom";
 import {
   Button,
   Stack,
@@ -62,19 +64,20 @@ export default function NavBar() {
     }));
 
     return (
+
         <ThemeProvider theme={color_one}>
             <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
                 
                 <Toolbar>
-                <Image src="/ourker_logo.png"   sx={{ maxWidth: "250px",
-                mr: 'auto' }}/>
-                    
+                <Image src="/ourker_logo.png" sx={{ maxWidth: "250px",
+                mr: 'auto' }}/> 
+                
                     <Stack spacing={1} direction="row">
-                        <Button color="inherit" variant="outlined">
-                        Registrate
+                        <Button color="inherit" variant="outlined" href="SignIn">
+                            Registrar
                         </Button>
-                        <Button color="inherit" variant="outlined">
-                        Login
+                        <Button color="inherit" variant="outlined" href="LogIn">
+                            LogIn
                         </Button>
                     </Stack>
                 </Toolbar>
