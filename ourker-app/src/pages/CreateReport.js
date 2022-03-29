@@ -24,37 +24,37 @@ export default function CreateReport() {
 
                 <Grid container spaicing= {1} xl={10} m={'auto'} sx={{ display:"flex", alignItems:"center"}}>
                     
-                <Box component="form" noValidate onSubmit={""}>
+                    <Box component="form" noValidate onSubmit={""}>
+                            
+                            <Box height={'15px'}/>
+                            <Autocomplete
+                                value={value}
+                                onChange={(event, newValue) => {
+                                setValue(newValue);
+                                }}
+                                inputValue={inputValue}
+                                onInputChange={(event, newInputValue) => {
+                                setInputValue(newInputValue);
+                                }}
+                                id="combo-box-demo"
+                                options={options}
+                                sx={{mx:"auto"}}
+                                renderInput={(params) => (
+                                <TextField {...params} label="Categoria"/>
+                            )}/>
                         
-                        <Box height={'15px'}/>
-                        <Autocomplete
-                            value={value}
-                            onChange={(event, newValue) => {
-                            setValue(newValue);
-                            }}
-                            inputValue={inputValue}
-                            onInputChange={(event, newInputValue) => {
-                            setInputValue(newInputValue);
-                            }}
-                            id="combo-box-demo"
-                            options={options}
-                            sx={{mx:"auto"}}
-                            renderInput={(params) => (
-                            <TextField {...params} label="Categoria"/>
-                        )}/>
-                    
-                    <TextField margin="normal" id="Modelo" label="Modelo" variant="outlined" required  fullWidth/> 
+                        <TextField margin="normal" id="Modelo" label="Modelo" variant="outlined" required  fullWidth/> 
+                            
+                            
+
+                        <TextField margin="normal" id="Titulo" label="Titulo" variant="outlined" required  fullWidth/> 
+                        <TextField margin="normal" id="outlined-basic" label="Descripción" variant="outlined" required multiline fullWidth maxRows={5} rows={5}/> 
+
+                        <TextField margin="normal" id="Modelo" label="Parte" variant="outlined" required  /> 
+
+                        {/* <TextField margin="normal" id="Modelo" label="Titulo" variant="outlined" required />  */}
                         
-                        
-
-                    <TextField margin="normal" id="Titulo" label="Titulo" variant="outlined" required  fullWidth/> 
-                    <TextField margin="normal" id="outlined-basic" label="Descripción" variant="outlined" required multiline fullWidth maxRows={5} rows={5}/> 
-
-                    <TextField margin="normal" id="Modelo" label="Parte" variant="outlined" required  /> 
-
-                    {/* <TextField margin="normal" id="Modelo" label="Titulo" variant="outlined" required />  */}
-                    
-                </Box>
+                    </Box>
       
 
                     
