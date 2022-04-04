@@ -17,6 +17,7 @@ import SendIcon from '@mui/icons-material/Send';
 import { color_one } from '../utils/Themes';
 import { Container } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { Image } from 'mui-image';
 
 
 const useStyles = makeStyles({
@@ -71,25 +72,18 @@ export default function UserChat() {
   return (
 
     <div>
-   <input
-        accept="image/*"
-        type="file"
-        id="select-image"
-        style={{ display: 'none' }}
-        onChange={e => setSelectedImage(e.target.files[0])}
-      />
-      <label htmlFor="select-image">
-        <Button variant="contained" color="primary" component="span">
-          Upload Image
-        </Button>
-      </label>
-      {imageUrl && selectedImage && (
-        <Box mt={2} textAlign="center">
-          <div>Image Preview:</div>
-          <img src={imageUrl} alt={selectedImage.name} height="100px" />
-        </Box>
-      )}
-       
+
+
+        <Button type="image"  src="/ourker_logo.png" color="primary" component="span"/>
+        <button id="close" href="SignIn" class="closing"><img src="/ourker_logo.png"/></button>
+        <input type="image"  href="SignIn" src="/ourker_logo.png" alt="Submit" width="48" height="48"></input>
+        <button  href="/SignIn"><img src="/ourker_logo.png"/></button>
+
+
+        <Button color="inherit" href="Home">
+        <img src="/ourker_logo.png"/>
+       </Button>
+
      </div>
     
         );

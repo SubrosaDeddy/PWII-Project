@@ -69,8 +69,11 @@ export default function NavBar() {
             <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
                 
                 <Toolbar>
+
+                <Button color="inherit" href="/">
                 <Image src="/ourker_logo.png" sx={{ maxWidth: "250px",
                 mr: 'auto' }}/> 
+                </Button>
                 
                     <Stack spacing={1} direction="row">
                         <Button color="inherit" variant="outlined" href="SignIn">

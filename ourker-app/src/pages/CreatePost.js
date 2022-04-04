@@ -41,7 +41,7 @@ export default function CreatePost() {
 
   return ( <Fragment >
     <Paper  sx={{
-   backgroundImage: 'url(/fondo3.jpg)', height: '93vh'
+   backgroundImage: 'url(/fondo3.jpg)', height: '75vh'
  }}>
 
  <Grid

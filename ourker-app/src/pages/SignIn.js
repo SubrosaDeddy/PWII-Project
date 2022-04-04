@@ -101,13 +101,16 @@ export default function SignIn() {
       {imageUrl && selectedImage && (
         <Box mt={2} textAlign="center">
         
+
+        <div>Preview de imagen: </div>
+
           <Avatar
             src={imageUrl}
-            sx={{ width: 150, height: 150}}
+            sx={{ width: 150, height: 150,  margin: 2}}
             mt={2} textAlign="center"
          />
 
-        <div>Preview de imagen</div>
+      
 
         </Box>
       )}
