@@ -42,10 +42,10 @@ export default function Search() {
 
   return (
     <>
-      <Grid container component="main" sx={{ height: '100%', backgroundImage: 'url(/fondo1.jpg)'}}>
-       <div style={{marginLeft:'auto',marginRight:'auto'}}> 
+      <Grid container component="main" sx={{ height: '100%', background: 'linear-gradient(to top, #04448c,#00236f)'}}>
+       <div style={{marginLeft:'auto',marginRight:'auto',paddingLeft:'5%',paddingRight:'5%', background: '#04448c'}}> 
         <div style={{ display: 'block', flexDirection: 'column',  justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
-            <Card sx={{ maxWidth: 500, minWidth: 500 }}>
+            <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
                       R
@@ -63,7 +63,7 @@ export default function Search() {
             </Card>
         </div>
         <div style={{ display: 'block', flexDirection: 'column',justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
-            <Card sx={{ maxWidth: 500, minWidth: 500 }}>
+            <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
                           
@@ -80,7 +80,7 @@ export default function Search() {
             </Card>
         </div>
         <div style={{ display: 'block',flexDirection: 'column', justifyContent: 'center', marginTop: '10px', height: 'fit-content'}}>
-            <Card sx={{ maxWidth: 500, minWidth: 500 }}>
+            <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
                           
