@@ -11,6 +11,8 @@ import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { blue, red } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -40,7 +42,9 @@ export default function Search() {
 
   return (
     <>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+      <Grid container component="main" sx={{ height: '100%', backgroundImage: 'url(/fondo1.jpg)'}}>
+       <div style={{marginLeft:'auto',marginRight:'auto'}}> 
+        <div style={{ display: 'block', flexDirection: 'column',  justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
             <Card sx={{ maxWidth: 500, minWidth: 500 }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -58,7 +62,7 @@ export default function Search() {
                 </CardActions>
             </Card>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+        <div style={{ display: 'block', flexDirection: 'column',justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
             <Card sx={{ maxWidth: 500, minWidth: 500 }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -75,7 +79,7 @@ export default function Search() {
                 </CardActions>
             </Card>
         </div>
-        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+        <div style={{ display: 'block',flexDirection: 'column', justifyContent: 'center', marginTop: '10px', height: 'fit-content'}}>
             <Card sx={{ maxWidth: 500, minWidth: 500 }}>
                 <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
@@ -92,6 +96,8 @@ export default function Search() {
                 </CardActions>
             </Card>
         </div>
+        </div>
+      </Grid>
     </>
     
   );

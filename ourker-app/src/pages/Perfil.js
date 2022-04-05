@@ -38,6 +38,7 @@ export default function Search() {
   };
 
   return (
+    
     <>
         <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
             <Card sx={{ maxWidth: 500, minWidth: 500 }}>
