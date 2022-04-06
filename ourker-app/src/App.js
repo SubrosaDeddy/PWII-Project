@@ -17,7 +17,7 @@ function App() {
     <Fragment>
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      <Report/>
+      <ViewPost/>
     </Fragment>
   );
 }
