@@ -1,191 +1,205 @@
-import React from 'react'
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Image } from 'mui-image';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import SendIcon from '@mui/icons-material/Send';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Divider from '@mui/material/Divider';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Paper from "@mui/material/Paper";
+import Box from "@mui/material/Box";
+import Grid from "@mui/material/Grid";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import Typography from "@mui/material/Typography";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import SendIcon from "@mui/icons-material/Send";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import { color_one } from "../utils/Themes";
 
 const theme = createTheme({
-    typography: {
-      allVariants: {
-        fontfamily: 'Lexend Deca',
-        textTransform: 'none',
-        fontSize: 25,
-        fontWeight: 700
-      },
+  typography: {
+    allVariants: {
+      fontfamily: "Lexend Deca",
+      textTransform: "none",
+      fontSize: 25,
+      fontWeight: 700,
     },
+  },
 
-    right: {
-        borderRadius: 1,  
-        bgcolor: '#2777D4'
-      }
+  right: {
+    borderRadius: 1,
+    bgcolor: "#2777D4",
+  },
+});
 
-  });
-
-
-  
 export default function ChatWorker() {
-
-
   return (
-
     <ThemeProvider theme={theme}>
-    <Grid>
-    
-    <Divider />
+      <Grid container>
+        <Grid item xs={4} style={{ padding: "20px", border: 1 }}>
+          <TextField
+            id="outlined-search"
+            label="Buscar contacto"
+            type="search"
+            fullWidth
+          />
 
-    <Grid  item xs={12} style={{padding: '20px'}}>
-        <TextField id="outlined-search" label="Buscar contacto" type="search" />
-    </Grid>
+          <Box sx={{ border: 1, borderTop: 0, borderColor: "#D0D0D0", pr: 1 }}>
+            <List sx={{ width: "100%", maxWidth: 560 }}>
+              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
+                <ListItemAvatar>
+                  <Avatar src="/broken-image.jpg" />
+                </ListItemAvatar>
+                <ListItemText primary="Fernando" />
+              </ListItem>
 
-    <Divider />
+              <Divider variant="inset" component="li" />
 
-    <List sx={{ width: '100%', maxWidth: 560}}>
-
-
-      <ListItem button alignItems="flex-start" sx={{ borderRadius: 16,  bgcolor: '#2777D4',  m:1}}>
-        <ListItemAvatar>
-        <Avatar
-            src="/broken-image.jpg" 
-         />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Fernando"
-         secondary ={
-            <React.Fragment>
-              <Typography
-                 sx={{ display: 'inline' }}
-                 component="span"
-                 variant="body2"
-                 color="text.primary"
-              >
-              </Typography>
-              {"Claro que si..."}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-
-      <Divider variant="inset" component="li" />
-
-      <ListItem  button alignItems="flex-start" sx={{ borderRadius: 16,  bgcolor: '#2777D4',  m:1}}>
-        <ListItemAvatar>
-        <Avatar
-            src="/broken-image.jpg" 
-         />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Ivan"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-              </Typography>
-              {"Hola te llamaba para lo de..."}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      <Divider variant="inset" component="li" />
-      <ListItem  button alignItems="flex-start" sx={{ borderRadius: 16,  bgcolor: '#2777D4', m:1}}>
-        <ListItemAvatar>
-        <Avatar
-            src="/broken-image.jpg" 
-         />
-        </ListItemAvatar>
-        <ListItemText
-          primary="Daniel"
-          secondary={
-            <React.Fragment>
-              <Typography
-                sx={{ display: 'inline' }}
-                component="span"
-                variant="body2"
-                color="text.primary"
-              >
-              </Typography>
-              {'No creo poder estar disponible...'}
-            </React.Fragment>
-          }
-        />
-      </ListItem>
-      
-    </List>
-    <Grid item sx={{ marginLeft: 80, marginTop: -45}} xs={9}>
-            <List>
-                <ListItem key="1">
-                    <Grid container sx={{ borderRadius: 1,  bgcolor: '#2777D4'}}>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" primary="Hola, quiero pedirle información sobre el trabajo de carpintero"  sx={{ p: 1}}></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" secondary="09:30" sx={{ p: 1}}></ListItemText>
-                        </Grid>
-                    </Grid>
-                </ListItem>
-                <ListItem key="2">
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="left" primary="Si, claro en seguida le mando la información"></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="left" secondary="09:31"></ListItemText>
-                        </Grid>
-                    </Grid>
-                </ListItem>
-                <ListItem key="3">
-                    <Grid container>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" primary="Gracias, espero su mensaje!"></ListItemText>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ListItemText align="right" secondary="10:30"></ListItemText>
-                        </Grid>
-                    </Grid>
-                </ListItem>
-
-                
-                <Box>
-
-                  
-                <TextField id="outlined-basic-email" label="Escribe un mensaje" fullWidth />                
-                <Button variant="outlined" startIcon={<SendIcon />}>
-                   Mandar
-                </Button>
-
-                </Box>
-
+              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
+                <ListItemAvatar>
+                  <Avatar src="/broken-image.jpg" />
+                </ListItemAvatar>
+                <ListItemText primary="Ivan" />
+              </ListItem>
+              <Divider variant="inset" component="li" />
+              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
+                <ListItemAvatar>
+                  <Avatar src="/broken-image.jpg" />
+                </ListItemAvatar>
+                <ListItemText primary="Daniel" />
+              </ListItem>
             </List>
-            <Divider />
-
+          </Box>
         </Grid>
 
-   
-    </Grid>
+        <Grid item xs={8}>
+          <Box height={"20px"} />
+          <Box
+            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
+            height={"70vh"}
+          >
+            <ListItem
+              alignItems="center"
+              sx={{
+                m: 1,
+                backgroundColor: color_one.primary.main,
+                color: "white",
+              }}
+            >
+              <ListItemAvatar>
+                <Avatar src="/broken-image.jpg" />
+              </ListItemAvatar>
+              <ListItemText primary="Fernando" />
+            </ListItem>
+            <List>
+              <ListItem key="1">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Hola, quiero pedirle información sobre el trabajo de
+                      carpintero
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              <ListItem key="2">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.reciveMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: "auto",
+                      marginLeft: 0,
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Si, claro en seguida le mando la información{" "}
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              <ListItem key="3">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>Gracias, espero su mensaje!</Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+            </List>
+          </Box>
 
+          {/* <Box sx={{gridArea: 'main'}}>
+            <TextField
+              id="outlined-textarea"
+              label="Escribe un mensaje"
+              multiline
+            />
+            
+          </Box>
+          <Box sx={{gridArea: 'sidebar'}}>
+            <Button variant="outlined" startIcon={<SendIcon />}>
+              Mandar
+            </Button>
+          </Box> */}
+          <Box
+            sx={{
+              display: "grid",
+              gridAutoColumns: "1fr",
+              gap: 1,
+            }}
+          >
+            <Box sx={{gridColumn: 'span 5'}}>
+            <TextField
+              id="outlined-textarea"
+              label="Escribe un mensaje"
+              multiline
+              fullWidth
+            />
+            
+          </Box>
+          <Box sx={{gridColumn: '6 / 6', margin: 'auto'}}>
+            <Button variant="outlined" startIcon={<SendIcon />}>
+              Mandar
+            </Button>
+          </Box> 
+            {/* The second non-visible column has width of 1/4 */}
+          </Box>
+
+          <Divider />
+        </Grid>
+      </Grid>
     </ThemeProvider>
-
-
   );
 }
