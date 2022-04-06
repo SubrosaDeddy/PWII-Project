@@ -16,21 +16,16 @@ import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-
     <Fragment>
-    
-
       <NavBar/>
       <Helmet> <title>Ourker</title> </Helmet>
-      {/* <Routes>
+      <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="SignIn" element={<SignIn/>} />
         <Route exact path="LogIn" element={<LogIn/>} />
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost/>} />
-      </Routes> */}
-      <Report/>
-
+      </Routes>
     </Fragment>
   );
 }
