@@ -93,7 +93,7 @@ export default function Home() {
             </Grid>
         </Grid>
 
-        {/* Bod */}
+        {/* Box */}
         <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:5, backgroundColor:color_one.primary.secondary}}>
             <Typography variant="h4" component="h4">Si tienes trabajo por hacer ¡Ourker está contigo!</Typography>
             <Typography>Miles de trabajadores disponibles para que encuentres el que se ajuste mejor a tus necesidades</Typography>
