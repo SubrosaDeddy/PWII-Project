@@ -27,6 +27,11 @@ function App() {
         <Route exact path="LogIn" element={<LogIn/>} />
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost/>} />
+        <Route exact path="Chat" element={<ChatWorker/>} />
+        <Route exact path="ViewPost" element={<ViewPost/>} />
+        <Route exact path="Report" element={<Report/>} />
+        <Route exact path="Perfil" element={<Perfil/>} />
+        <Route exact path="Search" element={<Search/>} />
       </Routes>
     </Fragment>
   );

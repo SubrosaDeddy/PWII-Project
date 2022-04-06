@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Card from '@mui/material/Card';
+import { Button } from '@mui/material';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
@@ -46,12 +47,14 @@ export default function Search() {
        <div style={{marginLeft:'auto',marginRight:'auto',paddingLeft:'5%',paddingRight:'5%', background: '#04448c'}}> 
         <div style={{ display: 'block', flexDirection: 'column',  justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
             <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
-                <CardHeader
-                    avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
-                      R
-                    </Avatar>}
-                    title="Juanito Perez Lopez"
-                    subheader="Diseñador Jr" />
+                <Button href='Perfil'>
+                  <CardHeader
+                      avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
+                        R
+                      </Avatar>}
+                      title="Juanito Perez Lopez"
+                      subheader="Diseñador Jr" />
+                </Button>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
                         Estudiante de Xvo semestre en la carrera "***", universidad "***",
@@ -64,12 +67,14 @@ export default function Search() {
         </div>
         <div style={{ display: 'block', flexDirection: 'column',justifyContent: 'center', marginTop: '10px', height: 'fit-content' }}>
             <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
-                <CardHeader
+                <Button href='Perfil'>
+                  <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
                           
                     </Avatar>}
                     title="Albertano Santa Cruz"
                     subheader="Animador" />
+                </Button>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
                         El amor es como un elote, a veces te tocan tiernos y otros te salen duros
@@ -81,12 +86,14 @@ export default function Search() {
         </div>
         <div style={{ display: 'block',flexDirection: 'column', justifyContent: 'center', marginTop: '10px', height: 'fit-content'}}>
             <Card sx={{ maxWidth: 450, minWidth: 300, margin: 'auto' }}>
-                <CardHeader
+                <Button href='Perfil'>
+                  <CardHeader
                     avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="recipe">
                           
                     </Avatar>}
                     title="Eduardo Garza"
                     subheader="Direcor y Actor" />
+                </Button>
                 <CardContent>
                     <Typography variant="body2" color="text.secondary">
                         GOKUUuuUuUUUuu AaAAAaAaaAahhh..... ¡BUM!

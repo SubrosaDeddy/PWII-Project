@@ -107,7 +107,7 @@ export default function Search() {
                         alt="Live from space album cover"
                   />
                   <CardActions>
-                    <Button size="small" variant="contained">Contactar</Button>
+                    <Button size="small" variant="contained" href='Chat'>Contactar</Button>
                   </CardActions>
               </div>
 

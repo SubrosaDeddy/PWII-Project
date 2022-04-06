@@ -86,9 +86,12 @@ export default function Home() {
                     )}/>
                 </Grid>
                 <Grid item xs={12} lg={1} sx={{p:0, m:"auto", textAlign:"center"}}>
-                    <SearchIconWrapper sx={{position:"relative", my:1}}>
-                        <SearchIcon/>
-                    </SearchIconWrapper>
+                    <Button href="Search">
+                        <SearchIconWrapper sx={{position:"relative", my:1}}>
+                            <SearchIcon/>
+                        </SearchIconWrapper>
+                    </Button>
+                    
                 </Grid>
             </Grid>
         </Grid>
@@ -110,7 +113,7 @@ export default function Home() {
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Button color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:200, mx:"auto", color:color_one.primary.secondary, mt:2}}>Crea una cuenta</Button>
+                        <Button href="SignIn" color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:200, mx:"auto", color:color_one.primary.secondary, mt:2}}>Crea una cuenta</Button>
                     </Box>  
                 </Grid>
             </Grid>
@@ -139,7 +142,7 @@ export default function Home() {
                         </Box>
                     </Grid>
                 </Grid>     
-                <Button color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:300, mx:"auto", color:color_one.primary.secondary}}>Publica gratis tu trabajo</Button>
+                <Button href="CreatePost" color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:300, mx:"auto", color:color_one.primary.secondary}}>Publica gratis tu trabajo</Button>
             </Box> 
         </Box>
     </ThemeProvider>
