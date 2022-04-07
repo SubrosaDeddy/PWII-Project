@@ -57,69 +57,66 @@ export default function SignIn() {
 
     return (
       <ThemeProvider theme={theme}>
-        <Grid container sx={{height:1, overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
-        
+        <Grid container sx={{height:"100vh", overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
           <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={0} square sx={{height:1}}>
             <Box sx={{py: 7, px: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', height:"100%"}}>
-                    <Avatar src="/broken-image.jpg" sx={{ width: 100, height: 100 }}/>
+              <Avatar src="/broken-image.jpg" sx={{ width: 100, height: 100 }}/>
+              <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
+                  Cargar imagen
+                  <input type="file" accept="image/*" hidden/>
+                </Button>
+              
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="name"
+                  label="Nombre"
+                  name="name"
+                  autoComplete="name"
+                  autoFocus
+                />
 
-                    <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                      
-                      <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
-                        Cargar imagen
-                        <input type="file" accept="image/*" hidden/>
-                      </Button>
-                    
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="name"
-                        label="Nombre"
-                        name="name"
-                        autoComplete="name"
-                        autoFocus
-                      />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="userName"
+                  label="Nombre de usuario"
+                  name="userName"
+                  autoComplete="userName"
+                  autoFocus
+                />
 
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="userName"
-                        label="Nombre de usuario"
-                        name="userName"
-                        autoComplete="userName"
-                        autoFocus
-                      />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Correo electrónico"
+                  name="email"
+                  autoComplete="email"
+                  autoFocus
+                />
+                <TextField
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Contraseña"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
 
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        id="email"
-                        label="Correo electrónico"
-                        name="email"
-                        autoComplete="email"
-                        autoFocus
-                      />
-                      <TextField
-                        margin="normal"
-                        required
-                        fullWidth
-                        name="password"
-                        label="Contraseña"
-                        type="password"
-                        id="password"
-                        autoComplete="current-password"
-                      />
+                <FormControlLabel control={<Checkbox defaultChecked/>} label="Trabajador" />
 
-                      <FormControlLabel control={<Checkbox defaultChecked/>} label="Trabajador" />
-
-                      <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}>
-                        Registrar
-                      </Button>
-                      <Copyright sx={{ mt: 5 }} />
-                    </Box>
+                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}>
+                  Registrar
+                </Button>
+                <Copyright sx={{ mt: 5 }} />
+              </Box>
             </Box>
           </Grid>
         </Grid>

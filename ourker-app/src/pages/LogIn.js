@@ -56,7 +56,7 @@ export default function LogIn() {
   return (
 
     <ThemeProvider theme={theme}>
-    <Grid container component="main" sx={{backgroundImage: 'url(/fondo1.jpg)', height:1}}>
+    <Grid container component="main" sx={{backgroundImage: 'url(/fondo1.jpg)', height:"100vh"}}>
       <Grid item xs={12} md={8} lg={5} component={Paper} elevation={0} square>
         <Box sx={{my:8, mx: 4, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Typography component="h1" variant="h5" textAlign="center" sx={{ m: 5}}>
