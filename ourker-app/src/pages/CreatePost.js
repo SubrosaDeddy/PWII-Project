@@ -1,17 +1,10 @@
 import React, { Fragment } from 'react'
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import {color_one} from "../utils/Themes";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from 'mui-image'
+import { createTheme } from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
-import Stack from '@mui/material/Stack';
-import { Typography } from '@material-ui/core'
-import { Autocomplete, Box, Button, Card, Container, Grid, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material'
+import { Autocomplete, Box, Button, Card, Grid,  Paper, TextField } from '@mui/material'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import Divider from '@mui/material/Divider';
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia"
 
 const theme = createTheme({
@@ -41,7 +34,7 @@ export default function CreatePost() {
 
   return ( <Fragment >
     <Paper  sx={{
-   backgroundImage: 'url(/fondo3.jpg)', height: '75vh'
+   backgroundImage: 'url(/fondo3.jpg)', height: '60vh'
  }}>
 
  <Grid
@@ -51,7 +44,7 @@ export default function CreatePost() {
      <Paper elevation={3} sx={{
          p: 2,
          margin: 'auto',
-         maxWidth: 800,
+         maxWidth: 500,
          flexGrow: 1,
          top: 9,
          backgroundColor: (theme) =>
@@ -63,8 +56,10 @@ export default function CreatePost() {
          <Box component="form" noValidate onSubmit={""} sx={{backgroundColor: color_one.primary.secondary}}>
                  
              <Box height={'10px'}/>
+
+             <form>
              <TextField margin="normal" id="Titulo" label="Titulo" variant="outlined" required  fullWidth/> 
-             <TextField margin="normal" id="outlined-basic" label="Descripción" variant="outlined" required multiline fullWidth maxRows={5} rows={5}/> 
+             <TextField margin="normal"  id="outlined-basic" label="Descripción" variant="outlined" required multiline fullWidth maxRows={5} rows={5}/> 
              <Autocomplete
                      value={value}
                      onChange={(event, newValue) => {
@@ -78,23 +73,23 @@ export default function CreatePost() {
                      options={options}
                      sx={{mx:"auto"}}
                      renderInput={(params) => (
-                     <TextField {...params} label="Categoria"/>
+                     <TextField {...params} label="Categoria" required/>
                  )}/>
 
-            <TextField margin="normal" id="filled-read-only-input" label="ID de trabajador" defaultValue="1001"  InputProps={{readOnly: true}}/>
 
-            <Stack direction="row" spacing={2}>
-
-            <Button variant="contained" startIcon={<SendIcon />}>
+            <Box m={2} pt={4}>
+            <Button fullWidth="true" sx={{mx:"auto"}} type = 'submit' variant="contained" startIcon={<SendIcon />}>
              Publicar 
             </Button>
-             
-             </Stack>
-
+            </Box>
+            </form>
          </Box>
-             
+
          </Grid>
          
+         <TextField margin="normal" id="filled-read-only-input" type="hidden" label="ID de trabajador" defaultValue="1001"/>
+             
+
      </Paper>
 
  </Grid>

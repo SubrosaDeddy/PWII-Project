@@ -1,15 +1,11 @@
-import { Typography } from '@material-ui/core'
-import { Autocomplete, Box, Button, Card, Container, Grid, InputLabel, MenuItem, Paper, Select, TextField } from '@mui/material'
+
+import { Autocomplete, Box, Button, Card, Grid, Paper,TextField } from '@mui/material'
 import React, { Fragment } from 'react'
 import Fab from '@mui/material/Fab';
-import AddIcon from '@mui/icons-material/Add';
 import {color_one} from "../utils/Themes";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Image from 'mui-image'
+import { createTheme} from '@mui/material/styles';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia"
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
@@ -25,15 +21,9 @@ const theme = createTheme({
 
     body: {
         border: '2px solid blue',
-        backgroundImage: 'url("/fondo1.jpg")',
       },
    
   });
-
-
-  function sayHello() {
-    return ( <Image src="/fondo1.jpg" width={500} shift="center"/>);
-  }
 
 
 export default function CreateReport() {
@@ -45,12 +35,11 @@ export default function CreateReport() {
 
         <Fragment >
            <Paper  sx={{
-          backgroundImage: 'url(/fondo4.jpg)'
+          backgroundImage: 'url(/fondo3.jpg)'
         }}>
 
         <Grid
-        spacing={1} style={{  
-            backgroundImage: 'url(/fondo4.jpg)'}}
+        spacing={1}
         >
             <Box height={'15px'}/>
             <Paper elevation={3} sx={{
@@ -68,6 +57,9 @@ export default function CreateReport() {
                 <Box component="form" noValidate onSubmit={""} sx={{backgroundColor: color_one.primary.secondary}}>
                         
                         <Box height={'15px'}/>
+
+                       <form>
+
                         <Autocomplete
                             value={value}
                             onChange={(event, newValue) => {
@@ -81,7 +73,7 @@ export default function CreateReport() {
                             options={options}
                             sx={{mx:"auto"}}
                             renderInput={(params) => (
-                            <TextField {...params} label="Categoria"/>
+                            <TextField {...params} label="Categoria" required/>
                         )}/>
                     
                     <TextField margin="normal" id="Modelo" label="Modelo" variant="outlined" required  fullWidth/> 
@@ -95,13 +87,14 @@ export default function CreateReport() {
                     <Stack direction="row" spacing={2}>
                     <TextField margin="normal" id="Modelo" label="Parte" variant="outlined" required  /> 
 
-                    <Button variant="contained" startIcon={<SendIcon />}>
+                    <Box m={2} pt={4} style={{ flexGrow: "1" }}>
+                    <Button  fullWidth="true" sx={{mx:"auto"}} type = 'submit' variant="contained" startIcon={<SendIcon />}>
                     Publicar reporte
                     </Button>
+                    </Box>
                     </Stack>
 
-                    
-
+                    </form>
                 </Box>
                     
                 </Grid>
