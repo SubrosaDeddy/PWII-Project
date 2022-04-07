@@ -8,12 +8,12 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 import CheckIcon from '@mui/icons-material/Check';
 // Bar
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
+// import { styled, alpha } from "@mui/material/styles";
+// import InputBase from "@mui/material/InputBase";
 
 // Background
 import CardMedia from "@mui/material/CardMedia";
@@ -21,26 +21,28 @@ import CardMedia from "@mui/material/CardMedia";
 import {color_one} from "../utils/Themes";
 import { makeStyles } from "@material-ui/core/styles";
 
+import SearchBar from "../components/SearchBar";
+
 const useStyles = makeStyles({
     
 });
 
 export default function Home() {
-  // AppBar
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
+//   // AppBar
+//   const SearchIconWrapper = styled("div")(({ theme }) => ({
+//     padding: theme.spacing(0, 2),
+//     height: "100%",
+//     position: "absolute",
+//     pointerEvents: "none",
+//     display: "flex",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   }));
 
-  //   Autocomplete
-  const options = ["Option 1", "Option 2"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+//   //   Autocomplete
+//   const options = ["Option 1", "Option 2"];
+//   const [value, setValue] = React.useState();
+//   const [inputValue, setInputValue] = React.useState("");
 
   return (
     // <Container>
@@ -50,7 +52,8 @@ export default function Home() {
             <Typography xs={11} sm={10} md={9} lg={8} xl={7} variant="h4" component="h4" sx={{color:color_one.primary.secondary, mb:2, mx:"auto", textAlign:"center", p:"auto"}}>
             Te ayudamos a encontrar a la persona indicada para tu trabajo.
             </Typography>
-            <Grid xs={11} sm={10} md={9} lg={8} xl={7} sx={{height:"fit-content", py:1, borderRadius:5, backgroundColor: color_one.primary.secondary, margin:"auto", display:"flex", alignItems:"center", flexWrap:"wrap"}}>
+            <SearchBar/>
+            {/* <Grid xs={11} sm={10} md={9} lg={8} xl={7} sx={{height:"fit-content", py:1, borderRadius:5, backgroundColor: color_one.primary.secondary, margin:"auto", display:"flex", alignItems:"center", flexWrap:"wrap"}}>
                 <Grid item xs={11} sm={11} md={6} lg={5} xl={5} sx={{p:"auto", m:"auto", px:1, textAlign:"center"}}>
                     <Autocomplete
                         value={value}
@@ -93,7 +96,7 @@ export default function Home() {
                     </Button>
                     
                 </Grid>
-            </Grid>
+            </Grid> */}
         </Grid>
 
         {/* Box */}
