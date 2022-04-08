@@ -21,6 +21,7 @@ import Tooltip from '@mui/material/Tooltip';
 import { useNavigate } from 'react-router-dom';
 import SummarizeTwoToneIcon from '@mui/icons-material/SummarizeTwoTone';
 import Report from './Report';
+import PostsComponent from "../components/PostsComponent";
 
 export default function Search() {
   const [expanded, setExpanded] = React.useState(false);
@@ -98,7 +99,10 @@ export default function Search() {
 
               </Grid>
 
-              <Grid item xs={12} sx={{marginTop: "15px"}}>
+            
+
+              <PostsComponent/>
+              {/* <Grid item xs={12} sx={{marginTop: "15px"}}>
                 <Paper sx={{ bgcolor: "#F5F5F5", height: "45vh", overflow: "auto" }}>
                   <List>
                   <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }}>
@@ -197,7 +201,14 @@ export default function Search() {
                 </Tooltip>
 
               </Grid>
+              </Grid> */}
+              
             </Grid>
+            <Tooltip title="Ver Reportes">
+                <Button onClick={(e) => navigate('/Report')}>
+                <SummarizeTwoToneIcon fontSize="large" sx={{marginTop:'30%'}}/> 
+                </Button>
+              </Tooltip>
           </Box>
         </Box>
       </React.Fragment>
