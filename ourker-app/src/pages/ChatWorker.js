@@ -84,9 +84,10 @@ export default function ChatWorker() {
 
         <Grid item xs={8}>
           <Box height={"20px"} />
+          
           <Grid item xs={12}>
             <Box
-              sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
+              sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1, py:"30px" }}
               height={"70vh"}
             >
               <ListItem
@@ -302,13 +303,12 @@ export default function ChatWorker() {
             </Box>
           </Grid>
           
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{height:"15%"}}>
             <Box
               sx={{
                 display: "grid",
                 gridAutoColumns: "1fr",
-                gap: 1,
-                height:"15%"
+                gap: 1
               }}
             >
               <Box sx={{gridColumn: 'span 18'}}>
@@ -338,6 +338,7 @@ export default function ChatWorker() {
               {/* The second non-visible column has width of 1/4 */}
             </Box>
           </Grid>
+
           <Divider />
         </Grid>
       </Grid>
