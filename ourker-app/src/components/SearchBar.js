@@ -23,7 +23,7 @@ export default function SearchBar() {
     }));
     
     //   Autocomplete
-    const options = ["Option 1", "Option 2"];
+    const options = ["Carpintero", "Mecanico"];
     const [value, setValue] = React.useState();
     const [inputValue, setInputValue] = React.useState("");
   
