@@ -55,7 +55,7 @@ export default function ChatWorker() {
           />
 
           <Box sx={{ border: 1, borderTop: 0, borderColor: "#D0D0D0", pr: 1 }}>
-            <List sx={{ width: "100%", maxWidth: 560 }}>
+            <List sx={{ width: "100%", maxWidth: 560}}>
               <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
                 <ListItemAvatar>
                   <Avatar src="/broken-image.jpg" />
@@ -87,13 +87,12 @@ export default function ChatWorker() {
           
           <Grid item xs={12}>
             <Box
-              sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1, py:"30px" }}
+              sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
               height={"70vh"}
             >
               <ListItem
                 alignItems="center"
                 sx={{
-                  m: 1,
                   backgroundColor: color_one.primary.main,
                   color: "white",
                 }}
