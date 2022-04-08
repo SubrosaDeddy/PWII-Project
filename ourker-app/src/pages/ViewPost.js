@@ -54,15 +54,7 @@ export default function ViewPost() {
     return (
     <Grid spacing={2} sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"100%"}}>
         <Box height={'15px'}/>
-        <Paper elevation={3} sx={{
-            p:2,
-            margin: 'auto',
-            maxWidth: "50%",
-            flexGrow: 1,
-            top: 9,
-            backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        }}>
+        <Paper elevation={3} sx={{p:2, margin: 'auto', maxWidth: "50%", flexGrow: 1, top: 9, backgroundColor: (theme) =>theme.palette.mode === 'dark' ? '#1A2027' : '#fff'}}>
             <Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>
                             29/03/2022
             </Typography>
@@ -97,17 +89,31 @@ export default function ViewPost() {
                 <SendIcon sx={{mx:"10px", color:color_one.primary.main, fontSize:"30px"}}/>
             </Box>
 
-            <Grid container className={classes.Comment} sx={{}}>
-                <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
-                <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
-                <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-            </Grid>
-
-            <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
+            <Container sx={{overflowY:"scroll", height:"500px"}}>
+                <Grid container className={classes.Comment} sx={{}}>
                     <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
                     <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
                     <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-            </Grid>
+                </Grid>
+
+                <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
+                    <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
+                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
+                    <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
+                </Grid>
+                
+                <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
+                    <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
+                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
+                    <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
+                </Grid>
+                
+                <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
+                    <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
+                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
+                    <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
+                </Grid>
+            </Container>
         </Paper>
 
     </Grid>
