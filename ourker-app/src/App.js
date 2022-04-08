@@ -15,8 +15,8 @@ import Perfil from './pages/Perfil'
 import Search from './pages/Search';
 import { Routes, Route, Link } from "react-router-dom";
 
-
 function App() {
+  
   return (
     <Fragment>
       <NavBar/>

@@ -1,25 +1,24 @@
-import React, {useState}from 'react'
+import React from 'react'
 import { Image } from 'mui-image';
 import Box from "@mui/material/Box";
-import SignIn from '../pages/SignIn';
-import LogIn from '../pages/LogIn';
-import { Routes, Route, Link } from "react-router-dom";
 import {
   Button,
   Stack,
   Toolbar,
-  Typography,
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 // Bar
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
-
 import { color_one } from '../utils/Themes';
-import { Grid } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+
 
 export default function NavBar() {
+
+
+    const navigate = useNavigate();
+
     // AppBar
     const Search = styled("div")(({ theme }) => ({
         position: "relative",
@@ -68,8 +67,9 @@ export default function NavBar() {
         <ThemeProvider theme={color_one}>
             <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
                 
-                <Toolbar>
-                <Button color="inherit" href="/">
+                <Toolbar> 
+                    
+                <Button color="inherit" onClick={() => navigate('/')}>
                     <Image src="/ourker_logo.png" sx={{ maxWidth: "300px",
                     mr: 'auto' }}/> 
                 </Button>
@@ -78,10 +78,10 @@ export default function NavBar() {
                 <Box sx={{ width: "100%"}}></Box>
 
                     <Stack spacing={1} direction="row" >
-                                <Button color="inherit" variant="outlined" href="SignIn">
+                                <Button color="inherit" variant="outlined" onClick={() => navigate('SignIn')}>
                                     Registrar
                                 </Button>
-                                <Button color="inherit" variant="outlined" href="LogIn">
+                                <Button color="inherit" variant="outlined" onClick={() => navigate('LogIn')}>
                                     LogIn
                                 </Button>
                     </Stack>
