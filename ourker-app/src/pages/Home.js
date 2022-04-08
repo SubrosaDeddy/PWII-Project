@@ -22,6 +22,7 @@ import {color_one} from "../utils/Themes";
 import { makeStyles } from "@material-ui/core/styles";
 
 import SearchBar from "../components/SearchBar";
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles({
     
@@ -43,6 +44,8 @@ export default function Home() {
 //   const options = ["Option 1", "Option 2"];
 //   const [value, setValue] = React.useState();
 //   const [inputValue, setInputValue] = React.useState("");
+
+const navigate = useNavigate();
 
   return (
     // <Container>
@@ -116,7 +119,7 @@ export default function Home() {
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
                         <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Button href="SignIn" color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:200, mx:"auto", color:color_one.primary.secondary, mt:2}}>Crea una cuenta</Button>
+                        <Button onClick={() => navigate('/SignIn')} color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:200, mx:"auto", color:color_one.primary.secondary, mt:2}}>Crea una cuenta</Button>
                     </Box>  
                 </Grid>
             </Grid>
@@ -145,7 +148,7 @@ export default function Home() {
                         </Box>
                     </Grid>
                 </Grid>     
-                <Button href="CreatePost" color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:300, mx:"auto", color:color_one.primary.secondary}}>Publica gratis tu trabajo</Button>
+                <Button onClick={() => navigate('/CreatePost')} color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:300, mx:"auto", color:color_one.primary.secondary}}>Publica gratis tu trabajo</Button>
             </Box> 
         </Box>
     </ThemeProvider>

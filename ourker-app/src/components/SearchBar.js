@@ -9,8 +9,11 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import {color_one} from "../utils/Themes";
 import { styled } from "@mui/material/styles";
+import { useNavigate } from 'react-router-dom';
 
 export default function SearchBar() {
+    const navigate = useNavigate();
+
     // AppBar
     const SearchIconWrapper = styled("div")(({ theme }) => ({
         padding: theme.spacing(0, 2),
@@ -23,7 +26,7 @@ export default function SearchBar() {
     }));
     
     //   Autocomplete
-    const options = ["Option 1", "Option 2"];
+    const options = ["Carpintero", "Mecanico"];
     const [value, setValue] = React.useState();
     const [inputValue, setInputValue] = React.useState("");
   
@@ -64,7 +67,7 @@ export default function SearchBar() {
             )}/>
         </Grid>
         <Grid item xs={12} lg={1} sx={{p:0, m:"auto", textAlign:"center"}}>
-            <Button href="Search">
+            <Button onClick={() => navigate('/Search')}>
                 <SearchIconWrapper sx={{position:"relative", my:1}}>
                     <SearchIcon/>
                 </SearchIconWrapper>

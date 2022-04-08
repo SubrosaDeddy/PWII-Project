@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Image } from 'mui-image';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import { makeStyles } from '@material-ui/core/styles';
+import { useNavigate } from 'react-router-dom';
 
 function Copyright(props) {
   
@@ -43,6 +44,8 @@ function Copyright(props) {
 
 
 export default function LogIn() {
+    
+    const navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -65,12 +68,12 @@ export default function LogIn() {
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1}}>
             <TextField margin="normal" required fullWidth id="email" label="Correo electrónico" name="email" autoComplete="email" autoFocus/>
             <TextField margin="normal" required fullWidth name="password" label="Contraseña" type="password" id="password" autoComplete="current-password"/>
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor: "#2777D4"}}>
+            <Button onClick={() => navigate('/')} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{backgroundColor: "#2777D4"}}>
               Entrar
             </Button>
 
               <Box textAlign='center'>
-              <Button variant="contained" href="#contained-buttons" sx={{ m: 2 }}   style={{
+              <Button onClick={() => navigate('/SignIn')} variant="contained" href="#contained-buttons" sx={{ m: 2 }}   style={{
                 backgroundColor: "#2777D4"}}>
                Registrar
               </Button>

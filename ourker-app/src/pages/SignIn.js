@@ -12,6 +12,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { makeStyles } from '@material-ui/core/styles';
+import { useNavigate } from 'react-router-dom';
 
 // Color
 import {color_one} from "../utils/Themes";
@@ -44,7 +45,10 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
-    const handleSubmit = (event) => {
+  
+  const navigate = useNavigate();
+  
+  const handleSubmit = (event) => {
           event.preventDefault();
           const data = new FormData(event.currentTarget);
           console.log({
@@ -156,7 +160,7 @@ export default function SignIn() {
 
                 <FormControlLabel control={<Checkbox defaultChecked/>} label="Trabajador" />
 
-                <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}>
+                <Button onClick={() => navigate('/')} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 ,backgroundColor:color_one.primary.main,  borderRadius:5}}>
                   Registrar
                 </Button>
                 <Copyright sx={{ mt: 5 }} />
