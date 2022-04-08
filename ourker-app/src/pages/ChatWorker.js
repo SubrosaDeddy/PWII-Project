@@ -99,7 +99,8 @@ export default function ChatWorker() {
               </ListItemAvatar>
               <ListItemText primary="Fernando" />
             </ListItem>
-            <List>
+            
+            <List sx={{overflowY:"scroll", height:"85%"}}>
               <ListItem key="1">
                 <Grid container>
                   <Box
@@ -122,6 +123,7 @@ export default function ChatWorker() {
                   </Box>
                 </Grid>
               </ListItem>
+
               <ListItem key="2">
                 <Grid container>
                   <Box
@@ -143,6 +145,137 @@ export default function ChatWorker() {
                   </Box>
                 </Grid>
               </ListItem>
+              
+              <ListItem key="3">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>Gracias, espero su mensaje!</Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+
+              <ListItem key="1">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Hola, quiero pedirle información sobre el trabajo de
+                      carpintero
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+
+              <ListItem key="2">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.reciveMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: "auto",
+                      marginLeft: 0,
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Si, claro en seguida le mando la información{" "}
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              
+              <ListItem key="3">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>Gracias, espero su mensaje!</Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+
+              <ListItem key="1">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Hola, quiero pedirle información sobre el trabajo de
+                      carpintero
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+
+              <ListItem key="2">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.reciveMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: "auto",
+                      marginLeft: 0,
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>
+                      Si, claro en seguida le mando la información{" "}
+                    </Typography>
+                    <Typography>09:31</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              
               <ListItem key="3">
                 <Grid container>
                   <Box
