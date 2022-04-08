@@ -44,8 +44,8 @@ export default function ChatWorker() {
   const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
-      <Grid container sx={{background: color_one.primary.sendMessage}}>
-        <Grid item xs={4} style={{ padding: "20px", border: 1,background: color_one.primary.secondary }}>
+      <Grid container >
+        <Grid item xs={4} style={{ padding: "20px", border: 1 }}>
           <TextField
             id="outlined-search"
             label="Buscar contacto"
@@ -85,7 +85,7 @@ export default function ChatWorker() {
         <Grid item xs={8}>
           <Box height={"20px"} />
           <Box
-            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1,background: color_one.primary.secondary }}
+            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
             height={"70vh"}
           >
             <ListItem
@@ -323,7 +323,7 @@ export default function ChatWorker() {
             
                    
             
-            <Box sx={{gridColumn: 'span 18',background: color_one.primary.secondary}}>
+            <Box sx={{gridColumn: 'span 18'}}>
             <TextField
               id="outlined-textarea"
               label="Escribe un mensaje"
@@ -333,13 +333,13 @@ export default function ChatWorker() {
             
           </Box>
           
-          <Box sx={{gridColumn: '19/20', margin: 'auto', background: color_one.primary.secondary}}>
+          <Box sx={{gridColumn: '19/20', margin: 'auto'}}>
             <Button variant="outlined" startIcon={<SendIcon />}>
               Mandar
             </Button>
             
           </Box> 
-          <Box sx={{gridColumn: '20/20',  background: color_one.primary.secondary}}>
+          <Box sx={{gridColumn: '20/20'}}>
           <Tooltip title="Crear Reporte">
           <Button onClick={(e) => navigate('/CreateReport')}>
           <PublishTwoToneIcon sx={{marginTop:'30%'}}/> 
