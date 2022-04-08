@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import {
-  Autocomplete,
   Button,
-  Container,
   Grid,
   Typography,
-  TextField,
 } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
-import CheckIcon from '@mui/icons-material/Check';
-// Bar
-import { ThemeProvider, createTheme } from "@mui/material/styles";
-// import { styled, alpha } from "@mui/material/styles";
-// import InputBase from "@mui/material/InputBase";
 
-// Background
+import CheckIcon from '@mui/icons-material/Check';
+
+import { ThemeProvider} from "@mui/material/styles";
+
 import CardMedia from "@mui/material/CardMedia";
 
 import {color_one} from "../utils/Themes";
@@ -29,80 +23,21 @@ const useStyles = makeStyles({
 });
 
 export default function Home() {
-//   // AppBar
-//   const SearchIconWrapper = styled("div")(({ theme }) => ({
-//     padding: theme.spacing(0, 2),
-//     height: "100%",
-//     position: "absolute",
-//     pointerEvents: "none",
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   }));
 
-//   //   Autocomplete
-//   const options = ["Option 1", "Option 2"];
-//   const [value, setValue] = React.useState();
-//   const [inputValue, setInputValue] = React.useState("");
 
 const navigate = useNavigate();
 
   return (
-    // <Container>
+
     <ThemeProvider theme={color_one}>
-        {/* Top */}
+
         <Grid sx={{backgroundColor:color_one.primary.main, m:0, py:8, px:1, width:1, alignItems:"center", justifyContent:"center"}}>
             <Typography xs={11} sm={10} md={9} lg={8} xl={7} variant="h4" component="h4" sx={{color:color_one.primary.secondary, mb:2, mx:"auto", textAlign:"center", p:"auto"}}>
             Te ayudamos a encontrar a la persona indicada para tu trabajo.
             </Typography>
             <SearchBar/>
-            {/* <Grid xs={11} sm={10} md={9} lg={8} xl={7} sx={{height:"fit-content", py:1, borderRadius:5, backgroundColor: color_one.primary.secondary, margin:"auto", display:"flex", alignItems:"center", flexWrap:"wrap"}}>
-                <Grid item xs={11} sm={11} md={6} lg={5} xl={5} sx={{p:"auto", m:"auto", px:1, textAlign:"center"}}>
-                    <Autocomplete
-                        value={value}
-                        onChange={(event, newValue) => {
-                        setValue(newValue);
-                        }}
-                        inputValue={inputValue}
-                        onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                        }}
-                        id="combo-box-demo"
-                        options={options}
-                        sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
-                        renderInput={(params) => (
-                        <TextField {...params} label="Trabajo"/>
-                    )}/>
-                </Grid>
-                <Grid item xs={11} sm={11} md={6} lg={5} xl={5} sx={{p:"auto", m:"auto", px:1, textAlign:"center"}}>
-                    <Autocomplete
-                        value={value}
-                        onChange={(event, newValue) => {
-                        setValue(newValue);
-                        }}
-                        inputValue={inputValue}
-                        onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                        }}
-                        id="combo-box-demo"
-                        options={options}
-                        sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
-                        renderInput={(params) => (
-                        <TextField {...params} label="Localidades"/>
-                    )}/>
-                </Grid>
-                <Grid item xs={12} lg={1} sx={{p:0, m:"auto", textAlign:"center"}}>
-                    <Button href="Search">
-                        <SearchIconWrapper sx={{position:"relative", my:1}}>
-                            <SearchIcon/>
-                        </SearchIconWrapper>
-                    </Button>
-                    
-                </Grid>
-            </Grid> */}
         </Grid>
 
-        {/* Box */}
         <Box sx={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:5, backgroundColor:color_one.primary.secondary}}>
             <Typography variant="h4" component="h4">Si tienes trabajo por hacer ¡Ourker está contigo!</Typography>
             <Typography>Miles de trabajadores disponibles para que encuentres el que se ajuste mejor a tus necesidades</Typography>

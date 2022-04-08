@@ -25,7 +25,6 @@ const WorkerSchema = new mongoose.Schema({
         type:Number,
         default:null
     }
-    // Disponibilidad
     
 });
 

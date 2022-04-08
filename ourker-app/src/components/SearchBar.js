@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Autocomplete,
   Button,
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 export default function SearchBar() {
     const navigate = useNavigate();
 
-    // AppBar
+
     const SearchIconWrapper = styled("div")(({ theme }) => ({
         padding: theme.spacing(0, 2),
         height: "100%",
@@ -25,7 +25,7 @@ export default function SearchBar() {
         justifyContent: "center",
     }));
     
-    //   Autocomplete
+
     const options = ["Carpintero", "Mecanico"];
     const [value, setValue] = React.useState();
     const [inputValue, setInputValue] = React.useState("");

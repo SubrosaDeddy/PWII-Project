@@ -42,7 +42,6 @@ export default function SliderImages() {
                     src={step.photo}
                     alt={step.label}
                     style={{
-                        // borderRadius: "15px",
                         height: "380px",
                         display: "block",
                         overflow: "hidden",

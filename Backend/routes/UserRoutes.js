@@ -11,7 +11,6 @@ router.get("/user/:id", user_controller.user_getById);
 router.put("/user/:id", user_controller.user_update);
 router.delete("/user/:id", user_controller.user_delete);
 
-// Reporte de localidades usuario
 router.get("/user//address/:id", user_controller.user_localities);
 
 module.exports = router;

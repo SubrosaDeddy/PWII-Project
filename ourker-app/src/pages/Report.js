@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, CardMedia, Grid, Paper, Typography } from '@mui/material'
+import {Grid, Paper, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import SliderImages from '../components/SliderImages'
 

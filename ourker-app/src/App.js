@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 import {Fragment} from 'react';
 import { Helmet } from 'react-helmet';
@@ -13,7 +12,7 @@ import ViewPost from './pages/ViewPost'
 import Report from './pages/Report'
 import Perfil from './pages/Perfil'
 import Search from './pages/Search';
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 
 function App() {
   

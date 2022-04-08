@@ -4,17 +4,8 @@ const {
     transports
   } = require("winston");
 
-//   require('winston-mongodb').MongoDB;
-  
   const logger = createLogger({
     transports: [
-    //   new transports.MongoDB({
-    //     db: process.env.MONGODB_URI,
-    //     level: 'silly',
-    //     options: {
-    //       useUnifiedTopology: true
-    //     }
-    //   }),
       new transports.File({
         filename: "error.log",
         level: "error",

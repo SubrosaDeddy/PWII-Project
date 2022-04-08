@@ -10,7 +10,6 @@ router.put("/worker/:id", worker_controller.worker_update);
 router.delete("/worker/:id", worker_controller.worker_delete);
 
 
-// Reports
 router.get("/worker//address/:id", worker_controller.worker_localities);
 router.get("/worker/ocupation/:id", worker_controller.worker_ocupation);
 

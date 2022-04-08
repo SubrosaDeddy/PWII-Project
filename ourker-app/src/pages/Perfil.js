@@ -1,26 +1,14 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import CssBaseline from "@mui/material/CssBaseline";
-import Container from "@mui/material/Container";
-import List from "@mui/material/List";
 import { color_one } from "../utils/Themes";
 import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
-import Report from "./Report";
 import PostsComponent from "../components/PostsComponent";
 
 export default function Search() {

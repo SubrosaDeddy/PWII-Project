@@ -6,9 +6,6 @@ import
     Typography
 } from '@mui/material'
 
-// Background
-import CardMedia from "@mui/material/CardMedia";
-
 import {color_one} from "../utils/Themes";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar } from '@material-ui/core';  

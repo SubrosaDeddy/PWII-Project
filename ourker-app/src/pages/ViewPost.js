@@ -1,29 +1,17 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import 
 { 
-    Button, 
-    Container,
     Grid,
     Box,
     Typography, 
     TextField
 } from '@mui/material'
-import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { Paper } from '@mui/material';
-
-// Background
-import CardMedia from "@mui/material/CardMedia";
-
 import {color_one} from "../utils/Themes";
 import { makeStyles } from "@material-ui/core/styles";
-import { ClassNames } from '@emotion/react';
-
 import SendIcon from '@mui/icons-material/Send';
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
-import { Avatar } from '@material-ui/core';
-import { border, borderColor, textAlign } from '@mui/system';
-import { LinearProgress, CircularProgress } from '@mui/material';
 import SliderImage from "../components/SliderImages"
 import CommentSection from '../components/CommentSection';
 
