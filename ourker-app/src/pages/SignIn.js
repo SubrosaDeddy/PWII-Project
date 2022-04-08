@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -8,11 +9,8 @@ import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Image } from 'mui-image';
-import { Container } from '@mui/material';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Color
@@ -55,18 +53,64 @@ export default function SignIn() {
           });
     };
 
+
+
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imageUrl, setImageUrl] = useState(null);
+  
+    useEffect(() => {
+      if (selectedImage) {
+        setImageUrl(URL.createObjectURL(selectedImage));
+      }
+    }, [selectedImage]);
     return (
       <ThemeProvider theme={theme}>
         <Grid container sx={{height:"100vh", overflow:"hidden", backgroundImage: 'url(/fondo_gradiente.jpg)'}}>
           <Grid item xs={12} sm={7} lg={5} component={Paper} elevation={0} square sx={{height:1}}>
             <Box sx={{py: 7, px: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', height:"100%"}}>
-              <Avatar src="/broken-image.jpg" sx={{ width: 100, height: 100 }}/>
+             
+     
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
-                <Button  variant="contained"  component="label" fullWidth sx={{ mt: 3, mb: 2, backgroundColor:color_one.primary.main,  borderRadius:5}}>
-                  Cargar imagen
-                  <input type="file" accept="image/*" hidden/>
+
+
+              <Box
+                sx={{
+                my: 4,
+                mx: 4,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+              >
+
+                 <Typography>Preview de imagen: </Typography>
+
+                   <Avatar
+                   src={imageUrl}
+                   sx={{ width: 150, height: 150,  margin: 2}}
+                   mt={1} textAlign="center"
+                    />
+
+<input
+               accept="image/*"
+               type="file"
+               id="select-image"
+              style={{ display: 'none' }}
+               onChange={e => setSelectedImage(e.target.files[0])}
+               />
+              <label htmlFor="select-image">
+              <Button variant="contained" color="primary" component="span">
+               Cargar imagen
                 </Button>
-              
+                </label>
+               {imageUrl && selectedImage && (
+                <Box mt={2} textAlign="center">
+
+                  </Box>
+                 )}
+
+                </Box>
+
                 <TextField
                   margin="normal"
                   required
