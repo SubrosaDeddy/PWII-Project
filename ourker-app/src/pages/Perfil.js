@@ -17,6 +17,10 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import { color_one } from "../utils/Themes";
+import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
+import SummarizeTwoToneIcon from '@mui/icons-material/SummarizeTwoTone';
+import Report from './Report';
 
 export default function Search() {
   const [expanded, setExpanded] = React.useState(false);
@@ -25,6 +29,8 @@ export default function Search() {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  const navigate = useNavigate();
 
   return (
       <React.Fragment>
@@ -86,6 +92,8 @@ export default function Search() {
                         />
                       <Typography variant="subtitle1" sx={{marginRight: "auto"}}>120</Typography>
                   </Box>
+
+                  
                     
 
               </Grid>
@@ -181,6 +189,13 @@ export default function Search() {
                 
                   </List>
                 </Paper>
+                
+                <Tooltip title="Ver Reportes">
+                <Button onClick={(e) => navigate('/Report')}>
+                <SummarizeTwoToneIcon fontSize="large" sx={{marginTop:'30%'}}/> 
+                </Button>
+                </Tooltip>
+
               </Grid>
             </Grid>
           </Box>
