@@ -84,272 +84,260 @@ export default function ChatWorker() {
 
         <Grid item xs={8}>
           <Box height={"20px"} />
-          <Box
-            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
-            height={"70vh"}
-          >
-            <ListItem
-              alignItems="center"
+          <Grid item xs={12}>
+            <Box
+              sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
+              height={"70vh"}
+            >
+              <ListItem
+                alignItems="center"
+                sx={{
+                  m: 1,
+                  backgroundColor: color_one.primary.main,
+                  color: "white",
+                }}
+              >
+                <ListItemAvatar>
+                  <Avatar src="/broken-image.jpg" />
+                </ListItemAvatar>
+                <ListItemText primary="Fernando" />
+              </ListItem>
+              
+              <List sx={{overflowY:"scroll", height:"85%"}}>
+                <ListItem key="1">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Hola, quiero pedirle información sobre el trabajo de
+                        carpintero
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+
+                <ListItem key="2">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.reciveMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: "auto",
+                        marginLeft: 0,
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Si, claro en seguida le mando la información{" "}
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+                
+                <ListItem key="3">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>Gracias, espero su mensaje!</Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+
+                <ListItem key="1">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Hola, quiero pedirle información sobre el trabajo de
+                        carpintero
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+
+                <ListItem key="2">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.reciveMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: "auto",
+                        marginLeft: 0,
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Si, claro en seguida le mando la información{" "}
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+                
+                <ListItem key="3">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>Gracias, espero su mensaje!</Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+
+                <ListItem key="1">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Hola, quiero pedirle información sobre el trabajo de
+                        carpintero
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+
+                <ListItem key="2">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.reciveMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: "auto",
+                        marginLeft: 0,
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>
+                        Si, claro en seguida le mando la información{" "}
+                      </Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+                
+                <ListItem key="3">
+                  <Grid container>
+                    <Box
+                      component={Paper}
+                      elevaton={1}
+                      sx={{
+                        background: color_one.primary.sendMessage,
+                        borderRadius: 7,
+                        padding: "1rem",
+                        marginRight: 0,
+                        marginLeft: "auto",
+                        display: "inline",
+                      }}
+                    >
+                      <Typography>Gracias, espero su mensaje!</Typography>
+                      <Typography>09:31</Typography>
+                    </Box>
+                  </Grid>
+                </ListItem>
+              </List>
+            </Box>
+          </Grid>
+          
+          <Grid item xs={12}>
+            <Box
               sx={{
-                m: 1,
-                backgroundColor: color_one.primary.main,
-                color: "white",
+                display: "grid",
+                gridAutoColumns: "1fr",
+                gap: 1,
+                height:"15%"
               }}
             >
-              <ListItemAvatar>
-                <Avatar src="/broken-image.jpg" />
-              </ListItemAvatar>
-              <ListItemText primary="Fernando" />
-            </ListItem>
+              <Box sx={{gridColumn: 'span 18'}}>
+              <TextField
+                id="outlined-textarea"
+                label="Escribe un mensaje"
+                multiline
+                fullWidth
+              />
+              
+            </Box>
             
-            <List sx={{overflowY:"scroll", height:"85%"}}>
-              <ListItem key="1">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Hola, quiero pedirle información sobre el trabajo de
-                      carpintero
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-
-              <ListItem key="2">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.reciveMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: "auto",
-                      marginLeft: 0,
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Si, claro en seguida le mando la información{" "}
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
+            <Box sx={{gridColumn: '19/20', margin: 'auto'}}>
+              <Button variant="outlined" startIcon={<SendIcon />}>
+                Mandar
+              </Button>
               
-              <ListItem key="3">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>Gracias, espero su mensaje!</Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-
-              <ListItem key="1">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Hola, quiero pedirle información sobre el trabajo de
-                      carpintero
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-
-              <ListItem key="2">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.reciveMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: "auto",
-                      marginLeft: 0,
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Si, claro en seguida le mando la información{" "}
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-              
-              <ListItem key="3">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>Gracias, espero su mensaje!</Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-
-              <ListItem key="1">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Hola, quiero pedirle información sobre el trabajo de
-                      carpintero
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-
-              <ListItem key="2">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.reciveMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: "auto",
-                      marginLeft: 0,
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>
-                      Si, claro en seguida le mando la información{" "}
-                    </Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-              
-              <ListItem key="3">
-                <Grid container>
-                  <Box
-                    component={Paper}
-                    elevaton={1}
-                    sx={{
-                      background: color_one.primary.sendMessage,
-                      borderRadius: 7,
-                      padding: "1rem",
-                      marginRight: 0,
-                      marginLeft: "auto",
-                      display: "inline",
-                    }}
-                  >
-                    <Typography>Gracias, espero su mensaje!</Typography>
-                    <Typography>09:31</Typography>
-                  </Box>
-                </Grid>
-              </ListItem>
-            </List>
-          </Box>
-
-          {/* <Box sx={{gridArea: 'main'}}>
-            <TextField
-              id="outlined-textarea"
-              label="Escribe un mensaje"
-              multiline
-            />
-            
-          </Box>
-          <Box sx={{gridArea: 'sidebar'}}>
-            <Button variant="outlined" startIcon={<SendIcon />}>
-              Mandar
+            </Box> 
+            <Box sx={{gridColumn: '20/20'}}>
+            <Tooltip title="Crear Reporte">
+            <Button onClick={(e) => navigate('/CreateReport')}>
+            <PublishTwoToneIcon sx={{marginTop:'30%'}}/> 
             </Button>
-          </Box> */}
-          <Box
-            sx={{
-              display: "grid",
-              gridAutoColumns: "1fr",
-              gap: 1,
-            }}
-          >
-            
-                   
-            
-            <Box sx={{gridColumn: 'span 18'}}>
-            <TextField
-              id="outlined-textarea"
-              label="Escribe un mensaje"
-              multiline
-              fullWidth
-            />
-            
-          </Box>
-          
-          <Box sx={{gridColumn: '19/20', margin: 'auto'}}>
-            <Button variant="outlined" startIcon={<SendIcon />}>
-              Mandar
-            </Button>
-            
-          </Box> 
-          <Box sx={{gridColumn: '20/20'}}>
-          <Tooltip title="Crear Reporte">
-          <Button onClick={(e) => navigate('/CreateReport')}>
-          <PublishTwoToneIcon sx={{marginTop:'30%'}}/> 
-          </Button>
-          </Tooltip>
+            </Tooltip>
 
-          </Box>
-            {/* The second non-visible column has width of 1/4 */}
-          </Box>
-
+            </Box>
+              {/* The second non-visible column has width of 1/4 */}
+            </Box>
+          </Grid>
           <Divider />
         </Grid>
       </Grid>
