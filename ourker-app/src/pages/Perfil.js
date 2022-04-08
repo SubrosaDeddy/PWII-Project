@@ -17,6 +17,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import { color_one } from "../utils/Themes";
+import PostsComponent from "../components/PostsComponent";
 
 export default function Search() {
   const [expanded, setExpanded] = React.useState(false);
@@ -90,7 +91,8 @@ export default function Search() {
 
               </Grid>
 
-              <Grid item xs={12} sx={{marginTop: "15px"}}>
+              <PostsComponent/>
+              {/* <Grid item xs={12} sx={{marginTop: "15px"}}>
                 <Paper sx={{ bgcolor: "#F5F5F5", height: "45vh", overflow: "auto" }}>
                   <List>
                   <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }}>
@@ -181,7 +183,7 @@ export default function Search() {
                 
                   </List>
                 </Paper>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>

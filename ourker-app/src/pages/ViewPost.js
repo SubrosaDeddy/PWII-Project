@@ -25,6 +25,7 @@ import { Avatar } from '@material-ui/core';
 import { border, borderColor, textAlign } from '@mui/system';
 import { LinearProgress, CircularProgress } from '@mui/material';
 import SliderImage from "../components/SliderImages"
+import CommentSection from '../components/CommentSection';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -89,7 +90,8 @@ export default function ViewPost() {
                 <SendIcon sx={{mx:"10px", color:color_one.primary.main, fontSize:"30px"}}/>
             </Box>
 
-            <Container sx={{overflowY:"scroll", height:"500px"}}>
+            <CommentSection/>
+            {/* <Container sx={{overflowY:"scroll", height:"500px"}}>
                 <Grid container className={classes.Comment} sx={{}}>
                     <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
                     <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
@@ -113,7 +115,7 @@ export default function ViewPost() {
                     <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
                     <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
                 </Grid>
-            </Container>
+            </Container> */}
         </Paper>
 
     </Grid>

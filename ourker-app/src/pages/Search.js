@@ -8,17 +8,18 @@ import SearchBar from '../components/SearchBar';
 import { useNavigate } from 'react-router-dom';
 import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import SearchResults from '../components/SearchResults';
 
-const LightTooltip = styled(({ className, ...props }) => (
-  <Tooltip {...props} classes={{ popper: className }} />
-))(({ theme }) => ({
-  [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: theme.palette.common.white,
-    color: 'rgba(0, 0, 0, 0.87)',
-    boxShadow: theme.shadows[1],
-    fontSize: 11,
-  },
-}));
+// const LightTooltip = styled(({ className, ...props }) => (
+//   <Tooltip {...props} classes={{ popper: className }} />
+// ))(({ theme }) => ({
+//   [`& .${tooltipClasses.tooltip}`]: {
+//     backgroundColor: theme.palette.common.white,
+//     color: 'rgba(0, 0, 0, 0.87)',
+//     boxShadow: theme.shadows[1],
+//     fontSize: 11,
+//   },
+// }));
 
 export default function Search() {
   
@@ -27,12 +28,16 @@ export default function Search() {
   return (
     <Box sx={{backgroundImage: "linear-gradient(to top, #04448c,#00236f)", overflow:"hidden", height:"100vh", width:"100%", m:0, p:0}}>
       <Grid container sx={{backgroundColor:color_one.primary.secondary, width:"70%", m:"auto", marginTop:"10px", padding:"30px"}}>
+        
         <Container sx={{borderWidth:"100px", borderColor:"black"}}>
           <Grid sx={{backgroundColor:color_one.primary.main, m:0, py:3, px:1, width:1, alignItems:"center", justifyContent:"center"}}>
             <SearchBar/>
             </Grid>
         </Container>
-        <Container sx={{height:"650px", overflowY:"scroll", marginTop:"25px"}}>
+        
+        <SearchResults/>
+
+        {/* <Container sx={{height:"650px", overflowY:"scroll", marginTop:"25px"}}>
           <Grid container sx={{px:"30px", py:"15px", my:"15px", borderRadius:"15px"}}>
           </Grid>
 
@@ -84,7 +89,7 @@ export default function Search() {
           </Grid>
           </LightTooltip>
 
-        </Container>
+        </Container> */}
       </Grid>
     </Box>
   );
