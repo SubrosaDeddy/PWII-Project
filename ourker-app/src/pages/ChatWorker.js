@@ -18,6 +18,10 @@ import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { color_one } from "../utils/Themes";
+import PublishTwoToneIcon from '@mui/icons-material/PublishTwoTone';
+import CreateReport from './CreateReport';
+import Tooltip from '@mui/material/Tooltip';
+
 
 const theme = createTheme({
   typography: {
@@ -38,12 +42,13 @@ const theme = createTheme({
 export default function ChatWorker() {
   return (
     <ThemeProvider theme={theme}>
-      <Grid container>
-        <Grid item xs={4} style={{ padding: "20px", border: 1 }}>
+      <Grid container sx={{background: color_one.primary.sendMessage}}>
+        <Grid item xs={4} style={{ padding: "20px", border: 1,background: color_one.primary.secondary }}>
           <TextField
             id="outlined-search"
             label="Buscar contacto"
             type="search"
+            
             fullWidth
           />
 
@@ -78,7 +83,7 @@ export default function ChatWorker() {
         <Grid item xs={8}>
           <Box height={"20px"} />
           <Box
-            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
+            sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1,background: color_one.primary.secondary }}
             height={"70vh"}
           >
             <ListItem
@@ -180,7 +185,10 @@ export default function ChatWorker() {
               gap: 1,
             }}
           >
-            <Box sx={{gridColumn: 'span 5'}}>
+            
+                   
+            
+            <Box sx={{gridColumn: 'span 18',background: color_one.primary.secondary}}>
             <TextField
               id="outlined-textarea"
               label="Escribe un mensaje"
@@ -189,11 +197,21 @@ export default function ChatWorker() {
             />
             
           </Box>
-          <Box sx={{gridColumn: '6 / 6', margin: 'auto'}}>
+          
+          <Box sx={{gridColumn: '19/20', margin: 'auto', background: color_one.primary.secondary}}>
             <Button variant="outlined" startIcon={<SendIcon />}>
               Mandar
             </Button>
+            
           </Box> 
+          <Box sx={{gridColumn: '20/20',  background: color_one.primary.secondary}}>
+          <Tooltip title="Crear Reporte">
+          <Button href="CreateReport">
+          <PublishTwoToneIcon sx={{marginTop:'30%'}}/> 
+          </Button>
+          </Tooltip>
+
+          </Box>
             {/* The second non-visible column has width of 1/4 */}
           </Box>
 
