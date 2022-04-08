@@ -21,6 +21,7 @@ import { color_one } from "../utils/Themes";
 import PublishTwoToneIcon from '@mui/icons-material/PublishTwoTone';
 import CreateReport from './CreateReport';
 import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
 
 
 const theme = createTheme({
@@ -40,6 +41,7 @@ const theme = createTheme({
 });
 
 export default function ChatWorker() {
+  const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
       <Grid container sx={{background: color_one.primary.sendMessage}}>
@@ -339,7 +341,7 @@ export default function ChatWorker() {
           </Box> 
           <Box sx={{gridColumn: '20/20',  background: color_one.primary.secondary}}>
           <Tooltip title="Crear Reporte">
-          <Button href="CreateReport">
+          <Button onClick={(e) => navigate('/CreateReport')}>
           <PublishTwoToneIcon sx={{marginTop:'30%'}}/> 
           </Button>
           </Tooltip>
