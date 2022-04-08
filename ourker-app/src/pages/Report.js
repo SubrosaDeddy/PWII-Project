@@ -8,7 +8,7 @@ export default function Report() {
 
   return (
     <Grid spacing={2} style={{
-        backgroundImage: 'url(/fondo_gradiente.jpg)', height: '93vh'}}>
+        backgroundImage: 'url(/fondo_gradiente.jpg)',  minHeight:"calc(100vh - 64px)"}}>
       
         <Box height={'15px'}/>
         <Paper elevation={3} sx={{

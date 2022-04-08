@@ -17,8 +17,12 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
 import { color_one } from "../utils/Themes";
+import { useNavigate } from "react-router-dom";
 
 export default function PostsComponent() {
+
+  const navigate = useNavigate();
+
   return (
     <Grid item xs={12} sx={{marginTop: "15px"}}>
         <Paper sx={{ bgcolor: "#F5F5F5", height: "45vh", overflow: "auto" }}>
@@ -52,7 +56,7 @@ export default function PostsComponent() {
         </Button>
 
 
-        <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }}>
+        <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }} onClick={(e) => navigate("/ViewPost")}>
           <Card sx={{ display: "flex", width: "70%", justifyContent: "space-between"}}>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
@@ -80,7 +84,7 @@ export default function PostsComponent() {
 
         </Button>
 
-        <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }}>
+        <Button href="ViewPost" sx={{ justifyContent: "center", display: "center" }} onClick={(e) => navigate("/ViewPost")}>
           <Card sx={{ display: "flex", width: "70%", justifyContent: "space-between"}}>
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <CardContent sx={{ flex: "1 0 auto" }}>
