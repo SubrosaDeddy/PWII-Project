@@ -15,8 +15,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function NavBar() {
-
-
+    
     const navigate = useNavigate();
 
     // AppBar
@@ -78,10 +77,10 @@ export default function NavBar() {
                 <Box sx={{ width: "100%"}}></Box>
 
                     <Stack spacing={1} direction="row" >
-                                <Button color="inherit" variant="outlined" onClick={() => navigate('SignIn')}>
+                                <Button color="inherit" variant="outlined" onClick={() => navigate('/SignIn')}>
                                     Registrar
                                 </Button>
-                                <Button color="inherit" variant="outlined" onClick={() => navigate('LogIn')}>
+                                <Button color="inherit" variant="outlined" onClick={() => navigate('/LogIn')}>
                                     LogIn
                                 </Button>
                     </Stack>
