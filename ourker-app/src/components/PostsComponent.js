@@ -38,7 +38,7 @@ export default function PostsComponent() {
                 </Box>
                 <CardMedia
                   component="img"
-                  sx={{ width: "50%" }}
+                  sx={{ width: "50%", maxWidth: "50%" }}
                   image="cover.png"
                   alt="Live from space album cover"
                 />
@@ -65,7 +65,7 @@ export default function PostsComponent() {
                 </Box>
                 <CardMedia
                   component="img"
-                  sx={{ width: "50%" }}
+                  sx={{ width: "50%", maxWidth: "50%" }}
                   image="https://images.unsplash.com/photo-1551963831-b3b1ca40c98e"
                   alt="Live from space album cover"
                 />
@@ -93,7 +93,7 @@ export default function PostsComponent() {
                 </Box>
                 <CardMedia
                   component="img"
-                  sx={{ width: "50%" }}
+                  sx={{ width: "50%", maxWidth: "50%" }}
                   image="cover.png"
                   alt="Live from space album cover"
                 />

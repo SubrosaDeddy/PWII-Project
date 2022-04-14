@@ -43,7 +43,7 @@ export default function Search() {
             <Grid item xs={3} sx={{}}>
               <CardMedia
                 component="img"
-                sx={{ width: 150, height: 150, mx: "auto" }}
+                sx={{ width: 150, height: 150, mx: "auto", maxWidth:150, maxHeight: 150}}
                 image="Logo192.png"
                 alt="Live from space album cover"
               />
@@ -73,7 +73,7 @@ export default function Search() {
             >
               <CardMedia
                 component="img"
-                sx={{ width: 100, height: 100, mx: "auto" }}
+                sx={{ width: 100, height: 100, mx: "auto", maxHeight:100, maxWidth:100 }}
                 image="Check.png"
                 alt="Live from space album cover"
               />
@@ -81,7 +81,6 @@ export default function Search() {
                 <Button
                   size="small"
                   variant="contained"
-                  // href="Chat"
                   onClick={(e) => navigate("/Chat")}
                   sx={{ mx: "auto" }}
                 >
@@ -102,7 +101,7 @@ export default function Search() {
               <Box sx={{ display: "flex" }}>
                 <CardMedia
                   component="img"
-                  sx={{ width: 29, marginLeft: "auto", textAlign: "center" }}
+                  sx={{ width: 29, marginLeft: "auto", textAlign: "cente", maxWidth: 29 }}
                   image="Check.png"
                   alt="Live from space album cover"
                 />
