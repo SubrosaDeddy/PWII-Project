@@ -20,8 +20,8 @@ function App() {
   
   return (
     <Fragment>
-      {/* <NavBar/> */}
-      <UserNavbar/>
+      <NavBar/>
+      {/* <UserNavbar/> */}
       <Helmet> <title>Ourker</title> </Helmet>
       <Routes>
         <Route exact path="/" element={<Home/>} />
