@@ -7,7 +7,8 @@ const color_one = createTheme({
       secondary:"#FEFEFE",
       details:"#A7C3D6",
       sendMessage:"#94C6FF", 
-      reciveMessage: "#E6F5FF"
+      reciveMessage: "#E6F5FF",
+      linear: "linear-gradient(to top, #04448c,#00236f)"
     },
 });
 

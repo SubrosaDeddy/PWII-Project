@@ -39,18 +39,20 @@ export default function ChatWorker() {
   const navigate = useNavigate();
   return (
     <ThemeProvider theme={theme}>
-      <Grid container >
-        <Grid item xs={4} style={{ padding: "20px", border: 1 }}>
+      <Grid container sx={{backgroundImage: color_one.primary.linear}}>
+        <Grid item xs={4} style={{ padding: "20px", border: 1,  minHeight: "calc(100vh - 64px)" }}>
+          <Box sx={{backgroundColor: color_one.primary.secondary, border:1, borderColor:"black"}}>
           <TextField
             id="outlined-search"
             label="Buscar contacto"
             type="search"
-            
             fullWidth
           />
+          </Box>
+          
 
-          <Box sx={{ border: 1, borderTop: 0, borderColor: "#D0D0D0", pr: 1 }}>
-            <List sx={{ width: "100%", maxWidth: 560}}>
+          <Box sx={{ border: 1, borderTop: 0, borderColor: "#D0D0D0", pr: 1,backgroundColor: color_one.primary.secondary, borderColor: "black"}}>
+            <List sx={{ width: "100%", maxWidth: 560,backgroundColor: color_one.primary.secondary}}>
               <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
                 <ListItemAvatar>
                   <Avatar src="/broken-image.jpg" />
@@ -80,7 +82,7 @@ export default function ChatWorker() {
         <Grid item xs={8}>
           <Box height={"20px"} />
           
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{backgroundColor: color_one.primary.secondary}}>
             <Box
               sx={{ border: 1, borderTop: 1, borderColor: "#D0D0D0", pr: 1 }}
               height={"70vh"}
@@ -297,7 +299,7 @@ export default function ChatWorker() {
             </Box>
           </Grid>
           
-          <Grid item xs={12} sx={{height:"15%"}}>
+          <Grid item xs={12} sx={{height:"auto", backgroundColor: color_one.primary.secondary}}>
             <Box
               sx={{
                 display: "grid",
