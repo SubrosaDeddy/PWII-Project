@@ -44,6 +44,18 @@ exports.user_getById = async(req, res) =>{
     }
 }
 
+exports.user_getByEmail = async(req, res) =>{
+    const {id} = req.params;
+    const data = await User.findOne({email: id});
+
+    if(data){
+        res.send(data);
+    }else{
+        res.send({message: "Error, no se encontro el registro"});
+    }
+}
+
+
 exports.user_update = async (req, res) =>{
     const {id} = req.params;
     const { body }= req;
