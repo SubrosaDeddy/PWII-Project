@@ -5,8 +5,8 @@ export const GetUser = async (inputID) =>
     try
     {
         // Comillas invertidas Alt+96
-        const response = await axios.get(`/user/:${inputID}`);
-        return response;
+        const response = await axios.get(`/user//${inputID}`);
+        return response.data;
     }
     catch(err)
     {

@@ -59,12 +59,9 @@ export default function LogIn() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log({
-    //   email: data.get("email"),
-    //   password: data.get("password"),
-    // });
 
     const res = await GetUser(data.get("email"));
+
     const {username, email, fullname, password, level} = res;
     if(!level && username)
     {
@@ -84,6 +81,7 @@ export default function LogIn() {
       // Error
       alert("Nos ekivokamos menso");
     }
+    console.log(res);
   };
 
   return (

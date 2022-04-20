@@ -35,13 +35,22 @@ exports.user_create = async(req,res) =>{
 exports.user_getById = async(req, res) =>{
     const {id} = req.params;
 
-    const data = await User.findById(id);
+    try
+    {
+        const data = await User.findById(id);
 
-    if(data){
-        res.send(data);
-    }else{
-        res.send({message: "Error, no se encontro el registro"});
+        if(data){
+            res.send(data);
+        }else{
+            res.send({message: "Error, no se encontro el registro"});
+        }
     }
+    catch(e)
+    {
+        logger.error(e);
+        res.send(e);
+    }
+    
 }
 
 exports.user_getByEmail = async(req, res) =>{

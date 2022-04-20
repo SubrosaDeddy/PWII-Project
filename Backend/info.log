@@ -120,3 +120,12 @@
 {"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T03:47:44.434Z"}
 {"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-20T03:49:51.508Z"}
 {"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T03:49:51.525Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-20T04:11:21.765Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T04:11:21.782Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-20T04:12:07.657Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T04:12:07.674Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-20T04:12:39.725Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T04:12:39.741Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-20T04:13:45.536Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-20T04:13:45.552Z"}
+{"kind":"ObjectId","level":"error","path":"_id","reason":{},"stringValue":"\"PanchoMemo123@mail.com\"","timestamp":"2022-04-20T04:13:49.862Z","value":"PanchoMemo123@mail.com","valueType":"string"}

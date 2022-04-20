@@ -52,3 +52,4 @@
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"hgkjg bvkj bjyhtfcvyit"},"level":"error","timestamp":"2022-04-19T23:23:24.439Z"}
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"hgkjg bvkj bjyhtfcvyit"},"level":"error","timestamp":"2022-04-19T23:23:43.651Z"}
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"hgkjg bvkj bjyhtfcvyit"},"level":"error","timestamp":"2022-04-19T23:26:13.430Z"}
+{"kind":"ObjectId","level":"error","path":"_id","reason":{},"stringValue":"\"PanchoMemo123@mail.com\"","timestamp":"2022-04-20T04:13:49.862Z","value":"PanchoMemo123@mail.com","valueType":"string"}
