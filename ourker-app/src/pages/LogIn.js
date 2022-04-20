@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -8,9 +8,11 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
+// Services
+import {GetUser, GetAll} from "../services/UserService"
+
+
 function Copyright(props) {
-
-
   return (
     <Typography
       variant="body2"
@@ -37,15 +39,51 @@ const theme = createTheme({
 });
 
 export default function LogIn() {
-
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  
+  const [users, setUsers] = useState([]);
+
+  useEffect(() =>{
+    async function fetchUsers()
+    {
+      const data = await GetAll();
+      setUsers(data);
+      console.log(users);
+    }
+    
+    fetchUsers();
+  }, [])
+
+
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
+
+    const res = await GetUser(data.get("email"));
+    const {username, email, fullname, password, level} = res;
+    if(!level && username)
+    {
+      if(data.get("password") == password)
+      {
+        // Success
+        alert("'tas dentro");
+      }
+      else
+      {
+        // Credenciales incorrectas
+        alert("tekivocaste menso");
+      }
+    }
+    else
+    {
+      // Error
+      alert("Nos ekivokamos menso");
+    }
   };
 
   return (

@@ -32,7 +32,7 @@ const navigate = useNavigate();
     <ThemeProvider theme={color_one}>
 
         <Grid sx={{backgroundColor:color_one.primary.main, m:0, py:8, px:1, width:1, alignItems:"center", justifyContent:"center"}}>
-            <Typography xs={11} sm={10} md={9} lg={8} xl={7} variant="h4" component="h4" sx={{color:color_one.primary.secondary, mb:2, mx:"auto", textAlign:"center", p:"auto"}}>
+            <Typography item xs={11} sm={10} md={9} lg={8} xl={7} variant="h4" component="h4" sx={{color:color_one.primary.secondary, mb:2, mx:"auto", textAlign:"center", p:"auto"}}>
             Te ayudamos a encontrar a la persona indicada para tu trabajo.
             </Typography>
             <SearchBar/>

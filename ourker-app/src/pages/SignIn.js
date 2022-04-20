@@ -11,6 +11,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
+import { insertUser } from "../services/UserService";
 
 // Color
 import { color_one } from "../utils/Themes";
@@ -39,13 +40,34 @@ const theme = createTheme({
 });
 
 export default function SignIn() {
-  const handleSubmit = (event) => {
+  const fileInput = document.getElementById("select-image");
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const data = new FormData(event.target);
+
+    const user = 
+    {
+      username:data.get("username"),
+      email:data.get("email"),
+      fullname:data.get("fullname"),
+      password:data.get("password"),
+      profilepicture:""
+    };
+
+    const res = await insertUser(user);
+
+    const {username, email, fullname, password, level} = res;
+    if(!level && username)
+    {
+      // Succesful
+      alert("Registro exitoso");
+    }
+    else
+    {
+      // Error
+      alert("Sucedió un error");
+    }
   };
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -56,6 +78,7 @@ export default function SignIn() {
       setImageUrl(URL.createObjectURL(selectedImage));
     }
   }, [selectedImage]);
+  
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -116,6 +139,7 @@ export default function SignIn() {
                   type="file"
                   id="select-image"
                   style={{ display: "none" }}
+                  name="profilepicture"
                   onChange={(e) => setSelectedImage(e.target.files[0])}
                 />
                 <label htmlFor="select-image">
@@ -136,7 +160,7 @@ export default function SignIn() {
                     fullWidth
                     id="name"
                     label="Nombre"
-                    name="name"
+                    name="fullname"
                     autoComplete="name"
                     autoFocus
                   />
@@ -147,9 +171,9 @@ export default function SignIn() {
                     margin="normal"
                     required
                     fullWidth
-                    id="userName"
+                    id="username"
                     label="Nombre de usuario"
-                    name="userName"
+                    name="username"
                     autoComplete="userName"
                     autoFocus
                   />
