@@ -11,7 +11,8 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
-import { insertUser } from "../services/UserService";
+import { InsertUser } from "../services/UserService";
+import User from "../models/User";
 
 // Color
 import { color_one } from "../utils/Themes";
@@ -55,19 +56,17 @@ export default function SignIn() {
       profilepicture:""
     };
 
-    const res = await insertUser(user);
-
-    const {username, email, fullname, password, level} = res;
-    if(!level && username)
-    {
-      // Succesful
-      alert("Registro exitoso");
-    }
-    else
-    {
-      // Error
-      alert("Sucedió un error");
-    }
+    let newUser = new User(user);
+    const res = newUser.createUserDB();
+    
+    res.then(value => {
+      if(!value.level)
+        alert("Registro exitoso");
+      else
+        alert("El usuario no pudo ser creado");
+    }).catch(err => {
+      alert("El usuario no pudo ser creado");
+    });
   };
 
   const [selectedImage, setSelectedImage] = useState(null);

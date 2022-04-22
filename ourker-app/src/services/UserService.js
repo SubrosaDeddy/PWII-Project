@@ -37,7 +37,7 @@ export const GetAll = async () =>
     }
 };
 
-export const insertUser = async(inputUser) =>
+export const InsertUser = async(inputUser) =>
 {
     try
     {
@@ -55,5 +55,19 @@ export const insertUser = async(inputUser) =>
     {
         console.error(err);
         return err;    
+    }
+}
+
+export const UpdateUser = async(inputUser) => 
+{
+    try 
+    {
+        const response = await axios.put(`/user//${inputUser.email}`);
+        return response.data;
+    } 
+    catch (err) 
+    {
+        console.log(err);
+        return err;
     }
 }

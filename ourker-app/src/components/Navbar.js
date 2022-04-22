@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { Image } from 'mui-image';
 import Box from "@mui/material/Box";
 import {
@@ -14,7 +14,7 @@ import { color_one } from '../utils/Themes';
 import { useNavigate } from 'react-router-dom';
 
 
-export default function NavBar() {
+export default function NavBar(props) {
     
     const navigate = useNavigate();
 
@@ -59,32 +59,37 @@ export default function NavBar() {
         },
     }));
 
-    return (
-
-        <ThemeProvider theme={color_one}>
-            <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
-                
-                <Toolbar> 
+    if(props.render)
+    {
+        return (
+            <ThemeProvider theme={color_one}>
+                <Box sx={{ flexGrow: 1, boxShadow: 1, backgroundColor:color_one.primary.secondary }}>
                     
-                <Button color="inherit" onClick={() => navigate('/')}>
-                    <Image src="/ourker_logo.png" sx={{ maxWidth: "300px",
-                    mr: 'auto' }}/> 
-                </Button>
-                
-
-                <Box sx={{ width: "100%"}}></Box>
-
-                    <Stack spacing={1} direction="row" >
-                                <Button color="inherit" variant="outlined" onClick={() => navigate('/SignIn')}>
-                                    Registrar
-                                </Button>
-                                <Button color="inherit" variant="outlined" onClick={() => navigate('/LogIn')}>
-                                    LogIn
-                                </Button>
-                    </Stack>
-                </Toolbar>
-            </Box>
-        </ThemeProvider>
-
-  )
+                    <Toolbar> 
+                        
+                    <Button color="inherit" onClick={() => navigate('/')}>
+                        <Image src="/ourker_logo.png" sx={{ maxWidth: "300px",
+                        mr: 'auto' }}/> 
+                    </Button>
+                    
+    
+                    <Box sx={{ width: "100%"}}></Box>
+    
+                        <Stack spacing={1} direction="row" >
+                                    <Button color="inherit" variant="outlined" onClick={() => navigate('/SignIn')}>
+                                        Registrar
+                                    </Button>
+                                    <Button color="inherit" variant="outlined" onClick={() => navigate('/LogIn')}>
+                                        LogIn
+                                    </Button>
+                        </Stack>
+                    </Toolbar>
+                </Box>
+            </ThemeProvider>
+        )
+    }
+    else
+    {
+        return(<Fragment/>)
+    }
 }

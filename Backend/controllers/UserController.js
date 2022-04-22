@@ -64,16 +64,15 @@ exports.user_getByEmail = async(req, res) =>{
     }
 }
 
-
 exports.user_update = async (req, res) =>{
     const {id} = req.params;
     const { body }= req;
 
-    const userdb = await User.findById(id);
+    const userdb = await User.findOne({email: id});
 
     try{
         if(userdb){
-            const data = await User.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
+            const data = await User.findOneAndUpdate({email: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
             logger.info(`Usuario actualizado exitosamente: ${data}`);
             

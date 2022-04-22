@@ -1,5 +1,5 @@
 import './App.css';
-import {Fragment} from 'react';
+import {Fragment, useState} from 'react';
 import { Helmet } from 'react-helmet';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
@@ -17,16 +17,17 @@ import EditProfile from './pages/EditProfile';
 import { Routes, Route} from "react-router-dom";
 
 function App() {
-  
+  const [user, setUser] = useState("");
+
   return (
     <Fragment>
-      <NavBar/>
-      {/* <UserNavbar/> */}
       <Helmet> <title>Ourker</title> </Helmet>
+      <NavBar render={!user}/>
+      <UserNavbar user={user}/>
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route exact path="SignIn" element={<SignIn/>} />
-        <Route exact path="LogIn" element={<LogIn/>} />
+        <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>
+        <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser}/>}/>
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost/>} />
         <Route exact path="Chat" element={<ChatWorker/>} />

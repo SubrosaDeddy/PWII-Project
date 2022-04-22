@@ -53,3 +53,33 @@
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"hgkjg bvkj bjyhtfcvyit"},"level":"error","timestamp":"2022-04-19T23:23:43.651Z"}
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"hgkjg bvkj bjyhtfcvyit"},"level":"error","timestamp":"2022-04-19T23:26:13.430Z"}
 {"kind":"ObjectId","level":"error","path":"_id","reason":{},"stringValue":"\"PanchoMemo123@mail.com\"","timestamp":"2022-04-20T04:13:49.862Z","value":"PanchoMemo123@mail.com","valueType":"string"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSola@sample.com"},"level":"error","timestamp":"2022-04-22T04:38:36.036Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:39:02.925Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:40:03.867Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:42:54.303Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:43:28.906Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:44:01.864Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:44:33.032Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:45:10.988Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:45:51.915Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:46:18.668Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedroSolaaa@sample.com"},"level":"error","timestamp":"2022-04-22T04:51:08.318Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:51:39.328Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:52:26.621Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:54:46.411Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:55:58.119Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:56:27.791Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:56:46.125Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"SolaPedro"},"value":"SolaPedro"}},"level":"error","timestamp":"2022-04-22T04:58:46.954Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:02:47.268Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:03:43.459Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:05:25.544Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:06:21.705Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:12:03.849Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:13:20.200Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:17:36.721Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:17:53.266Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:24:03.263Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:24:05.474Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:25:03.292Z"}
+{"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:26:18.226Z"}

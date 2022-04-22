@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 // Services
 import {GetUser, GetAll} from "../services/UserService"
+import User from "../models/User";
 
 
 function Copyright(props) {
@@ -38,50 +39,44 @@ const theme = createTheme({
   },
 });
 
-export default function LogIn() {
+export default function LogIn(props) {
   const navigate = useNavigate();
-  
-  const [users, setUsers] = useState([]);
 
-  useEffect(() =>{
-    async function fetchUsers()
-    {
-      const data = await GetAll();
-      setUsers(data);
-      console.log(users);
-    }
+  // const [users, setUsers] = useState([]);
+
+  // useEffect(() =>{
+  //   async function fetchUsers()
+  //   {
+  //     const data = await GetAll();
+  //     setUsers(data);
+  //     console.log(users);
+  //   }
     
-    fetchUsers();
-  }, [])
-
-
+  //   fetchUsers();
+  // }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
     const res = await GetUser(data.get("email"));
 
-    const {username, email, fullname, password, level} = res;
-    if(!level && username)
+    if(!res.level)
     {
-      if(data.get("password") == password)
+      let user = new User(res);
+      if(user.validatePassword(data.get("password")))
       {
-        // Success
-        alert("'tas dentro");
+        props.setLoggedUser(user);
+        navigate('/');
       }
       else
       {
-        // Credenciales incorrectas
         alert("tekivocaste menso");
       }
     }
     else
     {
-      // Error
       alert("Nos ekivokamos menso");
     }
-    console.log(res);
   };
 
   return (
