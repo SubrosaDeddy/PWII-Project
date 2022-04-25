@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { makeStyles } from "@material-ui/core/styles";
 import { InsertUser } from "../services/UserService";
+import { useNavigate } from "react-router-dom";
 import User from "../models/User";
 
 // Color
@@ -40,8 +41,10 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn() {
+export default function SignIn(props) {
   const fileInput = document.getElementById("select-image");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,9 +64,15 @@ export default function SignIn() {
     
     res.then(value => {
       if(!value.level)
+      {
         alert("Registro exitoso");
+        props.setLoggedUser(value);
+        navigate('/');
+      }
       else
+      {
         alert("El usuario no pudo ser creado");
+      }
     }).catch(err => {
       alert("El usuario no pudo ser creado");
     });

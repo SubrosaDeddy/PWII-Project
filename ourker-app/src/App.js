@@ -23,7 +23,7 @@ function App() {
     <Fragment>
       <Helmet> <title>Ourker</title> </Helmet>
       <NavBar render={!user}/>
-      <UserNavbar user={user}/>
+      <UserNavbar user={user} setLoggedUser={setUser}/>
       <Routes>
         <Route exact path="/" element={<Home/>} />
         <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>

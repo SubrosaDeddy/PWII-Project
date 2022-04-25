@@ -27,12 +27,17 @@ import TextField from '@mui/material/TextField';
 export default function NavBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleLogout = () =>{
+    props.setLoggedUser("");
+  }
+
   const navigate = useNavigate();
   if(props.user)
   {
@@ -130,12 +135,13 @@ export default function NavBar(props) {
               </MenuItem >
               
   
-              <MenuItem>
+              <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
                 Logout
               </MenuItem>
+
             </Menu>
           </Toolbar>
         </Box>

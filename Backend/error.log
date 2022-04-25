@@ -83,3 +83,4 @@
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:24:05.474Z"}
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:25:03.292Z"}
 {"code":11000,"index":0,"keyPattern":{"username":1},"keyValue":{"username":"PedritoSolita@kaboom.com"},"level":"error","timestamp":"2022-04-22T05:26:18.226Z"}
+{"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"Panfilito"},"value":"Panfilito"}},"level":"error","timestamp":"2022-04-23T11:48:12.408Z"}
