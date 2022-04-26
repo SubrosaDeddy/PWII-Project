@@ -194,3 +194,5 @@
 {"_message":"user validation failed","errors":{"fullname":{"kind":"minlength","message":"Fullname es muy corto","name":"ValidatorError","path":"fullname","properties":{"message":"Fullname es muy corto","minlength":10,"path":"fullname","type":"minlength","value":"Panfilito"},"value":"Panfilito"}},"level":"error","timestamp":"2022-04-23T11:48:12.408Z"}
 {"level":"info","message":"Usuario creado exitosamente: {\n  username: 'Panfilito321321',\n  fullname: 'Panfilito321321',\n  email: 'Panfilito321321@mail.com',\n  password: 'Panfilito321321',\n  _id: new ObjectId(\"6263e7819f71dfa940b1415d\"),\n  __v: 0\n}","timestamp":"2022-04-23T11:48:17.843Z"}
 {"level":"info","message":"Usuario creado exitosamente: {\n  username: 'PanchoPancho321',\n  fullname: 'Panchito321321',\n  email: 'PanchoOPanchito321@mail.com',\n  password: 'PanchoOPancho321321',\n  _id: new ObjectId(\"6263e7ca9f71dfa940b1415f\"),\n  __v: 0\n}","timestamp":"2022-04-23T11:49:30.535Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-04-26T14:58:15.916Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-04-26T14:58:16.780Z"}
