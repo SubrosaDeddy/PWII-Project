@@ -4,6 +4,7 @@ export default class User
 {
     constructor(inputObj) 
     {
+        this._id = inputObj._id;
         this.username = inputObj.username;
         this.email = inputObj.email;
         this.fullname = inputObj.fullname;
@@ -28,6 +29,11 @@ export default class User
         const res = InsertUser(this);
 
         return res;
+    }
+
+    getID()
+    {
+        return this._id;
     }
 
     getUsername()

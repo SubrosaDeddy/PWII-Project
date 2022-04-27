@@ -45,6 +45,18 @@ exports.categories_getById = async(req, res) =>{
     }
 }
 
+exports.categories_getByTitle = async(req, res) =>{
+    const {id} = req.params;
+    const data = await Categories.findOne({title: id});
+    if(data)
+    {
+        res.send(data);
+    }else
+    {
+        res.send({message: "Error, no se encontro el registro"});
+    }
+}
+
 exports.categories_update = async(req, res) =>{
     const {id} = req.params;
     const {body} = req;

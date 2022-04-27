@@ -64,6 +64,26 @@ export default class Post
         this._photos = inputPhotos;
     }
 
+    updatePhotosArray()
+    {
+        // Query photos service
+    }
+
+    getCategories()
+    {
+        return this._categories;
+    }
+
+    setCategories(inputCategories)
+    {
+        return this._category;
+    }
+
+    updateCategoriesArray()
+    {
+        // Query categories service
+    }
+
     getCounting()
     {
         return this.counting;
