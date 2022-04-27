@@ -34,8 +34,8 @@ const multimedia_routes = require('./routes/MultimediaRoutes');
 app.use('/api', multimedia_routes);
 
 // Publications
-const publications_routes = require("./routes/PublicationRoutes");
-app.use('/api', publications_routes);
+const post_routes = require("./routes/PostRoutes");
+app.use('/api', post_routes);
 
 // Locality 
 const locality_routers = require("./routes/LocalitiesRoutes");

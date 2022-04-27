@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PublicationSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     title:
     {
         type:String,
@@ -38,5 +38,5 @@ const PublicationSchema = new mongoose.Schema({
     }
 });
 
-const Publication = mongoose.model("publication", PublicationSchema);
-module.exports = Publication;
+const Post = mongoose.model("post", PostSchema);
+module.exports = Post;

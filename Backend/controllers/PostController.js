@@ -1,25 +1,24 @@
-const Publication = require("../models/PublicationSchema");
+const Post = require("../models/PostSchema");
 const Comments = require("../models/CommentSchema");
 const logger = require("../util/logger");
 const { push } = require("../util/logger");
 
 
-exports.publication_getall = async(req, res) =>{
-    const data = await Publication.find();
+exports.post_getall = async(req, res) =>{
+    const data = await Post.find();
 
     res.send(data);
 }
 
-exports.publication_create = async(req,res) =>{
+exports.post_create = async(req,res) =>{
     const{body} = req;
 
-    let newPublication = new Publication(body);
-
+    let newPost = new Post(body);
 
     try
     {
         let response = {};
-        await newPublication.save()
+        await newPost.save()
         .then((newObject) => {
             response = newObject;
             logger.info(`Publicación creada exitosamente: ${newObject}`);
@@ -38,9 +37,9 @@ exports.publication_create = async(req,res) =>{
     }
 };
 
-exports.publication_getById = async(req, res) =>{
+exports.post_getById = async(req, res) =>{
     const {id} = req.params;
-    const data = await Publication.findById(id);
+    const data = await Post.findById(id);
 
     if(data){
         res.send(data);
@@ -49,15 +48,15 @@ exports.publication_getById = async(req, res) =>{
     }
 }
 
-exports.publication_update = async (req, res) =>{
+exports.post_update = async (req, res) =>{
     const {id} = req.params;
     const { body }= req;
 
-    const publicationdb = await Publication.findById(id);
+    const postdb = await Post.findById(id);
 
     try {
-        if(publicationdb){
-            const data = await Publication.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
+        if(postdb){
+            const data = await Post.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
             res.send({message: "Registro actualizado exitosamente", data});
             logger.info(`Publicación actualizada exitosamente: ${data}`);
         }else{
@@ -68,17 +67,17 @@ exports.publication_update = async (req, res) =>{
     }
 }
 
-exports.publication_delete = async (req, res) =>{
+exports.post_delete = async (req, res) =>{
     const {id} = req.params;
 
-    await Publication.deleteOne({_id: id});
+    await Post.deleteOne({_id: id});
 
     res.send({message: "Publicacion eliminada"})
 }
 
-exports.report_publications_worker = async (req, res) =>{
+exports.report_posts_worker = async (req, res) =>{
     const {id} = req.params;
-    const data = await Publication.find({_workerinfo: id});
+    const data = await Post.find({_workerinfo: id});
     let temp = []
     let arr_pb =[];
     let c_likes = 0;
@@ -91,7 +90,7 @@ exports.report_publications_worker = async (req, res) =>{
                 res.send({message: "Error, no se encontro el registro"});
             }else{
                 for(let i= 0; i < data.length; i++){
-                    temp = await Comments.find({_publication: data[i]._id})
+                    temp = await Comments.find({_post: data[i]._id})
                     arr_pb.push(temp)
                 }
                 for(let i= 0; i<arr_pb.length; i++){
