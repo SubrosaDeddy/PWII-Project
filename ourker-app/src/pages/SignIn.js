@@ -17,6 +17,7 @@ import User from "../models/User";
 
 // Color
 import { color_one } from "../utils/Themes";
+import storage from "../firebase";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -44,49 +45,84 @@ const theme = createTheme({
 export default function SignIn(props) {
   const fileInput = document.getElementById("select-image");
 
-  const navigate = useNavigate();
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.target);
-
-    const user = 
-    {
-      username:data.get("username"),
-      email:data.get("email"),
-      fullname:data.get("fullname"),
-      password:data.get("password"),
-      profilepicture:""
-    };
-
-    let newUser = new User(user);
-    const res = newUser.createUserDB();
-    
-    res.then(value => {
-      if(!value.level)
-      {
-        alert("Registro exitoso");
-        props.setLoggedUser(value);
-        navigate('/');
-      }
-      else
-      {
-        alert("El usuario no pudo ser creado");
-      }
-    }).catch(err => {
-      alert("El usuario no pudo ser creado");
-    });
-  };
-
   const [selectedImage, setSelectedImage] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
+  const [image, setImage] = useState(null);
 
   useEffect(() => {
     if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
+      setImage(URL.createObjectURL(selectedImage));
     }
   }, [selectedImage]);
-  
+
+  // Firebase
+  const [url, setUrl] = useState("");
+
+
+  // const uploadImage = () => {
+
+  if(selectedImage !=null){
+    const uploadTask = storage
+    .ref(`/imagesUser/${selectedImage.name}`)
+    .put(selectedImage);
+
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {},
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      storage
+        .ref("imagesUser")
+        .child(selectedImage.name)
+        .getDownloadURL()
+        .then((url) => {
+          setUrl(url);
+        });
+    }
+  );
+  }
+    
+  // };
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+
+    if (selectedImage !=null) {
+      event.preventDefault();
+      const data = new FormData(event.target);
+
+      const user = {
+        username: data.get("username"),
+        email: data.get("email"),
+        fullname: data.get("fullname"),
+        password: data.get("password"),
+        profilepicture: data.get("ImageUser"),
+      };
+      
+      let newUser = new User(user);
+
+      const res = newUser.createUserDB();
+
+      res
+        .then((value) => {
+          if (!value.level) {
+            alert("Registro exitoso");
+            props.setLoggedUser(value);
+            navigate("/");
+          } else {
+            alert("El usuario no pudo ser creado");
+          }
+        })
+        .catch((err) => {
+          alert("El usuario no pudo ser creado");
+        });
+    }else{
+      alert("Esperando a que se suba la imagen");
+    }
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -96,8 +132,8 @@ export default function SignIn(props) {
           backgroundImage: "url(/fondo_gradiente.jpg)",
           backgroundAttachment: "fixed",
         }}
-        flexDirection={'column'}
-        justifyContent={'center'}
+        flexDirection={"column"}
+        justifyContent={"center"}
       >
         <Grid
           item
@@ -105,9 +141,9 @@ export default function SignIn(props) {
           sm={7}
           lg={5}
           sx={{
-            margin: '0 auto',
-            backgroundColor: 'white',
-            padding: '24px 16px'
+            margin: "0 auto",
+            backgroundColor: "white",
+            padding: "24px 16px",
           }}
           // component={Paper}
           elevation={5}
@@ -128,7 +164,7 @@ export default function SignIn(props) {
             >
               <Box
                 sx={{
-                  mb: '16px',
+                  mb: "16px",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
@@ -137,7 +173,7 @@ export default function SignIn(props) {
                 <Typography>Preview de imagen: </Typography>
 
                 <Avatar
-                  src={imageUrl}
+                  src={image}
                   sx={{ width: 120, height: 120, margin: 2 }}
                   textAlign="center"
                 />
@@ -155,7 +191,7 @@ export default function SignIn(props) {
                     Cargar imagen
                   </Button>
                 </label>
-                {imageUrl && selectedImage && (
+                {image && selectedImage && (
                   <Box mt={2} textAlign="center"></Box>
                 )}
               </Box>
@@ -213,6 +249,8 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
+                <input value={url} name="ImageUser"></input>
+
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
@@ -220,6 +258,7 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
+                {/* <button onClick={uploadImage}>Upload</button> */}
                 <Grid item xs={12}>
                   <Button
                     type="submit"
@@ -228,7 +267,7 @@ export default function SignIn(props) {
                     sx={{
                       backgroundColor: color_one.primary.main,
                       borderRadius: 55,
-                      marginLeft: 'auto'
+                      marginLeft: "auto",
                     }}
                   >
                     Registrar

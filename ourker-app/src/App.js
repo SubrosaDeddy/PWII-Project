@@ -19,26 +19,26 @@ import storage from "./firebase";
 import TestImages from "./pages/TestImages";
 
 function App() {
-
+  const [user, setUser] = useState("");
   return (
     <Fragment>
-      <TestImages/>
-    {/* //   <Helmet> <title>Ourker</title> </Helmet>
-    //   <NavBar render={!user}/>
-    //   <UserNavbar user={user} setLoggedUser={setUser}/>
-    //   <Routes>
-    //     <Route exact path="/" element={<Home/>} />
-    //     <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>
-    //     <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser}/>}/>
-    //     <Route exact path="CreateReport" element={<CreateReport/>} />
-    //     <Route exact path="CreatePost" element={<CreatePost/>} />
-    //     <Route exact path="Chat" element={<ChatWorker/>} />
-    //     <Route exact path="ViewPost" element={<ViewPost/>} />
-    //     <Route exact path="Report" element={<Report/>} />
-    //     <Route exact path="Perfil" element={<Perfil/>} />
-    //     <Route exact path="Search" element={<Search/>} />
-    //     <Route exact path="Edit" element={<EditProfile/>} />
-    //   </Routes> */}
+      {/* <TestImages/> */}
+    <Helmet> <title>Ourker</title> </Helmet>
+    <NavBar render={!user}/>
+    <UserNavbar user={user} setLoggedUser={setUser}/>
+    <Routes>
+      <Route exact path="/" element={<Home/>} />
+      <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>
+      <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser}/>}/>
+      <Route exact path="CreateReport" element={<CreateReport/>} />
+      <Route exact path="CreatePost" element={<CreatePost/>} />
+      <Route exact path="Chat" element={<ChatWorker/>} />
+      <Route exact path="ViewPost" element={<ViewPost/>} />
+      <Route exact path="Report" element={<Report/>} />
+      <Route exact path="Perfil" element={<Perfil/>} />
+      <Route exact path="Search" element={<Search/>} />
+      <Route exact path="Edit" element={<EditProfile/>} />
+      </Routes>
 
     </Fragment>
     

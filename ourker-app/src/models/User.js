@@ -8,6 +8,7 @@ export default class User
         this.email = inputObj.email;
         this.fullname = inputObj.fullname;
         this.password = inputObj.password;
+        this.profilepicture = inputObj.profilepicture;
 
         if(inputObj.address)
         {
@@ -38,6 +39,14 @@ export default class User
     setUsername(inputUsername)
     {
         this.username = inputUsername;
+    }
+
+    getUserimage(){
+        return this.profilepicture;
+    }
+
+    setUserimage(inputUserpicture){
+        this.profilepicture = inputUserpicture
     }
 
     getEmail()
