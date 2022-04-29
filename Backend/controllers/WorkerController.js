@@ -1,6 +1,7 @@
 const Worker = require("../models/WorkerSchema")
 const User = require("../models/UserSchema");
 const logger = require("../util/logger");
+const { data } = require("../util/logger");
 
 exports.worker_getall = async(req, res) =>{
     const data = await Worker.find();
@@ -76,14 +77,19 @@ exports.worker_localities = async(req, res) =>{
     const data = await Worker.find().populate("_userinfo");
     let arr = []
 
-    if(data){
-        for(let i= 0; i < data.length; i++){
-            if(data[i]._userinfo._address == id){
-                arr.push(data[i]);
+    try {
+        if(data){
+            for(let i= 0; i < data.length; i++){
+                if(data[i]._userinfo._address == id){
+                    arr.push(data[i]);
+                }
             }
+            res.send({arr, conteo: arr.length});
         }
-        res.send({arr, conteo: arr.length});
+    } catch (e) {
+        res.send(e);
     }
+   
 }
 
 exports.worker_ocupation = async(req, res)=>{
@@ -92,6 +98,25 @@ exports.worker_ocupation = async(req, res)=>{
 
     if(data){
         res.send(data);
+    }else{
+        res.send({message: "Error, no se encontro el registro"});
+    }
+}
+
+exports.worker_getByEmail = async(req, res) =>{
+    const {id} = req.params;
+    const data = await User.findOne({email: id});
+
+    if(data){
+
+        // res.send(data.id)
+        const worker_data = await Worker.findOne({_userinfo: data.id}).populate("_userinfo");
+        if(worker_data){
+            res.send(worker_data);
+        }else{
+            res.send({message: "Error, no se encontro el worker"});
+        }
+        
     }else{
         res.send({message: "Error, no se encontro el registro"});
     }

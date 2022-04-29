@@ -14,10 +14,11 @@ const WorkerSchema = new mongoose.Schema({
         }
     ],
 
-    businessname:
+    description:
     {
         type:String,
-        maxlength:[30, 'Nombre del negocio es muy largo']
+        minlength:[10, "La Descripción es muy corta"],
+        maxlength:[300, 'La Descripcion es muy larga']
     },
 
     rating:

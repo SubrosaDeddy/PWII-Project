@@ -13,5 +13,7 @@ router.delete("/worker/:id", worker_controller.worker_delete);
 router.get("/worker//address/:id", worker_controller.worker_localities);
 router.get("/worker/ocupation/:id", worker_controller.worker_ocupation);
 
+router.get("/worker/info/:id", worker_controller.worker_getByEmail);
+
 
 module.exports = router;
