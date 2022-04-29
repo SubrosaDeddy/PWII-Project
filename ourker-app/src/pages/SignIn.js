@@ -18,6 +18,7 @@ import User from "../models/User";
 // Color
 import { color_one } from "../utils/Themes";
 import storage from "../firebase";
+import { Autocomplete } from "@mui/material";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -44,6 +45,11 @@ const theme = createTheme({
 
 export default function SignIn(props) {
   const fileInput = document.getElementById("select-image");
+
+  const options = ["Carpintero", "Mecanico"];
+  const [value, setValue] = React.useState();
+  const [inputValue, setInputValue] = React.useState("");
+
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [image, setImage] = useState(null);
@@ -119,7 +125,7 @@ export default function SignIn(props) {
           alert("El usuario no pudo ser creado");
         });
     }else{
-      alert("Esperando a que se suba la imagen");
+      alert("No se ha seleccionado una imagen");
     }
   };
 
@@ -249,7 +255,7 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
-                <input value={url} name="ImageUser"></input>
+                <input value={url} name="ImageUser" hidden></input>
 
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -258,6 +264,36 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
+                <Grid item xs={12}>
+                  <TextField
+                    margin="normal"
+                    id="outlined-basic"
+                    label="Descripción"
+                    variant="outlined"
+                    multiline
+                    fullWidth
+                    maxRows={2}
+                    rows={2}
+                  />
+                </Grid>
+
+                <Grid item xs={12} md={6}>
+                  <Autocomplete
+                value={value}
+                onChange={(event, newValue) => {
+                setValue(newValue);
+                }}
+                inputValue={inputValue}
+                onInputChange={(event, newInputValue) => {
+                setInputValue(newInputValue);
+                }}
+                id="combo-box-demo"
+                options={options}
+                sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
+                renderInput={(params) => (
+                <TextField {...params} label="Localidades"/>
+            )}/>
+                </Grid>
                 {/* <button onClick={uploadImage}>Upload</button> */}
                 <Grid item xs={12}>
                   <Button
