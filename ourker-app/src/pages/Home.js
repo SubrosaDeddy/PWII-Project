@@ -49,11 +49,11 @@ const navigate = useNavigate();
                 <Grid item xs={11} sm={11} md={10} lg={6} xl={6} sx={{alignItem:"center", px:"auto", mx:"auto"}}>
                     <Box sx={{display:"flex", flexDirection:"column", alignItems:"left", justifyContent:"space-between", width:1, mt:0}}>
                         <Typography sx={{px:1, fontSize:20, fontWeight:"bold"}}>Te ayudamos a encontrar un trabajador que resuelva tu problema</Typography>  
-                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
-                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Tenemos los trabajadores más trabajadores del trabajo</Typography>    
+                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Busca trabajadores para tu proyecto planeado</Typography>    
+                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Profesionistas cerca de tu area</Typography>    
+                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Crea tu perfil y comienza a buscar profesionistas</Typography>    
+                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Compara, contacta y califica trabajos</Typography>    
+                        <Typography sx={{px:1, fontSize:18, fontWeight: "lighter"}}><CheckIcon sx={{color: color_one.primary.main}}/> Completamente gratis</Typography>    
                         <Button onClick={() => navigate('/SignIn')} color="primary" elementType="Button" size="medium" variant="contained" sx={{backgroundColor:color_one.primary.main, borderRadius:5, width:200, mx:"auto", color:color_one.primary.secondary, mt:2}}>Crea una cuenta</Button>
                     </Box>  
                 </Grid>
@@ -67,19 +67,19 @@ const navigate = useNavigate();
                     <Grid item xs={12} lg={4} sx={{m:"auto"}}>
                         <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:1}}>
                             <CheckIcon sx={{color:color_one.primary.main, fontSize:75}}/>
-                            <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+                            <Typography>Publica, comparte y ofrece tu trabajo y/o servicios completamente gratis en la zona en que te encuentres para facilitar tus traslados y disminuir tiempos.</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} lg={4} sx={{m:"auto"}}>
                         <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:1}}>
                             <CheckIcon sx={{color:color_one.primary.main, fontSize:75}}/>
-                            <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+                            <Typography>Si trabajas solo o en compañia, eres freelancer, parte de un taller, o tienes un proyecto en mente y necesitas colaboradores, encuentra y se encontrado por usuarios en los alrededores de tu ubicacion preferida.</Typography>
                         </Box>
                     </Grid>
                     <Grid item xs={12} lg={4} sx={{m:"auto"}}>
                         <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", padding:1}}>
                             <CheckIcon sx={{color:color_one.primary.main, fontSize:75}}/>
-                            <Typography>Ut lobortis tellus et fermentum euismod. Vivamus ornare urna at ipsum condimentum, ac accumsan neque interdum. Nam aliquam nisl erat, sit amet suscipit arcu aliquam sed. Sed imperdiet laoreet eros vel semper. Morbi orci massa, gravida at nunc nec, lacinia cursus justo. Fusce et hendrerit nisl.</Typography>
+                            <Typography> Compara, contacta, califica resultados y compartelos para futuros usuarios. Observa la lista de trabajos previos de los Profesionistas y elige el mas conveniente para ti.</Typography>
                         </Box>
                     </Grid>
                 </Grid>     
