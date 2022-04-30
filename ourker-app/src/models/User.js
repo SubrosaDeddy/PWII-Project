@@ -9,7 +9,6 @@ export default class User
         this.fullname = inputObj.fullname;
         this.password = inputObj.password;
         this.profilepicture = inputObj.profilepicture;
-
         this._address = inputObj._address;
 
         // if(inputObj.address)

@@ -43,9 +43,8 @@ export const InsertUser = async(inputUser) =>
     try
     {   
         const res = await GetLocalities(inputUser._address);
-        // const {_id} = res.data;
-        console.log(res.data);
-        inputUser._address = res.data;
+        inputUser._address = res;
+        console.log(res);
     
         const response = await axios.post("/user", inputUser);
         if(response.status == 200)
