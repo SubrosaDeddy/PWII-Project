@@ -8,7 +8,7 @@ export default class Post
     {
         this.title = inputObj.title;
         this.description =  inputObj.description;  
-        this.workerInfo = inputObj._workerinfo;    
+        this._workerinfo = inputObj._workerinfo;    
         this._photos = inputObj._photos;
         this._category = inputObj._category;
         this.counting = inputObj.counting;
@@ -16,12 +16,14 @@ export default class Post
 
     updatePostDB(inputObj)
     {
-        UpdatePost(inputObj);
+        const res = UpdatePost(inputObj);
+        return res;
     }
 
     createPostDB(inputObj)
     {
-        InsertPost(inputObj);
+        const res = InsertPost(inputObj);
+        return res;
     }
     
     getTitle()
@@ -64,10 +66,10 @@ export default class Post
         this._photos = inputPhotos;
     }
 
-    updatePhotosArray()
-    {
-        // Query photos service
-    }
+    // updatePhotosArray()
+    // {
+    //     // Query photos service
+    // }
 
     getCategories()
     {
@@ -79,10 +81,10 @@ export default class Post
         return this._category;
     }
 
-    updateCategoriesArray()
-    {
-        // Query categories service
-    }
+    // updateCategoriesArray()
+    // {
+    //     // Query categories service
+    // }
 
     getCounting()
     {

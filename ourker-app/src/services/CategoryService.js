@@ -4,13 +4,20 @@ export const GetCategory = async (inputID) =>
 {
     try
     {
-        const response = axios.get(`api/category//${inputID}`);
+        const response = axios.get(`category/${inputID}`);
+        
+        response
+        .then(value =>{
+            return value;
+        })
+        .catch(err =>{
+            return err;
+        });
         return response;   
     }
     catch(err)
     {
-        console.log(err);
-        return err;
+        return {error: err};
     }
 }
 
@@ -23,7 +30,7 @@ export const GetAll = async() =>
     } 
     catch (err) 
     {
-        console.log(err);    
+        return {error: err};   
     }
 }
 
@@ -43,7 +50,6 @@ export const InsertCategory = async (inputObj) =>
     } 
     catch (err) 
     {
-        console.log(err);
-        return err;    
+        return {error: err};    
     }
 }

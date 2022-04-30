@@ -27,7 +27,7 @@ const theme = createTheme({
 
 
 
-export default function CreatePost() 
+export default function CreatePost(props) 
 {
 
     const options = ["Mecánico", "Carpintero"];
@@ -36,26 +36,32 @@ export default function CreatePost()
 
     const handleSubmit = async(event) =>{
       event.preventDefault();
+      
       const data = new FormData(event.currentTarget);
+      
       let post =
       {
         title: data.get("title"),
         description: data.get("description"),
-        _category: data.get("category")
+        _category: data.get("category"),
+        _workerinfo: props.user._id
       }
-      console.log(post);
+
       const res = InsertPost(post);
 
       res.then(value =>{
-        if(!res.level)
+        if(!value.error)
         {
-          post = new Post(res);
+          post = new Post(value);
           alert("Publicación creada exitosamente");
         }
         else
         {
           alert("Error");
         }
+        })
+        .catch(err=>{
+          alert("Error");
         });
     }
 
@@ -76,12 +82,12 @@ export default function CreatePost()
                   <Autocomplete value={value} 
                   // onChange={(event, newValue) => {setValue(newValue)}} 
                   // inputValue={inputValue} 
-                    id="category-autocomplete" options={options} sx={{mx:"auto"}} name="category"
+                    options={options} sx={{mx:"auto"}}
                     onInputChange={(event, newInputValue) => {
                       setInputValue(newInputValue);
                     }}
                     renderInput={(params) => (
-                      <TextField {...params} label="Categoria" required/>
+                      <TextField {...params} label="Categoria" id="category" name="category" required/>
                   )}/>
                   <Box m={2} pt={4}>
                   <Button fullWidth="true" sx={{mx:"auto"}} type='submit' variant="contained" startIcon={<SendIcon />}>

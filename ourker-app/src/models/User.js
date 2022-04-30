@@ -21,13 +21,13 @@ export default class User
     updateUserDB()
     {
         // Send a request via UserService.js to update the DB
-        UpdateUser(this);
+        const res = UpdateUser(this);
+        return res;
     }
 
     createUserDB()
     {
         const res = InsertUser(this);
-
         return res;
     }
 

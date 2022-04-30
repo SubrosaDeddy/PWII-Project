@@ -47,7 +47,7 @@ exports.categories_getById = async(req, res) =>{
 
 exports.categories_getByTitle = async(req, res) =>{
     const {id} = req.params;
-    const data = await Categories.findOne({title: id});
+    const data = await Categories.findOne({name: id});
     if(data)
     {
         res.send(data);
