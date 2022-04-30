@@ -44,7 +44,11 @@ const theme = createTheme({
 });
 
 export default function SignIn(props) {
-  const fileInput = document.getElementById("select-image");
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = () => {
+    setChecked(!checked);
+  };
 
   const options = ["Carpintero", "Mecanico"];
   const [value, setValue] = React.useState();
@@ -255,8 +259,66 @@ export default function SignIn(props) {
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
                     label="Trabajador"
+                    checked={checked}
+                    onChange={handleChange}
                   />
                 </Grid>
+
+                {checked && (
+                  <Grid item xs={12} md={6}>
+                    <Autocomplete
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                      inputValue={inputValue}
+                      onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                      }}
+                      id="combo-box-demo"
+                      options={options}
+                      sx={{ mx: "auto" }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Ocupación" required />
+                      )}
+                    />
+                  </Grid>
+                )}
+                {checked && (
+                  <Grid item xs={12} md={6}>
+                    <Autocomplete
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                      inputValue={inputValue}
+                      onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                      }}
+                      id="combo-box-demo"
+                      options={options}
+                      sx={{ mx: "auto" }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Localidades" required />
+                      )}
+                    />
+                  </Grid>
+                )}
+                {checked && (
+                  <Grid item xs={12}>
+                    <TextField
+                      margin="normal"
+                      id="outlined-basic"
+                      label="Descripción"
+                      variant="outlined"
+                      required
+                      multiline
+                      fullWidth
+                      maxRows={5}
+                      rows={5}
+                    />
+                  </Grid>
+                )}
                 {/* <button onClick={uploadImage}>Upload</button> */}
                 <Grid item xs={12}>
                   <Button
