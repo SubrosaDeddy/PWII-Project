@@ -44,6 +44,7 @@ export const InsertUser = async(inputUser) =>
     {   
         const res = await GetLocalities(inputUser._address);
         // const {_id} = res.data;
+        console.log(res.data);
         inputUser._address = res.data;
     
         const response = await axios.post("/user", inputUser);
