@@ -50,7 +50,6 @@ export default function SignIn(props) {
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
-
   const [selectedImage, setSelectedImage] = useState(null);
   const [image, setImage] = useState(null);
 
@@ -63,68 +62,63 @@ export default function SignIn(props) {
   // Firebase
   const [url, setUrl] = useState("");
 
-
   // const uploadImage = () => {
-
-  if(selectedImage !=null){
-    const uploadTask = storage
-    .ref(`/imagesUser/${selectedImage.name}`)
-    .put(selectedImage);
-
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {},
-    (error) => {
-      console.log(error);
-    },
-    () => {
-      storage
-        .ref("imagesUser")
-        .child(selectedImage.name)
-        .getDownloadURL()
-        .then((url) => {
-          setUrl(url);
-        });
-    }
-  );
-  }
-    
   // };
 
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-
-    if (selectedImage !=null) {
+    if (selectedImage != null) {
       event.preventDefault();
-      const data = new FormData(event.target);
 
-      const user = {
-        username: data.get("username"),
-        email: data.get("email"),
-        fullname: data.get("fullname"),
-        password: data.get("password"),
-        profilepicture: data.get("ImageUser"),
-      };
-      
-      let newUser = new User(user);
+      const uploadTask = storage
+        .ref(`/imagesUser/${selectedImage.name}`)
+        .put(selectedImage);
 
-      const res = newUser.createUserDB();
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          storage
+            .ref("imagesUser")
+            .child(selectedImage.name)
+            .getDownloadURL()
+            .then((url) => {
+              // setUrl(url);
+              const data = new FormData(event.target);
 
-      res
-        .then((value) => {
-          if (!value.level) {
-            alert("Registro exitoso");
-            props.setLoggedUser(value);
-            navigate("/");
-          } else {
-            alert("El usuario no pudo ser creado");
-          }
-        })
-        .catch((err) => {
-          alert("El usuario no pudo ser creado");
-        });
-    }else{
+              const user = {
+                username: data.get("username"),
+                email: data.get("email"),
+                fullname: data.get("fullname"),
+                password: data.get("password"),
+                profilepicture: url,
+              };
+
+              let newUser = new User(user);
+
+              const res = newUser.createUserDB();
+
+              res
+                .then((value) => {
+                  if (!value.level) {
+                    alert("Registro exitoso");
+                    props.setLoggedUser(value);
+                    navigate("/");
+                  } else {
+                    alert("El usuario no pudo ser creado");
+                  }
+                })
+                .catch((err) => {
+                  alert("El usuario no pudo ser creado");
+                });
+            });
+        }
+      );
+    } else {
       alert("No se ha seleccionado una imagen");
     }
   };
@@ -255,44 +249,13 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
-                <input value={url} name="ImageUser" hidden></input>
+                <input value={url} name="ImageUser"></input>
 
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
                     label="Trabajador"
                   />
-                </Grid>
-
-                <Grid item xs={12}>
-                  <TextField
-                    margin="normal"
-                    id="outlined-basic"
-                    label="Descripción"
-                    variant="outlined"
-                    multiline
-                    fullWidth
-                    maxRows={2}
-                    rows={2}
-                  />
-                </Grid>
-
-                <Grid item xs={12} md={6}>
-                  <Autocomplete
-                value={value}
-                onChange={(event, newValue) => {
-                setValue(newValue);
-                }}
-                inputValue={inputValue}
-                onInputChange={(event, newInputValue) => {
-                setInputValue(newInputValue);
-                }}
-                id="combo-box-demo"
-                options={options}
-                sx={{mx:"auto", backgroundColor:color_one.primary.secondary, mx:0.5}}
-                renderInput={(params) => (
-                <TextField {...params} label="Localidades"/>
-            )}/>
                 </Grid>
                 {/* <button onClick={uploadImage}>Upload</button> */}
                 <Grid item xs={12}>
