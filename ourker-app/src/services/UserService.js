@@ -1,4 +1,5 @@
 import { axiosBase as axios } from "./Config";
+import { GetLocalities } from "./Localities";
 
 export const GetUser = async (inputID) =>
 {
@@ -40,7 +41,11 @@ export const GetAll = async () =>
 export const InsertUser = async(inputUser) =>
 {
     try
-    {
+    {   
+        const res = await GetLocalities(inputUser._address);
+        // const {_id} = res.data;
+        inputUser._address = res.data;
+    
         const response = await axios.post("/user", inputUser);
         if(response.status == 200)
         {

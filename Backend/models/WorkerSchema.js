@@ -13,14 +13,12 @@ const WorkerSchema = new mongoose.Schema({
             ref: "ocupation"
         }
     ],
-
     description:
     {
         type:String,
         minlength:[10, "La Descripción es muy corta"],
         maxlength:[300, 'La Descripcion es muy larga']
     },
-
     rating:
     {
         type:Number,

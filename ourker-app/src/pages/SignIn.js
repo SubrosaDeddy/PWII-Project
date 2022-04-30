@@ -50,7 +50,7 @@ export default function SignIn(props) {
     setChecked(!checked);
   };
 
-  const options = ["Carpintero", "Mecanico"];
+  const options = ["Buenos Aires", "San Nicolas"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
@@ -100,6 +100,7 @@ export default function SignIn(props) {
                 fullname: data.get("fullname"),
                 password: data.get("password"),
                 profilepicture: url,
+                _address: data.get("Localidades")
               };
 
               let newUser = new User(user);
@@ -253,7 +254,26 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
-                <input value={url} name="ImageUser"></input>
+                <Grid item xs={12}>
+                    <Autocomplete
+                      value={value}
+                      onChange={(event, newValue) => {
+                        setValue(newValue);
+                      }}
+                      inputValue={inputValue}
+                      onInputChange={(event, newInputValue) => {
+                        setInputValue(newInputValue);
+                      }}
+                      id="combo-box-demo"
+                      options={options}
+                      sx={{ mx: "auto" }}
+                      renderInput={(params) => (
+                        <TextField {...params} label="Localidades" name="Localidades" required />
+                      )}
+                    />
+                  </Grid>
+
+                <input value={url} name="ImageUser" hidden></input>
 
                 <Grid item xs={12}>
                   <FormControlLabel
@@ -265,7 +285,7 @@ export default function SignIn(props) {
                 </Grid>
 
                 {checked && (
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12}>
                     <Autocomplete
                       value={value}
                       onChange={(event, newValue) => {
@@ -280,26 +300,6 @@ export default function SignIn(props) {
                       sx={{ mx: "auto" }}
                       renderInput={(params) => (
                         <TextField {...params} label="Ocupación" required />
-                      )}
-                    />
-                  </Grid>
-                )}
-                {checked && (
-                  <Grid item xs={12} md={6}>
-                    <Autocomplete
-                      value={value}
-                      onChange={(event, newValue) => {
-                        setValue(newValue);
-                      }}
-                      inputValue={inputValue}
-                      onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                      }}
-                      id="combo-box-demo"
-                      options={options}
-                      sx={{ mx: "auto" }}
-                      renderInput={(params) => (
-                        <TextField {...params} label="Localidades" required />
                       )}
                     />
                   </Grid>

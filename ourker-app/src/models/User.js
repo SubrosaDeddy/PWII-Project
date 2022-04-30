@@ -10,12 +10,14 @@ export default class User
         this.password = inputObj.password;
         this.profilepicture = inputObj.profilepicture;
 
-        if(inputObj.address)
-        {
-            this.address.country = inputObj.address.country;
-            this.address.city = inputObj.address.city;
-            this.address.state = inputObj.address.state;
-        }
+        this._address = inputObj._address;
+
+        // if(inputObj.address)
+        // {
+        //     this.address.country = inputObj.address.country;
+        //     this.address.city = inputObj.address.city;
+        //     this.address.state = inputObj.address.state;
+        // }
     }
 
     updateUserDB()
@@ -85,29 +87,34 @@ export default class User
 
     getAddress()
     {
-        return this.address;
+        return this._address;
     }
 
-    setAddress(inputCountry, inputCity, inputState)
+    setAddress(inputAddress)
     {
-        this.address.country = inputCountry;
-        this.address.city = inputCity;
-        this.address.state = inputState 
+        this._address = inputAddress;
     }
 
-    setCountry(inputCountry)
-    {
-        this.address.country = inputCountry;
-    }
+    // setAddress(inputCountry, inputCity, inputState)
+    // {
+    //     this.address.country = inputCountry;
+    //     this.address.city = inputCity;
+    //     this.address.state = inputState 
+    // }
+
+    // setCountry(inputCountry)
+    // {
+    //     this.address.country = inputCountry;
+    // }
     
-    setCity(inputCity)
-    {
-        this.address.city = inputCity;
-    }
+    // setCity(inputCity)
+    // {
+    //     this.address.city = inputCity;
+    // }
     
-    setCountry(inputState)
-    {
-        this.address.state = inputState;
-    }
+    // setCountry(inputState)
+    // {
+    //     this.address.state = inputState;
+    // }
 
 }

@@ -9,5 +9,5 @@ router.get("/locality/:id", locality_controller.locality_getById);
 router.put("/locality/:id", locality_controller.locality_update);
 router.delete("/locality/:id", locality_controller.locality_delete);
 
-
+router.get("/locality//:id", locality_controller.locality_getByName);
 module.exports = router;
