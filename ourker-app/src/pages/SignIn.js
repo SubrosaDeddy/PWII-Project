@@ -20,6 +20,7 @@ import { color_one } from "../utils/Themes";
 import storage from "../firebase";
 import { Autocomplete } from "@mui/material";
 import Worker from "../models/Worker";
+import { GetAllOccupation } from "../services/Ocupations";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -44,6 +45,8 @@ const theme = createTheme({
   },
 });
 
+
+
 export default function SignIn(props) {
   const [checked, setChecked] = useState(false);
 
@@ -51,14 +54,31 @@ export default function SignIn(props) {
     setChecked(!checked);
   };
 
+
+
+  // Localities
   const options = ["Buenos Aires", "San Nicolas"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
+  // Ocupations
+  const [ocupation, setOcupation] = useState();
+
+  useEffect(() =>{
+    async function fetchData(){
+      const dataOc = await GetAllOccupation();
+      setOcupation(dataOc);
+    }
+
+    fetchData();
+  }, []);
+
+  
   const optionsOc = ["Programador", "Bombero"];
   const [valueOc, setValueOc] = React.useState();
   const [inputValueOc, setInputValueOc] = React.useState("");
 
+  // Images
   const [selectedImage, setSelectedImage] = useState(null);
   const [image, setImage] = useState(null);
 
