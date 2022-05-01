@@ -7,12 +7,10 @@ const WorkerSchema = new mongoose.Schema({
         ref: "user"
     },
     _ocupations:
-    [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "ocupation"
-        }
-    ],
+    {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "ocupation"
+    },
     description:
     {
         type:String,

@@ -103,14 +103,14 @@ exports.worker_ocupation = async(req, res)=>{
     }
 }
 
-exports.worker_getByEmail = async(req, res) =>{
+exports.worker_getByEmailValidation = async(req, res) =>{
     const {id} = req.params;
     const data = await User.findOne({email: id});
 
     if(data){
 
         // res.send(data.id)
-        const worker_data = await Worker.findOne({_userinfo: data.id}).populate("_userinfo");
+        const worker_data = await Worker.findOne({_userinfo: data._id}).populate("_userinfo");
         if(worker_data){
             res.send(worker_data);
         }else{
@@ -119,5 +119,17 @@ exports.worker_getByEmail = async(req, res) =>{
         
     }else{
         res.send({message: "Error, no se encontro el registro"});
+    }
+}
+
+
+exports.getUserinfo = async (req, res) =>{
+    const {id} = req.params;
+    const data = await User.findOne({email: id});
+
+    if(data){
+        res.send(data.id);
+    }else{
+        res.send("No existe el usuario");
     }
 }

@@ -1,5 +1,5 @@
 import { axiosBase as axios } from "./Config";
-import { GetLocalities } from "./Localities";
+import { GetLocalities } from "./LocalitiesServices";
 
 export const GetUser = async (inputID) =>
 {

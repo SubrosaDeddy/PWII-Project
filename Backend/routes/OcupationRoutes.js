@@ -9,5 +9,6 @@ router.get("/ocupation/:id", ocupation_controller.ocupation_getById);
 router.put("/ocupation/:id", ocupation_controller.ocupation_update);
 router.delete("/ocupation/:id", ocupation_controller.ocupation_delete);
 
+router.get("/ocupation/name/:id", ocupation_controller.ocupation_getByName);
 
 module.exports = router;

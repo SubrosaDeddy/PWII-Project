@@ -19,6 +19,7 @@ import User from "../models/User";
 import { color_one } from "../utils/Themes";
 import storage from "../firebase";
 import { Autocomplete } from "@mui/material";
+import Worker from "../models/Worker";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -53,6 +54,10 @@ export default function SignIn(props) {
   const options = ["Buenos Aires", "San Nicolas"];
   const [value, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
+
+  const optionsOc = ["Programador", "Bombero"];
+  const [valueOc, setValueOc] = React.useState();
+  const [inputValueOc, setInputValueOc] = React.useState("");
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [image, setImage] = useState(null);
@@ -107,19 +112,54 @@ export default function SignIn(props) {
 
               const res = newUser.createUserDB();
 
-              res
-                .then((value) => {
+              res.then((value) => {
+
+                  // WORKER
+                  // Checked 
                   if (!value.level) {
                     alert("Registro exitoso");
-                    props.setLoggedUser(value);
-                    navigate("/");
+                    //   props.setLoggedUser(value);
+                    //   navigate("/");
                   } else {
                     alert("El usuario no pudo ser creado");
                   }
                 })
                 .catch((err) => {
+                  console.log(err);
                   alert("El usuario no pudo ser creado");
                 });
+
+
+                res.finally(function(){
+                  
+                  if(checked){
+                    const worker = {
+                      _userinfo: data.get("email"),
+                      _ocupations: data.get("Ocupacion"),
+                      description: data.get("Descripcion")
+                    };
+
+                    let newWorker = new Worker(worker);
+                    const w_res = newWorker.createWorkerDB();
+
+                    w_res.then(function(result) {
+
+                      console.log(result);
+                      // if(!value2.level){
+                      //   alert("Registro Trabajador exitoso");
+
+                      // } else{
+                      //   alert("El trabajador no pudo ser creado :C");
+                      // }
+                    }).catch((err) =>{
+                      alert("El trabajador no pudo ser creado");
+                    })
+
+                    
+                  }else{
+                    alert("No esta chekeado");
+                  } 
+                })
             });
         }
       );
@@ -287,19 +327,19 @@ export default function SignIn(props) {
                 {checked && (
                   <Grid item xs={12}>
                     <Autocomplete
-                      value={value}
+                      value={valueOc}
                       onChange={(event, newValue) => {
-                        setValue(newValue);
+                        setValueOc(newValue);
                       }}
-                      inputValue={inputValue}
+                      inputValue={inputValueOc}
                       onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
+                        setInputValueOc(newInputValue);
                       }}
                       id="combo-box-demo"
-                      options={options}
+                      options={optionsOc}
                       sx={{ mx: "auto" }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Ocupación" required />
+                        <TextField {...params} label="Ocupación" name="Ocupacion" required />
                       )}
                     />
                   </Grid>
@@ -311,6 +351,7 @@ export default function SignIn(props) {
                       id="outlined-basic"
                       label="Descripción"
                       variant="outlined"
+                      name="Descripcion"
                       required
                       multiline
                       fullWidth
