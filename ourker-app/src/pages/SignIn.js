@@ -105,23 +105,28 @@ export default function SignIn(props) {
                 fullname: data.get("fullname"),
                 password: data.get("password"),
                 profilepicture: url,
-                _address: data.get("Localidades")
+                _address: data.get("Localidades"),
               };
 
               let newUser = new User(user);
 
               const res = newUser.createUserDB();
 
-              res.then((value) => {
-
-                  // WORKER
-                  // Checked 
-                  if (!value.level) {
-                    alert("Registro exitoso");
-                    //   props.setLoggedUser(value);
-                    //   navigate("/");
+              res
+                .then((value) => {
+                  if (checked) {
+                    props.setLoggedUser(value);
+                    if (value.level) {
+                      alert("El usuario no pudo ser creado");
+                    }
                   } else {
-                    alert("El usuario no pudo ser creado");
+                    if (!value.level) {
+                      alert("Registro exitoso");
+                      props.setLoggedUser(value);
+                      navigate("/");
+                    } else {
+                      alert("El usuario no pudo ser creado");
+                    }
                   }
                 })
                 .catch((err) => {
@@ -129,37 +134,32 @@ export default function SignIn(props) {
                   alert("El usuario no pudo ser creado");
                 });
 
+              res.finally(function () {
+                if (checked) {
+                  const worker = {
+                    _userinfo: data.get("email"),
+                    _ocupations: data.get("Ocupacion"),
+                    description: data.get("Descripcion"),
+                  };
 
-                res.finally(function(){
-                  
-                  if(checked){
-                    const worker = {
-                      _userinfo: data.get("email"),
-                      _ocupations: data.get("Ocupacion"),
-                      description: data.get("Descripcion")
-                    };
+                  let newWorker = new Worker(worker);
+                  const w_res = newWorker.createWorkerDB();
 
-                    let newWorker = new Worker(worker);
-                    const w_res = newWorker.createWorkerDB();
-
-                    w_res.then(function(result) {
-
+                  w_res
+                    .then(function (result) {
                       console.log(result);
                       // if(!value2.level){
-                      //   alert("Registro Trabajador exitoso");
-
+                      alert("Registro exitoso");
+                      navigate("/");
                       // } else{
                       //   alert("El trabajador no pudo ser creado :C");
                       // }
-                    }).catch((err) =>{
-                      alert("El trabajador no pudo ser creado");
                     })
-
-                    
-                  }else{
-                    alert("No esta chekeado");
-                  } 
-                })
+                    .catch((err) => {
+                      alert("El trabajador no pudo ser creado");
+                    });
+                }
+              });
             });
         }
       );
@@ -295,23 +295,28 @@ export default function SignIn(props) {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <Autocomplete
-                      value={value}
-                      onChange={(event, newValue) => {
-                        setValue(newValue);
-                      }}
-                      inputValue={inputValue}
-                      onInputChange={(event, newInputValue) => {
-                        setInputValue(newInputValue);
-                      }}
-                      id="combo-box-demo"
-                      options={options}
-                      sx={{ mx: "auto" }}
-                      renderInput={(params) => (
-                        <TextField {...params} label="Localidades" name="Localidades" required />
-                      )}
-                    />
-                  </Grid>
+                  <Autocomplete
+                    value={value}
+                    onChange={(event, newValue) => {
+                      setValue(newValue);
+                    }}
+                    inputValue={inputValue}
+                    onInputChange={(event, newInputValue) => {
+                      setInputValue(newInputValue);
+                    }}
+                    id="combo-box-demo"
+                    options={options}
+                    sx={{ mx: "auto" }}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Localidades"
+                        name="Localidades"
+                        required
+                      />
+                    )}
+                  />
+                </Grid>
 
                 <input value={url} name="ImageUser" hidden></input>
 
@@ -339,7 +344,12 @@ export default function SignIn(props) {
                       options={optionsOc}
                       sx={{ mx: "auto" }}
                       renderInput={(params) => (
-                        <TextField {...params} label="Ocupación" name="Ocupacion" required />
+                        <TextField
+                          {...params}
+                          label="Ocupación"
+                          name="Ocupacion"
+                          required
+                        />
                       )}
                     />
                   </Grid>
