@@ -20,7 +20,8 @@ import { color_one } from "../utils/Themes";
 import storage from "../firebase";
 import { Autocomplete } from "@mui/material";
 import Worker from "../models/Worker";
-import { GetAllOccupation } from "../services/Ocupations";
+import { GetAllOccupation } from "../services/OcupationsService";
+import { GetAllLocalities } from "../services/LocalitiesServices";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -54,29 +55,56 @@ export default function SignIn(props) {
     setChecked(!checked);
   };
 
-
-
   // Localities
+  const [localities, setLocalities] = useState();
+
   const options = ["Buenos Aires", "San Nicolas"];
-  const [value, setValue] = React.useState();
+  const [valueLc, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
   // Ocupations
   const [ocupation, setOcupation] = useState();
 
-  useEffect(() =>{
-    async function fetchData(){
-      const dataOc = await GetAllOccupation();
-      setOcupation(dataOc);
-    }
-
-    fetchData();
-  }, []);
-
-  
   const optionsOc = ["Programador", "Bombero"];
   const [valueOc, setValueOc] = React.useState();
   const [inputValueOc, setInputValueOc] = React.useState("");
+  // useEffect(() =>{
+  //   async function fetchData(){
+  //     const dataOc = await GetAllOccupation();
+  //     setOcupation(dataOc);
+  //   }
+
+  //   fetchData();
+  // }, []);
+
+  useEffect(() =>{
+    async function fetchOccupations()
+    {
+      let OcArray = [];
+      const dataOc = await GetAllOccupation();
+      dataOc.forEach(occ => {
+        OcArray.push(occ.title);
+      });
+      setOcupation(OcArray);
+    }
+
+    async function fetchLocalities()
+    {
+      let LocArray = [];
+      const dataLoc = await GetAllLocalities();
+      console.log(dataLoc);
+      dataLoc.forEach(loc => {
+        LocArray.push(loc.city);
+      });
+      setLocalities(LocArray);
+    }
+
+    fetchOccupations();
+    fetchLocalities();
+  }, []);
+
+  
+ 
 
   // Images
   const [selectedImage, setSelectedImage] = useState(null);
@@ -97,7 +125,8 @@ export default function SignIn(props) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
-    if (selectedImage != null) {
+    if (selectedImage != null)
+     {
       event.preventDefault();
 
       const uploadTask = storage
@@ -133,14 +162,18 @@ export default function SignIn(props) {
               const res = newUser.createUserDB();
 
               res
-                .then((value) => {
-                  if (checked) {
+                .then((value) => 
+                {
+                  if (checked) 
+                  {
                     props.setLoggedUser(value);
                     if (value.level) {
                       alert("El usuario no pudo ser creado");
                     }
-                  } else {
-                    if (!value.level) {
+                  } else 
+                  {
+                    if (!value.level) 
+                    {
                       alert("Registro exitoso");
                       props.setLoggedUser(value);
                       navigate("/");
@@ -149,14 +182,17 @@ export default function SignIn(props) {
                     }
                   }
                 })
-                .catch((err) => {
+                .catch((err) => 
+                {
                   console.log(err);
                   alert("El usuario no pudo ser creado");
                 });
 
               res.finally(function () {
-                if (checked) {
-                  const worker = {
+                if (checked) 
+                {
+                  const worker = 
+                  {
                     _userinfo: data.get("email"),
                     _ocupations: data.get("Ocupacion"),
                     description: data.get("Descripcion"),
@@ -166,7 +202,8 @@ export default function SignIn(props) {
                   const w_res = newWorker.createWorkerDB();
 
                   w_res
-                    .then(function (result) {
+                    .then(function (result) 
+                    {
                       console.log(result);
                       // if(!value2.level){
                       alert("Registro exitoso");
@@ -175,7 +212,8 @@ export default function SignIn(props) {
                       //   alert("El trabajador no pudo ser creado :C");
                       // }
                     })
-                    .catch((err) => {
+                    .catch((err) => 
+                    {
                       alert("El trabajador no pudo ser creado");
                     });
                 }
@@ -316,7 +354,7 @@ export default function SignIn(props) {
 
                 <Grid item xs={12}>
                   <Autocomplete
-                    value={value}
+                    value={valueLc}
                     onChange={(event, newValue) => {
                       setValue(newValue);
                     }}
@@ -325,7 +363,7 @@ export default function SignIn(props) {
                       setInputValue(newInputValue);
                     }}
                     id="combo-box-demo"
-                    options={options}
+                    options={localities}
                     sx={{ mx: "auto" }}
                     renderInput={(params) => (
                       <TextField
@@ -361,7 +399,7 @@ export default function SignIn(props) {
                         setInputValueOc(newInputValue);
                       }}
                       id="combo-box-demo"
-                      options={optionsOc}
+                      options={ocupation}
                       sx={{ mx: "auto" }}
                       renderInput={(params) => (
                         <TextField

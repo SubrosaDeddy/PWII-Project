@@ -3,6 +3,7 @@ import { axiosBase as axios } from "./Config";
 export const GetOccupation = async (inputID) =>{
     try{
        const response = await axios.get(`/ocupation/name/${inputID}`);
+
        return response.data;
     }
     catch(err){
@@ -10,10 +11,10 @@ export const GetOccupation = async (inputID) =>{
     }
 }
 
-export const GetAllOccupation = async (inputID) =>{
+export const GetAllOccupation = async () =>{
     try {
         const response = await axios.get(`/ocupation`);
-        return response.data.title;
+        return response.data;
     } catch (error) {
         return error;
     }

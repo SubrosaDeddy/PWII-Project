@@ -1,5 +1,5 @@
 import { axiosBase as axios } from "./Config";
-import { GetOccupation } from "./Ocupations";
+import { GetOccupation } from "./OcupationsService";
 // ``
 export const GetWorkerByEmailValidation = async (inputID) =>{
     try{

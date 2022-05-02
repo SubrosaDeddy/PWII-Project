@@ -11,12 +11,12 @@ export const GetLocalities = async (inputID) =>{
     }
 }
 
-export const GetAllLocalities = async (inputID) =>
+export const GetAllLocalities = async() =>
 {
     try {
-        const response = await axios.get(`/locality//${inputID}`);
+        const response = await axios.get(`/locality`);
         return response.data;
     } catch (error) {
-        
+        return error;
     }
 }
