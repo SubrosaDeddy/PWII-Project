@@ -4,6 +4,7 @@ export default class User
 {
     constructor(inputObj) 
     {
+        this._id = inputObj._id;
         this.username = inputObj.username;
         this.email = inputObj.email;
         this.fullname = inputObj.fullname;
@@ -22,14 +23,19 @@ export default class User
     updateUserDB()
     {
         // Send a request via UserService.js to update the DB
-        UpdateUser(this);
+        const res = UpdateUser(this);
+        return res;
     }
 
     createUserDB()
     {
         const res = InsertUser(this);
-
         return res;
+    }
+
+    getID()
+    {
+        return this._id;
     }
 
     getUsername()

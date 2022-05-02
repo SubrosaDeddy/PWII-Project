@@ -1,4 +1,5 @@
 import { axiosBase as axios } from "./Config";
+import { GetCategory } from "./CategoryService";
 
 export const GetPost = async (inputID) =>
 {
@@ -10,8 +11,7 @@ export const GetPost = async (inputID) =>
     }
     catch(err)
     {
-        console.error(err);
-        return err;
+        return {error: err};
     }
 };
 
@@ -25,16 +25,19 @@ export const GetAll = async (inputID) =>
     }
     catch(err)
     {
-        console.error(err);
-        return err;
+        return {error:err};
     }
 };
 
 export const InsertPost = async(inputPost) =>
 {
     try
-    {
+    {        
+        const res = await GetCategory(inputPost._category);
+        const {_id} = res.data;
+        inputPost._category = _id;
         const response = await axios.post("/post", inputPost);
+        
         if(response.status == 200)
         {
             return response.data;
@@ -46,8 +49,7 @@ export const InsertPost = async(inputPost) =>
     } 
     catch (err) 
     {
-        console.error(err);
-        return err;    
+        return {error: err};    
     }
 }
 
@@ -67,7 +69,6 @@ export const UpdatePost = async(inputPost) =>
     } 
     catch (err) 
     {
-        console.error(err);
-        return err;    
+        return {error:err};    
     }
 }

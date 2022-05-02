@@ -5,7 +5,7 @@ const categories_controller = require("../controllers/Categories_ReportControlle
 
 router.get("/category", categories_controller.categories_getall);
 router.post("/category", categories_controller.categories_create);
-router.get("/category/:id", categories_controller.categories_getById);
+router.get("/category/:id", categories_controller.categories_getByTitle);
 router.put("/category/:id", categories_controller.categories_update);
 router.delete("/category/:id", categories_controller.categories_delete);
 
