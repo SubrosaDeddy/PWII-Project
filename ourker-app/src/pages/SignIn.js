@@ -22,6 +22,8 @@ import { Autocomplete } from "@mui/material";
 import Worker from "../models/Worker";
 import { GetAllOccupation } from "../services/OcupationsService";
 import { GetAllLocalities } from "../services/LocalitiesServices";
+import SelectLocalities from "../components/SelectLocalities";
+import SelectOccupations from "../components/SelectOccupations";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -57,25 +59,13 @@ export default function SignIn(props) {
 
   // Localities
   const [localities, setLocalities] = useState();
-
-  const options = ["Buenos Aires", "San Nicolas"];
   const [valueLc, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
   // Ocupations
   const [ocupation, setOcupation] = useState();
-
-  const optionsOc = ["Programador", "Bombero"];
   const [valueOc, setValueOc] = React.useState();
   const [inputValueOc, setInputValueOc] = React.useState("");
-  // useEffect(() =>{
-  //   async function fetchData(){
-  //     const dataOc = await GetAllOccupation();
-  //     setOcupation(dataOc);
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   useEffect(() =>{
     async function fetchOccupations()
@@ -102,9 +92,6 @@ export default function SignIn(props) {
     fetchOccupations();
     fetchLocalities();
   }, []);
-
-  
- 
 
   // Images
   const [selectedImage, setSelectedImage] = useState(null);
@@ -353,7 +340,7 @@ export default function SignIn(props) {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Autocomplete
+                  {/* <Autocomplete
                     value={valueLc}
                     onChange={(event, newValue) => {
                       setValue(newValue);
@@ -373,7 +360,9 @@ export default function SignIn(props) {
                         required
                       />
                     )}
-                  />
+                  /> */}
+
+                  <SelectLocalities/>
                 </Grid>
 
                 <input value={url} name="ImageUser" hidden></input>
@@ -389,7 +378,7 @@ export default function SignIn(props) {
 
                 {checked && (
                   <Grid item xs={12}>
-                    <Autocomplete
+                    {/* <Autocomplete
                       value={valueOc}
                       onChange={(event, newValue) => {
                         setValueOc(newValue);
@@ -409,7 +398,8 @@ export default function SignIn(props) {
                           required
                         />
                       )}
-                    />
+                    /> */}
+                    <SelectOccupations/>
                   </Grid>
                 )}
                 {checked && (

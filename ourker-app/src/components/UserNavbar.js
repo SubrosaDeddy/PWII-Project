@@ -36,9 +36,10 @@ export default function NavBar(props) {
   };
   const handleLogout = () =>{
     props.setLoggedUser("");
+    navigate("/");
   }
-
   const navigate = useNavigate();
+  
   if(props.user)
   {
     return (
