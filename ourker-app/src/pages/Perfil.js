@@ -11,7 +11,9 @@ import { useNavigate } from "react-router-dom";
 import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
 import PostsComponent from "../components/PostsComponent";
 
-export default function Search() {
+export default function Search(props) {
+  // console.log("search");
+  console.log(props);
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
@@ -20,109 +22,132 @@ export default function Search() {
 
   const navigate = useNavigate();
 
-  return (
-    <React.Fragment>
-      <Box
-        sx={{
-          width: "100%",
-          minHeight:"calc(100vh - 64px)",
-          position: "absolute",
-          backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
-        }}
-      >
+  // if (props.user) {
+    return (
+      <React.Fragment>
         <Box
           sx={{
-            width: "70%",
-            mx: "auto",
-            backgroundColor: color_one.primary.secondary,
-            marginTop: "15px",
-            padding: "30px",
+            width: "100%",
+            minHeight: "calc(100vh - 64px)",
+            position: "absolute",
+            backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
           }}
         >
-          <Grid container sx={{ justifyContent: "space-around" }}>
-            <Grid item xs={3} sx={{}}>
-              <CardMedia
-                component="img"
-                sx={{ width: 150, height: 150, mx: "auto", maxWidth:150, maxHeight: 150}}
-                image="Logo192.png"
-                alt="Live from space album cover"
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <Typography component="div" variant="h4">
-                Angel Rodriguez D.
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                color="text.secondary"
-                component="div"
-              >
-                Hola me llamo angel y soy un trabajador en esta app asi es
-                mirenme Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book.
-              </Typography>
-            </Grid>
-
-            <Grid
-              item
-              xs={3}
-              sx={{ justifyContent: "space-around", alignContent: "center" }}
-            >
-              <CardMedia
-                component="img"
-                sx={{ width: 100, height: 100, mx: "auto", maxHeight:100, maxWidth:100 }}
-                image="Check.png"
-                alt="Live from space album cover"
-              />
-              <CardActions sx={{ mx: "auto" }}>
-                <Button
-                  size="small"
-                  variant="contained"
-                  onClick={(e) => navigate("/Chat")}
-                  sx={{ mx: "auto" }}
-                >
-                  Contactar
-                </Button>
-              </CardActions>
-            </Grid>
-
-            <Grid
-              item
-              xs={12}
-              sx={{ mx: "auto", textAlign: "center", marginTop: "15px" }}
-            >
-              <Typography component="div" variant="h6">
-                Apodaca, Nuevo Leon
-              </Typography>
-
-              <Box sx={{ display: "flex" }}>
+          <Box
+            sx={{
+              width: "70%",
+              mx: "auto",
+              backgroundColor: color_one.primary.secondary,
+              marginTop: "15px",
+              padding: "30px",
+            }}
+          >
+            <Grid container sx={{ justifyContent: "space-around" }}>
+              <Grid item xs={3} sx={{}}>
                 <CardMedia
                   component="img"
-                  sx={{ width: 29, marginLeft: "auto", textAlign: "cente", maxWidth: 29 }}
+                  sx={{
+                    width: 150,
+                    height: 150,
+                    mx: "auto",
+                    maxWidth: 150,
+                    maxHeight: 150,
+                  }}
+                  image={props.user.profilepicture}
+                  alt="Live from space album cover"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                {/* <Typography component="div" variant="h4">
+                  Angel Rodriguez D.
+                </Typography> */}
+                <Typography sx={{marginRight:"50px", color:"black"}}>{props.user.username}</Typography>
+                <Typography
+                  variant="subtitle1"
+                  color="text.secondary"
+                  component="div"
+                >
+                  Hola me llamo angel y soy un trabajador en esta app asi es
+                  mirenme Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book.
+                </Typography>
+              </Grid>
+
+              <Grid
+                item
+                xs={3}
+                sx={{ justifyContent: "space-around", alignContent: "center" }}
+              >
+                <CardMedia
+                  component="img"
+                  sx={{
+                    width: 100,
+                    height: 100,
+                    mx: "auto",
+                    maxHeight: 100,
+                    maxWidth: 100,
+                  }}
                   image="Check.png"
                   alt="Live from space album cover"
                 />
-                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
-                  120
-                </Typography>
-              </Box>
-            </Grid>
+                <CardActions sx={{ mx: "auto" }}>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    onClick={(e) => navigate("/Chat")}
+                    sx={{ mx: "auto" }}
+                  >
+                    Contactar
+                  </Button>
+                </CardActions>
+              </Grid>
 
-            <PostsComponent />
-          </Grid>
-          <Tooltip title="Ver Reportes">
-            <Button onClick={(e) => navigate("/Report")}>
-              <SummarizeTwoToneIcon
-                fontSize="large"
-                sx={{ marginTop: "30%" }}
-              />
-            </Button>
-          </Tooltip>
+              <Grid
+                item
+                xs={12}
+                sx={{ mx: "auto", textAlign: "center", marginTop: "15px" }}
+              >
+                <Typography component="div" variant="h6">
+                  Apodaca, Nuevo Leon
+                </Typography>
+
+                <Box sx={{ display: "flex" }}>
+                  <CardMedia
+                    component="img"
+                    sx={{
+                      width: 29,
+                      marginLeft: "auto",
+                      textAlign: "cente",
+                      maxWidth: 29,
+                    }}
+                    image="Check.png"
+                    alt="Live from space album cover"
+                  />
+                  <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
+                    120
+                  </Typography>
+                </Box>
+              </Grid>
+
+              <PostsComponent />
+            </Grid>
+            <Tooltip title="Ver Reportes">
+              <Button onClick={(e) => navigate("/Report")}>
+                <SummarizeTwoToneIcon
+                  fontSize="large"
+                  sx={{ marginTop: "30%" }}
+                />
+              </Button>
+            </Tooltip>
+          </Box>
         </Box>
-      </Box>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  // }else{
+  //   console.log("sdasdasd")
+
+  // }
 }

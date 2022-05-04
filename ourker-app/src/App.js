@@ -33,7 +33,7 @@ function App() {
         <Route exact path="Chat" element={<ChatWorker/>} />
         <Route exact path="ViewPost" element={<ViewPost/>} />
         <Route exact path="Report" element={<Report/>} />
-        <Route exact path="Perfil" element={<Perfil/>} />
+        <Route exact path="Perfil" element={<Perfil user={user}/>} />
         <Route exact path="Search" element={<Search/>} />
         <Route exact path="Edit" element={<EditProfile/>} />
       </Routes>

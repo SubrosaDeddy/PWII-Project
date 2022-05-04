@@ -25,6 +25,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import TextField from '@mui/material/TextField';
 
 export default function NavBar(props) {
+
+  console.log("Navbar");
+  console.log(props.user.username);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   
