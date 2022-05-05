@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useEffect, useState} from "react";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
@@ -10,17 +10,53 @@ import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
 import PostsComponent from "../components/PostsComponent";
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
+import { GetByIdOccupation } from "../services/OcupationsService";
 
 export default function Search(props) {
+
   // console.log("search");
   console.log(props);
   const [expanded, setExpanded] = React.useState(false);
+  
+  // let dataWorker =[];
+  const [dataWorker, setDataW] = useState();
+  const [dataOc, setDataOc] = useState();
+  // const [dataLc, setDataLc] = useState();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   const navigate = useNavigate();
+
+   useEffect(() =>{
+    async function fetchWorker(){
+      const worker = await GetWorkerByEmailValidation(props.user.email);
+
+      if(!worker){
+        alert("No eres trabajador")
+      }else{
+        alert("Si eres trabajador")
+        setDataW(worker);
+        // dataWorker = worker
+        // console.log( dataWorker.description)
+        // alert("asdsdsd" + dataWorker.description);
+      }
+    }
+
+    async function fetchOccupation(){
+      const occupation = await GetByIdOccupation(dataWorker.ocupations);
+
+      if(occupation){
+        setDataOc(occupation);
+      }
+    }
+
+    fetchWorker();
+    fetchOccupation();
+  }, [])
+
 
   // if (props.user) {
     return (
@@ -52,6 +88,7 @@ export default function Search(props) {
                     mx: "auto",
                     maxWidth: 150,
                     maxHeight: 150,
+                    borderRadius: '50%',
                   }}
                   image={props.user.profilepicture}
                   alt="Live from space album cover"
@@ -67,12 +104,13 @@ export default function Search(props) {
                   color="text.secondary"
                   component="div"
                 >
-                  Hola me llamo angel y soy un trabajador en esta app asi es
-                  mirenme Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book.
+                 {/* {dataWorker.description} */}
+                 
+                 { dataWorker && (
+                    dataWorker.description
+                  )
+                  }
+
                 </Typography>
               </Grid>
 
@@ -81,7 +119,7 @@ export default function Search(props) {
                 xs={3}
                 sx={{ justifyContent: "space-around", alignContent: "center" }}
               >
-                <CardMedia
+                <CardMedia 
                   component="img"
                   sx={{
                     width: 100,
@@ -89,6 +127,7 @@ export default function Search(props) {
                     mx: "auto",
                     maxHeight: 100,
                     maxWidth: 100,
+                    borderRadius: '100%',
                   }}
                   image="Check.png"
                   alt="Live from space album cover"
