@@ -18,6 +18,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Post from "../models/Post";
 import { InsertPost, GetPost, GetAll } from "../services/PostService";
 import ImageDisplay from "../components/ImageDisplay";
+import { Typography } from "@material-ui/core";
+import ImageCard from "../components/ImageCard";
 
 const theme = createTheme({
   typography: {
@@ -34,30 +36,30 @@ const theme = createTheme({
   },
 });
 
+let imagesArr = [];
+
 export default function CreatePost(props) {
   const options = ["Mecánico", "Carpintero"];
-  const [value, setValue] = React.useState();
-  const [inputValue, setInputValue] = React.useState("");
+  const [images, setImages] = useState([]);
 
-  const [selectedImage, setSelectedImage] = useState();
-  const [image, setImage] = useState();
+  // const [selectedImage, setSelectedImage] = useState();
+  // const [selectedImage, setSelectedImage] = useState();
 
-  // useEffect(() => {
-  //   if (images) {
-  //     alert("Sí");
-  //     setImagesURL(window.URL.createObjectURL(images[0]));
-  //   }
-  //   else
+  // useEffect(() =>{
+  //   if(selectedImage)
   //   {
-  //     alert(`Length: ${images.array.length}`);
+  //     setImages(URL.createObjectURL(selectedImage));
+  //     // imagesArr.push(URL.createObjectURL(selectedImage));
+  //     // setImages(imagesArr);
   //   }
-  // }, [images]);
+  // }, [selectedImage]);
 
-  useEffect(() =>{
-    if(selectedImage){
-      setImage(URL.createObjectURL(selectedImage));
-    }
-  }, [selectedImage]);
+  function addImage(e){
+    // imagesArr.push(URL.createObjectURL(e));
+    imagesArr = [...imagesArr, URL.createObjectURL(e)];
+    setImages(imagesArr);
+    console.log(images);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -144,14 +146,8 @@ export default function CreatePost(props) {
                   maxRows={5}
                 />
                 <Autocomplete
-                  value={value}
-                  // onChange={(event, newValue) => {setValue(newValue)}}
-                  // inputValue={inputValue}
                   options={options}
                   sx={{ mx: "auto" }}
-                  onInputChange={(event, newInputValue) => {
-                    setInputValue(newInputValue);
-                  }}
                   renderInput={(params) => (
                     <TextField
                       {...params}
@@ -185,7 +181,6 @@ export default function CreatePost(props) {
             />
           </Paper>
         </Grid>
-
         <Grid
           container
           spacing={0}
@@ -194,50 +189,42 @@ export default function CreatePost(props) {
           justifyContent="center"
           style={{ minHeight: "15vh" }}
         >
-          <Grid item xs={3}>
-            <label htmlFor="upload-photo">
+        <Grid item xs={3}>
+          <label htmlFor="upload-photo">
               <input
-                style={{ display: "none" }}
-                id="upload-photo"
-                name="upload-photo"
-                type="file"
-                accept="image/*"
-                onChange={(e) => setSelectedImage(e.target.files[0])}
+                  style={{ display: "none" }}
+                  id="upload-photo"
+                  name="upload-photo"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => addImage(e.target.files[0])}
               />
               <br />
               <Fab color="primary" size="big" component="span" aria-label="add">
-                <AddPhotoAlternateIcon />
+                  <AddPhotoAlternateIcon />
               </Fab>
-            </label>
-          </Grid>
+          </label>
         </Grid>
-
-        {/* <Grid
-          container
-          sx={{
-            zIndex: "1",
-            width: 1,
-            justifyContent: "space-around",
-            width: "85%",
-            mx: "auto",
-            backgroundColor: "rgba(150,150,150,.7)",
-            py: "25px",
-            borderRadius: "15px",
-          }}
-        >
-          <Grid item xs={3} sx={{ zIndex: "1" }}>
-            <Card sx={{ zIndex: "1" }}>
-              <CardMedia
-                sx={{ height: 300, width: "auto", zIndex: "1" }}
-                height="300"
-                component="img"
-                image={image}
-              />
-            </Card>
-          </Grid>
-        </Grid> */}
-        {/* <ImageDisplay images={["https://i.pinimg.com/736x/f7/b2/7a/f7b27a3ac6a79a9414ac208931e0da3c--beluga-whales.jpg", "https://i.pinimg.com/736x/f7/b2/7a/f7b27a3ac6a79a9414ac208931e0da3c--beluga-whales.jpg", "https://i.pinimg.com/736x/f7/b2/7a/f7b27a3ac6a79a9414ac208931e0da3c--beluga-whales.jpg"]}/> */}
-        <ImageDisplay images={image}/>
+        </Grid>
+        <Grid container sx={{zIndex:"1", width:1, justifyContent:"space-around", width:"85%", mx:"auto", backgroundColor:"rgba(150,150,150,.7)", py:"25px", borderRadius:"15px"}}> 
+            {images.map((data)=>{
+                return (
+                  // <>
+                  //   <Grid item xs={3} sx={{zIndex:"1"}}>
+                  //       <Card sx={{zIndex:"1"}}>
+                  //           <CardMedia sx={{height:300, width:"auto", zIndex:"1"}} component="img" image={data}/>
+                  //           </Card>
+                  //         </Grid>
+                  // </>
+                  <Grid item xs={3} sx={{zIndex:"1"}}>
+                    <Card sx={{zIndex:"1"}}>
+                      <CardMedia sx={{height:"200px", width:"auto", zIndex:"1"}} component="img" image={data}/>
+                    </Card>
+                  </Grid>
+                          // <CardMedia sx={{height:300, width:"auto", zIndex:"1"}} component="img" image={data}/>
+                )
+              })}
+        </Grid>
       </Paper>
     </Fragment>
   );
