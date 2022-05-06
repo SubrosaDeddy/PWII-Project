@@ -191,17 +191,20 @@ export default function SignIn(props) {
                     .then(function (result) 
                     {
                       console.log(result);
-                      if(newWorker){
+                      // if(newWorker){
                         if (!result.level) 
                         {
-                          props.setLoggWorker(true);
+                          // console.log("keke");
+                          // console.log(Object.values(result))
+                          props.setLoggWorker(result);
                           alert("Registro exitoso");
                           navigate("/");
                         } else {
-                          props.setLoggWorker(false);
+                          // console.log(Object.values(result))
+                          // props.setLoggWorker(false);
                           alert("El trabajador no pudo ser creado");
                         }
-                      }
+                      // }
                       
                      
                       // if(!value2.level){
