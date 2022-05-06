@@ -13,12 +13,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import SearchBar from "../components/SearchBar";
 import { useNavigate } from "react-router-dom";
+import { Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles({});
 
-export default function Home() {
+export default function Home(props) {
   const navigate = useNavigate();
 
+  console.log(props.user);
   return (
     <ThemeProvider theme={color_one}>
       <Grid
@@ -265,22 +267,69 @@ export default function Home() {
               </Box>
             </Grid>
           </Grid>
-          <Button
-            onClick={() => navigate("/CreatePost")}
-            color="primary"
-            elementType="Button"
-            size="medium"
-            variant="contained"
-            sx={{
-              backgroundColor: color_one.primary.main,
-              borderRadius: 5,
-              width: 300,
-              mx: "auto",
-              color: color_one.primary.secondary,
-            }}
-          >
-            Publica gratis tu trabajo
-          </Button>
+
+                {!props.user && (
+                  <Button
+                  onClick={() => navigate("/SignIn")}
+                  color="primary"
+                  elementType="Button"
+                  size="medium"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: color_one.primary.main,
+                    borderRadius: 5,
+                    width: 300,
+                    mx: "auto",
+                    color: color_one.primary.secondary,
+                  }}
+                >
+                  Publica gratis tu trabajo
+                </Button>
+                )}
+
+                {props.work && props.user && (
+                  <Tooltip title= "todo menso">
+                <Button
+                  onClick={() => navigate("/CreatePost")}
+                  color="primary"
+                  elementType="Button"
+                  size="medium"
+                  variant="contained"
+                  sx={{
+                    backgroundColor: color_one.primary.main,
+                    borderRadius: 5,
+                    width: 300,
+                    mx: "auto",
+                    color: color_one.primary.secondary,
+                  }}
+                >
+                  Publica gratis tu trabajo
+                </Button>
+                </Tooltip>
+                )}
+
+                {!props.work && props.user && (
+                  <Button
+                  onClick={() => navigate("/CreatePost")}
+                  color="primary"
+                  elementType="Button"
+                  size="medium"
+                  variant="contained"
+                  disabled
+                  sx={{
+                    backgroundColor: color_one.primary.main,
+                    borderRadius: 5,
+                    width: 300,
+                    mx: "auto",
+                    color: color_one.primary.secondary,
+                  }}
+                >
+                  Publica gratis tu trabajo
+                </Button>
+                )}
+          
+
+              
         </Box>
       </Box>
     </ThemeProvider>

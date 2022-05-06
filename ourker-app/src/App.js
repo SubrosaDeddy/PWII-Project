@@ -26,7 +26,7 @@ function App() {
       <NavBar render={!user}/>
       <UserNavbar user={user} work ={worker} setLoggedUser={setUser}/>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
+        <Route exact path="/" element={<Home user={user} work ={worker}/>} />
         <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser} setLoggWorker ={setWorker}/>}/>
         <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser} setLoggWorker = {setWorker}/>}/>
         <Route exact path="CreateReport" element={<CreateReport/>} />
