@@ -51,6 +51,7 @@ const theme = createTheme({
 
 
 export default function SignIn(props) {
+  
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
@@ -106,9 +107,6 @@ export default function SignIn(props) {
   // Firebase
   const [url, setUrl] = useState("");
 
-  // const uploadImage = () => {
-  // };
-
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -163,6 +161,7 @@ export default function SignIn(props) {
                     {
                       alert("Registro exitoso");
                       props.setLoggedUser(value);
+                      props.setLoggWorker(false);
                       navigate("/");
                     } else {
                       alert("El usuario no pudo ser creado");
@@ -192,9 +191,20 @@ export default function SignIn(props) {
                     .then(function (result) 
                     {
                       console.log(result);
+                      if(newWorker){
+                        if (!result.level) 
+                        {
+                          props.setLoggWorker(true);
+                          alert("Registro exitoso");
+                          navigate("/");
+                        } else {
+                          props.setLoggWorker(false);
+                          alert("El trabajador no pudo ser creado");
+                        }
+                      }
+                      
+                     
                       // if(!value2.level){
-                      alert("Registro exitoso");
-                      navigate("/");
                       // } else{
                       //   alert("El trabajador no pudo ser creado :C");
                       // }
@@ -214,7 +224,9 @@ export default function SignIn(props) {
   };
 
   return (
+   
     <ThemeProvider theme={theme}>
+      
       <Grid
         container
         sx={{
@@ -308,7 +320,7 @@ export default function SignIn(props) {
                     id="username"
                     label="Nombre de usuario"
                     name="username"
-                    autoComplete="userName"
+                    autoComplete="name"
                     autoFocus
                   />
                 </Grid>

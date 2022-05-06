@@ -20,3 +20,13 @@ export const GetAllLocalities = async() =>
         return error;
     }
 }
+
+export const GetLocalitiesById = async(inputID) =>{
+    try {
+        const response = await axios.get(`/locality/${inputID}`);
+        return response.data;
+    }catch (error){
+        return error;
+    }
+}
+

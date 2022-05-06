@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
@@ -12,17 +12,16 @@ import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
 import PostsComponent from "../components/PostsComponent";
 import { GetWorkerByEmailValidation } from "../services/WorkerService";
 import { GetByIdOccupation } from "../services/OcupationsService";
+import { GetLocalitiesById } from "../services/LocalitiesServices";
 
 export default function Search(props) {
-
   // console.log("search");
   console.log(props);
   const [expanded, setExpanded] = React.useState(false);
-  
-  // let dataWorker =[];
+
   const [dataWorker, setDataW] = useState();
   const [dataOc, setDataOc] = useState();
-  // const [dataLc, setDataLc] = useState();
+  const [dataLc, setDataLc] = useState();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -30,161 +29,158 @@ export default function Search(props) {
 
   const navigate = useNavigate();
 
-   useEffect(() =>{
-    async function fetchWorker(){
+  useEffect(() => {
+    async function fetchWorker() {
       const worker = await GetWorkerByEmailValidation(props.user.email);
 
-      if(!worker){
-        alert("No eres trabajador")
-      }else{
-        alert("Si eres trabajador")
+      if (worker._id == null) {
+        alert("No eres trabajador");
+        const localities = await GetLocalitiesById(props.user._address);
+        if(localities) {
+          setDataLc(localities);
+        }
+      } 
+      else {
+        alert("Si eres trabajador");
         setDataW(worker);
-        // dataWorker = worker
-        // console.log( dataWorker.description)
-        // alert("asdsdsd" + dataWorker.description);
-      }
-    }
+        const occupation = await GetByIdOccupation(worker._ocupations);
+        if (occupation) {
+          setDataOc(occupation);
+        }
 
-    async function fetchOccupation(){
-      const occupation = await GetByIdOccupation(dataWorker.ocupations);
-
-      if(occupation){
-        setDataOc(occupation);
+        const localities = await GetLocalitiesById(props.user._address);
+        if(localities) {
+          setDataLc(localities);
+        }
       }
     }
 
     fetchWorker();
-    fetchOccupation();
-  }, [])
-
+  }, []);
 
   // if (props.user) {
-    return (
-      <React.Fragment>
+  return (
+    <React.Fragment>
+      <Box
+        sx={{
+          width: "100%",
+          minHeight: "calc(100vh - 64px)",
+          position: "absolute",
+          backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
+        }}
+      >
         <Box
           sx={{
-            width: "100%",
-            minHeight: "calc(100vh - 64px)",
-            position: "absolute",
-            backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
+            width: "70%",
+            mx: "auto",
+            backgroundColor: color_one.primary.secondary,
+            marginTop: "15px",
+            padding: "30px",
           }}
         >
-          <Box
-            sx={{
-              width: "70%",
-              mx: "auto",
-              backgroundColor: color_one.primary.secondary,
-              marginTop: "15px",
-              padding: "30px",
-            }}
-          >
-            <Grid container sx={{ justifyContent: "space-around" }}>
-              <Grid item xs={3} sx={{}}>
+          <Grid container sx={{ justifyContent: "space-around" }}>
+            <Grid item xs={3} sx={{}}>
+              <CardMedia
+                component="img"
+                sx={{
+                  width: 150,
+                  height: 150,
+                  mx: "auto",
+                  maxWidth: 150,
+                  maxHeight: 150,
+                  borderRadius: "50%",
+                }}
+                image={props.user.profilepicture}
+                alt="Live from space album cover"
+              />
+            </Grid>
+            <Grid item xs={6}>
+              {/* <Typography component="div" variant="h4">
+                  Angel Rodriguez D.
+                </Typography> */}
+              <Typography sx={{ marginRight: "50px", color: "black" }}>
+                {props.user.username}
+              </Typography>
+              <Typography
+                variant="subtitle1"
+                color="text.secondary"
+                component="div"
+              >
+                {dataWorker && (dataWorker.description)}
+              </Typography>              
+            </Grid>
+
+            <Grid
+              item
+              xs={3}
+              sx={{ justifyContent: "space-around", alignContent: "center" }}
+            >
+              <CardMedia
+                component="img"
+                sx={{
+                  width: 100,
+                  height: 100,
+                  mx: "auto",
+                  maxHeight: 100,
+                  maxWidth: 100,
+                  borderRadius: "100%",
+                }}
+                image="Check.png"
+                alt="Live from space album cover"
+              />
+              <CardActions sx={{ mx: "auto" }}>
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={(e) => navigate("/Chat")}
+                  sx={{ mx: "auto" }}
+                >
+                  Contactar
+                </Button>
+              </CardActions>
+            </Grid>
+
+            <Grid
+              item
+              xs={12}
+              sx={{ mx: "auto", textAlign: "center", marginTop: "15px" }}
+            >
+              <Typography component="div" variant="h6">
+                {dataOc && (dataOc.title)}, {dataLc && (dataLc.city)}
+              </Typography>
+
+              <Box sx={{ display: "flex" }}>
                 <CardMedia
                   component="img"
                   sx={{
-                    width: 150,
-                    height: 150,
-                    mx: "auto",
-                    maxWidth: 150,
-                    maxHeight: 150,
-                    borderRadius: '50%',
-                  }}
-                  image={props.user.profilepicture}
-                  alt="Live from space album cover"
-                />
-              </Grid>
-              <Grid item xs={6}>
-                {/* <Typography component="div" variant="h4">
-                  Angel Rodriguez D.
-                </Typography> */}
-                <Typography sx={{marginRight:"50px", color:"black"}}>{props.user.username}</Typography>
-                <Typography
-                  variant="subtitle1"
-                  color="text.secondary"
-                  component="div"
-                >
-                 {/* {dataWorker.description} */}
-                 
-                 { dataWorker && (
-                    dataWorker.description
-                  )
-                  }
-
-                </Typography>
-              </Grid>
-
-              <Grid
-                item
-                xs={3}
-                sx={{ justifyContent: "space-around", alignContent: "center" }}
-              >
-                <CardMedia 
-                  component="img"
-                  sx={{
-                    width: 100,
-                    height: 100,
-                    mx: "auto",
-                    maxHeight: 100,
-                    maxWidth: 100,
-                    borderRadius: '100%',
+                    width: 29,
+                    marginLeft: "auto",
+                    textAlign: "cente",
+                    maxWidth: 29,
                   }}
                   image="Check.png"
                   alt="Live from space album cover"
                 />
-                <CardActions sx={{ mx: "auto" }}>
-                  <Button
-                    size="small"
-                    variant="contained"
-                    onClick={(e) => navigate("/Chat")}
-                    sx={{ mx: "auto" }}
-                  >
-                    Contactar
-                  </Button>
-                </CardActions>
-              </Grid>
-
-              <Grid
-                item
-                xs={12}
-                sx={{ mx: "auto", textAlign: "center", marginTop: "15px" }}
-              >
-                <Typography component="div" variant="h6">
-                  Apodaca, Nuevo Leon
+                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
+                  120
                 </Typography>
-
-                <Box sx={{ display: "flex" }}>
-                  <CardMedia
-                    component="img"
-                    sx={{
-                      width: 29,
-                      marginLeft: "auto",
-                      textAlign: "cente",
-                      maxWidth: 29,
-                    }}
-                    image="Check.png"
-                    alt="Live from space album cover"
-                  />
-                  <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
-                    120
-                  </Typography>
-                </Box>
-              </Grid>
-
-              <PostsComponent />
+              </Box>
             </Grid>
-            <Tooltip title="Ver Reportes">
-              <Button onClick={(e) => navigate("/Report")}>
-                <SummarizeTwoToneIcon
-                  fontSize="large"
-                  sx={{ marginTop: "30%" }}
-                />
-              </Button>
-            </Tooltip>
-          </Box>
+
+            <PostsComponent />
+          </Grid>
+          <Tooltip title="Ver Reportes">
+            <Button onClick={(e) => navigate("/Report")}>
+              <SummarizeTwoToneIcon
+                fontSize="large"
+                sx={{ marginTop: "30%" }}
+              />
+            </Button>
+          </Tooltip>
         </Box>
-      </React.Fragment>
-    );
+      </Box>
+    </React.Fragment>
+  );
   // }else{
   //   console.log("sdasdasd")
 

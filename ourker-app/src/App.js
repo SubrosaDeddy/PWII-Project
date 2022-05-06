@@ -18,16 +18,17 @@ import { Routes, Route} from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState("");
-
+  const [worker, setWorker] = useState(null);
+ 
   return (
     <Fragment>
       <Helmet> <title>Ourker</title> </Helmet>
       <NavBar render={!user}/>
-      <UserNavbar user={user} setLoggedUser={setUser}/>
+      <UserNavbar user={user} work ={worker} setLoggedUser={setUser}/>
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>
-        <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser}/>}/>
+        <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser} setLoggWorker ={setWorker}/>}/>
+        <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser} setLoggWorker = {setWorker}/>}/>
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost user={user}/>} />
         <Route exact path="Chat" element={<ChatWorker/>} />

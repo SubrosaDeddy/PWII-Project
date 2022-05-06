@@ -1,4 +1,4 @@
-import React, { Fragment} from "react";
+import React, { Fragment, useEffect } from "react";
 import { Image } from "mui-image";
 import Box from "@mui/material/Box";
 import {
@@ -18,33 +18,33 @@ import { ThemeProvider } from "@mui/material/styles";
 import { color_one } from "../utils/Themes";
 import { useNavigate } from "react-router-dom";
 import Settings from "@mui/icons-material/Settings";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import Logout from "@mui/icons-material/Logout";
 import MailIcon from "@mui/icons-material/Mail";
 import PersonIcon from "@mui/icons-material/Person";
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
 
 export default function NavBar(props) {
-
-  console.log("Navbar");
-  console.log(props.user.username);
+  // console.log("Navbar");
+  // console.log(props.user.username);
+  console.log(props.work);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const handleLogout = () =>{
+  const handleLogout = () => {
     props.setLoggedUser("");
     navigate("/");
-  }
+  };
   const navigate = useNavigate();
-  
-  if(props.user)
-  {
+
+  if (props.user) {
     return (
       <ThemeProvider theme={color_one}>
         <Box
@@ -61,11 +61,15 @@ export default function NavBar(props) {
                 sx={{ maxWidth: "300px", mr: "auto" }}
               />
             </Button>
-  
+
             <Box sx={{ width: "100%" }}></Box>
 
             <Box
-              sx={{ display: "flex", alignItems: "center", textAlign: "center" }}
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                textAlign: "center",
+              }}
             >
               <Tooltip title="Account settings">
                 <IconButton
@@ -76,7 +80,9 @@ export default function NavBar(props) {
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
                 >
-                  <Typography sx={{marginRight:"50px", color:"black"}}>{props.user.username}</Typography>
+                  <Typography sx={{ marginRight: "50px", color: "black" }}>
+                    {props.user.username}
+                  </Typography>
                   <Avatar
                     sx={{ width: 45, height: 45 }}
                     src={props.user.profilepicture}
@@ -119,12 +125,14 @@ export default function NavBar(props) {
               transformOrigin={{ horizontal: "right", vertical: "top" }}
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
-              <MenuItem onClick={() => navigate("/Perfil")}>
-                <ListItemIcon >
-                  <PersonIcon fontSize="small" />
-                </ListItemIcon>
-                Profile
-              </MenuItem >
+              { props.work && (
+                <MenuItem onClick={() => navigate("/Perfil")}>
+                  <ListItemIcon>
+                    <PersonIcon fontSize="small" />
+                  </ListItemIcon>
+                  Profile
+                </MenuItem>
+              )}
               <MenuItem onClick={() => navigate("/Edit")}>
                 <ListItemIcon>
                   <EditIcon fontSize="small" />
@@ -136,25 +144,20 @@ export default function NavBar(props) {
                   <MailIcon fontSize="small" />
                 </ListItemIcon>
                 Message
-              </MenuItem >
-              
-  
+              </MenuItem>
+
               <MenuItem onClick={handleLogout}>
                 <ListItemIcon>
                   <Logout fontSize="small" />
                 </ListItemIcon>
                 Logout
               </MenuItem>
-
             </Menu>
           </Toolbar>
         </Box>
       </ThemeProvider>
     );
+  } else {
+    return <Fragment></Fragment>;
   }
-  else
-  {
-    return(<Fragment></Fragment>);
-  }
-  
 }

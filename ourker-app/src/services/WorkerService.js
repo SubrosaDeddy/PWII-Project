@@ -15,9 +15,9 @@ export const GetWorkerByEmailValidation = async (inputID) =>{
 export const InsertWorker = async(inputWorker)=>{
     try{
         const user = await axios.get(`/worker/data/${inputWorker._userinfo}`);
-        console.log("user data");
+        // console.log("user data");
 
-        console.log(user.data);
+        // console.log(user.data);
         inputWorker._userinfo = user.data;
 
         // console.log(res);
@@ -27,8 +27,8 @@ export const InsertWorker = async(inputWorker)=>{
 
         const response = await axios.post("/worker", inputWorker);
         if(response.status == 200){
-            console.log("Datos");
-            console.log(response.data);
+            // console.log("Datos");
+            // console.log(response.data);
             return response.data;
 
         }else{
