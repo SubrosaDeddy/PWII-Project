@@ -355,29 +355,7 @@ export default function SignIn(props) {
                 </Grid>
 
                 <Grid item xs={12}>
-                  {/* <Autocomplete
-                    value={valueLc}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                      setInputValue(newInputValue);
-                    }}
-                    id="combo-box-demo"
-                    options={localities}
-                    sx={{ mx: "auto" }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Localidades"
-                        name="Localidades"
-                        required
-                      />
-                    )}
-                  /> */}
-
-                  <SelectLocalities/>
+                  <SelectLocalities getLocValue= {setLocalities}/>
                 </Grid>
 
                 <input value={url} name="ImageUser" hidden></input>
@@ -393,27 +371,6 @@ export default function SignIn(props) {
 
                 {checked && (
                   <Grid item xs={12}>
-                    {/* <Autocomplete
-                      value={valueOc}
-                      onChange={(event, newValue) => {
-                        setValueOc(newValue);
-                      }}
-                      inputValue={inputValueOc}
-                      onInputChange={(event, newInputValue) => {
-                        setInputValueOc(newInputValue);
-                      }}
-                      id="combo-box-demo"
-                      options={ocupation}
-                      sx={{ mx: "auto" }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Ocupación"
-                          name="Ocupacion"
-                          required
-                        />
-                      )}
-                    /> */}
                     <SelectOccupations/>
                   </Grid>
                 )}

@@ -1,4 +1,6 @@
+import { Input } from "@material-ui/core";
 import { axiosBase as axios } from "./Config";
+import { GetLocalities } from "./LocalitiesServices";
 import { GetOccupation } from "./OcupationsService";
 // ``
 export const GetWorkerByEmailValidation = async (inputID) =>{
@@ -45,14 +47,18 @@ export const InsertWorker = async(inputWorker)=>{
 
 
 // Sin probar 
-// export const GetWorkersbyLocalities = async (inputID) =>{
-//     try {
-//         const response = await axios.get(`/worker//address/${inputID}`);
-//         return response.data;
-//     } catch (error) {
-//         return error;
-//     }
-// }
+export const GetWorkersbyLocalities = async (inputID) =>{
+    try {
+        const Localidad = await GetLocalities(inputID);
+        inputID = Localidad
+        
+        const response = await axios.get(`/worker//address/${inputID}`);
+        console.log(response.data)
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
 
 // export const GetWorkersbyOcupations = async (inputID) =>{
 //     try {

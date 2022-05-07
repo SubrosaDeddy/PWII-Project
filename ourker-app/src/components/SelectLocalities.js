@@ -4,8 +4,7 @@ import { color_one } from "../utils/Themes";
 import { GetAllLocalities } from "../services/LocalitiesServices";
 
 
-export default function SelectLocalities() {
-
+export default function SelectLocalities(props) {
 
     const [localities, setLocalities] = useState();
     const [value, setValue] = React.useState();
@@ -22,11 +21,14 @@ export default function SelectLocalities() {
         }
         fetchLocalities();
     }, []) 
-    
+
+    if(props != null){
+        props.getLocValue(value)
+    }
     return (
         
         <Autocomplete
-            value={value}
+            value={value || null}
             onChange={(event, newValue) => {
             setValue(newValue);
             }}
@@ -40,8 +42,11 @@ export default function SelectLocalities() {
             mx: "auto",
             backgroundColor: color_one.primary.secondary,
             mx: 0.5,
+            
             }}
             renderInput={(params) => <TextField {...params} label="Localidades" name="Localidades"/>}
+            
         />
+        
     );
 }

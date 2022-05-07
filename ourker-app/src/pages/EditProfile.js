@@ -14,6 +14,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // Color
 import { color_one } from "../utils/Themes";
+import SelectLocalities from "../components/SelectLocalities";
+import SelectOccupations from "../components/SelectOccupations";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -38,7 +40,9 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn() {
+export default function SignIn(props) {
+  console.log(props.work);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -52,10 +56,18 @@ export default function SignIn() {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
+    if (props.user && selectedImage == null) {
+      setImageUrl(props.user.profilepicture);
+    } else {
+      if (selectedImage) {
+        setImageUrl(URL.createObjectURL(selectedImage));
+      }
     }
   }, [selectedImage]);
+
+
+  
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -131,25 +143,25 @@ export default function SignIn() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="name"
                     label="Nombre"
                     name="name"
                     autoComplete="name"
                     autoFocus
+                    defaultValue={props.user.fullname}
                   />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="userName"
                     label="Nombre de usuario"
                     name="userName"
                     autoComplete="userName"
+                    defaultValue={props.user.username}
                     autoFocus
                   />
                 </Grid>
@@ -157,12 +169,12 @@ export default function SignIn() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="email"
                     label="Correo electrónico"
                     name="email"
                     autoComplete="email"
+                    defaultValue={props.user.email}
                     autoFocus
                   />
                 </Grid>
@@ -170,7 +182,6 @@ export default function SignIn() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     name="password"
                     label="Contraseña"
@@ -181,17 +192,32 @@ export default function SignIn() {
                 </Grid>
 
                 <Grid item xs={12}>
+                  <SelectLocalities />
+                </Grid>
+
+                {props.work && (
+                  <Grid item xs={12}>
+                    <SelectOccupations />
+                  </Grid>
+                )}
+
+                {props.work && (
+                  <Grid item xs={12}>
                   <TextField
                     margin="normal"
                     id="outlined-basic"
                     label="Descripción"
                     variant="outlined"
+                    name="Descripcion"
                     multiline
                     fullWidth
-                    maxRows={2}
-                    rows={2}
+                    maxRows={5}
+                    rows={5}
+                    defaultValue= {props.user.username}
                   />
-                </Grid>
+                  
+                  </Grid>
+                )}
 
                 <Grid item xs={12}>
                   <Button
