@@ -221,3 +221,5 @@
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b463171e4abd502727ca\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:23:47.571Z"}
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b47d171e4abd502727cc\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:24:13.228Z"}
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b4b1171e4abd502727ce\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:25:05.993Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-07T16:52:44.885Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-07T16:52:44.914Z"}

@@ -20,6 +20,7 @@ import { InsertPost, GetPost, GetAll } from "../services/PostService";
 import ImageDisplay from "../components/ImageDisplay";
 import { Typography } from "@material-ui/core";
 import ImageCard from "../components/ImageCard";
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 const theme = createTheme({
   typography: {
@@ -58,7 +59,13 @@ export default function CreatePost(props) {
     // imagesArr.push(URL.createObjectURL(e));
     imagesArr = [...imagesArr, URL.createObjectURL(e)];
     setImages(imagesArr);
-    console.log(images);
+  }
+
+  function deleteElement(index)
+  {
+    imagesArr.splice(index);
+    setImages(imagesArr);
+    console.log(imagesArr);
   }
 
   const handleSubmit = async (event) => {
@@ -207,21 +214,14 @@ export default function CreatePost(props) {
         </Grid>
         </Grid>
         <Grid container sx={{zIndex:"1", width:1, justifyContent:"space-around", width:"85%", mx:"auto", backgroundColor:"rgba(150,150,150,.7)", py:"25px", borderRadius:"15px"}}> 
-            {images.map((data)=>{
+            {images.map((data, index)=>{
                 return (
-                  // <>
-                  //   <Grid item xs={3} sx={{zIndex:"1"}}>
-                  //       <Card sx={{zIndex:"1"}}>
-                  //           <CardMedia sx={{height:300, width:"auto", zIndex:"1"}} component="img" image={data}/>
-                  //           </Card>
-                  //         </Grid>
-                  // </>
-                  <Grid item xs={3} sx={{zIndex:"1"}}>
-                    <Card sx={{zIndex:"1"}}>
-                      <CardMedia sx={{height:"200px", width:"auto", zIndex:"1"}} component="img" image={data}/>
+                  <Grid item xs={4} sx={{textAlign:"right"}}>
+                    <DeleteForeverIcon sx={{color: "#AA0000", fontSize:"40px", ml:1, mb:"-35px"}} onClick={(e) =>deleteElement(index)}/>
+                    <Card component="div" sx={{zIndex:"1", p:"30px", backgroundColor:"rgba(0,0,0,0)"}}>
+                      <CardMedia sx={{resize:"both"}} component="img" image={data}/>
                     </Card>
                   </Grid>
-                          // <CardMedia sx={{height:300, width:"auto", zIndex:"1"}} component="img" image={data}/>
                 )
               })}
         </Grid>
