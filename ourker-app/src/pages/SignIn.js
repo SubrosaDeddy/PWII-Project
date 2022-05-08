@@ -206,11 +206,7 @@ export default function SignIn(props) {
                         }
                       // }
                       
-                     
-                      // if(!value2.level){
-                      // } else{
-                      //   alert("El trabajador no pudo ser creado :C");
-                      // }
+                    
                     })
                     .catch((err) => 
                     {

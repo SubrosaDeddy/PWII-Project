@@ -16,6 +16,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import { color_one } from "../utils/Themes";
 import SelectLocalities from "../components/SelectLocalities";
 import SelectOccupations from "../components/SelectOccupations";
+import User from "../models/User";
+import { useNavigate } from "react-router-dom";
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
+import storage from "../firebase";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -42,15 +46,11 @@ const theme = createTheme({
 
 export default function SignIn(props) {
   console.log(props.work);
+  const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+  const [dataWorker, setDataW] = useState();
+  // const [varOc, setVarOc ] = useState("");
+  const [varLoc, setVarLoc] = useState("");
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -66,7 +66,120 @@ export default function SignIn(props) {
   }, [selectedImage]);
 
 
-  
+  // Info del worker
+  useEffect(() =>{
+    async function fetchWorker(){
+      const worker = await GetWorkerByEmailValidation(props.user.email)
+
+      if(worker._id == null){
+        console.log("no trabajador");
+      }else{
+        setDataW(worker);
+      }
+    }
+
+    fetchWorker();
+
+  }, [])
+
+
+  function getDataUser(data, photo){
+
+    let pass;
+
+    if(data.get("password") != ""){
+      if(data.get("password") === props.user.password){
+        alert("La contraseña no puede ser la misma");
+        return;
+      }else{
+        pass = data.get("password");
+      }
+     
+    }else{
+      pass =  props.user.password;
+    }
+
+    const user ={
+      username: data.get("username"),
+      email: props.user.email,
+      fullname: data.get("fullname"),
+      password: pass,
+      profilepicture: photo,
+      _address: props.user._address
+    }
+
+    let newUser = new User(user);
+
+    const res = newUser.updateUserDB();
+
+    res.then((value) =>{
+
+      if(!value.level){
+        alert("datos actualizados");
+        props.setLoggedUser(newUser);
+        navigate("/");
+      }else{
+        alert("Algo salio mal")
+      }
+    })
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    // Validación cambiar imagen 
+    if(selectedImage !=null){
+
+      const uploadTask = storage
+      .ref(`/imagesUser/${selectedImage.name}`)
+      .put(selectedImage);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) =>{},
+        (error) =>{
+          console.log(error);
+        },
+        () =>{
+          storage
+          .ref("imagesUser")
+          .child(selectedImage.name)
+          .getDownloadURL()
+          .then((url) =>{
+            getDataUser(data, url);
+          });
+        }
+      )
+
+    }else{
+      getDataUser(data, props.user.profilepicture);
+    }
+    // const user ={
+    //   username: data.get("username"),
+    //   email: props.user.email,
+    //   fullname: data.get("fullname"),
+    //   // password: data.get("password"),
+    //   profilepicture: props.user.profilepicture,
+    //   _address: props.user._address
+    // }
+
+    // let newUser = new User(user);
+
+    // const res = newUser.updateUserDB();
+
+    // res.then((value) =>{
+
+    //   if(!value.level){
+    //     alert("datos actualizados");
+    //     props.setLoggedUser(newUser);
+    //     // navigate("/");
+    //   }else{
+    //     alert("Algo salio mal")
+    //   }
+    // })
+
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -146,7 +259,7 @@ export default function SignIn(props) {
                     fullWidth
                     id="name"
                     label="Nombre"
-                    name="name"
+                    name="fullname"
                     autoComplete="name"
                     autoFocus
                     defaultValue={props.user.fullname}
@@ -159,7 +272,7 @@ export default function SignIn(props) {
                     fullWidth
                     id="userName"
                     label="Nombre de usuario"
-                    name="userName"
+                    name="username"
                     autoComplete="userName"
                     defaultValue={props.user.username}
                     autoFocus
@@ -174,10 +287,12 @@ export default function SignIn(props) {
                     label="Correo electrónico"
                     name="email"
                     autoComplete="email"
+                    disabled
                     defaultValue={props.user.email}
                     autoFocus
                   />
                 </Grid>
+
 
                 <Grid item xs={12} md={6}>
                   <TextField
@@ -191,17 +306,17 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
-                <Grid item xs={12}>
-                  <SelectLocalities />
-                </Grid>
+                {/* <Grid item xs={12}>
+                  <SelectLocalities getLocValue={setVarLoc}/>
+                </Grid> */}
 
-                {props.work && (
+                {/* {props.work && (
                   <Grid item xs={12}>
                     <SelectOccupations />
                   </Grid>
-                )}
+                )} */}
 
-                {props.work && (
+                {dataWorker && (
                   <Grid item xs={12}>
                   <TextField
                     margin="normal"
@@ -213,7 +328,7 @@ export default function SignIn(props) {
                     fullWidth
                     maxRows={5}
                     rows={5}
-                    defaultValue= {props.user.username}
+                    defaultValue= {dataWorker.description}
                   />
                   
                   </Grid>

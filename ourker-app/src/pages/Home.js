@@ -290,7 +290,7 @@ export default function Home(props) {
                 )}
 
                 {props.work && props.user && (
-                  <Tooltip title= "todo menso">
+
                 <Button
                   onClick={() => navigate("/CreatePost")}
                   color="primary"
@@ -307,7 +307,7 @@ export default function Home(props) {
                 >
                   Publica gratis tu trabajo
                 </Button>
-                </Tooltip>
+                
                 )}
 
                 {!props.work && props.user && (

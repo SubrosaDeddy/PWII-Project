@@ -67,7 +67,9 @@ export const UpdateUser = async(inputUser) =>
 {
     try 
     {
-        const response = await axios.put(`/user//${inputUser.email}`);
+        // console.log(inputUser.email);
+        const response = await axios.put(`/user/${inputUser.email}`, inputUser);
+        console.log(response.data);
         return response.data;
     } 
     catch (err) 

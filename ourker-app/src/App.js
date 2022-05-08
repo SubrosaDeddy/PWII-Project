@@ -36,7 +36,7 @@ function App() {
         <Route exact path="Report" element={<Report/>} />
         <Route exact path="Perfil" element={<Perfil user={user}/>} />
         <Route exact path="Search" element={<Search/>} />
-        <Route exact path="Edit" element={<EditProfile  user={user} work ={worker}/>} />
+        <Route exact path="Edit" element={<EditProfile  user={user} work ={worker} setLoggedUser={setUser}/>} />
       </Routes>
     </Fragment>
   );

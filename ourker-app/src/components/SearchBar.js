@@ -15,7 +15,7 @@ export default function SearchBar() {
   const navigate = useNavigate();
 
   const [SLoc, setSLoc] = useState(null);
-
+  
 
 function clic(){
   // useEffect(() => {

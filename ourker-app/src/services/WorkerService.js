@@ -43,9 +43,6 @@ export const InsertWorker = async(inputWorker)=>{
     }
 }
 
-
-
-
 // Sin probar 
 export const GetWorkersbyLocalities = async (inputID) =>{
     try {
