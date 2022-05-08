@@ -85,7 +85,7 @@ export default function SignIn(props) {
 
   function getDescription(data, trabajador){
 
-    if(trabajador){
+    if(trabajador._id != undefined){
 
       const worker ={
         _id: trabajador._id,
