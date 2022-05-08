@@ -17,6 +17,7 @@ import { color_one } from "../utils/Themes";
 import SelectLocalities from "../components/SelectLocalities";
 import SelectOccupations from "../components/SelectOccupations";
 import User from "../models/User";
+import Worker from "../models/Worker"
 import { useNavigate } from "react-router-dom";
 import { GetWorkerByEmailValidation } from "../services/WorkerService";
 import storage from "../firebase";
@@ -82,8 +83,34 @@ export default function SignIn(props) {
 
   }, [])
 
+  function getDescription(data, trabajador){
 
-  function getDataUser(data, photo){
+    if(trabajador){
+
+      const worker ={
+        _id: trabajador._id,
+        description: data.get("Descripcion")
+      }
+  
+      let newWorker = new Worker(worker);
+      const res2 = newWorker.updateWorkerDB();
+  
+      res2.then((value) =>{
+  
+        if(!value.level){
+          alert("datos actualizados");
+          navigate("/");
+        }else{
+          alert("Algo salio mal");
+        }
+      })
+      
+    }
+    
+
+  }
+
+  function getDataUser(data, photo, trabajador){
 
     let pass;
 
@@ -115,14 +142,22 @@ export default function SignIn(props) {
     res.then((value) =>{
 
       if(!value.level){
-        alert("datos actualizados");
+
         props.setLoggedUser(newUser);
-        navigate("/");
+        // Actualizar worker 
+        if(trabajador){
+         getDescription(data, trabajador);
+        }else{
+          alert("datos actualizados");
+          navigate("/");
+        } 
       }else{
         alert("Algo salio mal")
       }
     })
   }
+
+  
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -147,13 +182,15 @@ export default function SignIn(props) {
           .child(selectedImage.name)
           .getDownloadURL()
           .then((url) =>{
-            getDataUser(data, url);
+            getDataUser(data, url, dataWorker);
+            // getDescription(data, dataWorker);
           });
         }
       )
 
     }else{
-      getDataUser(data, props.user.profilepicture);
+      getDataUser(data, props.user.profilepicture, dataWorker);
+      // getDescription(data, dataWorker);
     }
     // const user ={
     //   username: data.get("username"),

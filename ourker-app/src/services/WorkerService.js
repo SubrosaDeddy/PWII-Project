@@ -43,6 +43,15 @@ export const InsertWorker = async(inputWorker)=>{
     }
 }
 
+export const UpdateWorker = async(inputWorker) =>{
+    try {
+         const response = await axios.put(`/worker/${inputWorker._id}`, inputWorker);
+         return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+
 // Sin probar 
 export const GetWorkersbyLocalities = async (inputID) =>{
     try {
