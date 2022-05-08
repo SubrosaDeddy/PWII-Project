@@ -9,7 +9,7 @@ export default class Post
         this.title = inputObj.title;
         this.description =  inputObj.description;  
         this._workerinfo = inputObj._workerinfo;    
-        this._photos = inputObj._photos;
+        this._photos = inputObj.photos;
         this._category = inputObj._category;
         this.counting = inputObj.counting;
     }

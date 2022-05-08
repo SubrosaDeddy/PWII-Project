@@ -22,6 +22,8 @@ import { Typography } from "@material-ui/core";
 import ImageCard from "../components/ImageCard";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
+import storage from "../firebase"
+
 const theme = createTheme({
   typography: {
     allVariants: {
@@ -37,63 +39,110 @@ const theme = createTheme({
   },
 });
 
-let imagesArr = [];
+let imagesLinkArr = [];
+let imagesFileArr = [];
 
 export default function CreatePost(props) {
   const options = ["Mecánico", "Carpintero"];
   const [images, setImages] = useState([]);
 
-  // const [selectedImage, setSelectedImage] = useState();
-  // const [selectedImage, setSelectedImage] = useState();
-
-  // useEffect(() =>{
-  //   if(selectedImage)
-  //   {
-  //     setImages(URL.createObjectURL(selectedImage));
-  //     // imagesArr.push(URL.createObjectURL(selectedImage));
-  //     // setImages(imagesArr);
-  //   }
-  // }, [selectedImage]);
-
-  function addImage(e){
-    // imagesArr.push(URL.createObjectURL(e));
-    imagesArr = [...imagesArr, URL.createObjectURL(e)];
-    setImages(imagesArr);
+  function addImage(e)
+  {
+    imagesLinkArr = [...imagesLinkArr, URL.createObjectURL(e)];
+    imagesFileArr = [...imagesFileArr, e]
+    setImages(imagesLinkArr);
   }
 
   function deleteElement(index)
   {
-    imagesArr.splice(index);
-    setImages(imagesArr);
-    console.log(imagesArr);
+    imagesLinkArr.splice(index);
+    imagesFileArr.splice(index);
+    setImages(imagesLinkArr);
+  }
+
+  const getImagesArray = async() =>{
+    const links = [];
+    let name = "";
+    
+    imagesFileArr.forEach(e => {
+      name = Date.now().toString();
+      
+      const uploadTask = storage
+        .ref(`/imagesPosts/${name}`)
+        .put(e);
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {},
+          (error) => {
+            console.log(error);
+          },
+          () => {
+            storage
+              .ref("imagesPosts")
+              .child(name)
+              .getDownloadURL()
+              .then((url) => {
+                links.push(url);
+              });
+          }
+        );
+    });
+
+    return links;
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const firebaseLinks = [];
+    let filename = "";
     const data = new FormData(event.currentTarget);
+    imagesFileArr.forEach(file => {
+      
+      filename = Date.now().toString();
+      const uploadTask = storage
+      .ref(`/imagesPosts/${filename}`)
+      .put(file);
 
-    let post = {
-      title: data.get("title"),
-      description: data.get("description"),
-      _category: data.get("category"),
-      _workerinfo: props.user._id,
-    };
+      uploadTask.
+      then((onFullfilled)=>{
+        storage
+          .ref("imagesPosts")
+          .child(filename)
+          .getDownloadURL()
+          .then((url) => {
+            firebaseLinks.push(url);
+            
+            if(firebaseLinks.length == imagesFileArr.length)
+            {
+              let post = {
+                title: data.get("title"),
+                description: data.get("description"),
+                photos: firebaseLinks,
+                _category: data.get("category"),
+                _workerinfo: props.user._id,
+              };
 
-    const res = InsertPost(post);
+              const res = InsertPost(post);
 
-    res
-      .then((value) => {
-        if (!value.error) {
-          post = new Post(value);
-          alert("Publicación creada exitosamente");
-        } else {
-          alert("Error");
-        }
+              res
+              .then((value) => {
+                if (!value.error) {
+                  post = new Post(value);
+                  alert("Publicación creada exitosamente");
+                } else {
+                  alert("Error");
+                }
+              })
+              .catch((err) => {
+                alert("Error");
+              });
+            }
+
+          });
       })
-      .catch((err) => {
-        alert("Error");
-      });
+    }); 
   };
 
   return (
@@ -216,7 +265,7 @@ export default function CreatePost(props) {
         <Grid container sx={{zIndex:"1", width:1, justifyContent:"space-around", width:"85%", mx:"auto", backgroundColor:"rgba(150,150,150,.7)", py:"25px", borderRadius:"15px"}}> 
             {images.map((data, index)=>{
                 return (
-                  <Grid item xs={4} sx={{textAlign:"right"}}>
+                  <Grid item key={index} xs={4} sx={{textAlign:"right"}}>
                     <DeleteForeverIcon sx={{color: "#AA0000", fontSize:"40px", ml:1, mb:"-35px"}} onClick={(e) =>deleteElement(index)}/>
                     <Card component="div" sx={{zIndex:"1", p:"30px", backgroundColor:"rgba(0,0,0,0)"}}>
                       <CardMedia sx={{resize:"both"}} component="img" image={data}/>

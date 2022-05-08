@@ -19,11 +19,10 @@ const PostSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref: "worker"
     },
-    _photos: 
+    photos: 
     [
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref: "multimedia"
+            type:String
         }
     ],
     _category:

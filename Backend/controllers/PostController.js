@@ -13,6 +13,7 @@ exports.post_getall = async(req, res) =>{
 exports.post_create = async(req,res) =>{
     const{body} = req;
 
+    console.log(body);
     let newPost = new Post(body);
 
     try
