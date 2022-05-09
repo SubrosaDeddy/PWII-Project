@@ -89,11 +89,13 @@ export default function ChatWorker(props) {
     async function fetchChat(){
       const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
 
+      // console.log(data_chat); 
       setChats(data_chat);
     }
       fetchChat();
   }, [])
 
+  // console.log(chats.ChatMsgS)
   return (
     <ThemeProvider theme={theme}>
       <Grid container sx={{ backgroundImage: color_one.primary.linear }}>
@@ -190,55 +192,19 @@ export default function ChatWorker(props) {
               </ListItem>
 
               {/* Va a ir el map */}
-              <ChatComponent user={props.user} chat={chats}/>
-              {/* <List sx={{ overflowY: "scroll", height: "85%" }}>
-
+              {/* <ChatComponent user={props.user} chat={chats}/> */}
               
-              <ListItem key="1">
-                  <Grid container>
-                    <Box
-                      component={Paper}
-                      elevaton={1}
-                      sx={{
-                        background: color_one.primary.sendMessage,
-                        borderRadius: 7,
-                        padding: "1rem",
-                        marginRight: 0,
-                        marginLeft: "auto",
-                        display: "inline",
-                      }}
-                    >
-                      <Typography>
-                        Hola, quiero pedirle información sobre el trabajo de
-                        carpintero
-                      </Typography>
-                      <Typography>09:31</Typography>
-                    </Box>
-                  </Grid>
-                </ListItem>
+                {/* <ul>
+                  {chats.ChatMsgS.map((data, index) =>{
+                    return(
+                      <li>
+                        {data.content}
+                      </li>
+                    )
 
-                <ListItem key="2">
-                  <Grid container>
-                    <Box
-                      component={Paper}
-                      elevaton={1}
-                      sx={{
-                        background: color_one.primary.reciveMessage,
-                        borderRadius: 7,
-                        padding: "1rem",
-                        marginRight: "auto",
-                        marginLeft: 0,
-                        display: "inline",
-                      }}
-                    >
-                      <Typography>
-                        Si, claro en seguida le mando la información ads{" "}
-                      </Typography>
-                      <Typography>09:31</Typography>
-                    </Box>
-                  </Grid>
-                </ListItem>
-              </List> */}
+                  })} 
+                </ul> */}
+             
             </Box>
           </Grid>
                 
