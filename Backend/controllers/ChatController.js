@@ -66,7 +66,8 @@ exports.chat_messagesget = async(req, res) =>{
                     ChatMsgS.push(data[i]);
                 }
           }
-        res.send(ChatMsgS/*, conteo: ChatMsgS.length*/);
+        // res.send(ChatMsgS/*, conteo: ChatMsgS.length*/);
+        res.send({ChatMsgS, conteo: ChatMsgS.length})
         } else {
           res.send("No hay nada");
         }

@@ -31,7 +31,7 @@ function App() {
         <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser} setLoggWorker = {setWorker}/>}/>
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost user={user}/>} />
-        <Route exact path="Chat" element={<ChatWorker/>} />
+        <Route exact path="Chat" element={<ChatWorker user={user}/>} />
         <Route exact path="ViewPost" element={<ViewPost/>} />
         <Route exact path="Report" element={<Report/>} />
         <Route exact path="Perfil" element={<Perfil user={user}/>} />
