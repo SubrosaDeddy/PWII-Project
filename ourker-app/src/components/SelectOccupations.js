@@ -3,7 +3,7 @@ import { Autocomplete, Grid, TextField } from "@mui/material";
 import { color_one } from "../utils/Themes";
 import { GetAllOccupation } from "../services/OcupationsService";
 
-export default function SelectOccupations() {
+export default function SelectOccupations(props) {
 
   const [ocupation, setOcupation] = useState();
   const [value, setValue] = React.useState();
@@ -23,10 +23,14 @@ export default function SelectOccupations() {
       fetchOccupations();
   }, [])
 
+  if(props != null){
+    props.getOcupValue(value)
+}
+
   return (
     
       <Autocomplete
-        value={value}
+        value={value || null}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

@@ -138,3 +138,46 @@ exports.getUserinfo = async (req, res) => {
     res.send("No existe el usuario");
   }
 };
+
+
+//-------TRAER PUBLICACION POR LOCALIDAD Y OCUPACION VALIDAR QUE COINCIDAN()-------//
+
+exports.worker_localities_occupations = async (req, res) => {
+  
+  const {id}=req.params;
+  const {id2}=req.params;
+
+  const data = await Worker.find().populate("_userinfo");
+  let arr = [];
+
+  try {
+    if (data) {
+
+      for (let i = 0; i < data.length; i++) {
+
+        if (data[i]._userinfo != null) {
+
+          if (data[i]._userinfo._address == id && data[i]._userinfo._ocupations == id2) {
+
+            arr.push(data[i]);
+
+          }else if(data[i]._userinfo._address == id){
+
+            arr.push(data[i]);
+
+          }else if(data[i]._userinfo._ocupations== id2){
+
+            arr.push(data[i]);
+
+          }
+        }
+      }
+
+      res.send({arr, conteo: arr.length});
+    } else {
+      res.send("No hay datos");
+    }
+  } catch (e) {
+    res.send(e);
+  }
+};

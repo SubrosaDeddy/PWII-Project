@@ -10,11 +10,13 @@ import SelectLocalities from "./SelectLocalities";
 
 import { GetLocalities } from "../services/LocalitiesServices";
 import { GetWorkersbyLocalities } from "../services/WorkerService";
+import { GetWorkersbyOcupations } from "../services/WorkerService";
 
 export default function SearchBar() {
   const navigate = useNavigate();
 
   const [SLoc, setSLoc] = useState(null);
+  const [SOcup, setSOcup] = useState(null);
   
 
 function clic(){
@@ -27,7 +29,26 @@ function clic(){
     if(SLoc != null){ 
       fetchLocalities() 
     }
+
+
+    
+    async function fetchOcuppations() {
+      const dataOcup = await GetWorkersbyOcupations(SOcup);
+    }
+
+    if(SOcup != null){ 
+      fetchOcuppations() 
+    }
   // }, []);
+
+}
+
+
+
+function funciones(){
+
+clic();
+navigate("/Search");
 
 }
   
@@ -72,7 +93,7 @@ function clic(){
         xl={5}
         sx={{ p: "auto", m: "auto", px: 1, textAlign: "center" }}
       >
-        <SelectOccupations />
+        <SelectOccupations getOcupValue={setSOcup}/>
       </Grid>
 
       <Grid
@@ -88,7 +109,7 @@ function clic(){
       </Grid>
 
       <Grid item xs={12} lg={1} sx={{ p: 0, m: "auto", textAlign: "center" }}>
-        <Button onClick={() => clic()}  >
+        <Button onClick={() => funciones()}>
           <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
             <SearchIcon />
           </SearchIconWrapper>
