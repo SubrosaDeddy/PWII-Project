@@ -95,9 +95,6 @@ export default function Search(props) {
               />
             </Grid>
             <Grid item xs={6}>
-              {/* <Typography component="div" variant="h4">
-                  Angel Rodriguez D.
-                </Typography> */}
               <Typography sx={{ marginRight: "50px", color: "black" }}>
                 {props.user.username}
               </Typography>
