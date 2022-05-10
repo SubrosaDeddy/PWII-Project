@@ -115,12 +115,15 @@ export default function ChatWorker(props) {
               borderColor: "black",
             }}
           >
-            <TextField
-              id="outlined-search"
-              label="Buscar contacto"
-              type="search"
-              fullWidth
-            />
+
+            <Typography 
+            sx={{
+              minHeight: "45px",
+              textAlign: "center"
+            }}
+            >
+              Lista de contactos
+            </Typography>
           </Box>
 
           <Box
@@ -246,6 +249,7 @@ export default function ChatWorker(props) {
                   </Button>
                 </Tooltip>
               </Box>
+              
             </Box>
           </Grid>
 
