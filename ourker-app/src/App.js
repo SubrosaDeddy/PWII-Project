@@ -18,24 +18,25 @@ import { Routes, Route} from "react-router-dom";
 
 function App() {
   const [user, setUser] = useState("");
-
+  const [worker, setWorker] = useState(null);
+ 
   return (
     <Fragment>
       <Helmet> <title>Ourker</title> </Helmet>
       <NavBar render={!user}/>
-      <UserNavbar user={user} setLoggedUser={setUser}/>
+      <UserNavbar user={user} work ={worker} setLoggedUser={setUser}/>
       <Routes>
-        <Route exact path="/" element={<Home/>} />
-        <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser}/>}/>
-        <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser}/>}/>
+        <Route exact path="/" element={<Home user={user} work ={worker}/>} />
+        <Route exact path="SignIn" element={<SignIn setLoggedUser={setUser} setLoggWorker ={setWorker}/>}/>
+        <Route exact path="LogIn" element={<LogIn setLoggedUser={setUser} setLoggWorker = {setWorker}/>}/>
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost user={user}/>} />
-        <Route exact path="Chat" element={<ChatWorker/>} />
+        <Route exact path="Chat" element={<ChatWorker user={user}/>} />
         <Route exact path="ViewPost" element={<ViewPost/>} />
         <Route exact path="Report" element={<Report/>} />
-        <Route exact path="Perfil" element={<Perfil/>} />
+        <Route exact path="Perfil" element={<Perfil user={user}/>} />
         <Route exact path="Search" element={<Search/>} />
-        <Route exact path="Edit" element={<EditProfile/>} />
+        <Route exact path="Edit" element={<EditProfile  user={user} work ={worker} setLoggedUser={setUser}/>} />
       </Routes>
     </Fragment>
   );

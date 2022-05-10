@@ -19,3 +19,12 @@ export const GetAllOccupation = async () =>{
         return error;
     }
 }
+
+export const GetByIdOccupation = async (inputID) =>{
+    try{
+        const response = await axios.get(`/ocupation/${inputID}`)
+        return response.data;
+    }catch(err){
+        return err;
+    }
+}

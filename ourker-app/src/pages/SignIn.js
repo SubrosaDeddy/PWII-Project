@@ -22,6 +22,8 @@ import { Autocomplete } from "@mui/material";
 import Worker from "../models/Worker";
 import { GetAllOccupation } from "../services/OcupationsService";
 import { GetAllLocalities } from "../services/LocalitiesServices";
+import SelectLocalities from "../components/SelectLocalities";
+import SelectOccupations from "../components/SelectOccupations";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -49,6 +51,7 @@ const theme = createTheme({
 
 
 export default function SignIn(props) {
+  
   const [checked, setChecked] = useState(false);
 
   const handleChange = () => {
@@ -57,25 +60,13 @@ export default function SignIn(props) {
 
   // Localities
   const [localities, setLocalities] = useState();
-
-  const options = ["Buenos Aires", "San Nicolas"];
   const [valueLc, setValue] = React.useState();
   const [inputValue, setInputValue] = React.useState("");
 
   // Ocupations
   const [ocupation, setOcupation] = useState();
-
-  const optionsOc = ["Programador", "Bombero"];
   const [valueOc, setValueOc] = React.useState();
   const [inputValueOc, setInputValueOc] = React.useState("");
-  // useEffect(() =>{
-  //   async function fetchData(){
-  //     const dataOc = await GetAllOccupation();
-  //     setOcupation(dataOc);
-  //   }
-
-  //   fetchData();
-  // }, []);
 
   useEffect(() =>{
     async function fetchOccupations()
@@ -103,9 +94,6 @@ export default function SignIn(props) {
     fetchLocalities();
   }, []);
 
-  
- 
-
   // Images
   const [selectedImage, setSelectedImage] = useState(null);
   const [image, setImage] = useState(null);
@@ -118,9 +106,6 @@ export default function SignIn(props) {
 
   // Firebase
   const [url, setUrl] = useState("");
-
-  // const uploadImage = () => {
-  // };
 
   const navigate = useNavigate();
 
@@ -176,6 +161,7 @@ export default function SignIn(props) {
                     {
                       alert("Registro exitoso");
                       props.setLoggedUser(value);
+                      props.setLoggWorker(false);
                       navigate("/");
                     } else {
                       alert("El usuario no pudo ser creado");
@@ -205,12 +191,22 @@ export default function SignIn(props) {
                     .then(function (result) 
                     {
                       console.log(result);
-                      // if(!value2.level){
-                      alert("Registro exitoso");
-                      navigate("/");
-                      // } else{
-                      //   alert("El trabajador no pudo ser creado :C");
+                      // if(newWorker){
+                        if (!result.level) 
+                        {
+                          // console.log("keke");
+                          // console.log(Object.values(result))
+                          props.setLoggWorker(result);
+                          alert("Registro exitoso");
+                          navigate("/");
+                        } else {
+                          // console.log(Object.values(result))
+                          // props.setLoggWorker(false);
+                          alert("El trabajador no pudo ser creado");
+                        }
                       // }
+                      
+                    
                     })
                     .catch((err) => 
                     {
@@ -227,7 +223,9 @@ export default function SignIn(props) {
   };
 
   return (
+   
     <ThemeProvider theme={theme}>
+      
       <Grid
         container
         sx={{
@@ -321,7 +319,7 @@ export default function SignIn(props) {
                     id="username"
                     label="Nombre de usuario"
                     name="username"
-                    autoComplete="userName"
+                    autoComplete="name"
                     autoFocus
                   />
                 </Grid>
@@ -353,27 +351,7 @@ export default function SignIn(props) {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <Autocomplete
-                    value={valueLc}
-                    onChange={(event, newValue) => {
-                      setValue(newValue);
-                    }}
-                    inputValue={inputValue}
-                    onInputChange={(event, newInputValue) => {
-                      setInputValue(newInputValue);
-                    }}
-                    id="combo-box-demo"
-                    options={localities}
-                    sx={{ mx: "auto" }}
-                    renderInput={(params) => (
-                      <TextField
-                        {...params}
-                        label="Localidades"
-                        name="Localidades"
-                        required
-                      />
-                    )}
-                  />
+                  <SelectLocalities getLocValue= {setLocalities}/>
                 </Grid>
 
                 <input value={url} name="ImageUser" hidden></input>
@@ -389,27 +367,7 @@ export default function SignIn(props) {
 
                 {checked && (
                   <Grid item xs={12}>
-                    <Autocomplete
-                      value={valueOc}
-                      onChange={(event, newValue) => {
-                        setValueOc(newValue);
-                      }}
-                      inputValue={inputValueOc}
-                      onInputChange={(event, newInputValue) => {
-                        setInputValueOc(newInputValue);
-                      }}
-                      id="combo-box-demo"
-                      options={ocupation}
-                      sx={{ mx: "auto" }}
-                      renderInput={(params) => (
-                        <TextField
-                          {...params}
-                          label="Ocupación"
-                          name="Ocupacion"
-                          required
-                        />
-                      )}
-                    />
+                    <SelectOccupations/>
                   </Grid>
                 )}
                 {checked && (

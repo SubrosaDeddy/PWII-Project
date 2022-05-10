@@ -1,135 +1,140 @@
-const Worker = require("../models/WorkerSchema")
+const Worker = require("../models/WorkerSchema");
 const User = require("../models/UserSchema");
 const logger = require("../util/logger");
 const { data } = require("../util/logger");
 
-exports.worker_getall = async(req, res) =>{
-    const data = await Worker.find();
+exports.worker_getall = async (req, res) => {
+  const data = await Worker.find();
 
+  res.send(data);
+};
+
+exports.worker_create = async (req, res) => {
+  const { body } = req;
+  let newWorker = new Worker(body);
+
+  try {
+    let response = {};
+    await newWorker
+      .save()
+      .then((newObject) => {
+        response = newObject;
+        logger.info(`Trabajador creado exitosamente: ${newObject}`);
+      })
+      .catch((err) => {
+        response = err;
+        logger.error(err);
+      });
+    res.send(response);
+  } catch (e) {
+    logger.error(e);
+    res.send(e);
+  }
+};
+
+exports.worker_getById = async (req, res) => {
+  const { id } = req.params;
+  const data = await Worker.findById(id).populate(
+    "_userinfo",
+    "username email"
+  );
+
+  if (data) {
     res.send(data);
+  } else {
+    res.send({ message: "Error, no se encontro el registro" });
+  }
 };
 
-exports.worker_create = async(req, res) =>{
-    const {body} = req;
-    let newWorker = new Worker(body);
+exports.worker_update = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
 
-    try 
-    {
-        let response = {};
-        await newWorker.save()
-        .then((newObject) => {
-            response = newObject
-            logger.info(`Trabajador creado exitosamente: ${newObject}`);
-        })
-        .catch((err) => {
-            response = err;
-            logger.error(err);
-        });
-        res.send(response);
-    } 
-    catch (e) 
-    {
-        logger.error(e);
-        res.send(e);
+  const workerdb = await Worker.findById(id);
+
+  try {
+    if (workerdb) {
+      const data = await Worker.findOneAndUpdate({ _id: id }, body, {
+        returnOriginal: false,
+      });
+      res.send({ message: "Registro actualizado exitosamente" });
+      logger.info(`Trabajador actualizado exitosamente: ${data}`);
+    } else {
+      res.send({ message: "El registro que intentas actualizar no existe" });
     }
+  } catch (e) {
+    res.send(e);
+  }
 };
 
-exports.worker_getById = async(req, res) =>{
-    const {id} = req.params;
-    const data = await Worker.findById(id).populate("_userinfo", "username email");
+exports.worker_delete = async (req, res) => {
+  const { id } = req.params;
 
-    if(data){
-        res.send(data);
-    }else{
-        res.send({message: "Error, no se encontro el registro"})
-    }
-}
+  await Worker.deleteOne({ _id: id });
 
-exports.worker_update = async(req, res) =>{
-    const {id} = req.params;
-    const {body} = req;
+  res.send({ message: "Usuario eliminado" });
+};
 
-    const workerdb = await Worker.findById(id);
+exports.worker_localities = async (req, res) => {
+  const { id } = req.params;
+  const data = await Worker.find().populate("_userinfo");
+  let arr = [];
 
-    try{    
-        if(workerdb){
-            const data = await Worker.findOneAndUpdate({_id : id}, body, {returnOriginal:false});
-            res.send({message: "Registro actualizado exitosamente"});
-            logger.info(`Trabajador actualizado exitosamente: ${data}`);
-        }else{
-            res.send({message: "El registro que intentas actualizar no existe"});
+  try {
+    if (data) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i]._userinfo != null) {
+          if (data[i]._userinfo._address == id) {
+            arr.push(data[i]);
+          }
         }
-    }catch(e){
-        res.send(e);
+      }
+      res.send({arr, conteo: arr.length});
+    } else {
+      res.send("No hay nada");
     }
-}
+  } catch (e) {
+    res.send(e);
+  }
+};
 
-exports.worker_delete = async(req, res) =>{
-    const {id} = req.params;
+exports.worker_ocupation = async (req, res) => {
+  const { id } = req.params;
+  const data = await Worker.find({ _ocupations: id }).populate("_ocupations");
 
-    await Worker.deleteOne({_id: id});
+  if (data) {
+    res.send(data);
+  } else {
+    res.send({ message: "Error, no se encontro el registro" });
+  }
+};
 
-    res.send({message: "Usuario eliminado"});
-}
+exports.worker_getByEmailValidation = async (req, res) => {
+  const { id } = req.params;
+  const data = await User.findOne({ email: id });
 
-exports.worker_localities = async(req, res) =>{
-    const {id} = req.params;
-    const data = await Worker.find().populate("_userinfo");
-    let arr = []
-
-    try {
-        if(data){
-            for(let i= 0; i < data.length; i++){
-                if(data[i]._userinfo._address == id){
-                    arr.push(data[i]);
-                }
-            }
-            res.send({arr, conteo: arr.length});
-        }
-    } catch (e) {
-        res.send(e);
+  if (data) {
+    // res.send(data.id)
+    const worker_data = await Worker.findOne({ _userinfo: data._id }).populate(
+      "_userinfo"
+    );
+    if (worker_data) {
+      res.send(worker_data);
+    } else {
+      res.send({ message: "Error, no se encontro el worker" });
     }
-   
-}
+  } else {
+    res.send({ message: "Error, no se encontro el registro" });
+  }
+};
 
-exports.worker_ocupation = async(req, res)=>{
-    const {id} = req.params;
-    const data = await Worker.find({_ocupations: id}).populate("_ocupations");
+exports.getUserinfo = async (req, res) => {
+  const { id } = req.params;
+  const data = await User.findOne({ email: id });
 
-    if(data){
-        res.send(data);
-    }else{
-        res.send({message: "Error, no se encontro el registro"});
-    }
-}
-
-exports.worker_getByEmailValidation = async(req, res) =>{
-    const {id} = req.params;
-    const data = await User.findOne({email: id});
-
-    if(data){
-
-        // res.send(data.id)
-        const worker_data = await Worker.findOne({_userinfo: data._id}).populate("_userinfo");
-        if(worker_data){
-            res.send(worker_data);
-        }else{
-            res.send({message: "Error, no se encontro el worker"});
-        }
-        
-    }else{
-        res.send({message: "Error, no se encontro el registro"});
-    }
-}
-
-
-exports.getUserinfo = async (req, res) =>{
-    const {id} = req.params;
-    const data = await User.findOne({email: id});
-
-    if(data){
-        res.send(data.id);
-    }else{
-        res.send("No existe el usuario");
-    }
-}
+  if (data) {
+    res.send(data.id);
+  } else {
+    res.send("No existe el usuario");
+  }
+};

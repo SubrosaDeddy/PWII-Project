@@ -1,5 +1,6 @@
 import { axiosBase as axios } from "./Config";
 
+// Obtiene el nombre de la localidad y retorna el ID
 export const GetLocalities = async (inputID) =>{
     try{
         const response = await axios.get(`/locality//${inputID}`);
@@ -20,3 +21,13 @@ export const GetAllLocalities = async() =>
         return error;
     }
 }
+
+export const GetLocalitiesById = async(inputID) =>{
+    try {
+        const response = await axios.get(`/locality/${inputID}`);
+        return response.data;
+    }catch (error){
+        return error;
+    }
+}
+

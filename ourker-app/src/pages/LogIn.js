@@ -11,7 +11,8 @@ import { useNavigate } from "react-router-dom";
 // Services
 import {GetUser, GetAll} from "../services/UserService"
 import User from "../models/User";
-
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
+import Worker from "../models/Worker";
 
 function Copyright(props) {
   return (
@@ -42,31 +43,29 @@ const theme = createTheme({
 export default function LogIn(props) {
   const navigate = useNavigate();
 
-  // const [users, setUsers] = useState([]);
-
-  // useEffect(() =>{
-  //   async function fetchUsers()
-  //   {
-  //     const data = await GetAll();
-  //     setUsers(data);
-  //     console.log(users);
-  //   }
-    
-  //   fetchUsers();
-  // }, [])
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const res = await GetUser(data.get("email"));
+    const worker = await GetWorkerByEmailValidation(data.get("email"));
 
     if(!res.level)
     {
       let user = new User(res);
       if(user.validatePassword(data.get("password")))
       {
-        props.setLoggedUser(user);
-        navigate('/');
+        // console.log(Object.values(worker))
+        if(Object.values(worker).length > 1){
+          
+          props.setLoggWorker(true);
+          props.setLoggedUser(user);
+           navigate('/');
+        } 
+        else{
+          props.setLoggWorker(false);
+          props.setLoggedUser(user);
+          navigate('/');
+        }
       }
       else
       {

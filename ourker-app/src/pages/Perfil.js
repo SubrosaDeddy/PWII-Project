@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useEffect, useState } from "react";
 import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
@@ -10,9 +10,18 @@ import Tooltip from "@mui/material/Tooltip";
 import { useNavigate } from "react-router-dom";
 import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
 import PostsComponent from "../components/PostsComponent";
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
+import { GetByIdOccupation } from "../services/OcupationsService";
+import { GetLocalitiesById } from "../services/LocalitiesServices";
 
-export default function Search() {
+export default function Search(props) {
+  // console.log("search");
+  console.log(props);
   const [expanded, setExpanded] = React.useState(false);
+
+  const [dataWorker, setDataW] = useState();
+  const [dataOc, setDataOc] = useState();
+  const [dataLc, setDataLc] = useState();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -20,12 +29,42 @@ export default function Search() {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    async function fetchWorker() {
+      const worker = await GetWorkerByEmailValidation(props.user.email);
+
+      if (worker._id == null) {
+        alert("No eres trabajador");
+        const localities = await GetLocalitiesById(props.user._address);
+        if(localities) {
+          setDataLc(localities);
+        }
+      } 
+      else {
+        alert("Si eres trabajador");
+        setDataW(worker);
+        const occupation = await GetByIdOccupation(worker._ocupations);
+        if (occupation) {
+          setDataOc(occupation);
+        }
+
+        const localities = await GetLocalitiesById(props.user._address);
+        if(localities) {
+          setDataLc(localities);
+        }
+      }
+    }
+
+    fetchWorker();
+  }, []);
+
+  // if (props.user) {
   return (
     <React.Fragment>
       <Box
         sx={{
           width: "100%",
-          minHeight:"calc(100vh - 64px)",
+          minHeight: "calc(100vh - 64px)",
           position: "absolute",
           backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
         }}
@@ -43,27 +82,32 @@ export default function Search() {
             <Grid item xs={3} sx={{}}>
               <CardMedia
                 component="img"
-                sx={{ width: 150, height: 150, mx: "auto", maxWidth:150, maxHeight: 150}}
-                image="Logo192.png"
+                sx={{
+                  width: 150,
+                  height: 150,
+                  mx: "auto",
+                  maxWidth: 150,
+                  maxHeight: 150,
+                  borderRadius: "50%",
+                }}
+                image={props.user.profilepicture}
                 alt="Live from space album cover"
               />
             </Grid>
             <Grid item xs={6}>
-              <Typography component="div" variant="h4">
-                Angel Rodriguez D.
+              {/* <Typography component="div" variant="h4">
+                  Angel Rodriguez D.
+                </Typography> */}
+              <Typography sx={{ marginRight: "50px", color: "black" }}>
+                {props.user.username}
               </Typography>
               <Typography
                 variant="subtitle1"
                 color="text.secondary"
                 component="div"
               >
-                Hola me llamo angel y soy un trabajador en esta app asi es
-                mirenme Lorem Ipsum is simply dummy text of the printing and
-                typesetting industry. Lorem Ipsum has been the industry's
-                standard dummy text ever since the 1500s, when an unknown
-                printer took a galley of type and scrambled it to make a type
-                specimen book.
-              </Typography>
+                {dataWorker && (dataWorker.description)}
+              </Typography>              
             </Grid>
 
             <Grid
@@ -73,7 +117,14 @@ export default function Search() {
             >
               <CardMedia
                 component="img"
-                sx={{ width: 100, height: 100, mx: "auto", maxHeight:100, maxWidth:100 }}
+                sx={{
+                  width: 100,
+                  height: 100,
+                  mx: "auto",
+                  maxHeight: 100,
+                  maxWidth: 100,
+                  borderRadius: "100%",
+                }}
                 image="Check.png"
                 alt="Live from space album cover"
               />
@@ -95,13 +146,18 @@ export default function Search() {
               sx={{ mx: "auto", textAlign: "center", marginTop: "15px" }}
             >
               <Typography component="div" variant="h6">
-                Apodaca, Nuevo Leon
+                {dataOc && (dataOc.title)}, {dataLc && (dataLc.city)}
               </Typography>
 
               <Box sx={{ display: "flex" }}>
                 <CardMedia
                   component="img"
-                  sx={{ width: 29, marginLeft: "auto", textAlign: "cente", maxWidth: 29 }}
+                  sx={{
+                    width: 29,
+                    marginLeft: "auto",
+                    textAlign: "cente",
+                    maxWidth: 29,
+                  }}
                   image="Check.png"
                   alt="Live from space album cover"
                 />
@@ -125,4 +181,8 @@ export default function Search() {
       </Box>
     </React.Fragment>
   );
+  // }else{
+  //   console.log("sdasdasd")
+
+  // }
 }

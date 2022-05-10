@@ -49,4 +49,31 @@ exports.chat_getallChats = async(req, res)=>{
     res.send(data);
 }
 
+exports.chat_messagesget = async(req, res) =>{
+    const {id1}=req.params;
+    const {id2}=req.params;
+
+    const data = await Chat.find();
+    //const data = await Chat.find({_usersend: id1 })
+    //const data2 = await Chat.find({_userreceive: id2 })
+    
+    let ChatMsgS = [];
+    try {
+        if (data) {
+          for (let i = 0; i < data.length; i++) {           
+              if((data[i]._usersend == id1 && data[i]._userreceive == id2)||(data[i]._usersend == id2 && data[i]._userreceive == id1))
+                {
+                    ChatMsgS.push(data[i]);
+                }
+          }
+        // res.send(ChatMsgS/*, conteo: ChatMsgS.length*/);
+        res.send({ChatMsgS, conteo: ChatMsgS.length})
+        } else {
+          res.send("No hay nada");
+        }
+      } catch (e) {
+        res.send("e");
+      }
+}
+
 

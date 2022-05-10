@@ -14,6 +14,13 @@ import { makeStyles } from "@material-ui/core/styles";
 
 // Color
 import { color_one } from "../utils/Themes";
+import SelectLocalities from "../components/SelectLocalities";
+import SelectOccupations from "../components/SelectOccupations";
+import User from "../models/User";
+import Worker from "../models/Worker"
+import { useNavigate } from "react-router-dom";
+import { GetWorkerByEmailValidation } from "../services/WorkerService";
+import storage from "../firebase";
 
 function Copyright(props) {
   const useStyles = makeStyles({});
@@ -38,24 +45,179 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+export default function SignIn(props) {
+  console.log(props.work);
+  const navigate = useNavigate();
+
+  const [dataWorker, setDataW] = useState();
+  // const [varOc, setVarOc ] = useState("");
+  const [varLoc, setVarLoc] = useState("");
 
   const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    if (selectedImage) {
-      setImageUrl(URL.createObjectURL(selectedImage));
+    if (props.user && selectedImage == null) {
+      setImageUrl(props.user.profilepicture);
+    } else {
+      if (selectedImage) {
+        setImageUrl(URL.createObjectURL(selectedImage));
+      }
     }
   }, [selectedImage]);
+
+
+  // Info del worker
+  useEffect(() =>{
+    async function fetchWorker(){
+      const worker = await GetWorkerByEmailValidation(props.user.email)
+
+      if(worker._id == null){
+        console.log("no trabajador");
+      }else{
+        setDataW(worker);
+      }
+    }
+
+    fetchWorker();
+
+  }, [])
+
+  function getDescription(data, trabajador){
+
+    if(trabajador._id != undefined){
+
+      const worker ={
+        _id: trabajador._id,
+        description: data.get("Descripcion")
+      }
+  
+      let newWorker = new Worker(worker);
+      const res2 = newWorker.updateWorkerDB();
+  
+      res2.then((value) =>{
+  
+        if(!value.level){
+          alert("datos actualizados");
+          navigate("/");
+        }else{
+          alert("Algo salio mal");
+        }
+      })
+      
+    }
+    
+
+  }
+
+  function getDataUser(data, photo, trabajador){
+
+    let pass;
+
+    if(data.get("password") != ""){
+      if(data.get("password") === props.user.password){
+        alert("La contraseña no puede ser la misma");
+        return;
+      }else{
+        pass = data.get("password");
+      }
+     
+    }else{
+      pass =  props.user.password;
+    }
+
+    const user ={
+      username: data.get("username"),
+      email: props.user.email,
+      fullname: data.get("fullname"),
+      password: pass,
+      profilepicture: photo,
+      _address: props.user._address
+    }
+
+    let newUser = new User(user);
+
+    const res = newUser.updateUserDB();
+
+    res.then((value) =>{
+
+      if(!value.level){
+
+        props.setLoggedUser(newUser);
+        // Actualizar worker 
+        if(trabajador){
+         getDescription(data, trabajador);
+        }else{
+          alert("datos actualizados");
+          navigate("/");
+        } 
+      }else{
+        alert("Algo salio mal")
+      }
+    })
+  }
+
+  
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    // Validación cambiar imagen 
+    if(selectedImage !=null){
+
+      const uploadTask = storage
+      .ref(`/imagesUser/${selectedImage.name}`)
+      .put(selectedImage);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) =>{},
+        (error) =>{
+          console.log(error);
+        },
+        () =>{
+          storage
+          .ref("imagesUser")
+          .child(selectedImage.name)
+          .getDownloadURL()
+          .then((url) =>{
+            getDataUser(data, url, dataWorker);
+            // getDescription(data, dataWorker);
+          });
+        }
+      )
+
+    }else{
+      getDataUser(data, props.user.profilepicture, dataWorker);
+      // getDescription(data, dataWorker);
+    }
+    // const user ={
+    //   username: data.get("username"),
+    //   email: props.user.email,
+    //   fullname: data.get("fullname"),
+    //   // password: data.get("password"),
+    //   profilepicture: props.user.profilepicture,
+    //   _address: props.user._address
+    // }
+
+    // let newUser = new User(user);
+
+    // const res = newUser.updateUserDB();
+
+    // res.then((value) =>{
+
+    //   if(!value.level){
+    //     alert("datos actualizados");
+    //     props.setLoggedUser(newUser);
+    //     // navigate("/");
+    //   }else{
+    //     alert("Algo salio mal")
+    //   }
+    // })
+
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Grid
@@ -131,25 +293,25 @@ export default function SignIn() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="name"
                     label="Nombre"
-                    name="name"
+                    name="fullname"
                     autoComplete="name"
                     autoFocus
+                    defaultValue={props.user.fullname}
                   />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="userName"
                     label="Nombre de usuario"
-                    name="userName"
+                    name="username"
                     autoComplete="userName"
+                    defaultValue={props.user.username}
                     autoFocus
                   />
                 </Grid>
@@ -157,20 +319,21 @@ export default function SignIn() {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     id="email"
                     label="Correo electrónico"
                     name="email"
                     autoComplete="email"
+                    disabled
+                    defaultValue={props.user.email}
                     autoFocus
                   />
                 </Grid>
 
+
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
-                    required
                     fullWidth
                     name="password"
                     label="Contraseña"
@@ -180,18 +343,33 @@ export default function SignIn() {
                   />
                 </Grid>
 
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
+                  <SelectLocalities getLocValue={setVarLoc}/>
+                </Grid> */}
+
+                {/* {props.work && (
+                  <Grid item xs={12}>
+                    <SelectOccupations />
+                  </Grid>
+                )} */}
+
+                {dataWorker && (
+                  <Grid item xs={12}>
                   <TextField
                     margin="normal"
                     id="outlined-basic"
                     label="Descripción"
                     variant="outlined"
+                    name="Descripcion"
                     multiline
                     fullWidth
-                    maxRows={2}
-                    rows={2}
+                    maxRows={5}
+                    rows={5}
+                    defaultValue= {dataWorker.description}
                   />
-                </Grid>
+                  
+                  </Grid>
+                )}
 
                 <Grid item xs={12}>
                   <Button

@@ -14,6 +14,9 @@ const ChatSchema = new mongoose.Schema({
     },
     content: {
         type:String
+    },
+    time: {
+        type: String
     }
 
  
