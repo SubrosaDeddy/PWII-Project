@@ -17,9 +17,7 @@ import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CardMedia from "@material-ui/core/CardMedia";
 import Post from "../models/Post";
 import { InsertPost, GetPost, GetAll } from "../services/PostService";
-import ImageDisplay from "../components/ImageDisplay";
 import { Typography } from "@material-ui/core";
-import ImageCard from "../components/ImageCard";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import storage from "../firebase"
