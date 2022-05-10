@@ -42,7 +42,7 @@ export default function ChatWorker(props) {
   const textInput = React.useRef(null);
 
   const [value, setValue] = useState("");
-  const [chats, setChats] = useState([]);
+  // const [chats, setChats] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -85,15 +85,15 @@ export default function ChatWorker(props) {
 
   };
 
-  useEffect(() =>{
-    async function fetchChat(){
-      const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
+  // useEffect(() =>{
+  //   async function fetchChat(){
+  //     const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
 
-      // console.log(data_chat); 
-      setChats(data_chat);
-    }
-      fetchChat();
-  }, [])
+  //     // console.log(data_chat); 
+  //     setChats(data_chat);
+  //   }
+  //     fetchChat();
+  // }, [])
 
   // console.log(chats.ChatMsgS);
   return (
@@ -192,21 +192,10 @@ export default function ChatWorker(props) {
               </ListItem>
 
               {/* Va a ir el map */}
-              {chats.ChatMsgS != undefined && (
+              {/* {chats.ChatMsgS != undefined && (
                 <ChatComponent user={props.user} chat={chats}/>
-              )}
-              {/* <ChatComponent user={props.user} chat={chats}/> */}
-              
-                {/* <ul>
-                  {chats.ChatMsgS.map((data, index) =>{
-                    return(
-                      <li>
-                        {data.content}
-                      </li>
-                    )
-
-                  })} 
-                </ul> */}
+              )} */}
+              <ChatComponent user={props.user}/>
              
             </Box>
           </Grid>

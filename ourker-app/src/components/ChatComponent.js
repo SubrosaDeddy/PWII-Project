@@ -7,20 +7,17 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { GetChatsUsers } from "../services/ChatService";
 
 export default function ChatComponent(props) {
+  const [chats, setChats] = useState([]);
 
-  // function getData(){
-  //   const data_chat = GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
+  useEffect(() =>{
+    async function fetchChat(){
+      const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
 
-  //     // console.log(data_chat); 
-  //     setChats(data_chat);
-  // };
-
-  // useEffect(() =>{
-  //    getData();
-  // }, [])
-
-  // console.log(chats);
-  // console.log(chats)
+      // console.log(data_chat); 
+      setChats(data_chat);
+    }
+      fetchChat();
+  }, [chats])
   
   return (
     <List sx={{ overflowY: "scroll", height: "85%" }}>
@@ -35,10 +32,62 @@ export default function ChatComponent(props) {
                   })} 
                 </ul>  */}
 
-     {props.chat.ChatMsgS.map((data, index) => {
+      {chats.ChatMsgS != undefined && (
+        chats.ChatMsgS.map((data, index) =>{
+          return(
+            <Fragment>
+              {data._usersend === props.user._id && (
+                <ListItem key="1">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.sendMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: 0,
+                      marginLeft: "auto",
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>{data.content}</Typography>
+                    <Typography>{data.time}</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              )}
+
+              {data._userreceive === props.user._id && (
+                <ListItem key="2">
+                <Grid container>
+                  <Box
+                    component={Paper}
+                    elevaton={1}
+                    sx={{
+                      background: color_one.primary.reciveMessage,
+                      borderRadius: 7,
+                      padding: "1rem",
+                      marginRight: "auto",
+                      marginLeft: 0,
+                      display: "inline",
+                    }}
+                  >
+                    <Typography>{data.content}</Typography>
+                    <Typography>{data.time}</Typography>
+                  </Box>
+                </Grid>
+              </ListItem>
+              )}
+
+            </Fragment>
+          )
+        })
+      )}
+     {/* {props.chat.ChatMsgS.map((data, index) => {
         return (
-          <Fragment>
-            {data._usersend === props.user._id && (
+          <Fragment> */}
+            {/* {data._usersend === props.user._id && (
                 <ListItem key="1">
                   <Grid container>
                     <Box
@@ -58,9 +107,9 @@ export default function ChatComponent(props) {
                     </Box>
                   </Grid>
                 </ListItem>
-              )}
+              )} */}
 
-              {data._userreceive === props.user._id && (
+              {/* {data._userreceive === props.user._id && (
                 <ListItem key="2">
                   <Grid container>
                     <Box
@@ -84,9 +133,7 @@ export default function ChatComponent(props) {
           </Fragment>
         );
       })
-    }
-
-      
+    } */}
     </List>
   );
 }
