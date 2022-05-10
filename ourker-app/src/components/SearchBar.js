@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Autocomplete, Box, Button, Grid, TextField } from "@mui/material";
+import { Autocomplete, Box, Button, Grid, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { color_one } from "../utils/Themes";
@@ -12,23 +12,25 @@ import { GetLocalities } from "../services/LocalitiesServices";
 import { GetWorkersbyLocalities } from "../services/WorkerService";
 import { GetWorkersbyOcupations } from "../services/WorkerService";
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const navigate = useNavigate();
 
   const [SLoc, setSLoc] = useState(null);
   const [SOcup, setSOcup] = useState(null);
   
-
+  const [dataLoc, setDataLoc] = useState();
 function clic(){
   // useEffect(() => {
 
     async function fetchLocalities() {
       const dataLoc = await GetWorkersbyLocalities(SLoc);
+      setDataLoc(dataLoc);
     }
 
     if(SLoc != null){ 
       fetchLocalities() 
     }
+   
 
 
     
@@ -43,6 +45,13 @@ function clic(){
 
 }
 
+if(dataLoc != null){
+  console.log("dataLoc");
+  console.log(dataLoc)
+  props.setInfoLoc(dataLoc);
+  
+}
+
 
 
 function funciones(){
@@ -51,6 +60,8 @@ clic();
 navigate("/Search");
 
 }
+
+
   
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -115,6 +126,7 @@ navigate("/Search");
           </SearchIconWrapper>
         </Button>
       </Grid>
+
 
     </Grid>
   );

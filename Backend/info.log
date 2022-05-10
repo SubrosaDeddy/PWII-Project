@@ -221,3 +221,43 @@
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b463171e4abd502727ca\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:23:47.571Z"}
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b47d171e4abd502727cc\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:24:13.228Z"}
 {"level":"info","message":"Publicación creada exitosamente: {\n  title: 'uiyvutkvutivuktvuitgv',\n  description: 'uygvbuioyvbouiyvbouiyv',\n  _photos: [],\n  _category: null,\n  _id: new ObjectId(\"6269b4b1171e4abd502727ce\"),\n  __v: 0\n}","timestamp":"2022-04-27T21:25:05.993Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T03:16:51.961Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T03:16:52.202Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T06:30:38.029Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T06:30:38.245Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T06:43:16.361Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T06:43:16.468Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:13:14.272Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:13:14.318Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:14:35.649Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:14:35.751Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:16:15.922Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:16:15.992Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:16:49.368Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:16:49.417Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:17:42.556Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:17:42.609Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:18:09.469Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:18:09.531Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:18:50.119Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:18:50.208Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:19:12.056Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:19:12.089Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:19:27.597Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:19:27.631Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:19:56.293Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:19:56.351Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:20:08.811Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:20:08.865Z"}
+{"level":"info","message":"Usuario creado exitosamente: {\n  username: 'Prueba002',\n  profilepicture: 'https://firebasestorage.googleapis.com/v0/b/ourker-app.appspot.com/o/imagesUser%2Fimages.jpg?alt=media&token=dbcd9306-d314-4ed2-89d1-4467bff61408',\n  fullname: 'Prueba00222',\n  email: 'prueba02@gmail.com',\n  password: '1234567890',\n  _address: new ObjectId(\"6219495bee615b65235c160a\"),\n  _id: new ObjectId(\"627a13dd622c87ca01e5eee0\"),\n  __v: 0\n}","timestamp":"2022-05-10T07:27:25.941Z"}
+{"level":"info","message":"Trabajador creado exitosamente: {\n  _userinfo: new ObjectId(\"627a13dd622c87ca01e5eee0\"),\n  _ocupations: new ObjectId(\"62195070ee615b65235c1618\"),\n  description: 'asdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdasdadsd',\n  rating: null,\n  _id: new ObjectId(\"627a13de622c87ca01e5eee4\"),\n  __v: 0\n}","timestamp":"2022-05-10T07:27:26.252Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:30:10.697Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:30:10.755Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:31:23.838Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:31:23.907Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:37:31.948Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:37:32.011Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:39:26.332Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:39:26.407Z"}
+{"level":"info","message":"API iniciada en el puerto 5000","timestamp":"2022-05-10T07:39:30.359Z"}
+{"level":"info","message":"Conectado a la base de datos MongoDB","timestamp":"2022-05-10T07:39:30.425Z"}

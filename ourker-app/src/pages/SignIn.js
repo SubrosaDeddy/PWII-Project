@@ -367,7 +367,7 @@ export default function SignIn(props) {
 
                 {checked && (
                   <Grid item xs={12}>
-                    <SelectOccupations/>
+                    <SelectOccupations getOcupValue={setOcupation}/>
                   </Grid>
                 )}
                 {checked && (

@@ -99,11 +99,17 @@ exports.worker_localities = async (req, res) => {
 };
 
 exports.worker_ocupation = async (req, res) => {
-  const { id } = req.params;
-  const data = await Worker.find({ _ocupations: id }).populate("_ocupations");
 
+  const { id } = req.params;
+  const data = await Worker.find({ _ocupations: id }).populate("_userinfo");
+  let arr = [];
+  
   if (data) {
-    res.send(data);
+    for(let i= 0; i<data.length; i++){
+      arr.push(data[i]);
+    }
+    res.send({arr, conteo: arr.length});
+    //res.send(data);
   } else {
     res.send({ message: "Error, no se encontro el registro" });
   }
