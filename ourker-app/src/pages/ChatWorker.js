@@ -95,7 +95,7 @@ export default function ChatWorker(props) {
       fetchChat();
   }, [])
 
-  // console.log(chats.ChatMsgS)
+  // console.log(chats.ChatMsgS);
   return (
     <ThemeProvider theme={theme}>
       <Grid container sx={{ backgroundImage: color_one.primary.linear }}>
@@ -192,6 +192,9 @@ export default function ChatWorker(props) {
               </ListItem>
 
               {/* Va a ir el map */}
+              {chats.ChatMsgS != undefined && (
+                <ChatComponent user={props.user} chat={chats}/>
+              )}
               {/* <ChatComponent user={props.user} chat={chats}/> */}
               
                 {/* <ul>
