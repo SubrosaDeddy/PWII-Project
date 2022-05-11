@@ -9,6 +9,6 @@ router.get("/post/:id", post_controller.post_getById);
 router.put("/post/:id", post_controller.post_update);
 router.delete("/post/:id", post_controller.post_delete);
 
-router.get("/post//worker/:id", post_controller.report_posts_worker);
+router.get("/post//worker/:id", post_controller.posts_worker);
 
 module.exports = router;

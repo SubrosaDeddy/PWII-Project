@@ -83,7 +83,6 @@ export default function SignIn(props) {
     {
       let LocArray = [];
       const dataLoc = await GetAllLocalities();
-      console.log(dataLoc);
       dataLoc.forEach(loc => {
         LocArray.push(loc.city);
       });

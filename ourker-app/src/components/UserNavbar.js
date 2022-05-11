@@ -27,8 +27,6 @@ import { GetWorkerByEmailValidation } from "../services/WorkerService";
 
 export default function NavBar(props) {
 
-  console.log(props.work);
-
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 

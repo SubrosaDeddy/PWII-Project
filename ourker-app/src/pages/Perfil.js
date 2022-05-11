@@ -15,10 +15,7 @@ import { GetByIdOccupation } from "../services/OcupationsService";
 import { GetLocalitiesById } from "../services/LocalitiesServices";
 
 export default function Search(props) {
-  // console.log("search");
-  console.log(props);
   const [expanded, setExpanded] = React.useState(false);
-
   const [dataWorker, setDataW] = useState();
   const [dataOc, setDataOc] = useState();
   const [dataLc, setDataLc] = useState();
@@ -163,8 +160,9 @@ export default function Search(props) {
                 </Typography>
               </Box>
             </Grid>
-
-            <PostsComponent />
+            {dataWorker && (
+              <PostsComponent dataW ={props.user._id} />
+            )}
           </Grid>
           <Tooltip title="Ver Reportes">
             <Button onClick={(e) => navigate("/Report")}>
@@ -178,8 +176,4 @@ export default function Search(props) {
       </Box>
     </React.Fragment>
   );
-  // }else{
-  //   console.log("sdasdasd")
-
-  // }
 }

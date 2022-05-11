@@ -1,5 +1,6 @@
 const Post = require("../models/PostSchema");
 const Comments = require("../models/CommentSchema");
+const Worker = require("../models/WorkerSchema");
 const logger = require("../util/logger");
 const { push } = require("../util/logger");
 
@@ -11,9 +12,10 @@ exports.post_getall = async(req, res) =>{
 }
 
 exports.post_create = async(req,res) =>{
-    const{body} = req;
-
-    console.log(body);
+    let{body} = req;
+    
+    const workerData = await Worker.findOne({_userinfo: body._workerinfo});
+    body._workerinfo = workerData._id;
     let newPost = new Post(body);
 
     try
@@ -115,4 +117,26 @@ exports.report_posts_worker = async (req, res) =>{
         res.send(e);
     }
 
+}
+
+exports.posts_worker = async (req, res) => {
+    try
+    {
+        const {id} = req.params;
+
+        const workerInfo = await Worker.findOne({_userinfo: id});
+        const posts = await Post.find({_workerinfo: workerInfo._id});
+        if(posts)
+        {
+            res.send(posts);
+        }
+        else
+        {
+            res.send({message:"No se encontró"});
+        }
+    }
+    catch(err)
+    {
+        return {error:err}
+    }
 }

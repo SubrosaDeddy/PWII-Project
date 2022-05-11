@@ -1,5 +1,6 @@
 import { axiosBase as axios } from "./Config";
 import { GetCategory } from "./CategoryService";
+// import { data } from "../../../Backend/util/logger";
 
 export const GetPost = async (inputID) =>
 {
@@ -28,6 +29,19 @@ export const GetAll = async (inputID) =>
         return {error:err};
     }
 };
+
+export const GetPostsWorker = async (inputID) =>
+{
+    try
+    {
+        const response = await axios.get(`/post//worker/${inputID}`);
+        return response.data;
+    }
+    catch(err)
+    {
+        return {error:err}
+    }
+}
 
 export const InsertPost = async(inputPost) =>
 {

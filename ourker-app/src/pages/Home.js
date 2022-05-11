@@ -21,7 +21,6 @@ const useStyles = makeStyles({});
 export default function Home(props) {
   const navigate = useNavigate();
 
-  console.log(props.user);
   return (
     <ThemeProvider theme={color_one}>
       <Grid
