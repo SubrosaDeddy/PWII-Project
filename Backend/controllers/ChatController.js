@@ -74,6 +74,57 @@ exports.chat_messagesget = async(req, res) =>{
       } catch (e) {
         res.send("e");
       }
-}
+};
 
+exports.mychats = async (req, res) =>{
+    const {id} = req.params;
+
+    const data_re = await Chat.find({_usersend: id}).populate("_userreceive");
+    const data_se = await Chat.find({_userreceive: id}).populate("_usersend");
+
+    let chats =[];
+    let chats2 =[];
+    let resultArr =[];
+
+    try {
+
+        if(data_re){
+            for(let i=0; i< data_re.length; i++){
+                chats.push(data_re[i]._userreceive);
+            }
+        }
+
+        if(data_se){
+            for(let i=0; i< data_se.length; i++){
+                chats2.push(data_se[i]._usersend);
+            }
+        }
+
+        let Arr1 = [...new Set(chats)];
+
+        let Arr2 = [...new Set(chats)];
+
+        let Arr3 = Arr1.concat(Arr2);
+
+        for(let i=0; i< Arr3.length; i++){
+            resultArr.push(Arr3[i]);
+        }
+
+        
+
+        // let set = new Set([...chats, ...chats2]);
+
+        // let newArray = [...set];
+
+         let unique =[...new Set(resultArr)];
+
+        // let unique2 =[...new Set(unique)];
+
+        res.send({unique, conteo: unique.length})
+        // res.send({chats, conteo: chats.length})
+        
+    } catch (error) {
+        res.send(error);
+    }
+}
 

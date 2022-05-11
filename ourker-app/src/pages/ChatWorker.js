@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import Chat from "../models/Chat";
 import ChatComponent from "../components/ChatComponent";
 import { GetChatsUsers } from "../services/ChatService";
+import ListChats from "../components/ListChats";
 
 const theme = createTheme({
   typography: {
@@ -42,6 +43,7 @@ export default function ChatWorker(props) {
   const textInput = React.useRef(null);
 
   const [value, setValue] = useState("");
+  const [chatData, setChatData] = useState("");
   // const [chats, setChats] = useState([]);
 
   const handleSubmit = async (event) => {
@@ -56,7 +58,7 @@ export default function ChatWorker(props) {
     } else {
       const chat = {
         _usersend: props.user._id,
-        _userreceive: "62749ea0e0af101d85ac2f50",
+        _userreceive: chatData._id,
         content: data.get("message"),
         time: hm_time,
       };
@@ -85,17 +87,6 @@ export default function ChatWorker(props) {
 
   };
 
-  // useEffect(() =>{
-  //   async function fetchChat(){
-  //     const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
-
-  //     // console.log(data_chat); 
-  //     setChats(data_chat);
-  //   }
-  //     fetchChat();
-  // }, [])
-
-  // console.log(chats.ChatMsgS);
   return (
     <ThemeProvider theme={theme}>
       <Grid container sx={{ backgroundImage: color_one.primary.linear }}>
@@ -136,37 +127,29 @@ export default function ChatWorker(props) {
               borderColor: "black",
             }}
           >
-            <List
+            {/* Other Map*/}
+            {/* <List
               sx={{
                 width: "100%",
                 maxWidth: 560,
                 backgroundColor: color_one.primary.secondary,
               }}
-            >
-              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
+            > */}
+              <ListChats user={props.user} setChatInfo={setChatData}/>
+
+              {/* <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
                 <ListItemAvatar>
                   <Avatar src="/broken-image.jpg" />
                 </ListItemAvatar>
                 <ListItemText primary="Fernando" />
               </ListItem>
 
-              <Divider variant="inset" component="li" />
-
-              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
-                <ListItemAvatar>
-                  <Avatar src="/broken-image.jpg" />
-                </ListItemAvatar>
-                <ListItemText primary="Ivan" />
-              </ListItem>
-              <Divider variant="inset" component="li" />
-              <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
-                <ListItemAvatar>
-                  <Avatar src="/broken-image.jpg" />
-                </ListItemAvatar>
-                <ListItemText primary="Daniel" />
-              </ListItem>
-            </List>
+              <Divider variant="inset" component="li" /> */}
+            {/* </List> */}
           </Box>
+          {}
+          <input hidden name="dataId"  id="dataId"></input>
+          
         </Grid>
 
         <Grid item xs={8}>
@@ -189,16 +172,37 @@ export default function ChatWorker(props) {
                 }}
               >
                 <ListItemAvatar>
-                  <Avatar src="/broken-image.jpg" />
+                  {chatData != undefined && (
+                     <Avatar src={chatData.profilepicture} />
+                  )}
+
+                  {chatData == undefined && (
+                     <Avatar src="" />
+                  )}
+
+
+                  {/* <Avatar src={chatData.profilepicture} /> */}
                 </ListItemAvatar>
-                <ListItemText primary="Fernando" />
+
+                  {chatData != undefined && (
+                     <ListItemText primary={chatData.fullname} />
+                  )}
+
+                  {chatData == undefined && (
+                     <ListItemText primary="Selecciona un usuario" />
+                  )}
+
+                {/* <ListItemText primary={chatData.fullname} /> */}
               </ListItem>
 
               {/* Va a ir el map */}
               {/* {chats.ChatMsgS != undefined && (
                 <ChatComponent user={props.user} chat={chats}/>
               )} */}
-              <ChatComponent user={props.user}/>
+              {chatData !=undefined && (
+              <ChatComponent user={props.user} userChat={chatData}/>
+              )}
+
              
             </Box>
           </Grid>

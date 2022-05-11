@@ -11,7 +11,7 @@ export default function ChatComponent(props) {
 
   useEffect(() =>{
     async function fetchChat(){
-      const data_chat = await GetChatsUsers("62749e79e0af101d85ac2f44", "62749ea0e0af101d85ac2f50");
+      const data_chat = await GetChatsUsers(props.user._id, props.userChat._id);
       
       setChats(data_chat);
     }

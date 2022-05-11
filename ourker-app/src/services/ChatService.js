@@ -22,3 +22,13 @@ export const GetChatsUsers = async(userSendId, userReId) =>{
         return error;
     }
 }
+
+export const GetListChat = async(inputChat) =>{
+    try{
+        const response = await axios.get(`/chat//list/${inputChat}`);
+        return response.data;
+
+    }catch(error){
+        return error;
+    }
+}

@@ -9,4 +9,5 @@ router.get("/chat/:id", chat_controller.chat_getallChats);
 router.delete("/chat/:id", chat_controller.chat_delete);
 router.get("/chat/:id1/:id2",chat_controller.chat_messagesget);
 
+router.get("/chat//list/:id", chat_controller.mychats);
 module.exports = router;
