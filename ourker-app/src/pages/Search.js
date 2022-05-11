@@ -13,7 +13,7 @@ export default function Search() {
   const [loc, setLoc] = useState("");
 
   if (loc != null) {
-    console.log("lOc");
+    console.log("loc");
     console.log(loc);
   }
   //setLoggedUser={setUser}
@@ -53,7 +53,7 @@ export default function Search() {
             <SearchBar setInfoLoc={setLoc} />
           </Grid>
         </Container>
-        {loc != undefined && <Typography>{loc}</Typography>}
+       <Typography>{loc}</Typography>
 
         <SearchResults />
       </Grid>

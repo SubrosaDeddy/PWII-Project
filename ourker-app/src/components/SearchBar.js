@@ -17,8 +17,8 @@ export default function SearchBar(props) {
 
   const [SLoc, setSLoc] = useState(null);
   const [SOcup, setSOcup] = useState(null);
-  
   const [dataLoc, setDataLoc] = useState();
+
 function clic(){
   // useEffect(() => {
 
@@ -31,9 +31,6 @@ function clic(){
       fetchLocalities() 
     }
    
-
-
-    
     async function fetchOcuppations() {
       const dataOcup = await GetWorkersbyOcupations(SOcup);
     }
@@ -45,24 +42,18 @@ function clic(){
 
 }
 
-if(dataLoc != null){
+//if(dataLoc != null){
   console.log("dataLoc");
   console.log(dataLoc)
   props.setInfoLoc(dataLoc);
   
-}
-
-
+//}
 
 function funciones(){
-
-clic();
-navigate("/Search");
-
+  clic();
+  navigate("/Search");
 }
 
-
-  
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
     height: "100%",
