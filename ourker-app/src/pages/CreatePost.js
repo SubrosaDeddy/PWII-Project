@@ -94,24 +94,21 @@ export default function CreatePost(props) {
     event.preventDefault();
 
     const firebaseLinks = [];
-    let filename = "";
+    let filename = [];
     const data = new FormData(event.currentTarget);
-    imagesFileArr.forEach(file => {
+    
+    imagesFileArr.forEach((file, i) => {      
       
-      filename = Date.now().toString();
-      const uploadTask = storage
-      .ref(`/imagesPosts/${filename}`)
-      .put(file);
+      filename[i] = Date.now().toString();
+      const uploadTask = storage.ref(`/imagesPosts/`+filename[i]).put(file);
 
-      uploadTask.
-      then((onFullfilled)=>{
+      uploadTask.then((onFullfilled)=>{
         storage
           .ref("imagesPosts")
-          .child(filename)
+          .child(filename[i])
           .getDownloadURL()
           .then((url) => {
             firebaseLinks.push(url);
-            
             if(firebaseLinks.length == imagesFileArr.length)
             {
               let post = {
@@ -137,10 +134,10 @@ export default function CreatePost(props) {
                 alert("Error");
               });
             }
-
           });
       })
-    }); 
+    });
+
   };
 
   return (

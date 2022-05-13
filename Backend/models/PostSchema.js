@@ -26,12 +26,10 @@ const PostSchema = new mongoose.Schema({
         }
     ],
     _category:
-    [
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref: "ocupation"
-        }
-    ],
+    {
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "categories_rp"
+    },
     counting: {
         type: Number 
     }

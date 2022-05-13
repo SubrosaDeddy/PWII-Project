@@ -32,7 +32,7 @@ function App() {
         <Route exact path="CreateReport" element={<CreateReport/>} />
         <Route exact path="CreatePost" element={<CreatePost user={user}/>} />
         <Route exact path="Chat" element={<ChatWorker user={user}/>} />
-        <Route exact path="ViewPost" element={<ViewPost/>} />
+        <Route exact path="ViewPost/:postID" element={<ViewPost/>} />
         <Route exact path="Report" element={<Report/>} />
         <Route exact path="Perfil" element={<Perfil user={user}/>} />
         <Route exact path="Search" element={<Search/>} />

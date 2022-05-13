@@ -97,7 +97,7 @@ export default function LogIn(props) {
           md={8}
           lg={5}
           elevation={0}
-          square
+          // square
           sx={{
             margin: '0 auto',
             backgroundColor: 'white',

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import 
 { 
     Grid,
@@ -14,6 +14,10 @@ import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import SliderImage from "../components/SliderImages"
 import CommentSection from '../components/CommentSection';
+import { useParams } from "react-router-dom";
+
+import Post from '../models/Post';
+import { GetPost } from '../services/PostService';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -37,11 +41,24 @@ const useStyles = makeStyles({
     }
 });
 
+
 export default function ViewPost() {
+    const { postID } = useParams();
+    const [post, setPost] = useState();
+    useEffect(()=>{
+        const fetchPost = async(inputID) =>
+        {
+            const newPost = await GetPost(inputID);
+            setPost(newPost);
+        }
+
+        fetchPost(postID);
+    }, []);
+
     const classes = useStyles();
 
     return (
-    <Grid spacing={2} sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"calc(100vh - 64px)"}}>
+    <Grid sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"calc(100vh - 64px)"}}>
         <Box height={'15px'}/>
         <Paper elevation={3} sx={{p:2, margin: 'auto', maxWidth: "50%", flexGrow: 1, top: 9, backgroundColor: (theme) =>theme.palette.mode === 'dark' ? '#1A2027' : '#fff'}}>
             <Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>
@@ -49,29 +66,38 @@ export default function ViewPost() {
             </Typography>
 
             <Grid container spacing={1} xl={10} m={'auto'} sx={{display: "flex", alignItems: "center", justifyContent:"center"}}>
-                <Box component="form" noValidate onSubmit={""}>
-                    <Typography sx={{fontWeight:"bold", fontSize:25, margin:"auto", textAlign:"center"}}>
-                        Titulo
-                    </Typography>
+                <Box component="form" noValidate>
+                    {post && (
+                        <Typography sx={{fontWeight:"bold", fontSize:25, margin:"auto", textAlign:"center"}}>
+                            {post.title}
+                        </Typography>
+                    )}
                 </Box>
             </Grid>
 
             <Grid>
-                <Box component="form" noValidate onSubmit={""} sx={{display: "flex", alignItems: "center"}}>
-                    <Typography sx={{ fontSize:14, margin:"auto", textAlign:"left"}}>Trabajador: Pepito</Typography>
-                    <Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>Categoria: Muebles</Typography>
+                <Box component="form" noValidate sx={{display: "flex", alignItems: "center"}}>
+                    {post && (
+                        <Typography sx={{ fontSize:14, margin:"auto", textAlign:"left"}}>Trabajador: {post._workerinfo._userinfo.username}</Typography>
+                        )}
+                    {post && (
+                        <Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>Categoría: {post._category.name}</Typography>
+                    )}
                 </Box>
             </Grid>
 
             <Grid container spacing={1} xl={10} m={'auto'} className={classes.Description} sx={{display: "flex", alignItems: "center", justifyContent:"center", marginTop:"30px", width:"100%"}}>
-                <Typography variant="body1" gutterBottom>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                    blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-                    neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
-                    quasi quidem quibusdam.
-                </Typography>
+                {post && (
+                    <Typography variant="body1" gutterBottom>
+                        {post.description}
+                    </Typography>
+                )}
             </Grid>
-            <SliderImage/>
+
+            {post && (
+                <SliderImage images={post.photos}/>
+            )}
+            
             <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", m:"20px"}}>
                 <Box sx={{m:"5px"}}> <ThumbUpAltIcon sx={{color:"green"}}/> <ThumbDownAltIcon sx={{color:"red"}}/></Box> 
                 <TextField id="outlined-basic" label="Write a comment..." variant="outlined" className={classes.WriteComment}/>

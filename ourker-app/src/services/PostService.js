@@ -7,7 +7,7 @@ export const GetPost = async (inputID) =>
     try
     {
         // Comillas invertidas Alt+96
-        const response = await axios.get(`/post//${inputID}`);
+        const response = await axios.get(`/post/${inputID}`);
         return response.data;
     }
     catch(err)

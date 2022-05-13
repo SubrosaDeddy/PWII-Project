@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import { GetPostsWorker } from "../services/PostService";
 
 export default function PostsComponent(props) {
-  // console.log(`ID worker: ${props.dataW}`);
   const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
 
@@ -25,16 +24,15 @@ export default function PostsComponent(props) {
       setPosts(postsData);
     }
     fetchPosts(props.dataW);
-    console.log(posts);
   }, []);
 
   return (
     <Grid item xs={12} sx={{marginTop: "15px"}}>
         <Paper sx={{ bgcolor: "#F5F5F5", height: "45vh", overflow: "auto" }}>
           <List>
-            {posts.map((data)=>{
+            {posts.map((data, index)=>{
                 return (
-                  <Button sx={{ justifyContent: "center"}} onClick={(e) => navigate("/ViewPost")}>
+                  <Button key={index} sx={{ justifyContent: "center"}} onClick={(e) => navigate(`/ViewPost/${data._id}`)}>
                     <Card sx={{ display: "flex", width: "70%", justifyContent: "space-between", mx:"auto"}}>
                       <Box sx={{ display: "flex", flexDirection: "column" }}>
                         <CardContent sx={{ flex: "1 0 auto" }}>

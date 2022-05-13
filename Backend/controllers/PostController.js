@@ -1,6 +1,7 @@
 const Post = require("../models/PostSchema");
 const Comments = require("../models/CommentSchema");
 const Worker = require("../models/WorkerSchema");
+const User = require("../models/UserSchema");
 const logger = require("../util/logger");
 const { push } = require("../util/logger");
 
@@ -42,7 +43,9 @@ exports.post_create = async(req,res) =>{
 
 exports.post_getById = async(req, res) =>{
     const {id} = req.params;
-    const data = await Post.findById(id);
+    let data = await Post.findById(id).populate("_workerinfo").populate("_category");
+    const user = await User.findById(data._workerinfo._userinfo);
+    data._workerinfo._userinfo = user;
 
     if(data){
         res.send(data);
