@@ -88,9 +88,14 @@ export default function Search(props) {
             {/* <SearchBar /> */}
           </Grid>
         </Container> 
-            {/* {Arr != "" && (
-              <Typography> aasds</Typography>
-            )} */}
+            {location.state.busqueda != "" && (
+              <Typography variant="h4" sx={{ marginLeft: "20px", textTransform: 'uppercase' }}> Buscando por: {location.state.busqueda}</Typography>
+            )}
+            <p></p>
+            {location.state.data != "" && (
+              <Typography  variant="h4" item sx={{ marginLeft: "40px", textTransform: 'uppercase' }}> Resultados: {location.state.data.arr.length}</Typography>
+            )}
+
 
         {/* {location.state.name != null && ( 
           <Typography> {location.state.name}</Typography>

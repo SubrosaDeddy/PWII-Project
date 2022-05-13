@@ -26,15 +26,9 @@ const LightTooltip = styled(({ className, ...props }) => (
 export default function SearchResults(props) {
   //console.log(props.work);
   const navigate = useNavigate();
-
-  // const [dataL, setDataLoc] = useState();
-  const [dataOc, setDataOc] = useState();
-
+  
   if(props.setLocalities != null){
-    // setDataOc(props.setLocalities);
   }
-  // console.log("SearchResult");
-  // console.log(dataOc);
 
   console.log("setLocalities");
   console.log(props.setLocalities);
@@ -47,10 +41,10 @@ export default function SearchResults(props) {
         sx={{ px: "30px", py: "15px", my: "15px", borderRadius: "15px" }}
       ></Grid>
         
-      <LightTooltip title="Ir al perfil" arrow>
+      {/* <LightTooltip title="Ir al perfil" arrow>
         <Grid
           container
-          onClick={() => navigate("/Perfil")}
+          // onClick={() => navigate("/Perfil")}
           sx={{
             px: "30px",
             py: "15px",
@@ -76,7 +70,45 @@ export default function SearchResults(props) {
             hhj
           </Typography>
         </Grid>
-      </LightTooltip>
+      </LightTooltip> */}
+
+      {props.setLocalities && (
+        props.setLocalities.arr.map((data, index) =>{
+          return(
+            <LightTooltip title="Ir al perfil" arrow>
+            <Grid
+              container
+              // onClick={() => navigate("/Perfil")}
+              sx={{
+                px: "30px",
+                py: "15px",
+                my: "15px",
+                backgroundColor: "#94C6FF",
+                borderRadius: "15px",
+              }}
+            >
+              <Avatar
+                item
+                xs={5}
+                sx={{ m: "5px", width: "30px", height: "30px" }}
+                src={data._userinfo.profilepicture}
+              ></Avatar>
+              <Typography item xs={7} sx={{ marginLeft: "15px", my: "auto" }}>
+                {props.setLocalities && (
+                  <strong> {data._userinfo.username}</strong>
+                )}
+              </Typography>
+              <br/>
+              <Typography item sx={{ marginLeft: "15px", marginTop: "10px" }}>
+                {data.description}
+              </Typography>
+            </Grid>
+
+            
+          </LightTooltip>
+          )
+        })
+      )}
     </Container>
   );
 }
