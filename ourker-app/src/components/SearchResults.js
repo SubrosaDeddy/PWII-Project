@@ -26,33 +26,27 @@ const LightTooltip = styled(({ className, ...props }) => (
 export default function SearchResults(props) {
   //console.log(props.work);
   const navigate = useNavigate();
-  const [dataWorker, setDataW] = useState([]);
 
-  // Info del worker
-  useEffect(() => {
-    /* 
-    async function fetchWorker(){
-      const worker = await GetWorkersbyLocationsOcupations(props.user._id)
+  // const [dataL, setDataLoc] = useState();
+  const [dataOc, setDataOc] = useState();
 
-      if(worker._id == null){
-        console.log("no hay nada");
-      }else{
-        setDataW(worker);
-        console.log(setDataW);
-      }
-    }
+  if(props.setLocalities != null){
+    // setDataOc(props.setLocalities);
+  }
+  // console.log("SearchResult");
+  // console.log(dataOc);
 
-    fetchWorker(); 
-    */
-  }, []);
-
+  console.log("setLocalities");
+  console.log(props.setLocalities);
+  console.log(props.setLocalities.arr.length);
   return (
+
     <Container sx={{ height: "650px", overflowY: "scroll", marginTop: "25px" }}>
       <Grid
         container
         sx={{ px: "30px", py: "15px", my: "15px", borderRadius: "15px" }}
       ></Grid>
-
+        
       <LightTooltip title="Ir al perfil" arrow>
         <Grid
           container
@@ -72,8 +66,10 @@ export default function SearchResults(props) {
             src="/broken-image.jpg"
           ></Avatar>
           <Typography item xs={7} sx={{ marginLeft: "15px", my: "auto" }}>
-            {" "}
-            <strong> hh </strong>{" "}
+            {props.setLocalities && (
+              <strong> {props.setLocalities.arr.length}</strong>
+            )}
+            
           </Typography>
           <Typography item sx={{ marginTop: "10px" }}>
             {" "}

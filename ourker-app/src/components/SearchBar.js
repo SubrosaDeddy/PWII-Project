@@ -1,58 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { Autocomplete, Box, Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Autocomplete,
+  Box,
+  Button,
+  Grid,
+  TextField,
+  Typography,
+} from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 import { color_one } from "../utils/Themes";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SelectOccupations from "./SelectOccupations";
 import SelectLocalities from "./SelectLocalities";
 
 import { GetLocalities } from "../services/LocalitiesServices";
 import { GetWorkersbyLocalities } from "../services/WorkerService";
 import { GetWorkersbyOcupations } from "../services/WorkerService";
+import Search from "../pages/Search";
 
 export default function SearchBar(props) {
   const navigate = useNavigate();
 
-  const [SLoc, setSLoc] = useState(null);
-  const [SOcup, setSOcup] = useState(null);
-  const [dataLoc, setDataLoc] = useState();
+  const [SLoc, setSLoc] = useState("");
+  const [SOcup, setSOcup] = useState("");
 
-function clic(){
-  // useEffect(() => {
+  const [dataLoc, setDataLoc] = useState([]);
+  const [dataLocCopy, setDataLocCopy] = useState([]);
 
-    async function fetchLocalities() {
-      const dataLoc = await GetWorkersbyLocalities(SLoc);
-      setDataLoc(dataLoc);
+  // console.log(SLoc);
+
+  const SendData = async () =>{
+    async function fetchLocalities(){
+    
+      const infoLocalities = await GetWorkersbyLocalities(SLoc);
+      setDataLoc(infoLocalities);
     }
 
-    if(SLoc != null){ 
-      fetchLocalities() 
+    if(SLoc != null){
+      fetchLocalities()
     }
-   
-    async function fetchOcuppations() {
-      const dataOcup = await GetWorkersbyOcupations(SOcup);
+  }
+
+  useEffect(() =>{
+  //       const fetchLocalities = async() =>{
+  //         const DataLocalities = await GetWorkersbyLocalities(SLoc);
+  //         setDataLoc(DataLocalities);
+  //       }
+  //       fetchLocalities();
+  SendData();
+  },[SLoc]);
+ 
+
+ function funciones() {
+    // data();
+    if(SLoc != undefined){
+      SendData();
+      // console.log(dataLoc)
+      navigate("/Search", {state: {data: dataLoc, busqueda: SLoc}});
     }
 
-    if(SOcup != null){ 
-      fetchOcuppations() 
+    if(SOcup != undefined){
+      // props.setInfoOcc(SOcup);  
+      navigate("/Search");
     }
-  // }, []);
-
-}
-
-//if(dataLoc != null){
-  console.log("dataLoc");
-  console.log(dataLoc)
-  props.setInfoLoc(dataLoc);
-  
-//}
-
-function funciones(){
-  clic();
-  navigate("/Search");
-}
+  }
 
   const SearchIconWrapper = styled("div")(({ theme }) => ({
     padding: theme.spacing(0, 2),
@@ -65,7 +78,6 @@ function funciones(){
   }));
 
   return (
-    
     <Grid
       xs={11}
       sm={10}
@@ -95,7 +107,7 @@ function funciones(){
         xl={5}
         sx={{ p: "auto", m: "auto", px: 1, textAlign: "center" }}
       >
-        <SelectOccupations getOcupValue={setSOcup}/>
+        <SelectOccupations getOcupValue={setSOcup} />
       </Grid>
 
       <Grid
@@ -107,18 +119,26 @@ function funciones(){
         xl={5}
         sx={{ p: "auto", m: "auto", px: 1, textAlign: "center" }}
       >
-        <SelectLocalities getLocValue={setSLoc}/>
+        <SelectLocalities getLocValue={setSLoc} />
       </Grid>
 
       <Grid item xs={12} lg={1} sx={{ p: 0, m: "auto", textAlign: "center" }}>
-        <Button onClick={() => funciones()}>
-          <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
-            <SearchIcon />
-          </SearchIconWrapper>
-        </Button>
+        {SLoc != undefined && (
+          <Button onClick={() => funciones()}>
+            <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
+              <SearchIcon />
+            </SearchIconWrapper>
+          </Button>
+        )}
+
+        {SLoc == undefined && (
+          <Button>
+            <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
+              <SearchIcon />
+            </SearchIconWrapper>
+          </Button>
+        )}
       </Grid>
-
-
     </Grid>
   );
 }

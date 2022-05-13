@@ -22,7 +22,7 @@ export default function SelectLocalities(props) {
         fetchLocalities();
     }, []) 
 
-    if(props != null){
+    if(value != null){
         props.getLocValue(value)
     }
     return (

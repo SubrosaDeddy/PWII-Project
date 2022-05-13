@@ -53,13 +53,14 @@ export const UpdateWorker = async(inputWorker) =>{
 }
 
 // Obtener las publicaciones por localidad 
-export const GetWorkersbyLocalities = async (inputID) =>{
+export const GetWorkersbyLocalities = async (inputID) =>{ 
     try {
         const Localidad = await GetLocalities(inputID);
-        inputID = Localidad
+        inputID = Localidad;
+        console.log(Localidad);
         
         const response = await axios.get(`/worker//address/${inputID}`);
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     } catch (error) {
         return error;

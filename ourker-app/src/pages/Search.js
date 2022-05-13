@@ -3,20 +3,54 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { color_one } from "../utils/Themes";
 import SearchBar from "../components/SearchBar";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import SearchResults from "../components/SearchResults";
-import { useState } from "react";
+import { useEffect, useState,useRef  } from "react";
+import { GetWorkersbyLocalities } from "../services/WorkerService";
 
-export default function Search() {
+export default function Search(props) {
+
+  const location = useLocation();
   const navigate = useNavigate();
 
-  const [loc, setLoc] = useState("");
+  const [loc, setLoc] = useState([]);
+  const [occ, setOc] = useState(null);
 
-  if (loc != null) {
-    console.log("loc");
-    console.log(loc);
-  }
-  //setLoggedUser={setUser}
+  const [dataL, setDataLoc] = useState([]);
+  const [dataOc, setDataOc] = useState([]);
+
+  let Arr = []; 
+
+//  async function Data(){
+//     const DataLocalities = await GetWorkersbyLocalities(location.state.name);
+//     DataLocalities.arr.forEach(loc => {
+//       Arr.push(loc);
+//     }); 
+ 
+//     setDataLoc(Arr); 
+//   }
+    
+  // useEffect(() =>{
+      // const fetchLocalities = async() =>{
+      //   const DataLocalities = await GetWorkersbyLocalities(location.state.name);
+      //   DataLocalities.arr.forEach(loc => {
+      //     Arr.push(loc);
+      //   });   
+      //   // setDataLoc(Arr);
+
+      // }
+      // fetchLocalities();
+      // const interval=setInterval(()=>{
+      //   Data();
+      //  },10000)
+      //  return()=>clearInterval(interval) 
+      // Data();
+  // });
+ 
+  if(location.state.data != undefined){ 
+    console.log(location.state.data);
+    // setDataLoc(location.state.data);
+  } 
   return (
     <Box
       sx={{
@@ -50,12 +84,20 @@ export default function Search() {
               justifyContent: "center",
             }}
           >
-            <SearchBar setInfoLoc={setLoc} />
+            <SearchBar setInfoLoc={setLoc} setInfoOcc ={setOc} />
+            {/* <SearchBar /> */}
           </Grid>
-        </Container>
-       <Typography>{loc}</Typography>
+        </Container> 
+            {/* {Arr != "" && (
+              <Typography> aasds</Typography>
+            )} */}
 
-        <SearchResults />
+        {/* {location.state.name != null && ( 
+          <Typography> {location.state.name}</Typography>
+        )} */}
+      
+
+        <SearchResults setLocalities ={location.state.data} setOc={occ}/>
       </Grid>
     </Box>
   );
