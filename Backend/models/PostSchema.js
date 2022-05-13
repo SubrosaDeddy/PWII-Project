@@ -32,6 +32,9 @@ const PostSchema = new mongoose.Schema({
     },
     counting: {
         type: Number 
+    },
+    date: {
+        type:String
     }
 });
 

@@ -90,6 +90,20 @@ export default function CreatePost(props) {
     return links;
   }
 
+  function getDDMMYYYY()
+  {
+    let today = new Date();
+    const yyyy = today.getFullYear();
+    let mm = today.getMonth() + 1; // Months start at 0!
+    let dd = today.getDate();
+
+    if (dd < 10) dd = '0' + dd;
+    if (mm < 10) mm = '0' + mm;
+
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -117,6 +131,7 @@ export default function CreatePost(props) {
                 photos: firebaseLinks,
                 _category: data.get("category"),
                 _workerinfo: props.user._id,
+                date: getDDMMYYYY()
               };
 
               const res = InsertPost(post);

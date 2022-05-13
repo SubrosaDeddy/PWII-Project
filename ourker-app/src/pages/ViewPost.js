@@ -61,9 +61,9 @@ export default function ViewPost() {
     <Grid sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"calc(100vh - 64px)"}}>
         <Box height={'15px'}/>
         <Paper elevation={3} sx={{p:2, margin: 'auto', maxWidth: "50%", flexGrow: 1, top: 9, backgroundColor: (theme) =>theme.palette.mode === 'dark' ? '#1A2027' : '#fff'}}>
-            <Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>
-                            29/03/2022
-            </Typography>
+            {post && (<Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>
+                            {post.date}
+            </Typography>)}
 
             <Grid container spacing={1} xl={10} m={'auto'} sx={{display: "flex", alignItems: "center", justifyContent:"center"}}>
                 <Box component="form" noValidate>
