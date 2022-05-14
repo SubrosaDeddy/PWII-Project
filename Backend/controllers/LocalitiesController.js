@@ -33,27 +33,35 @@ exports.locality_create = async(req, res) =>{
     }
    
 }
-
+ 
 exports.locality_getById = async(req, res) =>{
     const {id} = req.params;
     const data = await Locality.findById(id);
-
+try {
     if(data){
         res.send(data);
     }else{
         res.send({message: "Error, no se encontro el registro"});
     }
+} catch (error) {
+    res.send(error);
+}
+   
 
 }
 
 exports.locality_getByName = async(req, res) =>{
     const {id} = req.params; 
     const data = await Locality.findOne({city: id});
+    try{
 
-    if(data){
-        res.send(data._id);
-    }else{
-        res.send({message: "Error, no se encontro el registro"});
+        if(data){
+            res.send(data._id);
+        }else{
+            res.send({message: "Error, no se encontro el registro"});
+        }
+    }catch(e){
+        res.send(e)
     }
 }
 

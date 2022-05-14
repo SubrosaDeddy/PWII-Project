@@ -16,7 +16,10 @@ import SelectOccupations from "./SelectOccupations";
 import SelectLocalities from "./SelectLocalities";
 
 import { GetLocalities } from "../services/LocalitiesServices";
-import { GetWorkersbyLocalities } from "../services/WorkerService";
+import {
+  GetWorkersbyLocalities,
+  GetWorkersbyLocationsOcupations,
+} from "../services/WorkerService";
 import { GetWorkersbyOcupations } from "../services/WorkerService";
 import Search from "../pages/Search";
 
@@ -27,43 +30,74 @@ export default function SearchBar(props) {
   const [SOcup, setSOcup] = useState("");
 
   const [dataLoc, setDataLoc] = useState([]);
-  const [dataLocCopy, setDataLocCopy] = useState([]);
+  const [dataOc, setDataOc] = useState([]);
+  const [dataLocOc, setDataLocOc] = useState([]);
 
-  // console.log(SLoc);
 
-  const SendData = async () =>{
-    async function fetchLocalities(){
-    
-      const infoLocalities = await GetWorkersbyLocalities(SLoc);
-      setDataLoc(infoLocalities);
+  const SendData = async () => {
+    try {
+      // Localidades
+      async function fetchLocalities() {
+        const infoLocalities = await GetWorkersbyLocalities(SLoc);
+        setDataLoc(infoLocalities);
+      }
+
+      if (SLoc) {
+        fetchLocalities();
+      }
+
+      // Ocupaciones
+      async function fetchOccupations(){
+        const infoOccupation = await GetWorkersbyOcupations(SOcup);
+        setDataOc(infoOccupation);
+      }
+
+      if(SOcup){
+        fetchOccupations();
+      }
+
+      // Localidades y ocupaciones
+      async function fetchData() {
+        const infoData = await GetWorkersbyLocationsOcupations(SLoc, SOcup);
+        setDataLocOc(infoData);
+      }
+
+      if (SLoc && SOcup) {
+          fetchData();
+      }
+
+    } catch (error) {
+      console.log(error);
     }
+  };
 
-    if(SLoc != null){
-      fetchLocalities()
-    }
-  }
+  useEffect(() => {
+    SendData();
+  }, [SLoc, SOcup]);
 
-  useEffect(() =>{
-  //       const fetchLocalities = async() =>{
-  //         const DataLocalities = await GetWorkersbyLocalities(SLoc);
-  //         setDataLoc(DataLocalities);
-  //       }
-  //       fetchLocalities();
-  SendData();
-  },[SLoc]);
- 
+  function funciones() {
 
- function funciones() {
-    // data();
-    if(SLoc != undefined){
+    if (
+      SLoc != undefined &&
+      SLoc != null &&
+      SOcup != undefined &&
+      SOcup != null
+    ) {
       SendData();
-      // console.log(dataLoc)
-      navigate("/Search", {state: {data: dataLoc, busqueda: SLoc}});
-    }
+      navigate("/Search", {
+        state: { data: dataLocOc, busqueda: SLoc + " y " + SOcup },
+      });
+    } else {
+      
+      if (SLoc != undefined && SLoc != null) {
+        SendData();
+        navigate("/Search", { state: { data: dataLoc, busqueda: SLoc} });
+      } 
+      if (SOcup != undefined && SOcup !=null) {
+          SendData();
+          navigate("/Search", { state: { data: dataOc, busqueda: SOcup } });
+      }
 
-    if(SOcup != undefined){
-      // props.setInfoOcc(SOcup);  
-      navigate("/Search");
     }
   }
 
@@ -123,21 +157,11 @@ export default function SearchBar(props) {
       </Grid>
 
       <Grid item xs={12} lg={1} sx={{ p: 0, m: "auto", textAlign: "center" }}>
-        {SLoc != undefined && (
-          <Button onClick={() => funciones()}>
-            <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
-              <SearchIcon />
-            </SearchIconWrapper>
-          </Button>
-        )}
-
-        {SLoc == undefined && (
-          <Button>
-            <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
-              <SearchIcon />
-            </SearchIconWrapper>
-          </Button>
-        )}
+        <Button onClick={() => funciones()}>
+          <SearchIconWrapper sx={{ position: "relative", my: 1 }}>
+            <SearchIcon />
+          </SearchIconWrapper>
+        </Button>
       </Grid>
     </Grid>
   );

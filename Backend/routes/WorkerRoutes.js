@@ -11,12 +11,12 @@ router.delete("/worker/:id", worker_controller.worker_delete);
 
 
 router.get("/worker//address/:id", worker_controller.worker_localities);
-router.get("/worker/ocupation/:id", worker_controller.worker_ocupation);
+router.get("/worker//ocupation/:id", worker_controller.worker_ocupation);
 
 router.get("/worker/info/:id", worker_controller.worker_getByEmailValidation);
 router.get("/worker/data/:id", worker_controller.getUserinfo);
 
-router.get("/worker/data//:localidad/:ocupacion", worker_controller.getWorker_Localities_Ocupation);
+router.get("/worker//data//:localidad/:ocupacion", worker_controller.getWorker_Localities_Ocupation);
 
 //------OBTENER LA PUBLICACION POR LOCALIDAD Y OCUPACION------//
 

@@ -5,11 +5,10 @@ import { color_one } from "../utils/Themes";
 import SearchBar from "../components/SearchBar";
 import { useLocation, useNavigate } from "react-router-dom";
 import SearchResults from "../components/SearchResults";
-import { useEffect, useState,useRef  } from "react";
+import { useEffect, useState, useRef } from "react";
 import { GetWorkersbyLocalities } from "../services/WorkerService";
 
 export default function Search(props) {
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -19,44 +18,16 @@ export default function Search(props) {
   const [dataL, setDataLoc] = useState([]);
   const [dataOc, setDataOc] = useState([]);
 
-  let Arr = []; 
-
-//  async function Data(){
-//     const DataLocalities = await GetWorkersbyLocalities(location.state.name);
-//     DataLocalities.arr.forEach(loc => {
-//       Arr.push(loc);
-//     }); 
- 
-//     setDataLoc(Arr); 
-//   }
-    
-  // useEffect(() =>{
-      // const fetchLocalities = async() =>{
-      //   const DataLocalities = await GetWorkersbyLocalities(location.state.name);
-      //   DataLocalities.arr.forEach(loc => {
-      //     Arr.push(loc);
-      //   });   
-      //   // setDataLoc(Arr);
-
-      // }
-      // fetchLocalities();
-      // const interval=setInterval(()=>{
-      //   Data();
-      //  },10000)
-      //  return()=>clearInterval(interval) 
-      // Data();
-  // });
- 
-  if(location.state.data != undefined){ 
+  let Arr = [];
+  if (location.state.data != undefined) {
     console.log(location.state.data);
-    // setDataLoc(location.state.data);
-  } 
+  }
   return (
     <Box
       sx={{
         backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
         overflow: "hidden",
-        height: "100vh",
+        minHeight: "calc(100vh - 64px)",
         width: "100%",
         m: 0,
         p: 0,
@@ -84,25 +55,30 @@ export default function Search(props) {
               justifyContent: "center",
             }}
           >
-            <SearchBar setInfoLoc={setLoc} setInfoOcc ={setOc} />
-            {/* <SearchBar /> */}
+            <SearchBar setInfoLoc={setLoc} setInfoOcc={setOc} />
           </Grid>
-        </Container> 
-            {location.state.busqueda != "" && (
-              <Typography variant="h4" sx={{ marginLeft: "20px", textTransform: 'uppercase' }}> Buscando por: {location.state.busqueda}</Typography>
-            )}
-            <p></p>
-            {location.state.data != "" && (
-              <Typography  variant="h4" item sx={{ marginLeft: "40px", textTransform: 'uppercase' }}> Resultados: {location.state.data.arr.length}</Typography>
-            )}
-
-
-        {/* {location.state.name != null && ( 
-          <Typography> {location.state.name}</Typography>
-        )} */}
-      
-
-        <SearchResults setLocalities ={location.state.data} setOc={occ}/>
+        </Container>
+        {location.state.busqueda != "" && (
+          <Typography
+            variant="h4"
+            sx={{ marginLeft: "20px", textTransform: "uppercase" }}
+          >
+            {" "}
+            Buscando por: {location.state.busqueda}
+          </Typography>
+        )}
+        <p></p>
+        {location.state.data != "" && (
+          <Typography
+            variant="h4"
+            item
+            sx={{ marginLeft: "40px", textTransform: "uppercase" }}
+          >
+            {" "}
+            Resultados: {location.state.data.arr.length}
+          </Typography>
+        )}
+        <SearchResults setData={location.state.data} />
       </Grid>
     </Box>
   );

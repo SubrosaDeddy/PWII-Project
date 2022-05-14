@@ -104,15 +104,20 @@ exports.worker_ocupation = async (req, res) => {
   const data = await Worker.find({ _ocupations: id }).populate("_userinfo");
   let arr = [];
   
-  if (data) {
-    for(let i= 0; i<data.length; i++){
-      arr.push(data[i]);
+  try{
+    if (data) {
+      for(let i= 0; i<data.length; i++){
+        arr.push(data[i]);
+      }
+      res.send({arr, conteo: arr.length});
+      //res.send(data);
+    } else {
+      res.send({ message: "Error, no se encontro el registro" });
     }
-    res.send({arr, conteo: arr.length});
-    //res.send(data);
-  } else {
-    res.send({ message: "Error, no se encontro el registro" });
+  }catch(e){
+    res.send(e);
   }
+  
 };
 
 exports.worker_getByEmailValidation = async (req, res) => {
@@ -199,21 +204,21 @@ exports.getWorker_Localities_Ocupation = async (req, res) =>{
   const data_localities = await Worker.find().populate("_userinfo");
   // const data_ocupation = await Worker.find({_ocupations: id_ocupation}).populate("_userinfo");
 
-  let localities =[];
+  let arr =[];
+  // let arr = [];
   // let ocupations =[];
   // let result =[];
 
   try {
       if(data_localities){
-        console.log(data_localities.length)
         for(let i = 0; i< data_localities.length; i++){
           if(data_localities[i]._userinfo != null){
             if(data_localities[i]._userinfo._address == id_localities && data_localities[i]._ocupations == id_ocupation){
-              localities.push(data_localities[i]);
+              arr.push(data_localities[i]);
             }
           }
         }
-        res.send({localities, conteo: localities.length});
+        res.send({arr, conteo: arr.length});
       }else {
         res.send("No hay nada");
       }

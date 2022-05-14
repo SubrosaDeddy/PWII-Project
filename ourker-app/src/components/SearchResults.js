@@ -26,27 +26,30 @@ const LightTooltip = styled(({ className, ...props }) => (
 export default function SearchResults(props) {
   //console.log(props.work);
   const navigate = useNavigate();
-  
-  if(props.setLocalities != null){
-  }
-
-  console.log("setLocalities");
-  console.log(props.setLocalities);
-  console.log(props.setLocalities.arr.length);
   return (
-
-    <Container sx={{ height: "650px", overflowY: "scroll", marginTop: "25px" }}>
+    <Container
+      sx={{
+        height: "55vh",
+        overflowY: "scroll",
+        marginTop: "25px",
+      }}
+    >
       <Grid
         container
-        sx={{ px: "30px", py: "15px", my: "15px", borderRadius: "15px" }}
-      ></Grid>
-        
-      {/* <LightTooltip title="Ir al perfil" arrow>
+        sx={{
+          px: "30px",
+          py: "15px",
+          my: "15px",
+          borderRadius: "15px",
+          overflow: "auto",
+        }}
+      >
+        {/* <LightTooltip title="Ir al perfil" arrow>
         <Grid
           container
           // onClick={() => navigate("/Perfil")}
-          sx={{
-            px: "30px",
+          sx={{ 
+            px: "30px", 
             py: "15px",
             my: "15px",
             backgroundColor: "#94C6FF",
@@ -72,43 +75,49 @@ export default function SearchResults(props) {
         </Grid>
       </LightTooltip> */}
 
-      {props.setLocalities && (
-        props.setLocalities.arr.map((data, index) =>{
-          return(
-            <LightTooltip title="Ir al perfil" arrow>
-            <Grid
-              container
-              // onClick={() => navigate("/Perfil")}
-              sx={{
-                px: "30px",
-                py: "15px",
-                my: "15px",
-                backgroundColor: "#94C6FF",
-                borderRadius: "15px",
-              }}
-            >
-              <Avatar
-                item
-                xs={5}
-                sx={{ m: "5px", width: "30px", height: "30px" }}
-                src={data._userinfo.profilepicture}
-              ></Avatar>
-              <Typography item xs={7} sx={{ marginLeft: "15px", my: "auto" }}>
-                {props.setLocalities && (
-                  <strong> {data._userinfo.username}</strong>
-                )}
-              </Typography>
-              <br/>
-              <Typography item sx={{ marginLeft: "15px", marginTop: "10px" }}>
-                {data.description}
-              </Typography>
-            </Grid>
+        {props.setData &&
+          props.setData.arr.map((data, index) => {
+            return (
+              <LightTooltip title="Ir al perfil" arrow>
+                <Grid
+                  container
+                  // onClick={() => navigate("/Perfil")}
 
-            
-          </LightTooltip>
-          )
-        })
-      )}
+                  sx={{
+                    px: "30px",
+                    py: "15px",
+                    my: "15px",
+                    backgroundColor: "#94C6FF",
+                    borderRadius: "15px",
+                  }}
+                >
+                  <Avatar
+                    item
+                    xs={5}
+                    sx={{ m: "5px", width: "30px", height: "30px" }}
+                    src={data._userinfo.profilepicture}
+                  ></Avatar>
+                  <Typography
+                    item
+                    xs={7}
+                    sx={{ marginLeft: "15px", my: "auto" }}
+                  >
+                    {props.setData && (
+                      <strong> {data._userinfo.username}</strong>
+                    )}
+                  </Typography>
+                  <br />
+                  <Typography
+                    item
+                    sx={{ marginLeft: "15px", marginTop: "10px" }}
+                  >
+                    {data.description}
+                  </Typography>
+                </Grid>
+              </LightTooltip> 
+            );
+          })}
+      </Grid>
     </Container>
   );
 }
