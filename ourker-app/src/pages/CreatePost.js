@@ -6,6 +6,7 @@ import SendIcon from "@mui/icons-material/Send";
 import {
   Alert,
   Autocomplete,
+  bottomNavigationClasses,
   Box,
   Button,
   Card,
@@ -21,6 +22,7 @@ import { Typography } from "@material-ui/core";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import storage from "../firebase"
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
   typography: {
@@ -43,6 +45,8 @@ let imagesFileArr = [];
 export default function CreatePost(props) {
   const options = ["Mecánico", "Carpintero"];
   const [images, setImages] = useState([]);
+  const navigate = useNavigate();
+
 
   function addImage(e)
   {
@@ -141,6 +145,7 @@ export default function CreatePost(props) {
                 if (!value.error) {
                   post = new Post(value);
                   alert("Publicación creada exitosamente");
+                  navigate("/");
                 } else {
                   alert("Error");
                 }
