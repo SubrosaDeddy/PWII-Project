@@ -164,14 +164,6 @@ export default function Search(props) {
               <PostsComponent dataW ={props.user._id} />
             )}
           </Grid>
-          <Tooltip title="Ver Reportes">
-            <Button onClick={(e) => navigate("/Report")}>
-              <SummarizeTwoToneIcon
-                fontSize="large"
-                sx={{ marginTop: "30%" }}
-              />
-            </Button>
-          </Tooltip>
         </Box>
       </Box>
     </React.Fragment>

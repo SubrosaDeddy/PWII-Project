@@ -44,7 +44,7 @@ export default function SelectLocalities(props) {
             mx: 0.5,
             
             }}
-            renderInput={(params) => <TextField {...params} label="Localidades" name="Localidades"/>}
+            renderInput={(params) => <TextField {...params} label="Localidades" name="Localidades" required/>}
             
         />
         

@@ -8,6 +8,9 @@ import SearchResults from "../components/SearchResults";
 import { useEffect, useState, useRef } from "react";
 import { GetWorkersbyLocalities } from "../services/WorkerService";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+
 export default function Search(props) {
   const location = useLocation();
   const navigate = useNavigate();
@@ -22,7 +25,21 @@ export default function Search(props) {
   if (location.state.data != undefined) {
     console.log(location.state.data);
   }
+
+
+  const theme = createTheme({
+    typography: {
+      allVariants: {
+        fontfamily: "Lexend Deca",
+        textTransform: "none",
+        fontSize: 14,
+        fontWeight: 700,
+      },
+    },
+  });
+
   return (
+    <ThemeProvider theme={theme}>
     <Box
       sx={{
         backgroundImage: "linear-gradient(to top, #04448c,#00236f)",
@@ -60,8 +77,9 @@ export default function Search(props) {
         </Container>
         {location.state.busqueda != "" && (
           <Typography
+          fontfamily= "Lexend Deca"
             variant="h4"
-            sx={{ marginLeft: "20px", textTransform: "uppercase" }}
+            sx={{ marginLeft: "20px",  fontfamily: "Lexend Deca", textTransform: "uppercase", textAlign:"center", fontWeight:"bold", fontSize:25, margin:"auto"}}
           >
             {" "}
             Buscando por: {location.state.busqueda}
@@ -70,9 +88,10 @@ export default function Search(props) {
         <p></p>
         {location.state.data != "" && (
           <Typography
+          fontfamily= "Lexend Deca"
             variant="h4"
             item
-            sx={{ marginLeft: "40px", textTransform: "uppercase" }}
+            sx={{ marginLeft: "40px", fontfamily: "Lexend Deca", textTransform: "uppercase", textAlign:"center", fontWeight:"bold", fontSize:25, margin:"auto" }}
           >
             {" "}
             Resultados: {location.state.data.arr.length}
@@ -81,5 +100,6 @@ export default function Search(props) {
         <SearchResults setData={location.state.data} />
       </Grid>
     </Box>
+    </ThemeProvider>
   );
 }

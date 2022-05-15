@@ -46,7 +46,7 @@ export default function SelectOccupations(props) {
           mx: 0.5,
         }}
         renderInput={(params) => (
-          <TextField {...params} label="Ocupación" name="Ocupacion" />
+          <TextField {...params} label="Ocupación" name="Ocupacion" required/>
         )}
       />
   );

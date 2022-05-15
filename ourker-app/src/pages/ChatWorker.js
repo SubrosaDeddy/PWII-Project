@@ -217,7 +217,6 @@ export default function ChatWorker(props) {
           >
             <Box
               component="form"
-              noValidate
               onSubmit={handleSubmit}
               sx={{
                 display: "grid",
@@ -232,7 +231,9 @@ export default function ChatWorker(props) {
                   label="Escribe un mensaje"
                   multiline
                   name="message"
+                  required
                   fullWidth
+                  inputProps={{ minLength: 1}}
                 />
               </Box>
 
@@ -246,13 +247,7 @@ export default function ChatWorker(props) {
                 </Button>
               </Box>
 
-              <Box sx={{ gridColumn: "20/20" }}>
-                <Tooltip title="Crear Reporte">
-                  <Button onClick={(e) => navigate("/CreateReport")}>
-                    <PublishTwoToneIcon sx={{ marginTop: "30%" }} />
-                  </Button>
-                </Tooltip>
-              </Box>
+              
               
             </Box>
           </Grid>

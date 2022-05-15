@@ -145,20 +145,20 @@ export default function Home(props) {
                 Te ayudamos a encontrar un trabajador que resuelva tu problema
               </Typography>
               <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
-                <CheckIcon sx={{ color: color_one.primary.main }} /> Busca
-                trabajadores para tu proyecto planeado
-              </Typography>
-              <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
-                <CheckIcon sx={{ color: color_one.primary.main }} />{" "}
-                Profesionistas cerca de tu area
-              </Typography>
-              <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
                 <CheckIcon sx={{ color: color_one.primary.main }} /> Crea tu
                 perfil y comienza a buscar profesionistas
               </Typography>
               <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
+                <CheckIcon sx={{ color: color_one.primary.main }} /> Busca
+                trabajadores para tu proyecto planeado
+              </Typography>
+              <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
                 <CheckIcon sx={{ color: color_one.primary.main }} /> Compara,
                 contacta y califica trabajos
+              </Typography>
+              <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
+                <CheckIcon sx={{ color: color_one.primary.main }} />{" "}
+                Profesionistas cerca de tu area
               </Typography>
               <Typography sx={{ px: 1, fontSize: 18, fontWeight: "lighter" }}>
                 <CheckIcon sx={{ color: color_one.primary.main }} />{" "}

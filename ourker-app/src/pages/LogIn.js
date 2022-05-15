@@ -69,12 +69,12 @@ export default function LogIn(props) {
       }
       else
       {
-        alert("tekivocaste menso");
+        alert("No se encontró la cuenta ingresada");
       }
     }
     else
     {
-      alert("Nos ekivokamos menso");
+      alert("No se encontró la cuenta ingresada");
     }
   };
 
@@ -122,7 +122,6 @@ export default function LogIn(props) {
             </Typography>
             <Box
               component="form"
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -135,6 +134,7 @@ export default function LogIn(props) {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                inputProps={{ minLength: 10, maxLength: 100, pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"}}
               />
               <TextField
                 margin="normal"
@@ -145,6 +145,7 @@ export default function LogIn(props) {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputProps={{ minLength: 10, maxLength: 100}}
               />
               <Button
                 type="submit"

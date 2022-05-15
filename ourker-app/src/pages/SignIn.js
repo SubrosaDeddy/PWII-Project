@@ -109,9 +109,12 @@ export default function SignIn(props) {
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
+   
+    event.preventDefault();
+   
     if (selectedImage != null)
      {
-      event.preventDefault();
+      
 
       const uploadTask = storage
         .ref(`/imagesUser/${selectedImage.name}`)
@@ -258,7 +261,6 @@ export default function SignIn(props) {
           >
             <Box
               component="form"
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -307,6 +309,7 @@ export default function SignIn(props) {
                     name="fullname"
                     autoComplete="name"
                     autoFocus
+                    inputProps={{ minLength: 10, maxLength: 100}}
                   />
                 </Grid>
 
@@ -320,6 +323,7 @@ export default function SignIn(props) {
                     name="username"
                     autoComplete="name"
                     autoFocus
+                    inputProps={{ minLength: 5, maxLength: 50}}
                   />
                 </Grid>
 
@@ -333,6 +337,7 @@ export default function SignIn(props) {
                     name="email"
                     autoComplete="email"
                     autoFocus
+                    inputProps={{ minLength: 10, maxLength: 100, pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"}}
                   />
                 </Grid>
 
@@ -346,13 +351,14 @@ export default function SignIn(props) {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    inputProps={{ minLength: 10, maxLength: 100}}
                   />
                 </Grid>
 
                 <Grid item xs={12}>
                   <SelectLocalities getLocValue= {setLocalities}/>
                 </Grid>
-
+                
                 <input value={url} name="ImageUser" hidden></input>
 
                 <Grid item xs={12}>
@@ -382,6 +388,7 @@ export default function SignIn(props) {
                       fullWidth
                       maxRows={5}
                       rows={5}
+                      inputProps={{ minLength: 10, maxLength: 300}}
                     />
                   </Grid>
                 )}

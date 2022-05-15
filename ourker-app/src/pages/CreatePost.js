@@ -191,7 +191,6 @@ export default function CreatePost(props) {
             >
               <Box
                 component="form"
-                noValidate
                 sx={{ backgroundColor: color_one.primary.secondary }}
                 onSubmit={handleSubmit}
               >
@@ -204,6 +203,7 @@ export default function CreatePost(props) {
                   variant="outlined"
                   required
                   fullWidth
+                  inputProps={{ minLength: 5, maxLength: 100}}
                 />
                 <TextField
                   margin="normal"
@@ -215,6 +215,7 @@ export default function CreatePost(props) {
                   multiline
                   fullWidth
                   maxRows={5}
+                  inputProps={{ minLength: 10, maxLength: 500}}
                 />
                 <Autocomplete
                   options={options}
@@ -269,6 +270,8 @@ export default function CreatePost(props) {
                   type="file"
                   accept="image/*"
                   onChange={(e) => addImage(e.target.files[0])}
+                  required
+                  
               />
               <br />
               <Fab color="primary" size="big" component="span" aria-label="add">
