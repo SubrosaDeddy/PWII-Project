@@ -23,6 +23,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 import storage from "../firebase"
 import { useNavigate } from "react-router-dom";
+import { GetAllCategories } from "../services/CategoryService";
 
 const theme = createTheme({
   typography: {
@@ -47,6 +48,21 @@ export default function CreatePost(props) {
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
 
+  const [categories, setCategories] = useState();
+
+  useEffect(() =>{
+    async function fetchCategories(){
+      let CatArr = [];
+      const dataCat = await GetAllCategories();
+      dataCat.data.forEach(ca =>{
+        CatArr.push(ca.name);
+      });
+      setCategories(CatArr);
+      // console.log(dataCat);
+    }
+
+    fetchCategories();
+  }, [])
 
   function addImage(e)
   {
@@ -218,7 +234,7 @@ export default function CreatePost(props) {
                   inputProps={{ minLength: 10, maxLength: 500}}
                 />
                 <Autocomplete
-                  options={options}
+                  options={categories}
                   sx={{ mx: "auto" }}
                   renderInput={(params) => (
                     <TextField

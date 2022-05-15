@@ -21,11 +21,11 @@ export const GetCategory = async (inputID) =>
     }
 }
 
-export const GetAll = async() =>
+export const GetAllCategories = async() =>
 {
     try 
     {
-        const response = axios.get(`api/category`);
+        const response = axios.get(`/category`);
         return response;    
     } 
     catch (err) 
