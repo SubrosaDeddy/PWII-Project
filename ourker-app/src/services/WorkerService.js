@@ -52,25 +52,55 @@ export const UpdateWorker = async(inputWorker) =>{
     }
 }
 
-// Sin probar 
-export const GetWorkersbyLocalities = async (inputID) =>{
+// Obtener las publicaciones por localidad 
+export const GetWorkersbyLocalities = async (inputID) =>{ 
     try {
         const Localidad = await GetLocalities(inputID);
-        inputID = Localidad
+        inputID = Localidad;
+        // console.log(Localidad);
         
         const response = await axios.get(`/worker//address/${inputID}`);
-        console.log(response.data)
+        // console.log(response.data)
         return response.data;
     } catch (error) {
         return error;
     }
 }
 
-// export const GetWorkersbyOcupations = async (inputID) =>{
-//     try {
-//         const response = await axios.get(`/worker/ocupation/${inputID}`);
-//         return response.data;
-//     } catch (error) {
-//         return error;
-//     }
-// }
+
+// Obtener las publicaciones por ocupación
+export const GetWorkersbyOcupations = async (inputID) =>{
+     try {
+
+        const Ocupacion = await GetOccupation(inputID);
+        inputID = Ocupacion
+
+        const response = await axios.get(`/worker//ocupation/${inputID}`);
+        // console.log(response.data)
+        return response.data;
+        
+     } catch (error) {
+         return error;
+    }
+ }
+
+
+ // Obtener las publicaciones por ocupación y localidad
+export const GetWorkersbyLocationsOcupations = async (inputID, inputID2) =>{
+    try {
+
+
+       const Localidad = await GetLocalities(inputID);
+       inputID = Localidad
+
+       const Ocupacion = await GetOccupation(inputID2);
+       inputID2 = Ocupacion
+
+       const response = await axios.get(`/worker//data//${inputID}/${inputID2}`);
+       return response.data;
+
+    } catch (error) {
+        return error;
+   }
+}
+

@@ -75,10 +75,14 @@ exports.ocupation_delete = async (req, res) =>{
 exports.ocupation_getByName = async(req, res) =>{
     const {id} = req.params; 
     const data = await Ocupation.findOne({title: id});
-
+try{
     if(data){
         res.send(data._id);
     }else{
         res.send({message: "Error, no se encontro el registro"});
     }
+}catch(e){
+    res.send(e);
+}
+  
 }

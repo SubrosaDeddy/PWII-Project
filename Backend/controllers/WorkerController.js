@@ -99,14 +99,25 @@ exports.worker_localities = async (req, res) => {
 };
 
 exports.worker_ocupation = async (req, res) => {
-  const { id } = req.params;
-  const data = await Worker.find({ _ocupations: id }).populate("_ocupations");
 
-  if (data) {
-    res.send(data);
-  } else {
-    res.send({ message: "Error, no se encontro el registro" });
+  const { id } = req.params;
+  const data = await Worker.find({ _ocupations: id }).populate("_userinfo");
+  let arr = [];
+  
+  try{
+    if (data) {
+      for(let i= 0; i<data.length; i++){
+        arr.push(data[i]);
+      }
+      res.send({arr, conteo: arr.length});
+      //res.send(data);
+    } else {
+      res.send({ message: "Error, no se encontro el registro" });
+    }
+  }catch(e){
+    res.send(e);
   }
+  
 };
 
 exports.worker_getByEmailValidation = async (req, res) => {
@@ -138,3 +149,102 @@ exports.getUserinfo = async (req, res) => {
     res.send("No existe el usuario");
   }
 };
+
+
+//-------TRAER PUBLICACION POR LOCALIDAD Y OCUPACION VALIDAR QUE COINCIDAN()-------//
+
+exports.worker_localities_occupations = async (req, res) => {
+  
+  const {id}=req.params;
+  const {id2}=req.params;
+
+  const data = await Worker.find().populate("_userinfo");
+  let arr = [];
+
+  try {
+    if (data) {
+
+      for (let i = 0; i < data.length; i++) {
+
+        if (data[i]._userinfo != null) {
+
+          if (data[i]._userinfo._address == id && data[i]._userinfo._ocupations == id2) {
+
+            arr.push(data[i]);
+
+          }else if(data[i]._userinfo._address == id){
+
+            arr.push(data[i]);
+
+          }else if(data[i]._userinfo._ocupations== id2){
+
+            arr.push(data[i]);
+
+          }
+        }
+      }
+
+      res.send({arr, conteo: arr.length});
+    } else {
+      res.send("No hay datos");
+    }
+  } catch (e) {
+    res.send(e);
+  }
+};
+
+
+exports.getWorker_Localities_Ocupation = async (req, res) =>{
+
+  const id_localities = req.params.localidad;
+  const id_ocupation = req.params.ocupacion;
+
+  // console.log(req.params.localidad);
+  // console.log(req.params.ocupacion);
+  const data_localities = await Worker.find().populate("_userinfo");
+  // const data_ocupation = await Worker.find({_ocupations: id_ocupation}).populate("_userinfo");
+
+  let arr =[];
+  // let arr = [];
+  // let ocupations =[];
+  // let result =[];
+
+  try {
+      if(data_localities){
+        for(let i = 0; i< data_localities.length; i++){
+          if(data_localities[i]._userinfo != null){
+            if(data_localities[i]._userinfo._address == id_localities && data_localities[i]._ocupations == id_ocupation){
+              arr.push(data_localities[i]);
+            }
+          }
+        }
+        res.send({arr, conteo: arr.length});
+      }else {
+        res.send("No hay nada");
+      }
+
+      // if(data_ocupation){
+      //   for(let i= 0; i<data_ocupation.length; i++){
+      //     ocupations.push(data_ocupation[i]);
+      //   }
+      // }
+
+      // let Arr1 = [... new Set(localities)];
+      // let Arr2 = [... new Set(ocupations)];
+
+      // let Arr3 = Arr1.concat(Arr2);
+
+
+      // for(let i=0; i< Arr3.length; i++){
+      //   result.push(Arr3[i]);
+      // }
+
+      // let arr = [...new Set(result)]
+
+      // res.send({arr, conteo: arr.length});
+     
+
+  } catch (error) { 
+    res.send(error);
+  }
+}

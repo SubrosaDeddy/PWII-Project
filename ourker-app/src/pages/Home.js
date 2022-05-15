@@ -16,9 +16,14 @@ import { useNavigate } from "react-router-dom";
 import { Tooltip } from "@material-ui/core";
 import { GetLocalities } from "../services/LocalitiesServices";
 
+
 const useStyles = makeStyles({});
 
+
 export default function Home(props) {
+
+  const [loc, setLoc] = useState("");
+
   const navigate = useNavigate();
 
   return (
@@ -54,7 +59,7 @@ export default function Home(props) {
           Te ayudamos a encontrar a la persona indicada para tu trabajo.
         </Typography>
 
-        <SearchBar />
+        <SearchBar  setInfoLoc={setLoc}/>
       </Grid>
 
       <Box
