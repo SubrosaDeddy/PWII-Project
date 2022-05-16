@@ -7,7 +7,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import { color_one } from "../utils/Themes";
 import Tooltip from "@mui/material/Tooltip";
-import { useNavigate } from "react-router-dom";
+import {useNavigate, useLocation} from "react-router-dom";
 import SummarizeTwoToneIcon from "@mui/icons-material/SummarizeTwoTone";
 import PostsComponent from "../components/PostsComponent";
 import { GetWorkerByEmailValidation } from "../services/WorkerService";
@@ -20,6 +20,9 @@ export default function Search(props) {
   const [dataOc, setDataOc] = useState();
   const [dataLc, setDataLc] = useState();
 
+  const location = useLocation();
+
+
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
@@ -28,24 +31,24 @@ export default function Search(props) {
 
   useEffect(() => {
     async function fetchWorker() {
-      const worker = await GetWorkerByEmailValidation(props.user.email);
+      const worker = await GetWorkerByEmailValidation(location.state.dataUser.email);
 
       if (worker._id == null) {
-        alert("No eres trabajador");
-        const localities = await GetLocalitiesById(props.user._address);
+        // alert("No eres trabajador");
+        const localities = await GetLocalitiesById(location.state.dataUser._address);
         if(localities) {
           setDataLc(localities);
         }
       } 
       else {
-        alert("Si eres trabajador");
+        // alert("Si eres trabajador");
         setDataW(worker);
         const occupation = await GetByIdOccupation(worker._ocupations);
         if (occupation) {
           setDataOc(occupation);
         }
 
-        const localities = await GetLocalitiesById(props.user._address);
+        const localities = await GetLocalitiesById(location.state.dataUser._address);
         if(localities) {
           setDataLc(localities);
         }
@@ -55,7 +58,6 @@ export default function Search(props) {
     fetchWorker();
   }, []);
 
-  // if (props.user) {
   return (
     <React.Fragment>
       <Box
@@ -87,13 +89,14 @@ export default function Search(props) {
                   maxHeight: 150,
                   borderRadius: "50%",
                 }}
-                image={props.user.profilepicture}
+                // image={props.user.profilepicture}
+                image ={location.state.dataUser.profilepicture}
                 alt="Live from space album cover"
               />
             </Grid>
             <Grid item xs={6}>
               <Typography sx={{ marginRight: "50px", color: "black" }}>
-                {props.user.username}
+                {location.state.dataUser.username}
               </Typography>
               <Typography
                 variant="subtitle1"
@@ -122,16 +125,18 @@ export default function Search(props) {
                 image="Check.png"
                 alt="Live from space album cover"
               />
-              <CardActions sx={{ mx: "auto" }}>
-                <Button
-                  size="small"
-                  variant="contained"
-                  onClick={(e) => navigate("/Chat")}
-                  sx={{ mx: "auto" }}
-                >
-                  Contactar
-                </Button>
-              </CardActions>
+              {location.state.dataUser._id != props.user._id && props.user._id !=null &&(
+                  <CardActions sx={{ mx: "auto" }}>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    onClick={(e) => navigate("/Chat", {state: {idUserProfile: location.state.dataUser}})}
+                    sx={{ mx: "auto" }}
+                  >
+                    Contactar
+                  </Button>
+                  </CardActions>
+              )}
             </Grid>
 
             <Grid
@@ -160,8 +165,9 @@ export default function Search(props) {
                 </Typography>
               </Box>
             </Grid>
+
             {dataWorker && (
-              <PostsComponent dataW ={props.user._id} />
+              <PostsComponent dataW ={location.state.dataUser._id} />
             )}
           </Grid>
         </Box>

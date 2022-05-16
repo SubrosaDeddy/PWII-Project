@@ -124,7 +124,7 @@ export default function NavBar(props) {
               anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
             >
               { props.work && (
-                <MenuItem onClick={() => navigate("/Perfil")}>
+                <MenuItem onClick={() => navigate("/Perfil", {state: {dataUser: props.user}})}>
                   <ListItemIcon>
                     <PersonIcon fontSize="small" />
                   </ListItemIcon>
@@ -137,7 +137,7 @@ export default function NavBar(props) {
                 </ListItemIcon>
                 EditProfile
               </MenuItem>
-              <MenuItem onClick={() => navigate("/Chat")}>
+              <MenuItem onClick={() => navigate("/Chat", {state: {idUserProfile: null}})}>
                 <ListItemIcon>
                   <MailIcon fontSize="small" />
                 </ListItemIcon>

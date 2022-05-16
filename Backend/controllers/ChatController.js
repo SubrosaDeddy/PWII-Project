@@ -102,26 +102,13 @@ exports.mychats = async (req, res) =>{
 
         let Arr1 = [...new Set(chats)];
 
-        let Arr2 = [...new Set(chats)];
+        let Arr2 = [...new Set(chats2)];
 
         let Arr3 = Arr1.concat(Arr2);
 
-        for(let i=0; i< Arr3.length; i++){
-            resultArr.push(Arr3[i]);
-        }
+        const unique = [... new Map(Arr3.map(item => [JSON.stringify(item), item])).values()];
 
-        
-
-        // let set = new Set([...chats, ...chats2]);
-
-        // let newArray = [...set];
-
-         let unique =[...new Set(resultArr)];
-
-        // let unique2 =[...new Set(unique)];
-
-        res.send({unique, conteo: unique.length})
-        // res.send({chats, conteo: chats.length})
+        res.send({unique, conteo: unique.length});
         
     } catch (error) {
         res.send(error);

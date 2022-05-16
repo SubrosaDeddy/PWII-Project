@@ -81,7 +81,7 @@ export default function SearchResults(props) {
               <LightTooltip title="Ir al perfil" arrow>
                 <Grid
                   container
-                  // onClick={() => navigate("/Perfil")}
+                  onClick={() => navigate("/Perfil", {state: {dataUser: data._userinfo}})}
 
                   sx={{
                     px: "30px",

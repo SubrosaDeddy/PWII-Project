@@ -46,7 +46,7 @@ export default function ListChats(props) {
               <ListItemAvatar>
                 <Avatar src={data.profilepicture} />
               </ListItemAvatar>
-              <ListItemText primary={data.fullname} />
+              <ListItemText primary={data.username} />
               <Divider variant="inset" component="li" />
             </ListItem>
           );

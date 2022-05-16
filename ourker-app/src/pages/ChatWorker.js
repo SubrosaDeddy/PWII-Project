@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -16,10 +16,10 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import { color_one } from "../utils/Themes";
 import PublishTwoToneIcon from "@mui/icons-material/PublishTwoTone";
 import Tooltip from "@mui/material/Tooltip";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Chat from "../models/Chat";
 import ChatComponent from "../components/ChatComponent";
-import { GetChatsUsers } from "../services/ChatService";
+import { GetChatsUsers, GetListChat } from "../services/ChatService";
 import ListChats from "../components/ListChats";
 
 const theme = createTheme({
@@ -39,12 +39,13 @@ const theme = createTheme({
 });
 
 export default function ChatWorker(props) {
+  
+  const location = useLocation();
   const navigate = useNavigate();
   const textInput = React.useRef(null);
 
   const [value, setValue] = useState("");
   const [chatData, setChatData] = useState("");
-  // const [chats, setChats] = useState([]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,23 +57,34 @@ export default function ChatWorker(props) {
     if (data.get("message") == "") {
       alert("mensaje vacío");
     } else {
-      const chat = {
-        _usersend: props.user._id,
-        _userreceive: chatData._id,
-        content: data.get("message"),
-        time: hm_time,
-      };
+      let chat;
+      if(location.state.idUserProfile != null){
+        // fetchidUser();
+          chat = {
+          _usersend: props.user._id,
+          _userreceive: location.state.idUserProfile._id,
+          content: data.get("message"),
+          time: hm_time,
+          };
+      }else{
+        chat = {
+          _usersend: props.user._id,
+          _userreceive: chatData._id,
+          content: data.get("message"),
+          time: hm_time,
+        };
+      }
+      
 
       let newChat = new Chat(chat);
 
       const res = newChat.sendMessageDB();
 
-      console.log(data.get("message"));
       res
         .then((value) => {
           if (!value.level) {
             alert("mensaje mandado");
-            navigate("/Chat");
+            // navigate("/Chat");
             textInput.current.value = "";
           } else {
             alert("no se pudo mandar el mensaje");
@@ -127,25 +139,8 @@ export default function ChatWorker(props) {
               borderColor: "black",
             }}
           >
-            {/* Other Map*/}
-            {/* <List
-              sx={{
-                width: "100%",
-                maxWidth: 560,
-                backgroundColor: color_one.primary.secondary,
-              }}
-            > */}
+
               <ListChats user={props.user} setChatInfo={setChatData}/>
-
-              {/* <ListItem button alignItems="flex-start" sx={{ m: 1 }}>
-                <ListItemAvatar>
-                  <Avatar src="/broken-image.jpg" />
-                </ListItemAvatar>
-                <ListItemText primary="Fernando" />
-              </ListItem>
-
-              <Divider variant="inset" component="li" /> */}
-            {/* </List> */}
           </Box>
           {}
           <input hidden name="dataId"  id="dataId"></input>
@@ -176,30 +171,38 @@ export default function ChatWorker(props) {
                      <Avatar src={chatData.profilepicture} />
                   )}
 
-                  {chatData == undefined && (
-                     <Avatar src="" />
+                  {location.state.idUserProfile != null && chatData == undefined &&(
+                    <Avatar src={location.state.idUserProfile.profilepicture} />
+                  )}
+
+                  {location.state.idUserProfile == null && chatData == undefined &&(
+                    <Avatar src="" />
                   )}
 
 
                   {/* <Avatar src={chatData.profilepicture} /> */}
                 </ListItemAvatar>
 
-                  {chatData != undefined && (
-                     <ListItemText primary={chatData.fullname} />
+                  {location.state.idUserProfile != null && chatData == undefined &&(
+                    <ListItemText primary={location.state.idUserProfile.username} />
                   )}
 
-                  {chatData == undefined && (
+                  {chatData != undefined && (
+                     <ListItemText primary={chatData.username} />
+                  )}
+
+                  {location.state.idUserProfile == null && chatData == undefined && (
                      <ListItemText primary="Selecciona un usuario" />
                   )}
 
                 {/* <ListItemText primary={chatData.fullname} /> */}
               </ListItem>
 
-              {/* Va a ir el map */}
-              {/* {chats.ChatMsgS != undefined && (
-                <ChatComponent user={props.user} chat={chats}/>
-              )} */}
-              {chatData !=undefined && (
+              {location.state.idUserProfile != null && chatData == undefined &&(
+                    <ChatComponent user={props.user} userChat={location.state.idUserProfile}/>
+              )}
+
+              {chatData != null && (
               <ChatComponent user={props.user} userChat={chatData}/>
               )}
 
