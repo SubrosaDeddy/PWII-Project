@@ -15,7 +15,8 @@ import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import SliderImage from "../components/SliderImages"
 import CommentSection from '../components/CommentSection';
 import { useParams } from "react-router-dom";
-
+import Checkbox from "@mui/material/Checkbox";
+import Button from "@mui/material/Button";
 import Post from '../models/Post';
 import { GetPost } from '../services/PostService';
 
@@ -98,12 +99,18 @@ export default function ViewPost() {
                 <SliderImage images={post.photos}/>
             )}
             
-            <Box sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", m:"20px"}}>
-                <Box sx={{m:"5px"}}> <ThumbUpAltIcon sx={{color:"green"}}/> <ThumbDownAltIcon sx={{color:"red"}}/></Box> 
-                <TextField id="outlined-basic" label="Write a comment..." variant="outlined" className={classes.WriteComment}/>
-                <SendIcon sx={{mx:"10px", color:color_one.primary.main, fontSize:"30px"}}/>
-            </Box>
+            <Box  component="form" sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", m:"20px"}}>
 
+                <Box sx={{m:"5px"}}>
+                <Checkbox
+                label="CircleIcon"
+                icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
+                checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
+                />
+                </Box> 
+                <TextField required  id="outlined-basic" label="Escribe un comentario..." variant="outlined" className={classes.WriteComment} inputProps={{ minLength: 1}}/>
+                <Button  type="submit" startIcon={<SendIcon />}></Button>
+                </Box>
             <CommentSection/>
         </Paper>
 
