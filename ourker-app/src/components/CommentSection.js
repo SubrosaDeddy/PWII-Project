@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment, useEffect, useState} from 'react'
 import 
 { 
     Container,
@@ -9,6 +9,8 @@ import
 import {color_one} from "../utils/Themes";
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar } from '@material-ui/core';  
+
+import { GetCommentsByPost } from '../services/CommentService';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -32,35 +34,40 @@ const useStyles = makeStyles({
     }
 });
 
-export default function CommentSection() {
+export default function CommentSection(props) {
     
+    const [comments, setComments] = useState([]);
+
+    useEffect(()=>{
+        const fetchComments = async(inputID) =>
+        {
+            // console.log(inputID);
+            const comments = await GetCommentsByPost(inputID);
+            setComments(comments);
+        }
+
+        fetchComments(props.postID);
+    }, []);
+
     const classes = useStyles();
   
     return (
-    <Container sx={{overflowY:"scroll", height:"500px"}}>
-    <Grid container className={classes.Comment} sx={{}}>
-        <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
-        <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
-        <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-    </Grid>
-
-    <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
-        <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
-        <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
-        <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-    </Grid>
-    
-    <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
-        <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
-        <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
-        <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-    </Grid>
-    
-    <Grid container className={classes.Comment} sx={{borderColor:color_one.primary.main}}>
-        <Avatar item xs={5} sx={{m:"10px", width:"30px"}}>E</Avatar>
-        <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>Paquito Perez Papitas Papas</Typography>
-        <Typography item sx={{marginTop:"10px"}}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum quasi quidem quibusdam.</Typography>
-    </Grid>
-</Container>
+        <Container sx={{overflowY:"scroll", height:"500px"}}>
+            {comments.map((data_i, index) =>{
+                return(
+                    <Fragment>
+                        {data_i.comment.map((comm) => {
+                            return(
+                                <Grid container className={classes.Comment} sx={{}} key={index}>
+                                    <Avatar item xs={5} sx={{m:"10px", width:"30px"}} src={data_i._user.profilepicture}/>
+                                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>{data_i._user.username}</Typography>
+                                    <Typography item xs={12} sx={{marginTop:"10px", display:"block"}}>{comm}</Typography>
+                                </Grid> 
+                            )
+                        })}
+                    </Fragment>
+                )
+            })}
+        </Container>
   )
 }

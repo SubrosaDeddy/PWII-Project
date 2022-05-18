@@ -36,7 +36,6 @@ export default function SliderImages(props) {
   return (
     <Slider {...settings}>
       {props.images.map((img, index) =>{
-        console.log(img);
         return(
           <div key={index}>
             <img

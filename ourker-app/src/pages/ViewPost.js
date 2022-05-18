@@ -19,6 +19,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import Post from '../models/Post';
 import { GetPost } from '../services/PostService';
+import { InsertComment, GetCommentsByPost } from '../services/CommentService';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -43,9 +44,10 @@ const useStyles = makeStyles({
 });
 
 
-export default function ViewPost() {
+export default function ViewPost(props) {
     const { postID } = useParams();
     const [post, setPost] = useState();
+    
     useEffect(()=>{
         const fetchPost = async(inputID) =>
         {
@@ -58,12 +60,25 @@ export default function ViewPost() {
 
     const classes = useStyles();
 
+    const postComment = async(e) =>{
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+
+        const comment =
+        {
+           _user: props.user._id,
+           comment: [data.get("commentInput")],
+           _publication: postID
+        }
+        InsertComment(comment);
+    };
+
     return (
     <Grid sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"calc(100vh - 64px)"}}>
         <Box height={'15px'}/>
         <Paper elevation={3} sx={{p:2, margin: 'auto', maxWidth: "50%", flexGrow: 1, top: 9, backgroundColor: (theme) =>theme.palette.mode === 'dark' ? '#1A2027' : '#fff'}}>
             {post && (<Typography sx={{ fontSize:14, margin:"auto", textAlign:"right"}}>
-                            {post.date}
+                {post.date}
             </Typography>)}
 
             <Grid container spacing={1} xl={10} m={'auto'} sx={{display: "flex", alignItems: "center", justifyContent:"center"}}>
@@ -99,19 +114,29 @@ export default function ViewPost() {
                 <SliderImage images={post.photos}/>
             )}
             
-            <Box  component="form" sx={{display:"flex", flexDirection:"row", alignItems:"center", justifyContent:"space-between", m:"20px"}}>
+            <Box 
+                component="form" 
+                sx={{
+                    display:"flex", 
+                    flexDirection:"row", 
+                    alignItems:"center", 
+                    justifyContent:"space-between", 
+                    m:"20px"}} 
+                    onSubmit={postComment}>
 
                 <Box sx={{m:"5px"}}>
-                <Checkbox
-                label="CircleIcon"
-                icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
-                checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
-                />
-                </Box> 
-                <TextField required  id="outlined-basic" label="Escribe un comentario..." variant="outlined" className={classes.WriteComment} inputProps={{ minLength: 1}}/>
-                <Button  type="submit" startIcon={<SendIcon />}></Button>
+                    <Checkbox
+                    label="CircleIcon"
+                    icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
+                    checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
+                    />
                 </Box>
-            <CommentSection/>
+
+                <TextField required  name="commentInput" label="Escribe un comentario..." variant="outlined" className={classes.WriteComment} inputProps={{ minLength: 1}}/>
+                <Button  type="submit" startIcon={<SendIcon />}></Button>
+            
+            </Box>
+            <CommentSection postID={postID}/>
         </Paper>
 
     </Grid>

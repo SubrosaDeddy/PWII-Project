@@ -8,13 +8,23 @@ exports.comment_getall = async(req, res) =>{
 }
 
 exports.comment_create = async(req, res) => {
-    const{body} = req;
-    let newComment = new Comment(body);
+    let{body} = req;
+    let prevComments = await Comment.findOne({_user: body._user, _publication: body._publication});
+    if(prevComments)
+    {
+        body.comment.push(...prevComments.comment);
+        var newComment = new Comment(body);
+    }
+    else
+    {
+        var newComment = new Comment(body);
+    }
+
 
     try 
     {
         let response = {};
-        await newComment.save()
+        await Comment.findOneAndUpdate({_user: body._user, _publication: body._publication}, {comment: newComment.comment},{upsert:true})
         .then((newObject) => {
             response = newObject;
             logger.info(`Comentario creado exitosamente: ${newObject}`);
@@ -36,7 +46,7 @@ exports.comment_create = async(req, res) => {
 
 exports.comment_getallByPost = async(req, res) =>{
     const {id} = req.params;
-    const data = await Comment.find({_publication: id});
+    const data = await Comment.find({_publication: id}).populate("_user");
 
     res.send(data);
 }
