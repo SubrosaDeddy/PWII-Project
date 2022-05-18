@@ -37,6 +37,7 @@ const useStyles = makeStyles({
 export default function CommentSection(props) {
     
     const [comments, setComments] = useState([]);
+    var likes = 0;
 
     useEffect(()=>{
         const fetchComments = async(inputID) =>
@@ -54,6 +55,12 @@ export default function CommentSection(props) {
     return (
         <Container sx={{overflowY:"scroll", height:"500px"}}>
             {comments.map((data_i, index) =>{
+                likes += data_i.like;
+                if(index == comments.length-1)
+                    {
+                        props.setLikesCount(likes);
+                        props.setDislikesCount(comments.length-likes);
+                    }
                 return(
                     <Fragment>
                         {data_i.comment.map((comm) => {

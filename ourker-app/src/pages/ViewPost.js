@@ -4,7 +4,8 @@ import
     Grid,
     Box,
     Typography, 
-    TextField
+    TextField,
+    CardMedia
 } from '@mui/material'
 import { Paper } from '@mui/material';
 import {color_one} from "../utils/Themes";
@@ -47,7 +48,9 @@ const useStyles = makeStyles({
 export default function ViewPost(props) {
     const { postID } = useParams();
     const [post, setPost] = useState();
-    
+    const [likes, setLikes] = useState(0);
+    const [dislikes, setDislikes] = useState(0);
+
     const checkboxLike = React.useRef(0);
 
     useEffect(()=>{
@@ -123,6 +126,18 @@ export default function ViewPost(props) {
                 )}
             </Grid>
 
+            <Box sx={{ display: "flex", mx:"auto"}}>
+                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
+                    <ThumbUpAltIcon sx={{color:"green"}}/>
+                  {likes}
+                </Typography>
+
+                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
+                    <ThumbDownAltIcon sx={{color:"red"}}/>
+                  {dislikes}
+                </Typography>
+              </Box>
+
             {post && (
                 <SliderImage images={post.photos}/>
             )}
@@ -151,7 +166,7 @@ export default function ViewPost(props) {
                 <Button  type="submit" startIcon={<SendIcon />}></Button>
             
             </Box>
-            <CommentSection postID={postID}/>
+            <CommentSection postID={postID} setLikesCount={setLikes} setDislikesCount={setDislikes}/>
         </Paper>
 
     </Grid>
