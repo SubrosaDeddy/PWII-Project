@@ -8,5 +8,6 @@ router.post("/comment", comment_controller.comment_create);
 router.get("/comment/:id", comment_controller.comment_getallByPost);
 router.put("/comment/:id", comment_controller.comment_update);
 router.delete("/comment/:id", comment_controller.comment_delete);
+router.post("/comment//like", comment_controller.comment_like);
 
 module.exports = router;

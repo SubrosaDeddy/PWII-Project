@@ -20,7 +20,6 @@ exports.comment_create = async(req, res) => {
         var newComment = new Comment(body);
     }
 
-
     try 
     {
         let response = {};
@@ -43,6 +42,26 @@ exports.comment_create = async(req, res) => {
     }
     
 }
+
+exports.comment_like = async (req, res) =>{
+    let{body} = req;
+
+    try 
+    {
+        console.log(body);
+        await Comment.findOneAndUpdate({_user: body._user, _publication: body._publication}, {like: body.like}, {upsert:true})
+        .then((newObject) => {
+            res.send(newObject);
+        })
+        .catch((err) =>{
+            res.send({error:err});
+        });
+    } 
+    catch (err) 
+    {
+        res.send({error: err});
+    }
+} 
 
 exports.comment_getallByPost = async(req, res) =>{
     const {id} = req.params;

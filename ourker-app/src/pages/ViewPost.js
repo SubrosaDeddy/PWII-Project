@@ -19,7 +19,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import Post from '../models/Post';
 import { GetPost } from '../services/PostService';
-import { InsertComment, GetCommentsByPost } from '../services/CommentService';
+import { InsertComment, GetCommentsByPost, SetLike } from '../services/CommentService';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -48,6 +48,8 @@ export default function ViewPost(props) {
     const { postID } = useParams();
     const [post, setPost] = useState();
     
+    const checkboxLike = React.useRef(0);
+
     useEffect(()=>{
         const fetchPost = async(inputID) =>
         {
@@ -72,6 +74,17 @@ export default function ViewPost(props) {
         }
         InsertComment(comment);
     };
+
+    function pushCheck()
+    {
+        let setLikeInfo = {
+            _publication: postID,
+            _user:props.user._id,
+            like: checkboxLike.current.checked ? 1 : 0
+        }
+        // console.log(setLikeInfo);
+        SetLike(setLikeInfo);
+    }
 
     return (
     <Grid sx={{backgroundImage:"linear-gradient(to bottom, #2777D4,#1D5AA1)", minHeight:"calc(100vh - 64px)"}}>
@@ -124,11 +137,13 @@ export default function ViewPost(props) {
                     m:"20px"}} 
                     onSubmit={postComment}>
 
-                <Box sx={{m:"5px"}}>
+                <Box sx={{m:"5px"}} onClick={()=>pushCheck()}>
                     <Checkbox
                     label="CircleIcon"
                     icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
                     checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
+                    id="checkbox-like"
+                    inputRef={checkboxLike}
                     />
                 </Box>
 

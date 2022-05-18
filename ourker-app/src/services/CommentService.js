@@ -24,3 +24,15 @@ export const InsertComment = async(inputComment) =>
         return {error:err}
     }
 }
+
+export const SetLike = async(inputLke) =>
+{
+    try 
+    {
+        const res = axios.post("/comment//like", inputLke);
+    } 
+    catch (err) 
+    {
+        return {error:err}
+    }
+}
