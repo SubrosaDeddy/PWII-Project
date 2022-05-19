@@ -44,7 +44,6 @@ export const InsertUser = async(inputUser) =>
     {   
         const res = await GetLocalities(inputUser._address);
         inputUser._address = res;
-        // console.log(res);
     
         const response = await axios.post("/user", inputUser);
         if(response.status == 200)
@@ -67,7 +66,6 @@ export const UpdateUser = async(inputUser) =>
 {
     try 
     {
-        // console.log(inputUser.email);
         const response = await axios.put(`/user/${inputUser.email}`, inputUser);
         console.log(response.data);
         return response.data;

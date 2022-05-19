@@ -54,7 +54,6 @@ export default function LogIn(props) {
       let user = new User(res);
       if(user.validatePassword(data.get("password")))
       {
-        // console.log(Object.values(worker))
         if(Object.values(worker).length > 1){
           
           props.setLoggWorker(true);

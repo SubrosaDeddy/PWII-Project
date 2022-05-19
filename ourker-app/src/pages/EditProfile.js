@@ -50,7 +50,6 @@ export default function SignIn(props) {
   const navigate = useNavigate();
 
   const [dataWorker, setDataW] = useState();
-  // const [varOc, setVarOc ] = useState("");
   const [varLoc, setVarLoc] = useState("");
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -183,39 +182,13 @@ export default function SignIn(props) {
           .getDownloadURL()
           .then((url) =>{
             getDataUser(data, url, dataWorker);
-            // getDescription(data, dataWorker);
           });
         }
       )
 
     }else{
       getDataUser(data, props.user.profilepicture, dataWorker);
-      // getDescription(data, dataWorker);
     }
-    // const user ={
-    //   username: data.get("username"),
-    //   email: props.user.email,
-    //   fullname: data.get("fullname"),
-    //   // password: data.get("password"),
-    //   profilepicture: props.user.profilepicture,
-    //   _address: props.user._address
-    // }
-
-    // let newUser = new User(user);
-
-    // const res = newUser.updateUserDB();
-
-    // res.then((value) =>{
-
-    //   if(!value.level){
-    //     alert("datos actualizados");
-    //     props.setLoggedUser(newUser);
-    //     // navigate("/");
-    //   }else{
-    //     alert("Algo salio mal")
-    //   }
-    // })
-
   };
 
   return (

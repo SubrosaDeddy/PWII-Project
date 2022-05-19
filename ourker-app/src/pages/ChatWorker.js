@@ -59,7 +59,6 @@ export default function ChatWorker(props) {
     } else {
       let chat;
       if(location.state.idUserProfile != null){
-        // fetchidUser();
           chat = {
           _usersend: props.user._id,
           _userreceive: location.state.idUserProfile._id,
@@ -84,7 +83,6 @@ export default function ChatWorker(props) {
         .then((value) => {
           if (!value.level) {
             alert("mensaje mandado");
-            // navigate("/Chat");
             textInput.current.value = "";
           } else {
             alert("no se pudo mandar el mensaje");
@@ -179,8 +177,6 @@ export default function ChatWorker(props) {
                     <Avatar src="" />
                   )}
 
-
-                  {/* <Avatar src={chatData.profilepicture} /> */}
                 </ListItemAvatar>
 
                   {location.state.idUserProfile != null && chatData == undefined &&(
@@ -195,7 +191,6 @@ export default function ChatWorker(props) {
                      <ListItemText primary="Selecciona un usuario" />
                   )}
 
-                {/* <ListItemText primary={chatData.fullname} /> */}
               </ListItem>
 
               {location.state.idUserProfile != null && chatData == undefined &&(

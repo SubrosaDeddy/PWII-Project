@@ -132,7 +132,6 @@ export default function SignIn(props) {
             .child(selectedImage.name)
             .getDownloadURL()
             .then((url) => {
-              // setUrl(url);
               const data = new FormData(event.target);
 
               const user = {
@@ -193,20 +192,15 @@ export default function SignIn(props) {
                     .then(function (result) 
                     {
                       console.log(result);
-                      // if(newWorker){
+
                         if (!result.level) 
                         {
-                          // console.log("keke");
-                          // console.log(Object.values(result))
                           props.setLoggWorker(result);
                           alert("Registro exitoso");
                           navigate("/");
                         } else {
-                          // console.log(Object.values(result))
-                          // props.setLoggWorker(false);
                           alert("El trabajador no pudo ser creado");
                         }
-                      // }
                       
                     
                     })
@@ -392,7 +386,6 @@ export default function SignIn(props) {
                     />
                   </Grid>
                 )}
-                {/* <button onClick={uploadImage}>Upload</button> */}
                 <Grid item xs={12}>
                   <Button
                     type="submit"

@@ -35,14 +35,12 @@ export default function Search(props) {
       const worker = await GetWorkerByEmailValidation(location.state.dataUser.email);
 
       if (worker._id == null) {
-        // alert("No eres trabajador");
         const localities = await GetLocalitiesById(location.state.dataUser._address);
         if(localities) {
           setDataLc(localities);
         }
       } 
       else {
-        // alert("Si eres trabajador");
         setDataW(worker);
         const occupation = await GetByIdOccupation(worker._ocupations);
         if (occupation) {

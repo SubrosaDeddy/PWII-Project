@@ -58,7 +58,6 @@ export default function CreatePost(props) {
         CatArr.push(ca.name);
       });
       setCategories(CatArr);
-      // console.log(dataCat);
     }
 
     fetchCategories();

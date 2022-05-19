@@ -85,7 +85,6 @@ export default function ViewPost(props) {
             _user:props.user._id,
             like: checkboxLike.current.checked ? 1 : 0
         }
-        // console.log(setLikeInfo);
         SetLike(setLikeInfo);
         if(checkboxLike.current.checked)
             setLikes(likes+1);
