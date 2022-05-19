@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/SubrosaDeddy/PWII-Project/issues"
   },
-  "homepage": "https://github.com/SubrosaDeddy/PWII-Project#readme"
+  "homepage": "https://github.com/SubrosaDeddy/PWII-Project#readme",
+  "dependencies": {
+    "mongoose-field-encryption": "^5.0.2"
+  }
 }

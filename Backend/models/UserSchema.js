@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const mongooseFieldEncryption = require("mongoose-field-encryption").fieldEncryption;
 
 const UserSchema = new mongoose.Schema({
     username:
@@ -41,6 +42,14 @@ const UserSchema = new mongoose.Schema({
         ref: "locality"
     }
 });
+
+UserSchema.plugin(mongooseFieldEncryption, { 
+    fields: ["password"], 
+    secret: "some secret key",
+    saltGenerator: function (secret) {
+      return "1234567890123456"; 
+    },
+  });
 
 const User = mongoose.model("user", UserSchema);
 module.exports = User;
