@@ -24,7 +24,6 @@ const LightTooltip = styled(({ className, ...props }) => (
 }));
 
 export default function SearchResults(props) {
-  //console.log(props.work);
   const navigate = useNavigate();
   return (
     <Container
@@ -44,37 +43,7 @@ export default function SearchResults(props) {
           overflow: "auto",
         }}
       >
-        {/* <LightTooltip title="Ir al perfil" arrow>
-        <Grid
-          container
-          // onClick={() => navigate("/Perfil")}
-          sx={{ 
-            px: "30px", 
-            py: "15px",
-            my: "15px",
-            backgroundColor: "#94C6FF",
-            borderRadius: "15px",
-          }}
-        >
-          <Avatar
-            item
-            xs={5}
-            sx={{ m: "5px", width: "30px", height: "30px" }}
-            src="/broken-image.jpg"
-          ></Avatar>
-          <Typography item xs={7} sx={{ marginLeft: "15px", my: "auto" }}>
-            {props.setLocalities && (
-              <strong> {props.setLocalities.arr.length}</strong>
-            )}
-            
-          </Typography>
-          <Typography item sx={{ marginTop: "10px" }}>
-            {" "}
-            hhj
-          </Typography>
-        </Grid>
-      </LightTooltip> */}
-
+      
         {props.setData &&
           props.setData.arr.map((data, index) => {
             return (

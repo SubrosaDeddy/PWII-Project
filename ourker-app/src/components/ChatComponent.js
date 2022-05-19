@@ -20,16 +20,6 @@ export default function ChatComponent(props) {
   
   return (
     <List sx={{ overflowY: "scroll", height: "85%" }}>
-      {/* <ul>
-                  {props.chat.ChatMsgS.map((data, index) =>{
-                    return(
-                      <li>
-                        {data.content}
-                      </li>
-                    )
-
-                  })} 
-                </ul>  */}
 
       {chats.ChatMsgS != undefined && (
         chats.ChatMsgS.map((data, index) =>{
@@ -83,56 +73,7 @@ export default function ChatComponent(props) {
           )
         })
       )}
-     {/* {props.chat.ChatMsgS.map((data, index) => {
-        return (
-          <Fragment> */}
-            {/* {data._usersend === props.user._id && (
-                <ListItem key="1">
-                  <Grid container>
-                    <Box
-                      component={Paper}
-                      elevaton={1}
-                      sx={{
-                        background: color_one.primary.sendMessage,
-                        borderRadius: 7,
-                        padding: "1rem",
-                        marginRight: 0,
-                        marginLeft: "auto",
-                        display: "inline",
-                      }}
-                    >
-                      <Typography>{data.content}</Typography>
-                      <Typography>{data.time}</Typography>
-                    </Box>
-                  </Grid>
-                </ListItem>
-              )} */}
-
-              {/* {data._userreceive === props.user._id && (
-                <ListItem key="2">
-                  <Grid container>
-                    <Box
-                      component={Paper}
-                      elevaton={1}
-                      sx={{
-                        background: color_one.primary.reciveMessage,
-                        borderRadius: 7,
-                        padding: "1rem",
-                        marginRight: "auto",
-                        marginLeft: 0,
-                        display: "inline",
-                      }}
-                    >
-                      <Typography>{data.content}</Typography>
-                      <Typography>{data.time}</Typography>
-                    </Box>
-                  </Grid>
-                </ListItem>
-              )}
-          </Fragment>
-        );
-      })
-    } */}
+     
     </List>
   );
 }

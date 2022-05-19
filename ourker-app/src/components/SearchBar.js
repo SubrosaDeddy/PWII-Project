@@ -118,9 +118,6 @@ export default function SearchBar(props) {
       md={9}
       lg={8}
       xl={7}
-      // component="form"
-      // noValidate
-      // onSubmit={handleSubmit}
       sx={{
         height: "fit-content",
         py: 1,

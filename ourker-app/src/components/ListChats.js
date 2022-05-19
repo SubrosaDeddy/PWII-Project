@@ -52,18 +52,6 @@ export default function ListChats(props) {
           );
         })}
         {props.setChatInfo(datos)}
-      {/* <ListItem
-                button
-                onClick={() => alert("asdasdas")}
-                alignItems="flex-start"
-                sx={{ m: 1 }}
-            >
-                <ListItemAvatar>
-                    <Avatar src="/broken-image.jpg" />
-                </ListItemAvatar>
-                <ListItemText primary="Fernando" />
-            </ListItem>
-            <Divider variant="inset" component="li" /> */}
     </List>
   );
 }
