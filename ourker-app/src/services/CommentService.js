@@ -36,3 +36,16 @@ export const SetLike = async(inputLke) =>
         return {error:err}
     }
 }
+
+export const GetCommentByUser = async(idUser, idPost) =>
+{
+    try 
+    {
+        const res = await axios.get(`/comment//like/${idUser}/${idPost}`)
+        return res.data;
+    } 
+    catch (err) 
+    {
+       return {error:err} 
+    }
+}
