@@ -118,12 +118,10 @@ export default function Search(props) {
                 display="flex"
                 justifyContent="center"
               >
-                <Button color="inherit" onClick={() => navigate("/Chat", {state: {idUserProfile: null}})}>
                   <Image
                     src="email-icon.png"
                     sx={{ maxWidth: "130px", mr: "auto" }}
                   />
-                </Button>
               </Box>
               {location.state.dataUser._id != props.user._id && props.user._id !=null &&(
                   <CardActions sx={{ mx: "auto" }}>

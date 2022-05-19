@@ -59,7 +59,7 @@ export default function LogIn(props) {
           
           props.setLoggWorker(true);
           props.setLoggedUser(user);
-           navigate('/');
+          navigate('/');
         } 
         else{
           props.setLoggWorker(false);
