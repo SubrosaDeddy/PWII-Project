@@ -48,7 +48,6 @@ exports.comment_like = async (req, res) =>{
 
     try 
     {
-        console.log(body);
         await Comment.findOneAndUpdate({_user: body._user, _publication: body._publication}, {like: body.like}, {upsert:true})
         .then((newObject) => {
             res.send(newObject);
@@ -95,4 +94,10 @@ exports.comment_delete = async(req, res) =>{
     await Comment.deleteOne({_id: id});
 
     res.send({message: "Comentario eliminado"});
+}
+
+exports.comment_getLike = async(req, res) =>{
+    const{idUser, idPost} = req.params;
+    const data = await Comment.findOne({_user: idUser, _publication: idPost});
+    res.send(data);
 }

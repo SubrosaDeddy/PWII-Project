@@ -20,7 +20,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import Post from '../models/Post';
 import { GetPost } from '../services/PostService';
-import { InsertComment, GetCommentsByPost, SetLike } from '../services/CommentService';
+import { InsertComment, GetCommentsByPost, SetLike, GetCommentByUser } from '../services/CommentService';
 
 const useStyles = makeStyles({
     WriteComment:
@@ -50,7 +50,7 @@ export default function ViewPost(props) {
     const [post, setPost] = useState();
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
-
+    const [checked, setChecked] = useState(false);
     const checkboxLike = React.useRef(0);
 
     useEffect(()=>{
@@ -61,6 +61,12 @@ export default function ViewPost(props) {
         }
 
         fetchPost(postID);
+
+        const userComment = GetCommentByUser(props.user._id, postID);
+        userComment.then((data)=>{
+            // checkboxLike.current.checked = data.like;
+            setChecked(data.like);
+        })
     }, []);
 
     const classes = useStyles();
@@ -85,6 +91,8 @@ export default function ViewPost(props) {
             _user:props.user._id,
             like: checkboxLike.current.checked ? 1 : 0
         }
+
+        setChecked(!checked);
         SetLike(setLikeInfo);
         if(checkboxLike.current.checked)
             setLikes(likes+1);
@@ -162,6 +170,7 @@ export default function ViewPost(props) {
                     checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
                     id="checkbox-like"
                     inputRef={checkboxLike}
+                    checked={checked}
                     />
                 </Box>
 

@@ -53,26 +53,22 @@ export default function CommentSection(props) {
   
     return (
         <Container sx={{overflowY:"scroll", height:"500px"}}>
-            {comments.map((data_i, index) =>{
+            {comments.map((data_i, index_i) =>{
                 likes += data_i.like;
-                if(index == comments.length-1)
-                    {
-                        props.setLikesCount(likes);
-                        props.setDislikesCount(comments.length-likes);
-                    }
+                if(index_i == comments.length-1)
+                {
+                    props.setLikesCount(likes);
+                    props.setDislikesCount(comments.length-likes);
+                }
                 return(
                     <Fragment>
-                        {data_i.comment.map((comm) => {
+                        {data_i.comment.map((comm, index_j) => {
                             return(
-                                <Grid container spacing={1} columns={1} className={classes.Comment} sx={{}} key={index}>
+                                <Grid container className={classes.Comment} sx={{}} key={`${index_i}${index_j}`}>
                                     <Avatar item xs={5} sx={{m:"10px", width:"30px"}} src={data_i._user.profilepicture}/>
-                                    <Grid item xs>
-                                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto" }}>{data_i._user.username}</Typography>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                    <Typography item xs={12} sx={{marginTop:"10px",display:"block"}}>{comm}</Typography>
-                                    </Grid>
-                                </Grid>
+                                    <Typography item xs={7} sx={{marginLeft:"30px", my:"auto"}}>{data_i._user.username}</Typography>
+                                    <Typography item xs={12} sx={{marginTop:"10px", display:"block"}}>{comm}</Typography>
+                                </Grid> 
                             )
                         })}
                     </Fragment>
