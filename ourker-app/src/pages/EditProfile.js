@@ -252,7 +252,6 @@ export default function SignIn(props) {
           >
             <Box
               component="form"
-              noValidate
               onSubmit={handleSubmit}
               sx={{ mt: 1 }}
             >
@@ -293,6 +292,7 @@ export default function SignIn(props) {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
+                    required
                     fullWidth
                     id="name"
                     label="Nombre"
@@ -300,12 +300,14 @@ export default function SignIn(props) {
                     autoComplete="name"
                     autoFocus
                     defaultValue={props.user.fullname}
+                    inputProps={{ minLength: 10, maxLength: 100}}
                   />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
+                    required
                     fullWidth
                     id="userName"
                     label="Nombre de usuario"
@@ -313,12 +315,14 @@ export default function SignIn(props) {
                     autoComplete="userName"
                     defaultValue={props.user.username}
                     autoFocus
+                    inputProps={{ minLength: 5, maxLength: 50}}
                   />
                 </Grid>
 
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
+                    required
                     fullWidth
                     id="email"
                     label="Correo electrónico"
@@ -327,6 +331,7 @@ export default function SignIn(props) {
                     disabled
                     defaultValue={props.user.email}
                     autoFocus
+                    inputProps={{ minLength: 10, maxLength: 100, pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"}}
                   />
                 </Grid>
 
@@ -334,12 +339,14 @@ export default function SignIn(props) {
                 <Grid item xs={12} md={6}>
                   <TextField
                     margin="normal"
+                    required
                     fullWidth
                     name="password"
                     label="Contraseña"
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    inputProps={{ minLength: 10, maxLength: 100}}
                   />
                 </Grid>
 
@@ -357,6 +364,7 @@ export default function SignIn(props) {
                   <Grid item xs={12}>
                   <TextField
                     margin="normal"
+                    required
                     id="outlined-basic"
                     label="Descripción"
                     variant="outlined"

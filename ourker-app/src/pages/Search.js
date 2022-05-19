@@ -78,6 +78,7 @@ export default function Search(props) {
         {location.state.busqueda != "" && (
           <Typography
           fontfamily= "Lexend Deca"
+          style={{ wordWrap: "break-word" }}
             variant="h4"
             sx={{ marginLeft: "20px",  fontfamily: "Lexend Deca", textTransform: "uppercase", textAlign:"center", fontWeight:"bold", fontSize:25, margin:"auto"}}
           >
@@ -89,6 +90,7 @@ export default function Search(props) {
         {location.state.data != "" && (
           <Typography
           fontfamily= "Lexend Deca"
+          style={{ wordWrap: "break-word" }}
             variant="h4"
             item
             sx={{ marginLeft: "40px", fontfamily: "Lexend Deca", textTransform: "uppercase", textAlign:"center", fontWeight:"bold", fontSize:25, margin:"auto" }}

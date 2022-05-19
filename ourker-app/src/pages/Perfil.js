@@ -13,6 +13,7 @@ import PostsComponent from "../components/PostsComponent";
 import { GetWorkerByEmailValidation } from "../services/WorkerService";
 import { GetByIdOccupation } from "../services/OcupationsService";
 import { GetLocalitiesById } from "../services/LocalitiesServices";
+import { Image } from 'mui-image';
 
 export default function Search(props) {
   const [expanded, setExpanded] = React.useState(false);
@@ -91,7 +92,7 @@ export default function Search(props) {
                 }}
                 // image={props.user.profilepicture}
                 image ={location.state.dataUser.profilepicture}
-                alt="Live from space album cover"
+                alt="Foto de perfil"
               />
             </Grid>
             <Grid item xs={6}>
@@ -102,6 +103,7 @@ export default function Search(props) {
                 variant="subtitle1"
                 color="text.secondary"
                 component="div"
+                style={{ wordWrap: "break-word" }}
               >
                 {dataWorker && (dataWorker.description)}
               </Typography>              
@@ -112,19 +114,17 @@ export default function Search(props) {
               xs={3}
               sx={{ justifyContent: "space-around", alignContent: "center" }}
             >
-              <CardMedia
-                component="img"
-                sx={{
-                  width: 100,
-                  height: 100,
-                  mx: "auto",
-                  maxHeight: 100,
-                  maxWidth: 100,
-                  borderRadius: "100%",
-                }}
-                image="Check.png"
-                alt="Live from space album cover"
-              />
+             <Box
+                display="flex"
+                justifyContent="center"
+              >
+                <Button color="inherit" onClick={() => navigate("/Chat", {state: {idUserProfile: null}})}>
+                  <Image
+                    src="email-icon.png"
+                    sx={{ maxWidth: "130px", mr: "auto" }}
+                  />
+                </Button>
+              </Box>
               {location.state.dataUser._id != props.user._id && props.user._id !=null &&(
                   <CardActions sx={{ mx: "auto" }}>
                   <Button
@@ -148,22 +148,7 @@ export default function Search(props) {
                 {dataOc && (dataOc.title)}, {dataLc && (dataLc.city)}
               </Typography>
 
-              <Box sx={{ display: "flex" }}>
-                <CardMedia
-                  component="img"
-                  sx={{
-                    width: 29,
-                    marginLeft: "auto",
-                    textAlign: "cente",
-                    maxWidth: 29,
-                  }}
-                  image="Check.png"
-                  alt="Live from space album cover"
-                />
-                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
-                  120
-                </Typography>
-              </Box>
+              
             </Grid>
 
             {dataWorker && (
