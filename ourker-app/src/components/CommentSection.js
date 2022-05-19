@@ -48,7 +48,7 @@ export default function CommentSection(props) {
         }
 
         fetchComments(props.postID);
-    }, []);
+    });
 
     const classes = useStyles();
   

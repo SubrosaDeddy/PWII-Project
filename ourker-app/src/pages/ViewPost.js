@@ -87,6 +87,10 @@ export default function ViewPost(props) {
         }
         // console.log(setLikeInfo);
         SetLike(setLikeInfo);
+        if(checkboxLike.current.checked)
+            setLikes(likes+1);
+        else
+            setDislikes(dislikes+1);
     }
 
     return (
