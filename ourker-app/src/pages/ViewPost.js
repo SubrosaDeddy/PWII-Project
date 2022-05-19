@@ -138,7 +138,7 @@ export default function ViewPost(props) {
             </Grid>
 
             <Box sx={{ display: "flex", mx:"auto"}}>
-                <Typography variant="subtitle1" sx={{ marginRight: "auto" }}>
+                <Typography variant="subtitle1" sx={{ marginRight: "auto", margin: "auto"}}>
                     <ThumbUpAltIcon sx={{color:"green"}}/>
                   {likes}
                 </Typography>
