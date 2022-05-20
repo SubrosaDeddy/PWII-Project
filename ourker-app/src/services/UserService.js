@@ -67,13 +67,13 @@ export const UpdateUser = async(inputUser) =>
 {
     try 
     {
-        const user = getUserLogged();  
+        const user = getUserLogged();
         const response = await axios.put(`/user/${inputUser.email}`, inputUser, {
             headers: {
                 'x-access-token': user?.token || ''
             }
         });
-        
+
         console.log(response.data);
         return response.data;
 
