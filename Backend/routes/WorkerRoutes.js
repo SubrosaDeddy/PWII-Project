@@ -18,8 +18,4 @@ router.get("/worker/data/:id", worker_controller.getUserinfo);
 
 router.get("/worker//data//:localidad/:ocupacion", worker_controller.getWorker_Localities_Ocupation);
 
-//------OBTENER LA PUBLICACION POR LOCALIDAD Y OCUPACION------//
-
-router.get("/worker//:id/:id2", worker_controller.worker_localities_occupations);
-
 module.exports = router;

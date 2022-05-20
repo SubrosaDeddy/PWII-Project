@@ -78,6 +78,8 @@ export default function SearchResults(props) {
                   <br />
                   <Typography
                     item
+                    variant="subtitle1"
+                    component="div"
                     sx={{ marginLeft: "15px", marginTop: "10px" }}
                   >
                     {data.description}

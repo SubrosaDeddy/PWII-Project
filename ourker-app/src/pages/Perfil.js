@@ -116,10 +116,19 @@ export default function Search(props) {
                 display="flex"
                 justifyContent="center"
               >
+                  <Grid
+                  item
+                  xs={4}
+                  sx={{
+                    justifyContent: "space-around",
+                    alignContent: "center",
+                  }}
+                >
                   <Image
                     src="email-icon.png"
-                    sx={{ maxWidth: "130px", mr: "auto" }}
+                    sx={{ maxWidth: "200px", mr: "auto" }}
                   />
+                </Grid>
               </Box>
               {location.state.dataUser._id != props.user._id && props.user._id !=null &&(
                   <CardActions sx={{ mx: "auto" }}>
