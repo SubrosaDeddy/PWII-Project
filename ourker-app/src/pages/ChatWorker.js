@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState, useRef } from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
@@ -43,6 +43,7 @@ export default function ChatWorker(props) {
   const location = useLocation();
   const navigate = useNavigate();
   const textInput = React.useRef(null);
+  const [refresh, doRefresh] = useState(0);
 
   const [value, setValue] = useState("");
   const [chatData, setChatData] = useState("");
@@ -82,6 +83,7 @@ export default function ChatWorker(props) {
       res
         .then((value) => {
           if (!value.level) {
+            doRefresh(refresh + 1)
             alert("mensaje mandado");
             textInput.current.value = "";
           } else {
@@ -194,11 +196,11 @@ export default function ChatWorker(props) {
               </ListItem>
 
               {location.state.idUserProfile != null && chatData == undefined &&(
-                    <ChatComponent user={props.user} userChat={location.state.idUserProfile}/>
+                    <ChatComponent user={props.user} userChat={location.state.idUserProfile} refresh={refresh} />
               )}
 
               {chatData != null && (
-              <ChatComponent user={props.user} userChat={chatData}/>
+                <ChatComponent user={props.user} userChat={chatData} refresh={refresh} />
               )}
 
              

@@ -55,9 +55,9 @@ export default function PostsComponent(props) {
                   alignItems="center"
                   minHeight="10vh"
                 >
-                  <Button key={index} sx={{ justifyContent: "center"}} onClick={(e) => navigate(`/ViewPost/${data._id}`)}>
+                  <Button key={index} sx={{ justifyContent: "center", width:"100%"}} onClick={(e) => navigate(`/ViewPost/${data._id}`)}>
                     <Card sx={{ display: "flex", width: "70%", justifyContent: "space-between", mx:"auto"}}>
-                      <Box sx={{ display: "flex", flexDirection: "column" }}>
+                      <Box sx={{ display: "flex", flexDirection: "column", width: "50%" }}>
                         <CardContent sx={{ flex: "1 0 auto" }}>
                           <Typography component="div" variant="h5" fontfamily= "Lexend Deca">
                             {data.title}
@@ -74,7 +74,7 @@ export default function PostsComponent(props) {
                       </Box>
                       <CardMedia
                         component="img"
-                        sx={{ width: "50%", maxWidth: "50%"}}
+                        sx={{ width: "50%", minWidth: "50%", maxHeight: "140px", minHeight: "140px"}}
                         image={data.photos[0]}
                         alt="Post Image"
                         
