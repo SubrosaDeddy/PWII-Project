@@ -18,7 +18,7 @@ exports.categories_create = async(req, res) =>{
         await newCategory.save()
         .then((newObject) => {
             response = newObject;
-            logger.info(`Categorías - Controlador De Reporte creado exitosamente: ${newObject}`);
+            logger.info(`Categoría creada exitosamente: ${newObject}`);
         })
         .catch((err) => {
             response = err;
@@ -66,12 +66,13 @@ exports.categories_update = async(req, res) =>{
     try {
         if(categoriesdb){
             const data = await Categories.findOneAndUpdate({_id: id}, body, {returnOriginal: false});
-            res.send({message: "Registro actualizado exitosamente", data});
             logger.info(`Categoría actualizada exitosamente: ${data}`);
+            res.send({message: "Registro actualizado exitosamente", data});
         }else{
             res.send({message: "El registro que intentas actualizar no existe"})
         }
     } catch (e) {
+        logger.error(e);
         res.send(e);
     }
 }

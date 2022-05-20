@@ -84,6 +84,7 @@ exports.comment_update = async(req, res) =>{
             res.send({message: "El registro que intentas actualizar no existe"})
         }
     } catch (e) {
+        logger.error(e);
         res.send(e);
     }
 }

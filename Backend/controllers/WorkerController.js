@@ -63,6 +63,7 @@ exports.worker_update = async (req, res) => {
       res.send({ message: "El registro que intentas actualizar no existe" });
     }
   } catch (e) {
+    logger.error(e);
     res.send(e);
   }
 };
@@ -94,6 +95,7 @@ exports.worker_localities = async (req, res) => {
       res.send("No hay nada");
     }
   } catch (e) {
+    logger.error(e);
     res.send(e);
   }
 };
@@ -115,6 +117,7 @@ exports.worker_ocupation = async (req, res) => {
       res.send({ message: "Error, no se encontro el registro" });
     }
   }catch(e){
+    logger.error(e);
     res.send(e);
   }
   
@@ -174,6 +177,7 @@ exports.getWorker_Localities_Ocupation = async (req, res) =>{
       }
 
   } catch (error) { 
+    logger.error(error);
     res.send(error);
   }
 }
