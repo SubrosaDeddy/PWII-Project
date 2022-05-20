@@ -3,7 +3,14 @@ import { getUserLogged } from './helpers';
 
 export const InsertChat = async(inputChat) =>{
     try {
-        const response = await axios.post("/chat", inputChat);
+        const user = getUserLogged();
+
+        const response = await axios.post("/chat", inputChat, {
+            headers: {
+                'x-access-token': user?.token || ''
+            }
+        });
+
         if(response.status == 200){
             return response.data
         }else{
@@ -16,7 +23,13 @@ export const InsertChat = async(inputChat) =>{
 
 export const GetChatsUsers = async(userSendId, userReId) =>{
     try {
-        const response = await axios.get(`/chat/${userSendId}/${userReId}`);
+        const user = getUserLogged();
+
+        const response = await axios.get(`/chat/${userSendId}/${userReId}`, {
+            headers: {
+                'x-access-token': user?.token || ''
+            }
+        });
         return response.data;
 
     } catch (error) {
