@@ -15,7 +15,7 @@ Un usuario promedio se limita a poder buscar trabajadores por ubicación y/o ocu
 Después de contactarse, queda a criterio de ambos usuarios continuar su comunicación por este medio o trasladarse a otro ya que nuestra página no pretende desarrollar el papel de un contratista, sino facilitar la búsqueda y contacto de servicios.
 
 Carpetas: 
-	Backend:	Carpeta destinada al Back-end de la aplicación. Contiene las carpetas con controladores, modelos y rutas.
+	Backend: Carpeta destinada al Back-end de la aplicación. Contiene las carpetas con controladores, modelos y rutas.
 		controllers: Contiene los controladores de la aplicación (exports para ejecutar acciones en la base de datos).
 		middleware: En auth.js se verifica la existencia del token y en caso de no existir o ser invalido enviar el error.
 		models: Ejecuta la conexión a la base de datos y contiene la representación de los schemas de la misma, requisitos de los datos y encriptaciones.
