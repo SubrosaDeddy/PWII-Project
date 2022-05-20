@@ -1,5 +1,6 @@
 import { axiosBase as axios } from "./Config";
 import { GetLocalities } from "./LocalitiesServices";
+import { getUserLogged } from './helpers';
 
 export const GetUser = async (inputID) =>
 {
@@ -66,12 +67,20 @@ export const UpdateUser = async(inputUser) =>
 {
     try 
     {
-        const response = await axios.put(`/user/${inputUser.email}`, inputUser);
+        const user = getUserLogged();  
+        const response = await axios.put(`/user/${inputUser.email}`, inputUser, {
+            headers: {
+                'x-access-token': user?.token || ''
+            }
+        });
+        
         console.log(response.data);
         return response.data;
+
     } 
     catch (err) 
     {
+
         console.log(err);
         return err;
     }
