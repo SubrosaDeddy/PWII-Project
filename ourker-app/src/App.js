@@ -1,5 +1,5 @@
 import './App.css';
-import {Fragment, useState} from 'react';
+import {Fragment, useEffect, useState} from 'react';
 import { Helmet } from 'react-helmet';
 import Home from './pages/Home';
 import LogIn from './pages/LogIn';
@@ -20,6 +20,10 @@ function App() {
   const [user, setUser] = useState("");
   const [worker, setWorker] = useState(null);
  
+  useEffect(() => {
+      sessionStorage.setItem('user', JSON.stringify(user));
+  }, [user]);
+
   return (
     <Fragment>
       <Helmet> <title>Ourker</title> </Helmet>

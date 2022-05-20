@@ -11,6 +11,7 @@ export default class User
         this.password = inputObj.password;
         this.profilepicture = inputObj.profilepicture;
         this._address = inputObj._address;
+        this.token = inputObj.token;
 
     }
 

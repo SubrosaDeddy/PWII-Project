@@ -1,4 +1,5 @@
 import { axiosBase as axios } from "./Config";
+import { getUserLogged } from './helpers';
 
 export const InsertChat = async(inputChat) =>{
     try {
@@ -25,7 +26,13 @@ export const GetChatsUsers = async(userSendId, userReId) =>{
 
 export const GetListChat = async(inputChat) =>{
     try{
-        const response = await axios.get(`/chat//list/${inputChat}`);
+        const user = getUserLogged();
+
+        const response = await axios.get(`/chat//list/${inputChat}`, {
+            headers: {
+                'x-access-token': user?.token || ''
+            }
+        });
         return response.data;
 
     }catch(error){

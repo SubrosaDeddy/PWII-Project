@@ -139,8 +139,9 @@ export default function ChatWorker(props) {
               borderColor: "black",
             }}
           >
-
+            {!!props.user && (
               <ListChats user={props.user} setChatInfo={setChatData}/>
+            )}
           </Box>
           {}
           <input hidden name="dataId"  id="dataId"></input>
@@ -167,39 +168,43 @@ export default function ChatWorker(props) {
                 }}
               >
                 <ListItemAvatar>
-                  {chatData != undefined && (
+                  {(!!location.state?.idUserProfile && !!chatData) && (
+                     <Avatar src={chatData.profilepicture} />
+                  )}
+                  
+                  {(!!!location.state?.idUserProfile && !!chatData) && (
                      <Avatar src={chatData.profilepicture} />
                   )}
 
-                  {location.state.idUserProfile != null && chatData == undefined &&(
+                  {(!!location.state?.idUserProfile && !!!chatData) &&(
                     <Avatar src={location.state.idUserProfile.profilepicture} />
                   )}
 
-                  {location.state.idUserProfile == null && chatData == undefined &&(
+                  {(!!!location.state?.idUserProfile && !!!chatData) &&(
                     <Avatar src="" />
                   )}
 
                 </ListItemAvatar>
 
-                  {location.state.idUserProfile != null && chatData == undefined &&(
+                  {(!!location.state?.idUserProfile && !!!chatData) &&(
                     <ListItemText primary={location.state.idUserProfile.username} />
                   )}
 
-                  {chatData != undefined && (
+                  {!!chatData && (
                      <ListItemText primary={chatData.username} />
                   )}
 
-                  {location.state.idUserProfile == null && chatData == undefined && (
+                  {(!!!location.state?.idUserProfile && !!!chatData) && (
                      <ListItemText primary="Selecciona un usuario" />
                   )}
 
               </ListItem>
 
-              {location.state.idUserProfile != null && chatData == undefined &&(
+              {(!!location.state?.idUserProfile && !!!chatData) &&(
                     <ChatComponent user={props.user} userChat={location.state.idUserProfile} refresh={refresh} />
               )}
 
-              {chatData != null && (
+              {!!chatData && (
                 <ChatComponent user={props.user} userChat={chatData} refresh={refresh} />
               )}
 

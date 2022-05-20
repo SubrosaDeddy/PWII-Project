@@ -37,6 +37,7 @@ export default function NavBar(props) {
     setAnchorEl(null);
   };
   const handleLogout = () => {
+    sessionStorage.setItem('user', null);
     props.setLoggedUser("");
     navigate("/");
   };

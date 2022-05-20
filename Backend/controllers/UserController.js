@@ -1,5 +1,6 @@
 const User = require("../models/UserSchema");
 const logger = require("../util/logger");
+const jwt = require("jsonwebtoken");
 
 exports.user_getall = async(req, res) =>{
     const data = await User.find();
@@ -56,6 +57,17 @@ exports.user_getById = async(req, res) =>{
 exports.user_getByEmail = async(req, res) =>{
     const {id} = req.params;
     const data = await User.findOne({email: id});
+
+    const token = jwt.sign(
+        { user_id: data._id, email: data.email },
+        'clavesecreta616',
+        {
+          expiresIn: "2h",
+        }
+      );
+      // save user token
+      data.token = token;
+
 
     if(data){
         res.send(data);

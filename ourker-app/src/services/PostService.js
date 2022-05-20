@@ -1,5 +1,6 @@
 import { axiosBase as axios } from "./Config";
 import { GetCategory } from "./CategoryService";
+import { getUserLogged } from "./helpers";
 // import { data } from "../../../Backend/util/logger";
 
 export const GetPost = async (inputID) =>
@@ -34,7 +35,13 @@ export const GetPostsWorker = async (inputID) =>
 {
     try
     {
-        const response = await axios.get(`/post//worker/${inputID}`);
+        const user = getUserLogged();
+
+        const response = await axios.get(`/post//worker/${inputID}`, {
+            headers:{
+                'x-access-token': user?.token || ''
+            }
+        });
         return response.data;
     }
     catch(err)

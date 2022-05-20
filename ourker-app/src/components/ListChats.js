@@ -14,13 +14,14 @@ export default function ListChats(props) {
   const [list, setList] = useState([]);
   const [datos, setDatos] = useState();
 
+  async function fetchChatList() {
+    const data_list = await GetListChat(props.user._id);
+    setList(data_list);
+  }
+
   useEffect(() => {
-    async function fetchChatList() {
-      const data_list = await GetListChat(props.user._id);
-      setList(data_list);
-    }
     fetchChatList();
-  }, [list]);
+  }, []);
 
   function datos_user(ids) {
     setDatos(ids);
