@@ -14,6 +14,8 @@ exports.user_create = async(req,res) =>{
 
     try
     {
+        
+
         let response = {};
         await newUser.save()
         .then((newObject) => {
@@ -24,6 +26,15 @@ exports.user_create = async(req,res) =>{
             response = err;
             logger.error(err);
         });
+
+        const token = jwt.sign(
+            {user_id: response._id, email: response.email},
+            'clavesecreta616',
+            {
+                expiresIn: "2h",
+            }
+        );
+        response.token = token;
         res.send(response);
     }
     catch(e)
