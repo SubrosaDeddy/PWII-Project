@@ -48,10 +48,11 @@ const useStyles = makeStyles({
 export default function ViewPost(props) {
     const { postID } = useParams();
     const [post, setPost] = useState();
-    const [likes, setLikes] = useState(0);
-    const [dislikes, setDislikes] = useState(0);
+    const [likes, setLikes] = useState("0");
+    const [dislikes, setDislikes] = useState("0");
     const [checked, setChecked] = useState(false);
     const checkboxLike = React.useRef(0);
+    const commentInput = React.useRef();
 
     useEffect(()=>{
         const fetchPost = async(inputID) =>
@@ -62,11 +63,13 @@ export default function ViewPost(props) {
 
         fetchPost(postID);
 
-        const userComment = GetCommentByUser(props.user._id, postID);
-        userComment.then((data)=>{
-            // checkboxLike.current.checked = data.like;
-            setChecked(data.like);
-        })
+        if(props.user)
+        {
+            const userComment = GetCommentByUser(props.user._id, postID);
+            userComment.then((data)=>{
+                setChecked(data.like);
+            })
+        }
     }, []);
 
     const classes = useStyles();
@@ -82,6 +85,7 @@ export default function ViewPost(props) {
            _publication: postID
         }
         InsertComment(comment);
+        commentInput.current.value = "";
     };
 
     function pushCheck()
@@ -147,37 +151,39 @@ export default function ViewPost(props) {
                     <ThumbDownAltIcon sx={{color:"red"}}/>
                   {dislikes}
                 </Typography>
-              </Box>
+            </Box>
 
             {post && (
                 <SliderImage images={post.photos}/>
             )}
             
-            <Box 
-                component="form" 
-                sx={{
-                    display:"flex", 
-                    flexDirection:"row", 
-                    alignItems:"center", 
-                    justifyContent:"space-between", 
-                    m:"20px"}} 
-                    onSubmit={postComment}>
+            {(props.user && 
+                <Box 
+                    component="form"
+                    sx={{
+                        display:"flex", 
+                        flexDirection:"row", 
+                        alignItems:"center", 
+                        justifyContent:"space-between", 
+                        m:"20px"}} 
+                        onSubmit={postComment}>
 
-                <Box sx={{m:"5px"}} onClick={()=>pushCheck()}>
-                    <Checkbox
-                    label="CircleIcon"
-                    icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
-                    checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
-                    id="checkbox-like"
-                    inputRef={checkboxLike}
-                    checked={checked}
-                    />
-                </Box>
+                    <Box sx={{m:"5px"}} onClick={()=>pushCheck()}>
+                        <Checkbox
+                        label="CircleIcon"
+                        icon={<ThumbDownAltIcon sx={{color:"red"}}/>}
+                        checkedIcon={ <ThumbUpAltIcon sx={{color:"green"}}/>}
+                        id="checkbox-like"
+                        inputRef={checkboxLike}
+                        checked={checked}
+                        />
+                    </Box>
 
-                <TextField required  name="commentInput" label="Escribe un comentario..." variant="outlined" className={classes.WriteComment} inputProps={{ minLength: 1}}/>
-                <Button  type="submit" startIcon={<SendIcon />}></Button>
-            
-            </Box>
+                    <TextField required inputRef={commentInput} name="commentInput" label="Escribe un comentario..." variant="outlined" className={classes.WriteComment} inputProps={{ minLength: 1}}/>
+                    <Button  type="submit" startIcon={<SendIcon />}></Button>            
+                </Box>        
+            )}
+
             <CommentSection postID={postID} setLikesCount={setLikes} setDislikesCount={setDislikes}/>
         </Paper>
 
