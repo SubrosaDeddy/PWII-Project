@@ -112,7 +112,7 @@ exports.worker_ocupation = async (req, res) => {
         arr.push(data[i]);
       }
       res.send({arr, conteo: arr.length});
-      //res.send(data);
+
     } else {
       res.send({ message: "Error, no se encontro el registro" });
     }
@@ -128,7 +128,7 @@ exports.worker_getByEmailValidation = async (req, res) => {
   const data = await User.findOne({ email: id });
 
   if (data) {
-    // res.send(data.id)
+
     const worker_data = await Worker.findOne({ _userinfo: data._id }).populate(
       "_userinfo"
     );

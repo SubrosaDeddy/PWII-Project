@@ -88,7 +88,7 @@ export default function Search(props) {
                   maxHeight: 150,
                   borderRadius: "50%",
                 }}
-                // image={props.user.profilepicture}
+
                 image ={location.state.dataUser.profilepicture}
                 alt="Foto de perfil"
               />

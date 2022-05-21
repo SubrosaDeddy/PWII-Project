@@ -9,9 +9,6 @@ export default class Worker
         this._ocupations = inputObj._ocupations;
         this.description = inputObj.description;
 
-        
-        // this.rating = inputObj.rating;
-
     }
 
     createWorkerDB (){

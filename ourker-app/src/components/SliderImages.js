@@ -1,24 +1,6 @@
 import React from 'react'
 import Slider from 'react-slick'
 
-// const images = [
-//         {
-//           photo:
-//           "busqueda_filtros.jpg",
-//           label: "image1"
-//         },
-//         {
-//             photo:
-//             "cover.png",
-//             label: "image1"
-//           },
-//         {
-//           photo:
-//           'fondo1.jpg',
-//           label: "image2"
-//         }
-//       ];
-
 
 export default function SliderImages(props) {
   var settings = {
@@ -40,7 +22,6 @@ export default function SliderImages(props) {
           <div key={index}>
             <img
               src={img}
-              // alt={step.label}
               style={{
                 height: "380px",
                 display: "block",

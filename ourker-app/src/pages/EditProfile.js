@@ -143,7 +143,7 @@ export default function SignIn(props) {
       if(!value.level){
 
         props.setLoggedUser(newUser);
-        // Actualizar worker 
+
         if(trabajador){
          getDescription(data, trabajador);
         }else{
@@ -162,7 +162,6 @@ export default function SignIn(props) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    // Validación cambiar imagen 
     if(selectedImage !=null){
 
       const uploadTask = storage
@@ -323,15 +322,6 @@ export default function SignIn(props) {
                   />
                 </Grid>
 
-                {/* <Grid item xs={12}>
-                  <SelectLocalities getLocValue={setVarLoc}/>
-                </Grid> */}
-
-                {/* {props.work && (
-                  <Grid item xs={12}>
-                    <SelectOccupations />
-                  </Grid>
-                )} */}
 
                 {dataWorker && (
                   <Grid item xs={12}>

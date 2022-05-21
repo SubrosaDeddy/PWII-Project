@@ -1,7 +1,7 @@
 import { axiosBase as axios } from "./Config";
 import { GetCategory } from "./CategoryService";
 import { getUserLogged } from "./helpers";
-// import { data } from "../../../Backend/util/logger";
+
 
 export const GetPost = async (inputID) =>
 {

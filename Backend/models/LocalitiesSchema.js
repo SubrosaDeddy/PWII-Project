@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-// Dejarlo nada mas como uno 
 const LocalitySchema = new mongoose.Schema({
     city:
     {

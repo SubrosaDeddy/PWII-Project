@@ -1,7 +1,7 @@
 import {GetPost, GetAll, InsertPost, UpdatePost} from "../services/PostService";
 import {GetUser} from "../services/UserService";
-// import photo
-// import category
+
+
 export default class Post
 {
     constructor(inputObj)
@@ -66,11 +66,6 @@ export default class Post
         this._photos = inputPhotos;
     }
 
-    // updatePhotosArray()
-    // {
-    //     // Query photos service
-    // }
-
     getCategories()
     {
         return this._categories;
@@ -80,11 +75,6 @@ export default class Post
     {
         return this._category;
     }
-
-    // updateCategoriesArray()
-    // {
-    //     // Query categories service
-    // }
 
     getCounting()
     {

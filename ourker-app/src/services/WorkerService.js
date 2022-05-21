@@ -2,7 +2,7 @@ import { Input } from "@material-ui/core";
 import { axiosBase as axios } from "./Config";
 import { GetLocalities } from "./LocalitiesServices";
 import { GetOccupation } from "./OcupationsService";
-// ``
+
 export const GetWorkerByEmailValidation = async (inputID) =>{
     try{
         const response = await axios.get(`/worker/info/${inputID}`);

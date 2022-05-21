@@ -29,7 +29,7 @@ export const GetAll = async () =>
         else
         {
             return [];
-            // return response.headers;
+
         } 
     }
     catch(err)
