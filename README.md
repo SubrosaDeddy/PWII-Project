@@ -27,7 +27,7 @@ Carpetas:
 		public: Aquí se encuentran los recursos externos como imágenes y svg's.
 		src: Contiene las carpetas de componentes, modelos, páginas y servicios.
 			components: Componentes de la aplicación pensados para utilizarse en más de una pantalla, por ejemplo, el navbar y la barra de búsqueda.
-			models: Manager del frontend para comunicarse con la base de datos (no fue utilizado al final).
+			models: Esta carpeta contiene las clases que se encargan de manejar la información de los objetos de nuestra aplicación.
 			pages: Paginas de la aplicación (diseño y funcionalidad/comunicación de frontend).
-			services: Comunicación FronEnd a BackEnd para tomar y desplegar la información.
+			services: La tarea de los archivos contenidos en esta carpeta es ser la comunicación de la aplicación entre el front-end y el back-end.
 			utils: Theme.js contiene los datos de los colores utilizados en la aplicación para tener integridad en el formato y diseños de las pantallas.
